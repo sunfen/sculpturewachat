@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<component-topnav inner-title="{{title}}" bind:topnavEvent="topnavEventListener"></component-topnav>  
+<page class="content">
+    <view class="title">
+      <text decode='true'>考勤周期&lt;2月7日.2月8日&gt;</text>
+      <text>今日收入：450元</text>
+    </view>
+    
+    <view class="calendar">
+      <view class="calendar-head"><text>日</text><text>一</text><text>二</text><text>三</text><text>四</text><text>五</text><text>六</text></view>
+      
+      <view class="flex-column">
+        <view class="flex-row">
+          <text class="flex-cell" wx:for="{{calendars}}" wx:key="id" wx:for-index="index"><text>{{item}}</text></text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="statitics">
+     
+    </view>
+    <view class="look">
+      <text>查看明细</text>
+    </view>
+</page>

@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<component-topnav inner-title="{{title}}"></component-topnav>  
+<page>
+    <view class="title">
+
+      <view class="title-column">
+        <text class="title-currentEarning">2050<text class="title-unit">元</text></text>
+        <view class="title-description">本月收入</view>
+      </view>
+
+      <view class="title-column">
+        <text class="title-outOfWork">5<text class="title-unit">天</text></text>
+        <view class="title-description">出勤</view>
+      </view>
+
+
+      <view class="title-column">
+        <text class="title-absenteeism">0<text class="title-unit">天</text></text>
+        <view class="title-description">缺勤</view>
+      </view>
+    </view>
+    
+    <view class="first-info-time">
+        <view>
+          <text decode='true'>&lt;2018年2月7日<text class='point'>.</text>星期日&gt;</text></view>
+        <view>上班</view>
+    </view>
+
+    <view class="first-info">
+      <text class="first-info-text">九个小时我是备注</text>
+      <text class="first-info-text">1小时/50天</text>
+    </view>
+
+    <view class="calendar-statistics">
+      <text class="first-info-text calendar-text">日历</text>
+      <view class="image-right" bindtap='calendar'><image src='/images/arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
+      </view>
+    </view>
+
+    <view class="calendar-statistics">
+      <text class="first-info-text">统计</text>
+      <view class="image-right" bindtap='statistics'><image src='/images/arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
+      </view>
+    </view>
+  <view class="calendar-statistics-image">
+  <component-semicircle id='circle' bg='circle_bg' draw='circle_draw' bind:runEvent="_runEvent" >
+    <!-- 这部分内容将被放置在组件 <slot> 的位置上 -->
+    <view class="circle_info">
+       <view class="circle_dot"></view>  
+      <text class='circle_txt'> {{txt}}</text>
+    </view>
+  </component-semicircle>
+  </view>
+</page>

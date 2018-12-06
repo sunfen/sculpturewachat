@@ -1,0 +1,36 @@
+.hh-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #46a9fa;
+  z-index: 99;
+}
+.hh-title{
+  font-size: 30rpx;
+  text-align: center;
+  font-weight: 200;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.title-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.hh-nav-right{
+  width: 40px;
+}
+.ico-back{
+  margin-left: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.ico-back-text{
+  font-size: 30rpx;
+  font-weight: 200;
+  color: #fff;
+}

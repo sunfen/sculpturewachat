@@ -1,0 +1,46 @@
+/* pages/index/addProject.wxss */
+.section{
+  margin: 80rpx 100rpx 0 100rpx;
+  color: rgb(122, 121, 121);
+}
+
+
+.input-project{
+  margin: 60rpx 0 0 0;
+  border-bottom:  1px solid rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-class{
+  font-weight: 300;
+  font-size: 26rpx;
+}
+
+.time{
+  width: 600rpx;
+  color: rgb(122, 121, 121);
+  margin: 100rpx 5rpx 0 25rpx;
+}
+
+.select-time{
+  margin: 0 5rpx 0 0rpx;
+  line-height: 30px;
+}
+.btn{
+  margin: 150rpx 0rpx 0rpx 0rpx;
+  width: 600rpx;
+  align-content: center;
+}
+
+.btn-cancel{
+   color: rgb(97, 95, 95);
+   background-color:  rgba(136, 133, 133, 0.582);
+   margin: 0rpx 100rpx 0rpx 0rpx;
+   width: 250rpx;
+}
+
+.btn-sure{
+   color:white;
+   background-color:  rgba(105, 184, 248, 0.973);
+   width: 250rpx;
+   margin-right: 0rpx;
+}

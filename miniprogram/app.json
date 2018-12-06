@@ -1,0 +1,16 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/index/index",
+    "pages/addProject/addProject",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#34A3DE",
+    "navigationBarTitleText": "雕塑记工本",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  }
+}

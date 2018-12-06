@@ -1,0 +1,74 @@
+/**index.wxss**/
+
+.content {
+  background:white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.title{
+  display: flex;
+  height: 120rpx;
+  width: 100%;
+  font-size:35rpx;
+  color: rgb(161, 160, 157);
+  flex-direction:column;
+  justify-content:center;
+  margin: 30rpx 0rpx 40rpx 10rpx;
+  border-bottom: 1rpx solid rgba(175, 174, 174, 0.719);
+}
+.calendar{
+  margin: 10rpx 1% 0 1%;
+}
+
+.calendar-head{
+  display: flex;
+  flex-flow:row;
+  justify-content:space-around;
+  align-items: center;
+  height: 50rpx;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 200;
+  background-color: rgb(247, 133, 27);
+}
+
+
+.flex-row{
+  display: grid;
+  grid-template-columns: repeat(7,auto);
+}
+
+.flex-cell{
+  display: grid;
+  grid-template-rows: 100rpx;
+  justify-content: center;
+  align-items: center;
+  border-right: 1rpx solid #ddd;
+  border-bottom: 1rpx solid #ddd;
+
+}
+
+
+.look{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  font-size: 35rpx;
+  font-weight: 200;
+  color: rgb(104, 104, 102);
+  border-top: 1rpx solid rgba(175, 174, 174, 0.719);
+  padding-bottom: 0rpx;
+  margin-bottom: 0;
+}
+
+.statitics{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  font-size: 35rpx;
+  font-weight: 200;
+  color: rgb(104, 104, 102);
+  border-top: 1rpx solid rgba(175, 174, 174, 0.719);
+}

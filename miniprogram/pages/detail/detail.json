@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "component-topnav": "/pages/component/topnav/topnav",
+      "component-semicircle": "/pages/component/semicircle/semicircle"
+  }
+}

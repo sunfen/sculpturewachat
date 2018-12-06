@@ -1,0 +1,32 @@
+<!--addProject.wxml-->
+<component-topnav inner-title="雕塑记工本" ></component-topnav>
+<view class="container">
+
+  <view class="section">
+    <input class="input-project" placeholder="请输入负责人姓名" placeholder-class='placeholder-class' confirm-type="next" auto-focus/>
+    <input class="input-project" placeholder="请输入上班地点" placeholder-class='placeholder-class' confirm-type="next" />
+    <input class="input-project" placeholder="请输入工作类型" placeholder-class='placeholder-class' confirm-type="next" />
+  </view>
+
+  <view class='time'>  
+    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 150px;" value="{{value}}"  bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{years}}" wx:key="index" class='select-time'>{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{months}}" wx:key="index" class='select-time'>{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{days}}" wx:key="index"  class='select-time'>{{item}}日</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{hours}}"  wx:key="index" class='select-time'>{{item}}时</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+
+  <view class="btn">
+    <button size="mini" class='btn-cancel' bindtap="cancel">取消</button>
+    <button size="mini" class='btn-sure'  bindtap="sure">确认</button>
+  </view>
+</view>
