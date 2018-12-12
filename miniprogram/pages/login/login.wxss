@@ -1,0 +1,62 @@
+/**index.wxss**/
+
+.container {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 33rpx;
+  font-weight:300;
+  color:#313131;
+  height: 100%;
+  width: 100%;
+}
+
+.title{
+  font-size: 56rpx;
+  margin: 60rpx;
+}
+
+
+.phone{
+  width: 500rpx;
+  margin: 40rpx 0 0 0;
+  border-bottom:  1px solid rgba(0, 0, 0, 0.1);
+}
+
+.identify{
+  display: flex;
+  flex-direction: row;
+  width: 500rpx;
+  margin: 40rpx 0 0 0;
+}
+
+.identify input{
+  width: 300rpx;
+  margin: 40rpx 0 0 0;
+  border-bottom:  1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.identify a{
+  margin: 40rpx 0 0 0;
+}
+
+
+.third{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 300rpx;
+  margin: 100rpx;
+}
+
+.third text{
+  font-size: 28rpx;
+}
+
+
+.third image{
+  width: 60rpx;
+  height: 60rpx;
+}

@@ -12,7 +12,7 @@ Page({
   getpage() {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/allProjects',
+      url: 'http://localhost:8081/allProjects',
       data: {
         size: that.data.pageInfo.size,
         page: that.data.pageInfo.page,
@@ -50,6 +50,7 @@ Page({
   searchScrollLower(){
     this.getpage();
   },
+
   //跳转新增项目页面
   addProject(){
     wx.navigateTo({
@@ -62,4 +63,17 @@ Page({
       url: '/pages/detail/detail',
     })
   }
-})
+}),
+
+  wx.getUserInfo({
+    success: function (res) {
+      var userInfo = res.userInfo
+      var nickName = userInfo.nickName
+      var avatarUrl = userInfo.avatarUrl
+      var gender = userInfo.gender //性别 0：未知、1：男、2：女
+      var province = userInfo.province
+      var city = userInfo.city
+      var country = userInfo.country
+      console.log(res)
+    }
+  })

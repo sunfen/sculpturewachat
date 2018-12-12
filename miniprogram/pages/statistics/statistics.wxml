@@ -33,13 +33,13 @@
 
     <view class="calendar-statistics">
       <text class="first-info-text calendar-text">日历</text>
-      <view class="image-right"><image src='arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
+      <view class="image-right"><image src='/images/arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
       </view>
     </view>
 
     <view class="calendar-statistics">
       <text class="first-info-text">统计</text>
-      <view class="image-right"><image src='arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
+      <view class="image-right"><image src='/images/arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
       </view>
     </view>
 </page>
