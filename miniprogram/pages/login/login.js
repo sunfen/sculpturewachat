@@ -1,13 +1,18 @@
 //index.js
 const app = getApp()
+const phone_test = /^1\d{10}$/;
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    phone:'',
+    identify:'',
+    identify_disabled: true,
+    currentTime: 61,
+    time: '获取验证码',
   },
-
 
   onLoad:function(){
     var that = this;
@@ -74,10 +79,85 @@ Page({
     });
   },
 
-  //发送验证码
-  sendIdentify(event) {
-    console.log(event);
+  input_phone:function(e){
+    var that = this;
+    if (phone_test.test(e.detail.value)){
+      that.setData({ identify_disabled: false });
+    }
+    that.setData({phone : e.detail.value});
+
   },
+
+
+  input_identify: function (e) {
+    var that = this;
+    that.setData({ identify: e.detail.value });
+  },
+
+  //发送验证码
+  sendIdentify(phone) {
+    var that = this;
+    
+    var currentTime = that.data.currentTime;
+    
+    that.setData({ identify_disabled: true });
+
+    wx.request({
+      url: getApp().globalData.urlPath + 'login/sendidentify/' + that.data.phone,
+      data: {
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.showToast({
+          title: '发送成功',
+          icon: 'success',
+          duration: 2000,
+        })
+      }
+    });
+
+    var interval = setInterval(function () {
+      currentTime--;
+      that.setData({
+        time: currentTime + '秒'
+      })
+      if (currentTime <= 0) {
+        clearInterval(interval);
+        that.setData({
+          time: '重新发送',
+          identify_disabled: false
+        })
+      }
+    }, 100)
+  },
+
+  //手机号和验证码登录
+  login:function(){
+    var that = this;
+    wx.request({
+      url: getApp().globalData.urlPath + 'login/phone',
+      data: {
+        phone: that.data.phone,
+        identify: that.data.identify
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+
+        getApp().globalData.userInfo = res.data;
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
+    });
+  },
+  
 
   //微信登录授权
   bindGetUserInfo: function (e) {
@@ -85,6 +165,5 @@ Page({
       url: '/pages/loginwechat/loginwechat',
     })
   }
-
  
 })

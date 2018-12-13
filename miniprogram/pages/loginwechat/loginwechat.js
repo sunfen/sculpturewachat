@@ -54,14 +54,14 @@ Page({
   insertUser:function(e){
     
     wx.request({
-      url: getApp().globalData.urlPath + 'login/wechat/insert_user',
+      url: getApp().globalData.urlPath + 'login/wechat/' + getApp().globalData.openid,
       data: {
-        openid: getApp().globalData.openid,
         nickName: e.detail.userInfo.nickName,
         avatarUrl: e.detail.userInfo.avatarUrl,
         province: e.detail.userInfo.province,
         city: e.detail.userInfo.city
       },
+      method:'POST',
       header: {
         'content-type': 'application/json'
       },

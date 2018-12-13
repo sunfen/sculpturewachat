@@ -14,7 +14,7 @@
 
 .title{
   font-size: 56rpx;
-  margin: 60rpx;
+  margin: 60rpx 0rpx 60rpx 150rpx;
 }
 
 
@@ -32,14 +32,21 @@
 }
 
 .identify input{
-  width: 300rpx;
+  width: 330rpx;
   margin: 40rpx 0 0 0;
   border-bottom:  1px solid rgba(0, 0, 0, 0.1);
 }
 
+/*.identify button::after{ border: none; }*/
 
-.identify a{
-  margin: 40rpx 0 0 0;
+.identify button{
+  margin: 35rpx 0 0 0;
+  padding: 0rpx;
+}
+
+.login{
+  font-size: 26rpx;
+  margin: 60rpx 0rpx 0rpx 0rpx;
 }
 
 
