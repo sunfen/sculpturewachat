@@ -4,11 +4,11 @@ Component({
     // 这里定义了innerText属性，属性值可以在组件使用时指定
     innerTitle: {
       type: String,
-      value: '头部标题'
+      value: '雕塑记工本'
     },
     isShowBack: {
       type: String,
-      value: "true"
+      value: "false"
     }
   },
   data: {

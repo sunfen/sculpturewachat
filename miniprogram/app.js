@@ -3,7 +3,9 @@ App({
   onLaunch: function () {
     var that = this;
     that.globalData = {
-      
+      urlPath: "http://localhost:8081/",
+      openid:'',
+      userInfo: {}
     }
     wx.getSystemInfo({
       success: function (res) {

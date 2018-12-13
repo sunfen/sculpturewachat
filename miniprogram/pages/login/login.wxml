@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="雕塑记工本" is-show-back="false"></component-topnav>  
+<component-topnav></component-topnav>  
 
 <view class="container">
 
@@ -15,6 +15,6 @@
 
   <view class='third'>
     <text>第三方登录</text>
-    <image src='/images/wechat.png' bindtouchstart="loginWechat"></image>
+    <image src='/images/wechat.png' open-type="getUserInfo"  bindtouchstart="bindGetUserInfo"></image>
   </view>
 </view>
