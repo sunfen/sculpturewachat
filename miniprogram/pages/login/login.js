@@ -62,19 +62,15 @@ Page({
   queryUsreInfo: function () {
     wx.request({
       url: getApp().globalData.urlPath + 'login/wechat/' + getApp().globalData.openid,
-      data: {
-      },
       method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
       success: function (res) {
-        console.log(res.data);
-
-        getApp().globalData.userInfo = res.data;
-        wx.redirectTo({
-          url: '/pages/index/index',
-        })
+        console.log(res.statusCode);
+        if(res.statusCode == '200'){
+          getApp().globalData.userInfo = res.data;
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
+        }
       }
     });
   },

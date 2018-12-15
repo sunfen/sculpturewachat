@@ -52,26 +52,38 @@ Page({
 
   //插入登录的用户的相关信息到数据库
   insertUser:function(e){
-    
     wx.request({
-      url: getApp().globalData.urlPath + 'login/wechat/' + getApp().globalData.openid,
+      url: getApp().globalData.urlPath + 'login/wechat',
       data: {
-        nickName: e.detail.userInfo.nickName,
+        username: e.detail.userInfo.nickName,
         avatarUrl: e.detail.userInfo.avatarUrl,
-        province: e.detail.userInfo.province,
-        city: e.detail.userInfo.city
+        openid: getApp().globalData.openid
       },
       method:'POST',
-      header: {
-        'content-type': 'application/json'
-      },
+      header: {'content-type': 'application/json'},
       success: function (res) {
+        console.log(res)
         //从数据库获取用户信息
         getApp().globalData.userInfo = res.data;
-        wx.redirectTo({
-          url: '/pages/index/index'
-        })
-      }
+      //  wx.redirectTo({
+      //    url: '/pages/index/index'
+      //  })
+      },
+      fail: function (res) {
+          //从数据库获取用户信息
+          wx.showModal({
+            title: '警告',
+            content: '未能成功登录',
+            showCancel: false,
+            confirmText: '重新登录',
+            success: function (res) {
+              wx.redirectTo({
+                url: '/pages/login/login'
+              })
+            }
+          })
+        }
+
     });
   }
 })

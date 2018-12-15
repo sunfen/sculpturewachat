@@ -12,7 +12,7 @@ Page({
   getpage() {
     var that = this;
     wx.request({
-      url: getApp().globalData.urlPath + 'allProjects',
+      url: getApp().globalData.urlPath + 'project/search',
       data: {
         size: that.data.pageInfo.size,
         page: that.data.pageInfo.page,
