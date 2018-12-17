@@ -1,8 +1,6 @@
 {
   "cloud": true,
   "pages": [
-    "pages/login/login",
-    "pages/loginwechat/loginwechat",
     "pages/index/index",
     "pages/addProject/addProject",
     "pages/detail/detail"  ],

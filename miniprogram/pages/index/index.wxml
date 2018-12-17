@@ -1,7 +1,24 @@
 <!--index.wxml-->
 <component-topnav inner-title="雕塑记工本" is-show-back="false"></component-topnav>  
+  
 
-<view class="container">
+<view wx:if="{{!isLogin}}">
+    <view class='header'>
+        <image src='/images/wechat.png'></image>
+    </view>
+
+    <view class='content'>
+        <view>申请获取以下权限</view>
+        <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+
+    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+        授权登录
+    </button>
+</view>
+
+
+<view wx:else class="container">
 
   <view class='title'>
     <text></text>

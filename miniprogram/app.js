@@ -6,8 +6,11 @@ App({
     //  urlPath: "http://39.106.157.46:8080/",
       urlPath: "http://localhost:8081/",
       openid:'',
-      userInfo: {}
+      userInfo: {},
+      sessionId:'',
+      header: { 'Cookie': '' } 
     }
+
     wx.getSystemInfo({
       success: function (res) {
         that.globalData.platform = res.platform
