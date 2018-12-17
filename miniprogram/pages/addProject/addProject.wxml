@@ -1,5 +1,5 @@
 <!--addProject.wxml-->
-<component-topnav inner-title="雕塑记工本" ></component-topnav>
+<component-topnav></component-topnav>
 <view class="container">
 
   <view class="section">

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="{{title}}"></component-topnav>  
+<component-topnav inner-title="{{title}}" is-show-back="true"></component-topnav>  
 <page>
     <view class="title">
 

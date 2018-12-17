@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="{{title}}" bind:topnavEvent="topnavEventListener"></component-topnav>  
+<component-topnav inner-title="{{title}}" bind:topnavEvent="topnavEventListener" is-show-back="true"></component-topnav>  
 <page class="content">
     <view class="title">
       <text decode='true'>考勤周期&lt;2月7日.2月8日&gt;</text>

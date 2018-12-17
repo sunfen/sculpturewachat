@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="雕塑记工本" is-show-back="false"></component-topnav>  
+<component-topnav></component-topnav>  
   
 
 <view wx:if="{{!isLogin}}">
@@ -28,33 +28,7 @@
 
   <!-- 列表 -->
   <scroll-view class="list" scroll-y="true" bindscrolltolower="searchScrollLower">
-  <view class="list-content" >
-        
-        <view class="list-content-circle" bindtouchstart='details'>11-11</view>
-        
-        <view  class="list-content-left">
-          <view>
-            <text>孙芬</text>
-            <text class="list-content-point">.</text>
-            <text class="list-content-type">家具</text>
-          </view>
-          
-          <view class="list-content-time">
-            <text>起于2012-11-12</text>
-          </view>
-          <view class="list-content-time">
-            <text>终止2013-23-23</text>
-          </view>
-
-        </view>
-        <view  class="list-content-right ellipsis">
-          <text class="list-content-address">朝阳区</text>    
-          <text class="list-content-remark" >无</text>
-        </view>
-      </view>
-
-
-
+  
     <view class="list-content" wx:for="{{allProjects}}" wx:key="id" wx:for-index="index" wx:for-item="project">
       
       <view class="list-content-circle" bindtouchstart='details'>{{project.startTimeFormat}}</view>
