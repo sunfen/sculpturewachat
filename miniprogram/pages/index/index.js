@@ -1,5 +1,10 @@
 //index.js
 const app = getApp()
+
+
+var common = require('/../../pages/common/common.js');
+
+
 var header = app.globalData.header;
 Page({
   /**
@@ -33,9 +38,7 @@ Page({
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
         if (res.data.content.length == 0){
-          wx.showToast({
-            title: '没有更多数据了！'
-          })
+          common.errorWarn("没有更多数据了！");
         }
       }
     })
@@ -49,6 +52,7 @@ Page({
   searchScrollLower() {
     this.getpage();
   },
+  
   onShow: function () {
     var that = this;
     wx.getSetting({
@@ -72,7 +76,7 @@ Page({
                   success: function (openIdRes) {
                     // 获取到 openId
                     getApp().globalData.openid = openIdRes.data.openid;
-
+                    console.log(openIdRes.data)
                     // 判断openId是否为空
                     if (openIdRes.data.openid != null & openIdRes.data.openid != undefined) {
                       wx.getUserInfo({
@@ -138,13 +142,7 @@ Page({
         }
       })
     } else {
-      //用户按了拒绝按钮
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        showCancel: false,
-        confirmText: '返回授权'
-      })
+      common.errorWarn("您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!");
     }
   },
 
@@ -179,12 +177,7 @@ Page({
   },
 
   loginFail: function () {
-    wx.showModal({
-      title: '警告',
-      content: '未能成功登录',
-      showCancel: false,
-      confirmText: '重新登录'
-    })
+    common.errorWarn("未能成功登录, 请重新登录");
   }
 })
 
