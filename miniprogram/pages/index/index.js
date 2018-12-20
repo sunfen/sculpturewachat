@@ -12,7 +12,7 @@ Page({
    */
   data: {
     isLogin: false,
-    allProjects: [],
+    results: [],
     pageInfo:{size: 10, page:0}
   },
   getpage() {
@@ -25,16 +25,14 @@ Page({
         page: that.data.pageInfo.page,
       },
       success(res) {
-        console.log(res.data);
         that.setData({
-          allProjects: res.data.content,
+          results: res.data.content,
           pageInfo: {
             size: res.data.size,
             page: res.data.number +1,
             content: res.data.content,
           }
         });
-        console.log(that);
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
         if (res.data.content.length == 0){
@@ -72,11 +70,10 @@ Page({
                     js_code: res.code
                   },
                   method: 'GET',
-                  header: { 'content-type': 'application/json' },
+                  header: header,
                   success: function (openIdRes) {
                     // 获取到 openId
                     getApp().globalData.openid = openIdRes.data.openid;
-                    console.log(openIdRes.data)
                     // 判断openId是否为空
                     if (openIdRes.data.openid != null & openIdRes.data.openid != undefined) {
                       wx.getUserInfo({
@@ -128,7 +125,7 @@ Page({
                 js_code: res.code
               },
               method: 'GET',
-              header: { 'content-type': 'application/json' },
+              header: header,
               success: function (openIdRes) {
                 // 判断openId是否为空
                 if (openIdRes.data.openid != null & openIdRes.data.openid != undefined) {
@@ -163,9 +160,8 @@ Page({
           //从数据库获取用户信息
           getApp().globalData.userInfo = e.detail.userInfo;
           getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
-          wx.redirectTo({
-            url: '/pages/index/index'
-          })
+          getApp().globalData.isLogin = true;
+          that.getpage();
         } else {
           that.loginFail();
         }
