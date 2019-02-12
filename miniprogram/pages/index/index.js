@@ -13,7 +13,41 @@ Page({
   data: {
     isLogin: false,
     results: [],
-    pageInfo:{size: 10, page:0}
+    pageInfo:{size: 10, page:0},
+    navData: [
+      {
+        name: "今日求购",  //文本
+        current: 1,    //是否是当前页，0不是  1是
+        style: 0,     //样式
+        ico: 'icon-qiugouguanli',  //不同图标
+        fn: 'gotoCompanyIndex'   //对应处理函数
+      }, {
+        name: "名片",
+        current: 0,
+        style: 0,
+        ico: 'icon-mingpianjia',
+        fn: 'gotobusinessCard'
+      }, {
+        name: "发布",
+        current: 0,
+        style: 1,
+        ico: '',
+        fn: 'gotopublish'
+      }, {
+        name: "消息",
+        current: 0,
+        style: 0,
+        ico: 'icon-yikeappshouyetubiao35',
+        fn: 'gotoMessages',
+        msg: 2   //因为消息是这个“消息”特有的，所以只有这个对象下游msg键值
+      }, {
+        name: "我的",
+        current: 0,
+        style: 0,
+        ico: 'icon-wode',
+        fn: 'bindViewMy'
+      },
+    ],
   },
   getpage() {
     var that = this;
@@ -159,8 +193,9 @@ Page({
         if (res.data.code == "200") {
           //从数据库获取用户信息
           getApp().globalData.userInfo = e.detail.userInfo;
+          console.log(res.data.t);
           getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
-          getApp().globalData.isLogin = true;
+          that.setData({isLogin: true});
           that.getpage();
         } else {
           that.loginFail();

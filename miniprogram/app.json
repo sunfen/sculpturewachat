@@ -3,7 +3,8 @@
   "pages": [
     "pages/index/index",
     "pages/addProject/addProject",
-    "pages/detail/detail"  ],
+    "pages/detail/detail",
+    "pages/user/user"  ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",

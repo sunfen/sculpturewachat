@@ -1,6 +1,5 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
-  
 
 <view wx:if="{{!isLogin}}">
     <view class='header'>
@@ -18,41 +17,182 @@
 </view>
 
 
-<view wx:else class="container">
-
-  <view class='title'>
-    <text></text>
-    <text>项目</text>
-    <image src='/images/add.png' class="addPrincipalClass" bindtap='addProject'></image>
-  </view>
-
-  <!-- 列表 -->
-  <scroll-view class="list" scroll-y="true" bindscrolltolower="searchScrollLower">
-  
-    <view class="list-content" wx:for="{{allProjects}}" wx:key="id" wx:for-index="index" wx:for-item="project">
-      
-      <view class="list-content-circle" bindtouchstart='details'>{{project.startTimeFormat}}</view>
-      
-      <view  class="list-content-left">
-        <view>
-          <text>{{project.pricipal}}</text>
-          <text class="list-content-point">.</text>
-          <text class="list-content-type">{{project.type}} </text>
-        </view>
-        
-        <view class="list-content-time">
-          <text>起于{{project.startTime}}</text>
-        </view>
-        <view class="list-content-time">
-          <text hidden="{{project.endTime ? false : true}}">终止{{project.endTime}}</text>
-        </view>
-
-      </view>
-      <view  class="list-content-right ellipsis">
-        <text class="list-content-address">{{project.address}}</text>    
-        <text class="list-content-remark" hidden="{{project.remark ? false : true}}">{{project.remark}}</text>
-      </view>
+<scroll-view wx:else class="container">
+  <!-- top开始 -->
+  <view class='top'>
+    <view>
+      <button class="defalut_btn top-button" bindtap='bindViewMy'>
+        <icon class="iconfont icon-identity"></icon>
+      </button>
     </view>
 
-  </scroll-view>
-</view>
+    <view class="top-center">
+    
+      <view class="top-one">
+        <text class="top-one-top">400元</text>
+        <text>本月收入</text>
+      </view>
+    
+      <view class="top-one">
+        <text class="top-one-top">1天</text>
+        <text>出勤</text>
+      </view>
+    
+    </view>
+    
+    <view>
+     <view class="horizontal"></view>
+    </view>
+
+  </view>
+<!-- top结束 -->
+<!-- 便利贴开始 -->
+  <view class="note">
+    
+    <!-- 添加项目人 -->
+    <view class="note-column-add">
+      <button class="defalut_btn top-button" bindtap='bindViewMy'>
+        <icon class="iconfont icon-add-identity"></icon>
+      </button>
+    </view>
+    
+    <!-- 项目时间 -->
+    <view class="note-column-date">
+      <text>2018.12.01-2019.03.09</text>
+      <text>每天均入400元</text>
+    </view>
+    
+    <!-- 项目名称 -->
+    <view class="note-column-project">
+      <text class="note-column-project-circle">孙</text>
+      <view class="note-column-project-position">
+        <text>圆雕</text>
+        <text>宋庄</text>
+      </view>
+  
+      <text class="note-column-project-wage">总工资2400元</text>
+    </view>
+
+  </view>
+<!-- 便利贴结束 -->
+
+<!-- 三种操作功能开始 -->
+  <view class="functions">
+    <view class="note-column-function-circle">
+      <button class="defalut_btn" bindtap='bindViewMy'>
+        <icon class="iconfont icon-statistics"></icon>
+      </button>
+    </view>
+
+    <view class="note-column-function-circle">
+      <button class="defalut_btn" bindtap='bindViewMy'>
+        <icon class="iconfont icon-edit-account"></icon>
+      </button>
+    </view>
+
+    <view class="note-column-function-circle">
+      <button class="defalut_btn" bindtap='bindViewMy'>
+        <icon class="iconfont icon-record"></icon>
+      </button>
+    </view>
+
+  </view>
+<!-- 三种操作功能结束 -->
+<!-- 空白条 -->
+  <view class="blank-space">
+  </view>
+<!-- 空白条 -->
+
+<view class="log">
+  <text class="log-title">每日一记</text>
+  <!-- 记录开始 -->
+  <view>
+    <!-- 一条记录开始 -->
+    <view class="log-detail">
+      <!-- 日期 -->
+      <view class="log-date">
+        <text>1月6日</text>
+        <text>星期日</text>
+      </view>
+
+      <!-- 圆圈 -->
+      <view class="log-detail-center">
+        <view class="log-detail-circle">今</view>
+        <view class="log-detail-line"></view>
+      </view>
+
+      <!-- 详情 -->
+      <view class="log-detail-detail">
+        <text class="log-detail-detail-status">上班</text>
+        <view>
+          <text class="ellipsis">圆雕宋庄备注信息</text>
+        </view>
+        <text class="note-column-project-wage">收入400元</text>
+      </view>
+
+    </view>
+    <!-- 一条记录结束 -->
+
+
+ <!-- 一条记录开始 -->
+    <view class="log-detail">
+      <!-- 日期 -->
+      <view class="log-date">
+        <text>1月6日</text>
+        <text>星期日</text>
+      </view>
+
+      <!-- 圆圈 -->
+      <view class="log-detail-center">
+        <view class="log-detail-circle">今</view>
+        <view class="log-detail-line"></view>
+      </view>
+
+      <!-- 详情 -->
+      <view class="log-detail-detail">
+        <text class="log-detail-detail-status">上班</text>
+        <view>
+          <text class="ellipsis">圆雕宋庄备注信息</text>
+        </view>
+        <text class="note-column-project-wage">收入400元</text>
+      </view>
+
+    </view>
+
+
+
+     <!-- 一条记录开始 -->
+    <view class="log-detail">
+      <!-- 日期 -->
+      <view class="log-date">
+        <text>1月6日</text>
+        <text>星期日</text>
+      </view>
+
+      <!-- 圆圈 -->
+      <view class="log-detail-center">
+        <view class="log-detail-circle">今</view>
+        <view class="log-detail-line"></view>
+      </view>
+
+      <!-- 详情 -->
+      <view class="log-detail-detail">
+        <text class="log-detail-detail-status">上班</text>
+        <view>
+          <text class="ellipsis">圆雕宋庄备注信息</text>
+        </view>
+        <text class="note-column-project-wage">收入400元</text>
+      </view>
+
+    </view>
+    <!-- 一条记录结束 -->
+
+
+  </view>
+  <!-- 记录结束 -->
+  </view>
+
+  <view class="button-space"></view>
+</scroll-view>
+<component-footernav></component-footernav>  
+

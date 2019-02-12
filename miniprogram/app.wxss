@@ -5,3 +5,60 @@
   align-items: center;
   box-sizing: border-box;
 } 
+
+
+/* 小图标 */
+@font-face {
+  font-family: 'iconfont';  /* project id 1041080 */
+  src: url('//at.alicdn.com/t/font_1041080_eqx7sldifl.eot');
+  src: url('//at.alicdn.com/t/font_1041080_eqx7sldifl.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.svg#iconfont') format('svg');
+}
+
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*工种*/
+.icon-identity:before { content: "\e63f"; }
+
+.icon-add-identity:before { content: "\e644";}
+/* 统计 */
+.icon-statistics:before { content: "\e634";}
+/* 记账 */
+.icon-edit-account:before { content: "\e61f";}
+/* 记录 */
+.icon-record:before { content: "\e652";}
+
+
+/* 清楚按钮的默认样式  */
+.defalut_btn{
+  background: transparent;
+  border:none;
+  overflow: visible;
+  padding-left:0;
+  padding-right:0;
+  margin-left:0;
+  margin-right:0;
+  border-radius:0;
+}
+
+.defalut_btn:after{
+  display: none;
+}
+
+.text-primary{
+  color:#00a2e9;
+}
+
+.button-space {
+  height: 110px;
+}
