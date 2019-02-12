@@ -157,11 +157,6 @@
   background-color: rgba(165, 166, 167, 0.596);
 }
 
-.blank-space {
-  height: 10rpx;
-  margin-top: 50rpx;
-  background-color: rgba(211, 211, 211, 0.774);
-}
 
 
 .log {

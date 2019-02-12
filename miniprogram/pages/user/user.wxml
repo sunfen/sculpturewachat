@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<component-topnav></component-topnav>  
+
+<scroll-view class="container">
+  <view class="top">
+   <view class="top-image">
+    <image class="top-image" src='{{userInfo.avatarUrl}}'></image>
+   </view>
+   <view class="top-text">
+    <text class="top-text-name">{{userInfo.nickName}}</text>
+    <text>morenqianming</text>
+   </view>
+  </view>
+  
+  <view class="button-space"></view>
+
+  <view class="button-space"></view>
+</scroll-view>
+<component-footernav current="1"></component-footernav>  
+

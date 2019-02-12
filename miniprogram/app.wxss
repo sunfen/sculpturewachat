@@ -62,3 +62,10 @@
 .button-space {
   height: 110px;
 }
+
+
+.blank-space {
+  height: 10rpx;
+  margin-top: 50rpx;
+  background-color: rgba(211, 211, 211, 0.774);
+}

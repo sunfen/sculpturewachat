@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "component-topnav": "/pages/component/topnav/topnav"
+    "component-topnav": "/pages/component/topnav/topnav",
+    "component-footernav": "/pages/component/footernav/footernav"
   }
 }
