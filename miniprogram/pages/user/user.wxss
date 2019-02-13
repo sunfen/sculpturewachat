@@ -134,11 +134,11 @@
 }
 
 .function-help-right {
-  margin-left: 60%;
+  margin-left: 70%;
 }
 
 .function-remind-switch {
-  margin-left: 50%;
+  margin-left: 60%;
 }
 
 .wx-switch-input{

@@ -63,7 +63,7 @@
     </view>
     
     <!-- 项目名称 -->
-    <view class="note-column-project">
+    <view class="note-column-project" bindtap='viewdetail'>
       <text class="note-column-project-circle">孙</text>
       <view class="note-column-project-position">
         <text>圆雕</text>
@@ -194,5 +194,68 @@
 
   <view class="button-space"></view>
 </scroll-view>
-<component-footernav></component-footernav>  
 
+
+<!-- 弹出框开始 -->
+
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+
+  <view class="modalDlg" wx:if="{{showModal}}">
+
+    <view class='modalDlg-header'>
+      <view>孙芬.圆雕</view>
+      <view>24000万元</view>
+    </view>
+<!-- 内容 -->
+    <view class='modalDlg-content'>
+
+      <view class="modalDlg-content-row">
+        <view>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-remind"></icon>
+          </button>
+        </view>
+        <view class="modalDlg-content-row-text">
+          <text>地点.北京</text>
+        </view>
+      </view>
+
+      <view class="modalDlg-content-row">
+        <view>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-remind"></icon>
+          </button>
+        </view>
+        <view class="modalDlg-content-row-text">
+          <text>时间.2018年12月1日-2019年1月31日</text>
+        </view>
+      </view>
+
+      <view class="modalDlg-content-row">
+        <view>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-remind"></icon>
+          </button>
+        </view>
+        <view class="modalDlg-content-row-text">
+          <text>总工资.24000元</text>
+        </view>
+      </view>     
+    </view>
+    <!-- 按钮 -->
+    <view class='modalDlg-footer'>
+      <view bindtap="editProject">
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-edit-account">编辑</icon>
+        </button>
+      </view>
+      <view bindtap="deletedProject">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-edit-account">删除</icon>
+          </button>
+      </view>
+    </view>
+
+  </view>
+<!-- 弹出框结束 -->
+<component-footernav current="0"></component-footernav>  
