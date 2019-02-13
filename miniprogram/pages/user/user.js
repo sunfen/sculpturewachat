@@ -30,7 +30,7 @@ Page({
      */
     wx.getUserInfo({
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         var avatarUrl = 'userInfo.avatarUrl';
         var nickName = 'userInfo.nickName';
         that.setData({

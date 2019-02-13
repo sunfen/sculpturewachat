@@ -10,12 +10,12 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_eqx7sldifl.eot');
-  src: url('//at.alicdn.com/t/font_1041080_eqx7sldifl.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_eqx7sldifl.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.eot');
+  src: url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.svg#iconfont') format('svg');
 }
 
 
@@ -37,7 +37,18 @@
 .icon-edit-account:before { content: "\e61f";}
 /* 记录 */
 .icon-record:before { content: "\e652";}
-
+/* 关于 */
+.icon-about:before { content: "\e652";}
+/* 提醒 */
+.icon-remind:before { content: "\e60e";}
+/* 设置 */
+.icon-setting:before { content: "\e626";}
+/* 帮助 */
+.icon-help:before { content: "\e627";}
+/* 右返回 */
+.icon-back-right:before { content: "\e628";}
+/* 左返回 */
+.icon-back-left:before { content: "\e658";}
 
 /* 清楚按钮的默认样式  */
 .defalut_btn{
@@ -65,7 +76,6 @@
 
 
 .blank-space {
-  height: 10rpx;
-  margin-top: 50rpx;
-  background-color: rgba(211, 211, 211, 0.774);
+  height: 20rpx;
+  background-color: rgb(211, 211, 211);
 }

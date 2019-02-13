@@ -2,19 +2,140 @@
 <component-topnav></component-topnav>  
 
 <scroll-view class="container">
+
   <view class="top">
-   <view class="top-image">
-    <image class="top-image" src='{{userInfo.avatarUrl}}'></image>
-   </view>
-   <view class="top-text">
-    <text class="top-text-name">{{userInfo.nickName}}</text>
-    <text>morenqianming</text>
-   </view>
+    <view class="top-image">
+      <image class="top-image" src='{{userInfo.avatarUrl}}'></image>
+    </view>
+    <view class="top-text">
+      <text class="top-text-name">{{userInfo.nickName}}</text>
+      <text>morenqianming</text>
+    </view>
   </view>
   
-  <view class="button-space"></view>
+  <view class="blank-space"></view>
 
-  <view class="button-space"></view>
+  <!-- 分类 -->
+  <view class="category">
+  <!-- 我的负责人 -->
+    <view class="category-detail">
+      <text class="category-top">我的负责人</text>
+      <text class="category-buttom">1个</text>
+    </view>
+    <!-- 我的项目 -->
+    <view class="category-detail">
+      <text class="category-top">我的项目</text>
+      <text class="category-buttom">1个</text>
+    </view>
+    <!-- 我的工资 -->
+    <view class="category-detail">
+      <text class="category-top">我的工资</text>
+      <text class="category-buttom">1个</text>
+    </view>
+
+  </view>
+
+  <view class="blank-space"></view>
+  
+   <!-- 功能 -->
+  <view class="function">
+  <!-- 记账提醒 -->
+    <view class="function-remind">
+      <view>
+        <view class="function-remind-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-remind"></icon>
+          </button>
+        </view>
+      </view>
+      <view class="function-remind-right">
+        <text>记账提醒</text>
+        <view class="function-remind-switch">
+            <switch checked bindchange="switch1Change" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 记账设置 -->
+    <view class="function-remind">
+      <view>
+        <view class="function-remind-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-setting"></icon>
+          </button>
+        </view>
+      </view>
+      <view class="function-remind-right">
+        <text>记账设置</text>
+        <view  class="function-remind-switch">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 关于我们 -->
+    <view class="function-remind">
+      <view>
+        <view class="function-remind-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-about"></icon>
+          </button>
+        </view>
+      </view>
+      <view class="function-remind-right">
+        <text>关于我们</text>
+        <view  class="function-remind-switch">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+    <!-- 帮助 -->
+    <view class="function-remind">
+      <view>
+        <view class="function-remind-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-help"></icon>
+          </button>
+        </view>
+      </view>
+      <view class="function-remind-right-noline">
+        <text>帮助</text>
+        <view  class="function-help-right ">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>  
+
+  </view>
+  <view class="blank-space"></view>
+ 
+ 
+ <!-- 联系方式 -->
+  <view class="contact">
+    <view class="contact-title">
+      <text>联系我们 </text>
+    </view>
+    <view class="contact-point">
+      <text>.</text>
+    </view> 
+    <view class="contact-text">
+      <text>微信</text>
+      <text class="contact-text-buttom">shuyuwode1993</text>
+    </view> 
+    <view class="contact-text">
+      <text>QQ</text>
+      <text class="contact-text-buttom">1121788582</text>
+    </view>
+  </view>
 </scroll-view>
+
 <component-footernav current="1"></component-footernav>  
 

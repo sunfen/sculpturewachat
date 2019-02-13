@@ -1,7 +1,7 @@
 /**index.wxss**/
 
 .container {
-  background: #faf8f8;
+  background: #fff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -16,13 +16,13 @@
   justify-content:space-between;
   height: 200rpx;
   width: 100%;
-  background: #d8d8d86c;
+  background: #d8d8d825;
 }
 
 .top-image {
   width: 100rpx;
   height: 100rpx;
-  margin: 20rpx 0 20rpx 20rpx;
+  margin: 20rpx 0 0 20rpx;
 }
 
 .top-text {
@@ -35,4 +35,125 @@
 .top-text-name {
   font-size: 32rpx;
   font-weight: 400;
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  height: 120rpx;
+  background: #fffefe;
+}
+
+.category-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+}
+
+.category-top {
+  font-weight: 400;
+  font-size: 30rpx;
+}
+
+.category-buttom {
+  text-align:  center;
+  margin-top: -20rpx;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  background: #fffefe;
+  border: 1rpx solid #b9b7b7c5;
+  margin: 50rpx 60rpx 0 60rpx;
+  height: 130rpx;
+}
+
+.contact-title{
+  margin-top: 40rpx;
+  font-size: 37rpx;
+  font-weight: 400;
+}
+
+.contact-text{
+  font-size: 30rpx;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  margin-top: 25rpx;
+}
+
+.contact-text-buttom{
+  margin-top: -13rpx;
+}
+
+.contact-point {
+  margin-top: 27rpx;
+  font-size: 40rpx;
+  font-weight: 400;
+  color: #b9b7b7c5;
+}
+
+.function {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  background: #fffefe;
+  width: 100%;
+  font-weight: 400;
+  font-size: 32rpx;
+}
+
+.function-remind {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  margin-left: 60rpx;
+}
+
+.function-remind-right{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:center;
+  margin-left: 40rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #b9b7b7c5;
+}
+
+.function-remind-right-noline{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:center;
+  margin-left: 40rpx;
+  width: 100%;
+}
+
+.function-help-right {
+  margin-left: 60%;
+}
+
+.function-remind-switch {
+  margin-left: 50%;
+}
+
+.wx-switch-input{
+  width:82rpx !important;
+  height:40rpx !important;
+  margin:0 !important;
+  padding: 0 !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+  width:80rpx !important;
+  height:36rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+  width:38rpx !important;
+  height:36rpx !important;
 }
