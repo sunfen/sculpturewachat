@@ -14,8 +14,7 @@ Page({
     isLogin: false,
     results: [],
     pageInfo:{size: 10, page:0},
-    howModal: false,
-    showalert: false
+    showModal: false
   },
   getpage() {
     var that = this;
@@ -96,16 +95,11 @@ Page({
       }
     })
   },
-
-
-  go: function () {
-
+  // 关闭项目详情页
+  closeModal: function(){
     this.setData({
-
       showModal: false
-
     })
-
   },
   // 弹出项目详情页
   viewdetail(){
@@ -113,16 +107,24 @@ Page({
       showModal: true
     })
   },
-  alert: function () {
-
-    var that = this;
-
-    this.setData({
-
-      showalert: !that.data.showalert
-
+  // 编辑项目详情页
+  editProject() {
+    wx.navigateTo({
+      url: '/pages/addProject/addProject?id=' + 1,
     })
-
+  },
+  // 删除项目详情页
+  deletedProject() {
+    wx.showModal({
+      content: '是否删除?',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   //跳转新增项目页面
   addProject() {

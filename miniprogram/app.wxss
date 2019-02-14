@@ -4,20 +4,26 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  /* background: #c7c8ca; */
+  justify-content: flex-start;
+  font-size: 28rpx;
+  font-weight:400;
+  color:#313131e3;
+  width: 100%;
+  height: 100%; 
 } 
 
 
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.eot');
-  src: url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_n1vwsplt78t.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_7l7uxtwo9jp.eot');
+  src: url('//at.alicdn.com/t/font_1041080_7l7uxtwo9jp.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_7l7uxtwo9jp.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_7l7uxtwo9jp.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_7l7uxtwo9jp.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_7l7uxtwo9jp.svg#iconfont') format('svg');
 }
-
 
 .iconfont {
   font-family:"iconfont" !important;
@@ -47,8 +53,23 @@
 .icon-help:before { content: "\e627";}
 /* 右返回 */
 .icon-back-right:before { content: "\e628";}
-/* 左返回 */
-.icon-back-left:before { content: "\e658";}
+/* 删除 */
+.icon-delete:before { content: "\e623";}
+/* 工资 */
+.icon-wages:before { content: "\e60d";}
+/* 时间 */
+.icon-time:before { content: "\e76d";}
+/* 地点 */
+.icon-address:before { content: "\e621";}
+/* 负责人 */
+.icon-principal:before { content: "\e633";}
+/* 通讯录 */
+.icon-book:before { content: "\e65b";}
+/* 类型 */
+.icon-type:before { content: "\e6d4";}
+/* 键盘 */
+.icon-keyboard:before { content: "\e617";}
+
 
 /* 清楚按钮的默认样式  */
 .defalut_btn{
@@ -79,3 +100,4 @@
   height: 20rpx;
   background-color: rgb(211, 211, 211);
 }
+

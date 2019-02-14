@@ -14,9 +14,6 @@
   display: flex;
   flex-direction: row;
   justify-content:space-between;
-  height: 200rpx;
-  width: 100%;
-  background: #d8d8d825;
 }
 
 .top-image {

@@ -1,9 +1,9 @@
 {
   "cloud": true,
   "pages": [
-   
+   "pages/addProject/addProject",
     "pages/index/index",
-    "pages/addProject/addProject",
+    
     "pages/detail/detail",
     "pages/user/user"],
   "window": {

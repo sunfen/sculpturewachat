@@ -1,103 +1,32 @@
 // pages/index/addProject.js
 const app = getApp()
-var date = new Date();
-var years = [];
-const months = [1,2,3,4,5,6,7,8,9,10,11,12];
-var days = [];
-const hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
-
-for (let i = 2000; i <= date.getFullYear(); i++) {
-  years.push(i);
-}
-
-
-var monthStartDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-var monthEndDate = new Date(date.getFullYear(), date.getMonth() + 2, 1);
-
-for (let i = 1; i <= (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24); i++) {
-  days.push(i);
-}
-
 
 Page({
   data: {
-    years: years,
-    year: date.getFullYear(),
-    months: months,
-    month: date.getMonth() + 1,
-    days: days,
-    day: date.getDate(),
-    hours: hours,
-    hour: "00",
-    value: [date.getFullYear(), date.getMonth() + 1, date.getDate(), hours[0]],
-  },
-  bindChange: function (e) {
-    const val = e.detail.value;
-    this.setData({
-      year: this.data.years[val[0]],
-      month: this.data.months[val[1]],
-      day: this.data.days[val[2]],
-      hour: this.data.hours[val[3]]
-    });
-
-    var monthStartDate = new Date(this.data.year, this.data.month- 1, 1);
-    var monthEndDate = new Date(this.data.year, this.data.month, 1);
-
-    var newDays = [];
-    for (let i = 1; i <= (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24); i++) {
-      newDays.push(i);
+    project:{
+      principalName:'',
+      principalPhone: '',
+      name:'',
+      address:'',
+      date:'',
+      time:'08:00',
+      wages:'0'
     }
-    this.setData({ days: newDays });
-
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      console.log("接收到的参数 id=" + options.id);
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 弹出框蒙层截断touchmove事件
    */
-  onReady: function () {
-
+  preventTouchMove: function () {
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享
@@ -106,12 +35,139 @@ Page({
 
   },
 
-
-  //取消
-  cancel() {
-    wx.redirectTo({
-      url: '/pages/index/index',
+  
+  // 关闭详情页
+  closeModal: function () {
+    this.setData({
+      showModalPrincipal: false,
+      showModalWages: false,
+      showModalName: false,
+      showModalAddress: false
     })
+  },
+
+
+  //添加负责人
+  addPrincipal() {
+    this.setData({
+      showModalPrincipal: true,
+    })
+  },
+
+  //添加项目名称
+  addName() {
+    this.setData({
+      showModalName: true
+    })
+  },
+
+
+  //添加总工资
+  addWages() {
+    this.setData({
+      showModalWages: true
+    })
+  },
+
+
+  //添加地点
+  addAddress() {
+    this.setData({
+      showModalAddress: true
+    })
+  },
+
+  /**
+   * 对话框确认按 负责人
+   */
+  onConfirm: function (e) {
+    this.setData({
+      showModalPrincipal: false,
+      showModalWages: false,
+      showModalName: false,
+      showModalAddress: false,
+      project: { 
+        principalName: this.data.principalName, 
+        principalPhone: this.data.principalPhone,
+        name: this.data.name,
+        address: this.data.address,
+        time: this.data.time,
+        date: this.data.date,
+        wages: this.data.wages,
+     }
+    })
+  },
+
+
+  /**
+   * 输入框输入事件
+   */
+  inputValue:function(e){
+    var name = e.target.id;
+    console.log(e);
+    if(name == "principalName"){
+      this.setData({
+        principalName: e.detail.value
+      })
+      return;
+    }
+
+    if (name == "principalPhone") {
+      this.setData({
+        principalPhone: e.detail.value
+      })
+      return;
+    }
+
+    if (name == "name") {
+      this.setData({
+        name: e.detail.value
+      })
+      return;
+    }
+
+    if (name == "address") {
+      this.setData({
+        address: e.detail.value
+      })
+      return;
+    }
+
+
+    if (name == "wages") {
+      this.setData({
+        wages: e.detail.value
+      })
+      return;
+    }
+
+    if (name == "time" || name == "date") {
+      if(name == "time"){
+        this.setData({
+          time: e.detail.value
+        })
+      }
+      if (name == "date") {
+        this.setData({
+          date: e.detail.value
+        })
+      }
+      this.setData({
+        showModalPrincipal: false,
+        showModalWages: false,
+        showModalName: false,
+        showModalAddress: false,
+        project: {
+          principalName: this.data.principalName,
+          principalPhone: this.data.principalPhone,
+          name: this.data.name,
+          address: this.data.address,
+          time: this.data.time,
+          date: this.data.date,
+          wages: this.data.wages,
+        }
+      })
+    }
   },
 
   //新增完

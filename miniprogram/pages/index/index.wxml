@@ -205,6 +205,11 @@
     <view class='modalDlg-header'>
       <view>孙芬.圆雕</view>
       <view>24000万元</view>
+      <view>
+          <button class="defalut_btn top-button" bindtap='closeModal'>
+            <icon class="iconfont icon-close"></icon>
+          </button>
+        </view>
     </view>
 <!-- 内容 -->
     <view class='modalDlg-content'>
@@ -212,7 +217,7 @@
       <view class="modalDlg-content-row">
         <view>
           <button class="defalut_btn top-button">
-            <icon class="iconfont icon-remind"></icon>
+            <icon class="iconfont icon-address"></icon>
           </button>
         </view>
         <view class="modalDlg-content-row-text">
@@ -223,7 +228,7 @@
       <view class="modalDlg-content-row">
         <view>
           <button class="defalut_btn top-button">
-            <icon class="iconfont icon-remind"></icon>
+            <icon class="iconfont icon-time"></icon>
           </button>
         </view>
         <view class="modalDlg-content-row-text">
@@ -234,7 +239,7 @@
       <view class="modalDlg-content-row">
         <view>
           <button class="defalut_btn top-button">
-            <icon class="iconfont icon-remind"></icon>
+            <icon class="iconfont icon-wages"></icon>
           </button>
         </view>
         <view class="modalDlg-content-row-text">
@@ -246,12 +251,12 @@
     <view class='modalDlg-footer'>
       <view bindtap="editProject">
         <button class="defalut_btn top-button">
-          <icon class="iconfont icon-edit-account">编辑</icon>
+          <icon class="iconfont icon-edit-account">  编辑</icon>
         </button>
       </view>
       <view bindtap="deletedProject">
           <button class="defalut_btn top-button">
-            <icon class="iconfont icon-edit-account">删除</icon>
+            <icon class="iconfont icon-delete">  删除</icon>
           </button>
       </view>
     </view>

@@ -3,13 +3,19 @@
 <view style="padding-top:{{someData.statusBarHeight+someData.titleBarHeight}}px">
   <view class="hh-header">
     <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
+    
     <view class="title-bar" style="height:{{someData.titleBarHeight}}px">
+     
       <view wx:if="{{isShowBack=='true'}}"  bindtap='goback'>
-        <image class='ico-back' src='/images/fanhui.png'></image><text class="ico-back-text">返回</text>
+        <button class="defalut_btn">
+          <icon class="iconfont icon-back-left"></icon>
+        </button>
       </view>
+
       <view wx:if="{{isShowBack=='false'}}" class='hh-nav-back'></view>
       <view class="hh-title" bindtap='topTitleEvent'>{{innerTitle}}</view>
       <view class="hh-nav-right"></view>
+
     </view>
   </view>
 </view>

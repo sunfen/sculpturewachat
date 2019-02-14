@@ -1,32 +1,202 @@
 <!--addProject.wxml-->
-<component-topnav></component-topnav>
+<component-topnav inner-title="添加" is-show-back="true"></component-topnav>
+
 <view class="container">
+  <view class="content">
+    <!-- 添加负责人 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-principal"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>添加负责人</text>
+        <text>{{project.principalName}}</text>
+        <view class="row-right-icon" bindtap="addPrincipal">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
 
-  <view class="section">
-    <input class="input-project" placeholder="请输入负责人姓名" placeholder-class='placeholder-class' confirm-type="next" auto-focus/>
-    <input class="input-project" placeholder="请输入上班地点" placeholder-class='placeholder-class' confirm-type="next" />
-    <input class="input-project" placeholder="请输入工作类型" placeholder-class='placeholder-class' confirm-type="next" />
-  </view>
+    <!-- 添加项目名称 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-type"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>项目名称</text>
+        <text>{{project.name}}</text>
+        <view class="row-right-icon" bindtap="addName">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
 
-  <view class='time'>  
-    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 150px;" value="{{value}}"  bindchange="bindChange">
-      <picker-view-column>
-        <view wx:for="{{years}}" wx:key="index" class='select-time'>{{item}}年</view>
-      </picker-view-column>
-      <picker-view-column>
-        <view wx:for="{{months}}" wx:key="index" class='select-time'>{{item}}月</view>
-      </picker-view-column>
-      <picker-view-column>
-        <view wx:for="{{days}}" wx:key="index"  class='select-time'>{{item}}日</view>
-      </picker-view-column>
-      <picker-view-column>
-        <view wx:for="{{hours}}"  wx:key="index" class='select-time'>{{item}}时</view>
-      </picker-view-column>
-    </picker-view>
-  </view>
 
-  <view class="btn">
-    <button size="mini" class='btn-cancel' bindtap="cancel">取消</button>
-    <button size="mini" class='btn-sure'  bindtap="sure">确认</button>
+    <!-- 添加地点 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-address"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>地点</text>
+        <text>{{project.address}}</text>
+        <view class="row-right-icon" bindtap="addAddress">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+
+
+
+    <!-- 添加项目日期 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>项目日期</text>
+        <text>{{project.date}}</text>
+        <view class="row-right-icon">
+         <picker mode="date" value="{{date}}" start="2010-01-01" end="2099-12-31" id="date" bindchange="inputValue">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
+        </view>
+      </view>
+    </view>
+
+    <!-- 添加项目时间 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>项目时间</text>
+        <text>{{project.time}}</text>
+        <view class="row-right-icon">
+         <picker mode="time" value="{{project.time}}" start="08:00" end="18:00" id="time" bindchange="inputValue">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
+        </view>
+      </view>
+    </view>
+
+
+
+    <!-- 添加总工资 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>总工资</text>
+        <text>{{project.wages}}元</text>
+        <view class="row-right-icon" bindtap="addWages">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+    <view class="btn">
+      <button class='btn-sure'  bindtap="sure">保存</button>
+    </view>
+     
+
+
+
+    <!--弹窗 添加负责人 -->
+    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalPrincipal}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalPrincipal}}">
+      <view class="modal-title">添加负责人</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入姓名" id="principalName"   bindinput="inputValue" value="{{project.principalName}}"></input>
+        </view>
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入手机号" id="principalPhone"   bindinput="inputValue" value="{{project.principalPhone}}"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
+
+
+    <!--弹窗 添加项目名称 -->
+    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalName}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalName}}">
+      <view class="modal-title">添加项目名称</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入名称" id="name"   bindinput="inputValue"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
+
+
+        <!--弹窗 添加总工资 -->
+    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalWages}}">
+      <view class="modal-title">添加总工资</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入总工资" id="wages"   bindinput="inputValue"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
+
+            <!--弹窗 添加地点 -->
+    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalAddress}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalAddress}}">
+      <view class="modal-title">添加地点</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入地点" id="address"   bindinput="inputValue"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
   </view>
 </view>
+
+
