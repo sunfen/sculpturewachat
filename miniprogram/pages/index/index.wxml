@@ -20,6 +20,7 @@
 <scroll-view wx:else class="container">
   <!-- top开始 -->
   <view class='top'>
+  <!-- 身份切换 -->
     <view>
       <button class="defalut_btn top-button" bindtap='bindViewMy'>
         <icon class="iconfont icon-identity"></icon>
@@ -51,7 +52,7 @@
     
     <!-- 添加项目人 -->
     <view class="note-column-add">
-      <button class="defalut_btn top-button" bindtap='bindViewMy'>
+      <button class="defalut_btn top-button"  bindtap="editProject">
         <icon class="iconfont icon-add-identity"></icon>
       </button>
     </view>
@@ -78,26 +79,28 @@
 
 <!-- 三种操作功能开始 -->
   <view class="functions">
-    <view class="note-column-function-circle">
+    <view class="note-column-function-circle" bindtap="viewStatistics">
       <button class="defalut_btn" bindtap='bindViewMy'>
         <icon class="iconfont icon-statistics"></icon>
       </button>
     </view>
 
     <view class="note-column-function-circle">
-      <button class="defalut_btn" bindtap='bindViewMy'>
+      <button class="defalut_btn" bindtap='addOrUpdateLog'>
         <icon class="iconfont icon-edit-account"></icon>
       </button>
     </view>
 
-    <view class="note-column-function-circle">
+    <!-- <view class="note-column-function-circle">
       <button class="defalut_btn" bindtap='bindViewMy'>
         <icon class="iconfont icon-record"></icon>
       </button>
-    </view>
+    </view> -->
 
   </view>
 <!-- 三种操作功能结束 -->
+
+
 <!-- 空白条 -->
   <view class="blank-space">
   </view>
@@ -200,16 +203,16 @@
 
   <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 
-  <view class="modalDlg" wx:if="{{showModal}}">
+  <view class="modalDlg" wx:if="{{showModal}}" catchtouchmove="preventTouchMove" >
 
     <view class='modalDlg-header'>
       <view>孙芬.圆雕</view>
       <view>24000万元</view>
-      <view>
-          <button class="defalut_btn top-button" bindtap='closeModal'>
-            <icon class="iconfont icon-close"></icon>
-          </button>
-        </view>
+      <view  bindtap='closeModal'>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-close"></icon>
+        </button>
+      </view>
     </view>
 <!-- 内容 -->
     <view class='modalDlg-content'>

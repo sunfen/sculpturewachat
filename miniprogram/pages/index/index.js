@@ -16,32 +16,7 @@ Page({
     pageInfo:{size: 10, page:0},
     showModal: false
   },
-  getpage() {
-    var that = this;
-    wx.request({
-      header: header,
-      url: getApp().globalData.urlPath + 'project/search',
-      data: {
-        size: that.data.pageInfo.size,
-        page: that.data.pageInfo.page,
-      },
-      success(res) {
-        that.setData({
-          results: res.data.content,
-          pageInfo: {
-            size: res.data.size,
-            page: res.data.number +1,
-            content: res.data.content,
-          }
-        });
-        // 数据成功后，停止下拉刷新
-        wx.stopPullDownRefresh();
-        if (res.data.content.length == 0){
-          common.errorWarn("没有更多数据了！");
-        }
-      }
-    })
-  },
+
   onPullDownRefresh() {
     this.getpage();
   },
@@ -95,25 +70,37 @@ Page({
       }
     })
   },
-  // 关闭项目详情页
+  /**
+   *  关闭项目详情页
+   **/
   closeModal: function(){
     this.setData({
       showModal: false
     })
   },
-  // 弹出项目详情页
+  /**
+   * 弹出项目详情页
+   */
   viewdetail(){
     this.setData({
       showModal: true
     })
   },
-  // 编辑项目详情页
+
+
+  /**
+   * 编辑项目详情页
+   */
   editProject() {
     wx.navigateTo({
       url: '/pages/addProject/addProject?id=' + 1,
     })
   },
-  // 删除项目详情页
+
+
+  /**
+   * 删除项目详情页
+   */
   deletedProject() {
     wx.showModal({
       content: '是否删除?',
@@ -126,18 +113,59 @@ Page({
       }
     })
   },
-  //跳转新增项目页面
-  addProject() {
+
+
+  /**
+ * 新增一条日志
+ */
+  addOrUpdateLog() {
     wx.navigateTo({
-      url: '/pages/addProject/addProject',
+      url: '/pages/addLog/addLog?id=' + 1,
     })
   },
-  //跳转详情项目页面
-  details() {
+
+
+
+  /**
+   * 记工统计
+   */
+  viewStatistics: function () {
     wx.navigateTo({
-      url: '/pages/detail/detail',
+      url: '/pages/statistics/statistics',
     })
   },
+
+  /**
+   * 获取近一个月的日志
+   */
+  getpage() {
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + 'project/search',
+      data: {
+        size: that.data.pageInfo.size,
+        page: that.data.pageInfo.page,
+      },
+      success(res) {
+        that.setData({
+          results: res.data.content,
+          pageInfo: {
+            size: res.data.size,
+            page: res.data.number + 1,
+            content: res.data.content,
+          }
+        });
+        // 数据成功后，停止下拉刷新
+        wx.stopPullDownRefresh();
+        if (res.data.content.length == 0) {
+          common.errorWarn("没有更多数据了！");
+        }
+      }
+    })
+  },
+
+
 
   //用户按了允许授权按钮
   bindGetUserInfo: function (e) {
@@ -206,6 +234,7 @@ Page({
 
   loginFail: function () {
     common.errorWarn("未能成功登录, 请重新登录");
-  }
+  },
+
 })
 

@@ -1,11 +1,12 @@
 {
   "cloud": true,
   "pages": [
-   "pages/addProject/addProject",
     "pages/index/index",
-    
+    "pages/statistics/statistics",
+    "pages/addProject/addProject",
     "pages/detail/detail",
-    "pages/user/user"],
+    "pages/user/user"
+    ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
