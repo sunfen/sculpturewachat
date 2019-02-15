@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+      "pages/addLog/addLog",
     "pages/index/index",
     "pages/statistics/statistics",
     "pages/addProject/addProject",

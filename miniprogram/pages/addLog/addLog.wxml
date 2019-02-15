@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<component-topnav inner-title="记工" is-show-back="true"></component-topnav>  
+
+<page>
+  <view class="container">
+    <view class="content">
+      <import src="../../pages/calendar/index.wxml"/>
+      <view class="calendar-wrap">
+        <template is="calendar" data="{{...calendar}}" />
+      </view>
+     
+    </view>
+    <view class="">
+      <text>备注：</text>
+      <input />
+    </view>
+  </view>
+</page>

@@ -1,0 +1,12 @@
+/**index.wxss**/
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  background: #fff;
+  width: 100%;
+}
+
+@import '../../pages/calendar/index.wxss';
