@@ -8,11 +8,36 @@
       <view class="calendar-wrap">
         <template is="calendar" data="{{...calendar}}" />
       </view>
-     
     </view>
-    <view class="">
-      <text>备注：</text>
-      <input />
+
+    <!--屏幕背景变暗的背景  -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+    <!--弹出框  -->
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      
+      <view class="commodity-button">
+        <view class="commodity-button-content">
+          <button wx:for="{{selectTypes}}" wx:for-item="item" wx:for-index="index"     type='{{item.type}}' size='mini' bindtap="onSelectType" data-select-type="{{item.data}}">{{item.name}}</button>
+          <icon class="iconfont icon-delete"></icon>
+        </view>
+      </view>
+      
+      <input bindinput="inputValue"  placeholder='备注：点击填写今天的备注'></input>
+      
+      <view class='commodity-hours'>
+        <button wx:for="{{hours}}" size='mini'   wx:for-item="item" wx:for-index="index" bindtap='onSelectHours' style="background:{{item.color}};" data-hour='{{item.data}}'>
+          {{item.data}}
+        </button>
+      </view>
+
+      <view class="commodity-bottom">
+          <view>
+            <text>取消</text>
+          </view>
+          <view bindtap='save' class="commodity-bottom-sure">
+            <text>确定</text>
+          </view>
+      </view>
     </view>
   </view>
 </page>

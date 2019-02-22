@@ -37,7 +37,7 @@
 }
 
 .pink-color {
-  color: #ff629a;
+  color: #f3236c;
 }
 
 .white-color {
@@ -119,7 +119,7 @@
 }
 
 .normal-day-color {
-  color: #88d2ac;
+  color: #3fd889;
 }
 
 .day-choosed-color {
