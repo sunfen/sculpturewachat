@@ -13,6 +13,14 @@ Page({
     currentSelectType:'leave',
     currentRemark: '',
     currentHour: 8,
+    currentProject: {id: 1, name: '宋庄分', time: '2018-02-23'},
+    currentProjectIndex: 0,
+    projects:[
+      {id:1, name:'宋庄分', time:'2018-02-23'},
+      { id: 2, name: '昌平的', time: '2018-5-23' },
+      { id: 3, name: '浮雕啊', time: '2018-12-23' },
+      { id: 4, name: '发射点发生', time: '2019-12-23' }
+    ],
     selectTypes:[
       { data: 'leave', name: '请假', type:'primary'},
       { data: 'overtime', name: '加班', type: 'default' }
@@ -163,6 +171,15 @@ Page({
         todoText: that.data.currentRemark
       }],
     });
+  },
+
+  /**
+   * 绑定项目
+   */
+  bindProjectChange(event){
+    var that = this;
+    console.log(event);
+    that.setData({ currentProjectIndex: event.detail.value});
   },
 
   //隐藏对话框

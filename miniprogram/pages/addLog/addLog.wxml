@@ -17,15 +17,22 @@
       
       <view class="commodity-button">
         <view class="commodity-button-content">
-          <button wx:for="{{selectTypes}}" wx:for-item="item" wx:for-index="index"     type='{{item.type}}' size='mini' bindtap="onSelectType" data-select-type="{{item.data}}">{{item.name}}</button>
+          <button wx:for="{{selectTypes}}" wx:key="property"  wx:for-item="item" wx:for-index="index"     type='{{item.type}}' size='mini' bindtap="onSelectType" data-select-type="{{item.data}}">{{item.name}}</button>
           <icon class="iconfont icon-delete"></icon>
         </view>
       </view>
-      
+
+    
+      <picker style='z-index:1000000' bindchange="bindProjectChange" range="{{projects}}" value="{{currentProjectIndex}}" range-key="name">
+        <view class="picker">
+          当前项目：{{projects[currentProjectIndex].name}}  {{projects[currentProjectIndex].time}}
+        </view>
+      </picker>
+
       <input bindinput="inputValue"  placeholder='备注：点击填写今天的备注'></input>
       
       <view class='commodity-hours'>
-        <button wx:for="{{hours}}" size='mini'   wx:for-item="item" wx:for-index="index" bindtap='onSelectHours' style="background:{{item.color}};" data-hour='{{item.data}}'>
+        <button wx:for="{{hours}}" wx:key="property"  size='mini'   wx:for-item="item" wx:for-index="index" bindtap='onSelectHours' style="background:{{item.color}};" data-hour='{{item.data}}'>
           {{item.data}}
         </button>
       </view>
