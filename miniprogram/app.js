@@ -3,8 +3,9 @@ App({
   onLaunch: function () {
     var that = this;
     that.globalData = {
-      urlPath: "http://39.106.157.46:8080/",
+     // urlPath: "http://39.106.157.46:8080/",
       //urlPath: "http://localhost:8081/",
+      urlPath: "http://192.168.1.105:8081/",
       openid:'',
       userInfo: {},
       isLogin: false,

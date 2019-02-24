@@ -1,15 +1,22 @@
 // pages/index/addProject.js
 const app = getApp()
 
+var header = app.globalData.header;
+
+var common = require('/../../pages/common/common.js');
+var util = require('../../util/util.js'); 
+var time = util.formatTime(new Date());  
 Page({
   data: {
+    hours:["上午", "下午"],
+    hourIndex: 0,
+    startTime: time,
     project:{
-      principalName:'',
-      principalPhone: '',
+      principal:{id:'', name:'',phone:""},
       name:'',
       address:'',
-      date:'',
-      time:'08:00',
+      startTime: time,
+      startHour: '上午',
       wages:'0'
     }
   },
@@ -85,16 +92,7 @@ Page({
       showModalPrincipal: false,
       showModalWages: false,
       showModalName: false,
-      showModalAddress: false,
-      project: { 
-        principalName: this.data.principalName, 
-        principalPhone: this.data.principalPhone,
-        name: this.data.name,
-        address: this.data.address,
-        time: this.data.time,
-        date: this.data.date,
-        wages: this.data.wages,
-     }
+      showModalAddress: false
     })
   },
 
@@ -104,11 +102,11 @@ Page({
    */
   inputValue:function(e){
     var name = e.target.id;
-    console.log(e);
     if(name == "principalName"){
       this.setData({
-        principalName: e.detail.value
+        principalName:e.detail.value
       })
+      this.updateData();
       return;
     }
 
@@ -116,6 +114,7 @@ Page({
       this.setData({
         principalPhone: e.detail.value
       })
+      this.updateData();
       return;
     }
 
@@ -123,6 +122,7 @@ Page({
       this.setData({
         name: e.detail.value
       })
+      this.updateData();
       return;
     }
 
@@ -130,6 +130,7 @@ Page({
       this.setData({
         address: e.detail.value
       })
+      this.updateData();
       return;
     }
 
@@ -138,52 +139,119 @@ Page({
       this.setData({
         wages: e.detail.value
       })
+      this.updateData();
       return;
     }
 
-    if (name == "time" || name == "date") {
-      if(name == "time"){
-        this.setData({
-          time: e.detail.value
-        })
-      }
-      if (name == "date") {
-        this.setData({
-          date: e.detail.value
-        })
-      }
+    if (name == "startTime"){
       this.setData({
-        showModalPrincipal: false,
-        showModalWages: false,
-        showModalName: false,
-        showModalAddress: false,
-        project: {
-          principalName: this.data.principalName,
-          principalPhone: this.data.principalPhone,
-          name: this.data.name,
-          address: this.data.address,
-          time: this.data.time,
-          date: this.data.date,
-          wages: this.data.wages,
-        }
+        startTime: e.detail.value
       })
+      this.updateData();
+      return;
     }
+
+    if (name == "hour") {
+      this.setData({
+        hourIndex: e.detail.value
+      })
+      this.updateData();
+      return;
+    }
+    
   },
 
-  //新增完
-  sure() {
-    wx.showToast({
-      title: '成功添加！',
-      icon: 'success',
-      success(res){
-        setTimeout(function () {
-          wx.redirectTo({
-            url: '/pages/index/index',
-          })
-        }, 1000) 
-      
+  updateData(){
+    this.setData({
+      project: {
+        principal: {
+          name: this.data.principalName,
+          phone: this.data.principalPhone,
+        },
+        name: this.data.name,
+        address: this.data.address,
+        startTime: this.data.startTime,
+        startHour: this.data.hours[this.data.hourIndex],
+        wages: this.data.wages,
       }
     })
   },
 
+  //新增完
+  sure() {
+    var that = this;
+    if (that.data.project.principal.name == "" || that.data.project.principal.phone == ""
+      || that.data.project.principal.name == undefined
+      || that.data.project.principal.phone == undefined){
+      that.showAlertToast("请填写项目负责人！");
+      return;
+    }
+    if (that.data.project.name == "" || that.data.project.name == undefined) {
+      that.showAlertToast("请填写项目名称！");
+      return;
+    }
+    if (that.data.project.address == "" || that.data.project.address == undefined) {
+      that.showAlertToast("请填写项目地点！");
+      return;
+    }
+    if (that.data.project.startTime == "" || that.data.project.startTime == undefined) {
+      that.showAlertToast("请填写项目开始日期！");
+      return;
+    }
+    if (that.data.project.startHour == "" || that.data.project.startHour == undefined) {
+      that.showAlertToast("请填写项目开始时间！");
+      return;
+    }
+
+    
+    var project = this.data.project;
+    console.log(project);
+    wx.request({
+      url: getApp().globalData.urlPath + 'project',
+      method: "POST",
+      data: this.data.project,
+      header: header,
+      success: function (res) {
+        if (res.data.code == "200") {
+          wx.showToast({
+            title: '成功添加！',
+            icon: 'success',
+            success(res) {
+              setTimeout(function () {
+                wx.redirectTo({
+                  url: '/pages/index/index',
+                })
+              }, 1000)
+            }
+          })
+        } else if (res.data.code == "404") {
+          that.loginFail();
+        } else if (res.data.code == "500") {
+          that.showAlertToast("数据错误，请重试！");
+        }else {
+          console.log(1);
+          console.log(res);
+          that.loginFail();
+        }
+
+      },
+      fail: function (res){
+        console.log(res);
+        that.loginFail();
+      }
+    })
+  },
+
+
+  loginFail() {
+    common.errorWarn("未能成功登录, 请重新登录");
+  },
+
+
+  showAlertToast(message) {
+    wx.showToast({
+      title: message,
+      icon: 'none',
+    })
+  }
 })

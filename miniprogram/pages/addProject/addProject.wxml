@@ -12,7 +12,7 @@
       </view>
       <view class="row-right">
         <text>添加负责人</text>
-        <text>{{project.principalName}}</text>
+        <text>{{project.principal.name}}</text>
         <view class="row-right-icon" bindtap="addPrincipal">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
@@ -70,9 +70,9 @@
       </view>
       <view class="row-right">
         <text>项目日期</text>
-        <text>{{project.date}}</text>
+        <text>{{project.startTime}}</text>
         <view class="row-right-icon">
-         <picker mode="date" value="{{date}}" start="2010-01-01" end="2099-12-31" id="date" bindchange="inputValue">
+         <picker mode="date" value="{{startTime}}" start="2010-01-01" end="2099-12-31" id="startTime" bindchange="inputValue">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button> 
@@ -90,9 +90,9 @@
       </view>
       <view class="row-right">
         <text>项目时间</text>
-        <text>{{project.time}}</text>
+        <text>{{project.startHour}}</text>
         <view class="row-right-icon">
-         <picker mode="time" value="{{project.time}}" start="08:00" end="18:00" id="time" bindchange="inputValue">
+         <picker range="{{hours}}" value="{{hourIndex}}"  id="hour" bindchange="inputValue">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button> 
@@ -134,10 +134,10 @@
       <view class="modal-title">添加负责人</view>
       <view class="modal-content">
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入姓名" id="principalName"   bindinput="inputValue" value="{{project.principalName}}"></input>
+          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入姓名" id="principalName"   bindinput="inputValue" value="{{project.principal.name}}"></input>
         </view>
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入手机号" id="principalPhone"   bindinput="inputValue" value="{{project.principalPhone}}"></input>
+          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入手机号" id="principalPhone"   bindinput="inputValue" value="{{project.principal.phone}}"></input>
         </view>
       </view>
       <view class="modal-footer">
