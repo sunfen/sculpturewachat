@@ -17,7 +17,7 @@ Page({
       address:'',
       startTime: time,
       startHour: '上午',
-      wages:'0'
+      dailyWages:'0'
     }
   },
   
@@ -135,9 +135,9 @@ Page({
     }
 
 
-    if (name == "wages") {
+    if (name == "dailyWages") {
       this.setData({
-        wages: e.detail.value
+        dailyWages: e.detail.value
       })
       this.updateData();
       return;
@@ -172,7 +172,7 @@ Page({
         address: this.data.address,
         startTime: this.data.startTime,
         startHour: this.data.hours[this.data.hourIndex],
-        wages: this.data.wages,
+        dailyWages: this.data.dailyWages,
       }
     })
   },
@@ -182,7 +182,7 @@ Page({
     var that = this;
     if (that.data.project.principal.name == "" || that.data.project.principal.phone == ""
       || that.data.project.principal.name == undefined
-      || that.data.project.principal.phone == undefined){
+      || that.data.project.principal.phone == undefined || isNaN(that.data.project.principal.phone) ){
       that.showAlertToast("请填写项目负责人！");
       return;
     }
@@ -200,6 +200,10 @@ Page({
     }
     if (that.data.project.startHour == "" || that.data.project.startHour == undefined) {
       that.showAlertToast("请填写项目开始时间！");
+      return;
+    }
+    if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined || isNaN(that.data.project.dailyWages)) {
+      that.showAlertToast("请填写项目日工资！");
       return;
     }
 
@@ -225,33 +229,19 @@ Page({
             }
           })
         } else if (res.data.code == "404") {
-          that.loginFail();
+          common.loginFail();
         } else if (res.data.code == "500") {
-          that.showAlertToast("数据错误，请重试！");
+          common.showAlertToast("数据错误，请重试！");
         }else {
-          console.log(1);
-          console.log(res);
-          that.loginFail();
+          common.showAlertToast("数据错误，请重试！");
         }
 
       },
       fail: function (res){
-        console.log(res);
-        that.loginFail();
+        common.loginFail();
       }
     })
   },
 
 
-  loginFail() {
-    common.errorWarn("未能成功登录, 请重新登录");
-  },
-
-
-  showAlertToast(message) {
-    wx.showToast({
-      title: message,
-      icon: 'none',
-    })
-  }
 })

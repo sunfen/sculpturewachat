@@ -3,27 +3,24 @@ const app = getApp()
 import initCalendar, { jump, setTodoLabels, deleteTodoLabels, getTodoLabels, clearTodoLabels, getSelectedDay } from '../../pages/calendar/index';
 const COLOR_GRAY = "rgb(224, 223, 223)";
 const COLOR_RED = "rgb(252, 127, 25)";
+var common = require('/../../pages/common/common.js');
+
+var header = app.globalData.header;
 
 Page({
   data: {
-    userInfo: {},
-    requestResult: '',
     currentTab: 0,
     currentSelectDate: '',
-    currentSelectType:'leave',
+    currentSelectType:'work',
     currentRemark: '',
     currentHour: 8,
-    currentProject: {id: 1, name: '宋庄分', time: '2018-02-23'},
+    currentProject: {},
     currentProjectIndex: 0,
-    projects:[
-      {id:1, name:'宋庄分', time:'2018-02-23'},
-      { id: 2, name: '昌平的', time: '2018-5-23' },
-      { id: 3, name: '浮雕啊', time: '2018-12-23' },
-      { id: 4, name: '发射点发生', time: '2019-12-23' }
-    ],
+    projects:[],
     selectTypes:[
-      { data: 'leave', name: '请假', type:'primary'},
-      { data: 'overtime', name: '加班', type: 'default' }
+      { data: 'work', name: '上班', type: 'primary' },
+      { data: 'leave', name: '请假', type:'default'},
+      { data: 'extra', name: '加班', type: 'default' }
     ],
     hours: [
       { data: 0.5, color: COLOR_GRAY},
@@ -72,7 +69,11 @@ Page({
        * @param { object } event 日期点击事件对象
        */
       onTapDay(currentSelect, event) {
-        that.setData({ currentSelectDate: currentSelect, currentRemark: ''});
+        var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
+        that.setData({ 
+          currentSelectDate: currentSelect.year + "-" + month + "-" +  currentSelect.day, 
+          currentRemark: ''
+        });
         jump(currentSelect.year, currentSelect.month, currentSelect.day);
         that.showModal();
       },
@@ -88,6 +89,20 @@ Page({
   },
   onShow(){
     jump();
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + '/project/search/list',
+      success(res) {
+        if(res.data.length > 0 ){
+
+          that.setData({
+            projects: res.data,
+            currentProject: res.data[0]
+          });
+        }
+      }
+    })
   },
 
 
@@ -123,6 +138,8 @@ Page({
         that.data.selectTypes[i].type = "primary";
         if (that.data.selectTypes[i].data == "leave"){
           that.setData({ currentHour: 8 });
+        }else if (that.data.selectTypes[i].data == "work") {
+          that.setData({ currentHour: 8 });
         }else{
           that.setData({ currentHour: 1 });
         }
@@ -153,13 +170,82 @@ Page({
 
   /**
    * 保存
+   * 
+   * currentSelectDate: '',
+    currentSelectType:'work',
+    currentRemark: '',
+    currentHour: 8,
+    currentProject: {},
+    currentProjectIndex: 0,
    */
   save(event){
     var that = this;
-    
+    if (that.data.currentSelectDate == "" || that.data.currentSelectDate == undefined) {
+      that.showAlertToast("请选择日期！");
+      return;
+    }
+    if (that.data.currentSelectType == "" || that.data.currentSelectType == undefined) {
+      that.showAlertToast("请选择类型！");
+      return;
+    }
+    if (that.data.currentRemark != undefined && that.data.currentRemark.length >= 256) {
+      that.showAlertToast("备注不可超过256个字符");
+      return;
+    }
+    if (that.data.currentHour == "" || that.data.currentHour == undefined) {
+      that.showAlertToast("请选择时间！");
+      return;
+    }
+    if (that.data.currentProject.id == "" || that.data.currentProject.id == undefined) {
+      that.showAlertToast("请选择项目！");
+      return;
+    }
+  console.log(that.data);
+    wx.request({
+      url: getApp().globalData.urlPath + 'logrecord',
+      method: "POST",
+      data: {
+        id: that.data.currentId,
+        projectId: that.data.currentProject.id,
+        hour: that.data.currentHour,
+        time: that.data.currentSelectDate,
+        type: that.data.currentSelectType,
+        remark: that.data.currentRemark,
+      },
+      header: header,
+      success: function (res) {
+        if (res.data.code == "200") {
+          wx.showToast({
+            title: '成功添加！',
+            icon: 'success',
+            success(res) {
+              that.setLog();
+            }
+          })
+        } else if (res.data.code == "404") {
+          common.loginFail();
+        } else if (res.data.code == "500") {
+          common.showAlertToast("数据错误，请重试！");
+        } else {
+          common.showAlertToast("数据错误，请重试！");
+        }
+
+      },
+      fail: function (res) {
+        common.loginFail();
+      }
+    })
+
     that.hideModal();
+  },
+  
+  /**
+   *  待办点标记设置
+   */
+  setLog(){
+    var that = this;
     setTodoLabels({
-      // 待办点标记设置
+      
       pos: 'top', // 待办点标记位置 ['top', 'bottom']
       dotColor: 'red', // 待办点标记颜色
       // 待办圆圈标记设置（如圆圈标记已签到日期），该设置与点标记设置互斥
@@ -173,6 +259,8 @@ Page({
     });
   },
 
+
+
   /**
    * 绑定项目
    */
@@ -181,6 +269,8 @@ Page({
     console.log(event);
     that.setData({ currentProjectIndex: event.detail.value});
   },
+
+
 
   //隐藏对话框
   hideModal: function () {

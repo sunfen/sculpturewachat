@@ -1,11 +1,9 @@
 //index.js
 const app = getApp()
-
-
 var common = require('/../../pages/common/common.js');
-
-
 var header = app.globalData.header;
+var util = require('../../util/util.js'); 
+
 Page({
   /**
    * 页面的初始数据
@@ -13,8 +11,10 @@ Page({
   data: {
     isLogin: false,
     results: [],
+    project:{},
     pageInfo:{size: 10, page:0},
-    showModal: false
+    showModal: false,
+    today: util.formatTime(new Date())
   },
 
   onPullDownRefresh() {
@@ -28,6 +28,7 @@ Page({
   },
   
   onShow: function () {
+    console.log("onShow");
     var that = this;
     wx.getSetting({
       success: function (res) {
@@ -57,7 +58,7 @@ Page({
                           //从数据库获取用户信息
                           that.setData({isLogin: true});
                           getApp().globalData.userInfo = res.data;
-                          that.getpage();
+                          that.getpage(0);
                         }
                       })
                     }
@@ -87,40 +88,12 @@ Page({
     })
   },
 
-
-  /**
-   * 编辑项目详情页
-   */
-  editProject() {
-    wx.navigateTo({
-      url: '/pages/addProject/addProject?id=' + 1,
-    })
-  },
-
-
-  /**
-   * 删除项目详情页
-   */
-  deletedProject() {
-    wx.showModal({
-      content: '是否删除?',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-
-
   /**
  * 新增一条日志
  */
   addOrUpdateLog() {
     wx.navigateTo({
-      url: '/pages/addLog/addLog?id=' + 1,
+      url: '/pages/addLog/addLog',
     })
   },
 
@@ -136,31 +109,122 @@ Page({
   },
 
   /**
-   * 获取近一个月的日志
+   * 编辑项目详情页
    */
-  getpage() {
+  editProject() {
+    wx.navigateTo({
+      url: '/pages/addProject/addProject?id=' + this.data.project.id,
+    })
+  },
+
+
+
+
+
+
+  /**
+   * 删除项目详情页
+   */
+  deletedProject() {
+    wx.showModal({
+      content: '是否删除?',
+      success(res) {
+        if (res.confirm) {
+          var that = this;
+          wx.request({
+            method:'delete',
+            header: header,
+            url: getApp().globalData.urlPath + 'project/' + that.data.project.id,
+            success(res) {
+              if (res.data.code == "200") {
+                wx.showToast({
+                  title: '成功删除！',
+                  icon: 'success',
+                  success(res) {
+                    setTimeout(function () {
+                      wx.redirectTo({
+                        url: '/pages/index/index',
+                      })
+                    }, 1000)
+                  }
+                })
+              } else if (res.data.code == "404") {
+                common.loginFail();
+              } else if (res.data.code == "500") {
+                common.showAlertToast("数据错误，请重试！");
+              } else {
+                common.showAlertToast("数据错误，请重试！");
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+
+
+  /**
+   * 获取init数据
+   */
+  init() {
     var that = this;
     wx.request({
       header: header,
-      url: getApp().globalData.urlPath + 'project/search',
+      url: getApp().globalData.urlPath + '/index',
       data: {
         size: that.data.pageInfo.size,
         page: that.data.pageInfo.page,
       },
       success(res) {
+        if (res.data.pageInfo){
+          that.setData({
+            results: res.data.pageInfo.content,
+            project: res.data.project,
+            monthWages: res.data.monthWages,
+            workDays: res.data.workDays,
+            pageInfo: {
+              size: res.data.pageInfo.size,
+              page: res.data.pageInfo.number + 1,
+              content: res.data.pageInfo.content,
+            }
+          });
+        }
+
+      }
+    })
+  },
+
+  /**
+   * 获取近一个月的日志
+   */
+  getpage(number) {
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + 'logrecord/search',
+      data: {
+        size: that.data.pageInfo.size,
+        page: number ? number : that.data.pageInfo.page,
+      },
+      success(res) {
+        // 数据成功后，停止下拉刷新
+        wx.stopPullDownRefresh();
+        if (res.data.content.length == 0) {
+          common.errorWarn("没有更多数据了！");
+          return;
+        }
+        
+        for (var i in res.data.content){
+          that.data.results.push(res.data.content[i]);
+        }
         that.setData({
-          results: res.data.content,
+          results: that.data.results,
           pageInfo: {
             size: res.data.size,
             page: res.data.number + 1,
             content: res.data.content,
           }
-        });
-        // 数据成功后，停止下拉刷新
-        wx.stopPullDownRefresh();
-        if (res.data.content.length == 0) {
-          common.errorWarn("没有更多数据了！");
-        }
+        });       
       }
     })
   },
@@ -218,10 +282,9 @@ Page({
         if (res.data.code == "200") {
           //从数据库获取用户信息
           getApp().globalData.userInfo = e.detail.userInfo;
-          console.log(res.data.t);
           getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
           that.setData({isLogin: true});
-          that.getpage();
+          that.init();
         } else {
           that.loginFail();
         }

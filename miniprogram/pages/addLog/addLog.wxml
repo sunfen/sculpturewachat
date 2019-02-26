@@ -31,7 +31,7 @@
 
       <input bindinput="inputValue"  placeholder='备注：点击填写今天的备注'></input>
       
-      <view class='commodity-hours'>
+      <view wx:if="{{currentSelectType != 'work'}}" class='commodity-hours'>
         <button wx:for="{{hours}}" wx:key="property"  size='mini'   wx:for-item="item" wx:for-index="index" bindtap='onSelectHours' style="background:{{item.color}};" data-hour='{{item.data}}'>
           {{item.data}}
         </button>
@@ -39,12 +39,15 @@
 
       <view class="commodity-bottom">
           <view>
-            <text>取消</text>
+            <text bindtap='hideModal'>取消</text>
           </view>
           <view bindtap='save' class="commodity-bottom-sure">
             <text>确定</text>
           </view>
       </view>
+
     </view>
+
   </view>
+
 </page>

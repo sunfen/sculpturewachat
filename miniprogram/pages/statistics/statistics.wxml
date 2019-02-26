@@ -28,18 +28,23 @@
         </view>
         <!-- table body -->
         <scroll-view class="table-body">
-          <view class="table-body-row">
-            <view class="table-body-left">圆雕</view>
+          <view class="table-body-row" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id">
+            <view class="table-body-left">
+              {{item.name}}
+              <text>始：{{item.startTime}}</text>
+              <text wx:if="{{item.endTime}}">完：{{item.endTime}}</text>
+            </view>
             
             <view class="table-body-center">
-              <text>上班: 2天4个小时</text>
-              <text>加班: 3.5个小时</text>
+              <text>上班: {{item.works}}</text>
+              <text>加班: {{item.extraWorks}}</text>
+              <text>加班: {{item.leaveWorks}}</text>
               <text>结算: 0笔工资</text>
             </view>
             
             <view class="table-body-right">
-              <text>工资：40000元</text>
-              <text>已结算：300元</text>
+              <text>工资：{{item.expectTotalWages}}元</text>
+              <text>已结算：{{item.actualTotalWages}}元</text>
             </view>
           </view>
 

@@ -111,8 +111,8 @@
         </button>
       </view>
       <view class="row-right">
-        <text>总工资</text>
-        <text>{{project.wages}}元</text>
+        <text>日工资</text>
+        <text>{{project.dailyWages}}元</text>
         <view class="row-right-icon" bindtap="addWages">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
@@ -168,10 +168,10 @@
         <!--弹窗 添加总工资 -->
     <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
     <view class="modal-dialog" wx:if="{{showModalWages}}">
-      <view class="modal-title">添加总工资</view>
+      <view class="modal-title">添加日工资</view>
       <view class="modal-content">
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入总工资" id="wages"   bindinput="inputValue"></input>
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入日工资" id="dailyWages"   bindinput="inputValue"></input>
         </view>
       </view>
       <view class="modal-footer">

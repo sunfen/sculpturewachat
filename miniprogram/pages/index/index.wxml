@@ -30,12 +30,12 @@
     <view class="top-center">
     
       <view class="top-one">
-        <text class="top-one-top">400元</text>
+        <text class="top-one-top">{{monthWages}}元</text>
         <text>本月收入</text>
       </view>
     
       <view class="top-one">
-        <text class="top-one-top">1天</text>
+        <text class="top-one-top">{{workDays}}天</text>
         <text>出勤</text>
       </view>
     
@@ -47,6 +47,7 @@
 
   </view>
 <!-- top结束 -->
+
 <!-- 便利贴开始 -->
   <view class="note">
     
@@ -56,24 +57,28 @@
         <icon class="iconfont icon-add-identity"></icon>
       </button>
     </view>
-    
-    <!-- 项目时间 -->
-    <view class="note-column-date">
-      <text>2018.12.01-2019.03.09</text>
-      <text>每天均入400元</text>
-    </view>
-    
-    <!-- 项目名称 -->
-    <view class="note-column-project" bindtap='viewdetail'>
-      <text class="note-column-project-circle">孙</text>
-      <view class="note-column-project-position">
-        <text>圆雕</text>
-        <text>宋庄</text>
-      </view>
+
+    <view wx:if="{{project.id}}">
   
-      <text class="note-column-project-wage">总工资2400元</text>
+      <!-- 项目时间 -->
+      <view class="note-column-date">
+        <text>{{project.startTime}} <text wx:if="{{project.endTime}}">- {{project.endTime}}</text></text>
+        <text>每天均入{{project.dailyWages}}元</text>
+      </view>
+      
+      <!-- 项目名称 -->
+      <view class="note-column-project" bindtap='viewdetail'>
+        <text class="note-column-project-circle">{{project.principal.name}}</text>
+        <view class="note-column-project-position">
+          <text>{{project.name}}</text>
+          <text>{{project.address}}</text>
+        </view>
+    
+        <text class="note-column-project-wage">总工资{{project.actualTotalWages}}元</text>
+      </view>
     </view>
 
+     <view wx:else="{{project.id}}"  class="note-column-date">暂无</view>
   </view>
 <!-- 便利贴结束 -->
 
@@ -109,90 +114,37 @@
 <view class="log">
   <text class="log-title">每日一记</text>
   <!-- 记录开始 -->
-  <view>
+  <view wx:if="{{results.length > 0 }}">
     <!-- 一条记录开始 -->
-    <view class="log-detail">
+    <view class="log-detail" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id">
       <!-- 日期 -->
       <view class="log-date">
-        <text>1月6日</text>
-        <text>星期日</text>
+        <text>{{item.time}}</text>
+        <text>{{item.onMonday}}</text>
       </view>
 
       <!-- 圆圈 -->
       <view class="log-detail-center">
-        <view class="log-detail-circle">今</view>
+        <view class="log-detail-circle"><text wx:if="{{today == item.time}}">今</text></view>
         <view class="log-detail-line"></view>
       </view>
 
       <!-- 详情 -->
       <view class="log-detail-detail">
-        <text class="log-detail-detail-status">上班</text>
+        <text class="log-detail-detail-status" style="background:{{item.type =='上班' ? '#00EE00' : '#EE7600'}};">{{item.type}}</text>
         <view>
-          <text class="ellipsis">圆雕宋庄备注信息</text>
+          <text class="ellipsis">{{item.remark}}</text>
         </view>
-        <text class="note-column-project-wage">收入400元</text>
+        <text class="note-column-project-wage">{{item.hour}}小时</text>
       </view>
 
     </view>
     <!-- 一条记录结束 -->
-
-
- <!-- 一条记录开始 -->
-    <view class="log-detail">
-      <!-- 日期 -->
-      <view class="log-date">
-        <text>1月6日</text>
-        <text>星期日</text>
-      </view>
-
-      <!-- 圆圈 -->
-      <view class="log-detail-center">
-        <view class="log-detail-circle">今</view>
-        <view class="log-detail-line"></view>
-      </view>
-
-      <!-- 详情 -->
-      <view class="log-detail-detail">
-        <text class="log-detail-detail-status">上班</text>
-        <view>
-          <text class="ellipsis">圆雕宋庄备注信息</text>
-        </view>
-        <text class="note-column-project-wage">收入400元</text>
-      </view>
-
-    </view>
-
-
-
-     <!-- 一条记录开始 -->
-    <view class="log-detail">
-      <!-- 日期 -->
-      <view class="log-date">
-        <text>1月6日</text>
-        <text>星期日</text>
-      </view>
-
-      <!-- 圆圈 -->
-      <view class="log-detail-center">
-        <view class="log-detail-circle">今</view>
-        <view class="log-detail-line"></view>
-      </view>
-
-      <!-- 详情 -->
-      <view class="log-detail-detail">
-        <text class="log-detail-detail-status">上班</text>
-        <view>
-          <text class="ellipsis">圆雕宋庄备注信息</text>
-        </view>
-        <text class="note-column-project-wage">收入400元</text>
-      </view>
-
-    </view>
-    <!-- 一条记录结束 -->
-
-
   </view>
-  <!-- 记录结束 -->
+   <!-- 记录结束 -->
+ 
+    <view wx:else="{{results.length > 0}}">暂无数据</view>
+ 
   </view>
 
   <view class="button-space"></view>
@@ -206,8 +158,8 @@
   <view class="modalDlg" wx:if="{{showModal}}" catchtouchmove="preventTouchMove" >
 
     <view class='modalDlg-header'>
-      <view>孙芬.圆雕</view>
-      <view>24000万元</view>
+      <view>{{project.principal.name}}.{{project.name}}</view>
+      <view>{{project.actualTotalWages}}元</view>
       <view  bindtap='closeModal'>
         <button class="defalut_btn top-button">
           <icon class="iconfont icon-close"></icon>
@@ -224,7 +176,7 @@
           </button>
         </view>
         <view class="modalDlg-content-row-text">
-          <text>地点.北京</text>
+          <text>地点. {{project.address}}</text>
         </view>
       </view>
 
@@ -235,7 +187,7 @@
           </button>
         </view>
         <view class="modalDlg-content-row-text">
-          <text>时间.2018年12月1日-2019年1月31日</text>
+          <text>时间. {{project.startTime}}<text wx:if="{{project.endTime}}">-2019年1月31日</text></text>
         </view>
       </view>
 
@@ -246,7 +198,7 @@
           </button>
         </view>
         <view class="modalDlg-content-row-text">
-          <text>总工资.24000元</text>
+          <text>总工资. {{project.actualTotalWages}}元</text>
         </view>
       </view>     
     </view>
@@ -266,4 +218,4 @@
 
   </view>
 <!-- 弹出框结束 -->
-<component-footernav current="0"></component-footernav>  
+<component-footernav current="0" wx:if="{{isLogin}}"></component-footernav>  
