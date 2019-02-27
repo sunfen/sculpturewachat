@@ -58,6 +58,11 @@
   margin-top: -20rpx;
 }
 
+.button-login{
+  margin: 20rpx;
+  
+}
+
 .contact {
   display: flex;
   flex-direction: row;

@@ -137,7 +137,7 @@
           <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入姓名" id="principalName"   bindinput="inputValue" value="{{project.principal.name}}"></input>
         </view>
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入手机号" id="principalPhone"   bindinput="inputValue" value="{{project.principal.phone}}"></input>
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入手机号" id="principalPhone"   bindinput="inputValue" value="{{project.principal.phone}}"></input>
         </view>
       </view>
       <view class="modal-footer">
@@ -187,7 +187,7 @@
       <view class="modal-title">添加地点</view>
       <view class="modal-content">
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入地点" id="address"   bindinput="inputValue"></input>
+          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入地点" id="address"   bindinput="inputValue"></input>
         </view>
       </view>
       <view class="modal-footer">

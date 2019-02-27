@@ -138,63 +138,10 @@ Page({
    */
   inputValue:function(e){
     var name = e.target.id;
-    if(name == "principalName"){
-      this.setData({
-        principalName:e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-
-    if (name == "principalPhone") {
-      this.setData({
-        principalPhone: e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-
-    if (name == "name") {
-      this.setData({
-        name: e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-
-    if (name == "address") {
-      this.setData({
-        address: e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-
-
-    if (name == "dailyWages") {
-      this.setData({
-        dailyWages: e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-
-    if (name == "startTime"){
-      this.setData({
-        startTime: e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-
-    if (name == "hour") {
-      this.setData({
-        hourIndex: e.detail.value
-      })
-      this.updateData();
-      return;
-    }
-    
+    this.setData({
+      [name]:e.detail.value
+    })
+    this.updateData();
   },
 
   updateData(){

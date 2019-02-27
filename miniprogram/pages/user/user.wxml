@@ -3,7 +3,7 @@
 
 <scroll-view class="container">
 
-  <view class="top">
+  <view class="top" wx:if="{{userInfo.nickName}}">
     <view class="top-image">
       <image class="top-image" src='{{userInfo.avatarUrl}}'></image>
     </view>
@@ -12,6 +12,16 @@
       <text>morenqianming</text>
     </view>
   </view>
+
+
+  <view wx:else>
+    <view>
+      <button class="button-login"  type='primary' size='mini'  open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" lang="zh_CN" >
+          登录
+      </button>
+    </view>
+  </view>
+
   
   <view class="blank-space"></view>
 

@@ -1,23 +1,6 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
-
-<view wx:if="{{!isLogin}}">
-    <view class='header'>
-        <image src='/images/wechat.png'></image>
-    </view>
-
-    <view class='content'>
-        <view>申请获取以下权限</view>
-        <text>获得你的公开信息(昵称，头像等)</text>
-    </view>
-
-    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-        授权登录
-    </button>
-</view>
-
-
-<scroll-view wx:else class="container">
+<scroll-view  class="container">
   <!-- top开始 -->
   <view class='top'>
   <!-- 身份切换 -->
