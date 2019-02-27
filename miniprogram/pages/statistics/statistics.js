@@ -12,19 +12,6 @@ Page({
     pageInfo: {}
   },
 
-  onPullDownRefresh() {
-    this.getpage();
-  },
-  onReachBottom() {
-    this.getpage();
-  },
-  searchScrollLower() {
-    this.getpage();
-  },
-  onShow: function(){
-    var that = this;
-    that.getpage();
-  },
 
   //滑动切换
   swiperTab: function (e) {
@@ -32,7 +19,9 @@ Page({
     that.setData({
       currentTab: e.detail.current
     });
+    that.getpage(0);
   },
+
   //点击切换
   clickTab: function (e) {
     var that = this;
@@ -42,13 +31,33 @@ Page({
       that.setData({
         currentTab: e.target.dataset.current
       })
+      that.getpage(0);
     }
   },
 
+
+  getpage(number){
+    var that = this;
+    that.setData({
+      results: [],
+      pageInfo: {
+        size: 7,
+        page: 0,
+        content: [],
+      }
+    });
+    if (that.data.currentTab == 0){
+      that.getpageByProject(number);
+    }else{
+      that.getpageByPrincipal(number);
+    }
+  },
+
+
   /**
-  * 获取近一个月的日志
+  * 获取所有的项目
   */
-  getpage(number) {
+  getpageByProject(number) {
     var that = this;
     wx.request({
       header: header,
@@ -81,7 +90,56 @@ Page({
   },
 
 
+  /**
+  * 获取所有的项目
+  */
+  getpageByPrincipal(number) {
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + 'project/search/principal',
+      data: {
+        size: that.data.pageInfo.size,
+        page: number ? number : that.data.pageInfo.page,
+      },
+      success(res) {
+        // 数据成功后，停止下拉刷新
+        wx.stopPullDownRefresh();
+        if (res.data.content.length == 0) {
+          common.errorWarn("没有更多数据了！");
+          return;
+        }
 
+        for (var i in res.data.content) {
+          that.data.results.push(res.data.content[i]);
+        }
+        that.setData({
+          results: that.data.results,
+          pageInfo: {
+            size: res.data.size,
+            page: res.data.number + 1,
+            content: res.data.content,
+          }
+        });
+      }
+    })
+  },
+
+
+
+  onPullDownRefresh() {
+    this.getpage();
+  },
+  onReachBottom() {
+    this.getpage();
+  },
+  searchScrollLower() {
+    this.getpage();
+  },
+  onLoad: function () {
+    var that = this;
+    that.getpage();
+  },
 
   
 

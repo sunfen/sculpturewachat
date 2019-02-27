@@ -12,7 +12,7 @@ Page({
     isLogin: false,
     results: [],
     project:{},
-    pageInfo:{size: 10, page:0},
+    pageInfo:{size: 7, page:0},
     showModal: false,
     today: util.formatTime(new Date())
   },
@@ -28,7 +28,6 @@ Page({
   },
   
   onShow: function () {
-    console.log("onShow");
     var that = this;
     wx.getSetting({
       success: function (res) {
@@ -58,7 +57,7 @@ Page({
                           //从数据库获取用户信息
                           that.setData({isLogin: true});
                           getApp().globalData.userInfo = res.data;
-                          that.getpage(0);
+                          that.init();
                         }
                       })
                     }
@@ -118,6 +117,15 @@ Page({
   },
 
 
+  /**
+   * 新增项目详情页
+   */
+  addProject() {
+    wx.navigateTo({
+      url: '/pages/addProject/addProject',
+    })
+  },
+
 
 
 
@@ -126,11 +134,11 @@ Page({
    * 删除项目详情页
    */
   deletedProject() {
+    var that = this;
     wx.showModal({
       content: '是否删除?',
       success(res) {
         if (res.confirm) {
-          var that = this;
           wx.request({
             method:'delete',
             header: header,
@@ -171,10 +179,6 @@ Page({
     wx.request({
       header: header,
       url: getApp().globalData.urlPath + '/index',
-      data: {
-        size: that.data.pageInfo.size,
-        page: that.data.pageInfo.page,
-      },
       success(res) {
         if (res.data.pageInfo){
           that.setData({

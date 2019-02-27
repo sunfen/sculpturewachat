@@ -57,19 +57,24 @@
         <!-- table header -->
         <view class="table-header">
           <text>负责人</text>
-          <text>项目名</text>
+          <text>项目数</text>
+          <text class="table-body-center-principal">项目名</text>
         </view>
         <!-- table body -->
         <scroll-view class="table-body">
           
-          <view class="table-body-row">
+          <view class="table-body-row-principal"  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id">
             
-            <view class="table-body-left">孙芬</view>
+            <view class="table-body-left-principal">{{item.principal}}</view>
+            <view>{{item.total}}</view>
             
-            <view class="table-body-center">
-              <text>0个</text>
-              <text>大师傅似的</text>
-              <text>大师傅似的</text>
+            <view class="table-body-center-principal" wx:if="{{item.projects.length > 0 }}" >
+              <view  wx:for="{{item.projects}}" wx:key="property" wx:for-item="project" wx:for-index="id">
+                <text>{{project.name}}({{project.startTime}})</text>
+              </view>
+            </view>
+            <view class="table-body-center-principal" wx:else="{{item.projects.length > 0 }}" >
+              <view></view>
             </view>
           </view>
 

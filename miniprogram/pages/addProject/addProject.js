@@ -25,7 +25,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log("接收到的参数 id=" + options.id);
+      var that = this;
+      if(options.id != undefined && options.id != null){
+        wx.request({
+          header: header,
+          url: getApp().globalData.urlPath + 'project/' + options.id,
+          success(res) {
+            console.log(res.data);
+            if (!res.data.id) {
+              common.showAlertToast("该项目不存在！");
+              wx.redirectTo({
+                url: '/pages/index/index',
+              })
+            }else{
+              that.setData({
+                project: {
+                  principal: {
+                    name: res.data.principal.name,
+                    phone: res.data.principal.phone,
+                  },
+                  name: res.data.name,
+                  address: res.data.address,
+                  startTime: res.data.startTime,
+                  startHour: res.data.startHour,
+                  dailyWages: res.data.dailyWages,
+                },
+                id: res.data.id,
+                principalName: res.data.principal.name,
+                principalPhone: res.data.principal.phone,
+                name: res.data.name,
+                address: res.data.address,
+                dailyWages: res.data.dailyWages,
+                startTime: res.data.startTime
+              })
+            }
+          }
+        })
+      }
   },
 
   /**
@@ -168,6 +204,7 @@ Page({
           name: this.data.principalName,
           phone: this.data.principalPhone,
         },
+        id:this.data.id,
         name: this.data.name,
         address: this.data.address,
         startTime: this.data.startTime,
@@ -183,33 +220,31 @@ Page({
     if (that.data.project.principal.name == "" || that.data.project.principal.phone == ""
       || that.data.project.principal.name == undefined
       || that.data.project.principal.phone == undefined || isNaN(that.data.project.principal.phone) ){
-      that.showAlertToast("请填写项目负责人！");
+      common.showAlertToast("请填写项目负责人！");
       return;
     }
     if (that.data.project.name == "" || that.data.project.name == undefined) {
-      that.showAlertToast("请填写项目名称！");
+      common.showAlertToast("请填写项目名称！");
       return;
     }
     if (that.data.project.address == "" || that.data.project.address == undefined) {
-      that.showAlertToast("请填写项目地点！");
+      common.showAlertToast("请填写项目地点！");
       return;
     }
     if (that.data.project.startTime == "" || that.data.project.startTime == undefined) {
-      that.showAlertToast("请填写项目开始日期！");
+      common.showAlertToast("请填写项目开始日期！");
       return;
     }
     if (that.data.project.startHour == "" || that.data.project.startHour == undefined) {
-      that.showAlertToast("请填写项目开始时间！");
+      common.showAlertToast("请填写项目开始时间！");
       return;
     }
     if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined || isNaN(that.data.project.dailyWages)) {
-      that.showAlertToast("请填写项目日工资！");
+      common.showAlertToast("请填写项目日工资！");
       return;
     }
 
-    
-    var project = this.data.project;
-    console.log(project);
+
     wx.request({
       url: getApp().globalData.urlPath + 'project',
       method: "POST",
