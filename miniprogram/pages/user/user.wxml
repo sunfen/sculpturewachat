@@ -8,8 +8,7 @@
       <image class="top-image" src='{{userInfo.avatarUrl}}'></image>
     </view>
     <view class="top-text">
-      <text class="top-text-name">{{userInfo.nickName}}</text>
-      <text>morenqianming</text>
+      <text>{{userInfo.nickName}}</text>
     </view>
   </view>
 

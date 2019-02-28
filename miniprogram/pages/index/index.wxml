@@ -6,7 +6,7 @@
   <!-- 身份切换 -->
     <view>
       <button class="defalut_btn top-button" bindtap='bindViewMy'>
-        <icon class="iconfont icon-identity"></icon>
+        <!-- <icon class="iconfont icon-identity"></icon> -->
       </button>
     </view>
 
@@ -71,12 +71,14 @@
       <button class="defalut_btn" bindtap='bindViewMy'>
         <icon class="iconfont icon-statistics"></icon>
       </button>
+      <text>统计</text>
     </view>
 
-    <view class="note-column-function-circle">
-      <button class="defalut_btn" bindtap='addOrUpdateLog'>
+    <view class="note-column-function-circle" bindtap='addOrUpdateLog'>
+      <button class="defalut_btn" >
         <icon class="iconfont icon-edit-account"></icon>
       </button>
+      <text>每日一记</text>
     </view>
 
     <!-- <view class="note-column-function-circle">

@@ -170,13 +170,6 @@ Page({
 
   /**
    * 保存
-   * 
-   * currentSelectDate: '',
-    currentSelectType:'work',
-    currentRemark: '',
-    currentHour: 8,
-    currentProject: {},
-    currentProjectIndex: 0,
    */
   save(event){
     var that = this;
@@ -200,7 +193,8 @@ Page({
       that.showAlertToast("请选择项目！");
       return;
     }
-  console.log(that.data);
+
+
     wx.request({
       url: getApp().globalData.urlPath + 'logrecord',
       method: "POST",

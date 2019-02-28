@@ -12,6 +12,7 @@ Page({
     hourIndex: 0,
     startTime: time,
     project:{
+      id:"",
       principal:{id:'', name:'',phone:""},
       name:'',
       address:'',
@@ -31,7 +32,6 @@ Page({
           header: header,
           url: getApp().globalData.urlPath + 'project/' + options.id,
           success(res) {
-            console.log(res.data);
             if (!res.data.id) {
               common.showAlertToast("该项目不存在！");
               wx.redirectTo({
@@ -39,20 +39,8 @@ Page({
               })
             }else{
               that.setData({
-                project: {
-                  principal: {
-                    name: res.data.principal.name,
-                    phone: res.data.principal.phone,
-                  },
-                  name: res.data.name,
-                  address: res.data.address,
-                  startTime: res.data.startTime,
-                  startHour: res.data.startHour,
-                  dailyWages: res.data.dailyWages,
-                },
+                project: res.data,
                 id: res.data.id,
-                principalName: res.data.principal.name,
-                principalPhone: res.data.principal.phone,
                 name: res.data.name,
                 address: res.data.address,
                 dailyWages: res.data.dailyWages,
@@ -61,6 +49,16 @@ Page({
             }
           }
         })
+      } else if (options.project != undefined && options.project != null) {
+        let project = JSON.parse(options.project);
+        that.setData({ 
+          project: project,
+          id: project.id,
+          name: project.name,
+          address: project.address,
+          dailyWages: project.dailyWages,
+          startTime: project.startTime
+        });
       }
   },
 
@@ -82,7 +80,6 @@ Page({
   // 关闭详情页
   closeModal: function () {
     this.setData({
-      showModalPrincipal: false,
       showModalWages: false,
       showModalName: false,
       showModalAddress: false
@@ -92,9 +89,11 @@ Page({
 
   //添加负责人
   addPrincipal() {
-    this.setData({
-      showModalPrincipal: true,
+    let project = JSON.stringify(this.data.project);
+    wx.navigateTo({
+      url: '/pages/principal/principal?project=' + project,
     })
+
   },
 
   //添加项目名称
@@ -121,11 +120,10 @@ Page({
   },
 
   /**
-   * 对话框确认按 负责人
+   * 对话框确认
    */
   onConfirm: function (e) {
     this.setData({
-      showModalPrincipal: false,
       showModalWages: false,
       showModalName: false,
       showModalAddress: false
@@ -147,10 +145,7 @@ Page({
   updateData(){
     this.setData({
       project: {
-        principal: {
-          name: this.data.principalName,
-          phone: this.data.principalPhone,
-        },
+        principal: this.data.project.principal,
         id:this.data.id,
         name: this.data.name,
         address: this.data.address,
@@ -164,10 +159,8 @@ Page({
   //新增完
   sure() {
     var that = this;
-    if (that.data.project.principal.name == "" || that.data.project.principal.phone == ""
-      || that.data.project.principal.name == undefined
-      || that.data.project.principal.phone == undefined || isNaN(that.data.project.principal.phone) ){
-      common.showAlertToast("请填写项目负责人！");
+    if (that.data.project.principal.name == "" || that.data.project.principal.name == undefined){
+      common.showAlertToast("请填写项目负责人名称！");
       return;
     }
     if (that.data.project.name == "" || that.data.project.name == undefined) {
@@ -224,6 +217,4 @@ Page({
       }
     })
   },
-
-
 })

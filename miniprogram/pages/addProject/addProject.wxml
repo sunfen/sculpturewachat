@@ -10,10 +10,10 @@
           <icon class="iconfont icon-principal"></icon>
         </button>
       </view>
-      <view class="row-right">
+      <view class="row-right" bindtap="addPrincipal">
         <text>添加负责人</text>
         <text>{{project.principal.name}}</text>
-        <view class="row-right-icon" bindtap="addPrincipal">
+        <view class="row-right-icon" >
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button>       
@@ -28,10 +28,10 @@
           <icon class="iconfont icon-type"></icon>
         </button>
       </view>
-      <view class="row-right">
+      <view class="row-right"  bindtap="addName">
         <text>项目名称</text>
         <text>{{project.name}}</text>
-        <view class="row-right-icon" bindtap="addName">
+        <view class="row-right-icon">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button>       
@@ -47,10 +47,10 @@
           <icon class="iconfont icon-address"></icon>
         </button>
       </view>
-      <view class="row-right">
+      <view class="row-right" bindtap="addAddress">
         <text>地点</text>
         <text>{{project.address}}</text>
-        <view class="row-right-icon" bindtap="addAddress">
+        <view class="row-right-icon" >
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button>       
@@ -91,7 +91,7 @@
       <view class="row-right">
         <text>项目时间</text>
         <text>{{project.startHour}}</text>
-        <view class="row-right-icon">
+        <view class="row-right-icon" >
          <picker range="{{hours}}" value="{{hourIndex}}"  id="hour" bindchange="inputValue">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
@@ -110,10 +110,10 @@
           <icon class="iconfont icon-wages"></icon>
         </button>
       </view>
-      <view class="row-right">
+      <view class="row-right"  bindtap="addWages">
         <text>日工资</text>
         <text>{{project.dailyWages}}元</text>
-        <view class="row-right-icon" bindtap="addWages">
+        <view class="row-right-icon">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button>       
@@ -125,27 +125,6 @@
       <button class='btn-sure'  bindtap="sure">保存</button>
     </view>
      
-
-
-
-    <!--弹窗 添加负责人 -->
-    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalPrincipal}}"></view>
-    <view class="modal-dialog" wx:if="{{showModalPrincipal}}">
-      <view class="modal-title">添加负责人</view>
-      <view class="modal-content">
-        <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入姓名" id="principalName"   bindinput="inputValue" value="{{project.principal.name}}"></input>
-        </view>
-        <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入手机号" id="principalPhone"   bindinput="inputValue" value="{{project.principal.phone}}"></input>
-        </view>
-      </view>
-      <view class="modal-footer">
-        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-      </view>
-    </view>
-
 
 
     <!--弹窗 添加项目名称 -->

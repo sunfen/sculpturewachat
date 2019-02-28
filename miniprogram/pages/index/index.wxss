@@ -104,7 +104,7 @@
   display: flex;
   flex-direction: row;
   justify-content:space-between;
-  margin: 0 5% 0 5%;
+  margin: 0 5% 5% 5%;
   border-bottom: 1rpx solid #999898;
 }
 
@@ -132,12 +132,12 @@
 
 .note-column-project-circle{
   color: rgb(2, 2, 2);
-  width: 70rpx;
-  height: 70rpx;
+  width: 90rpx;
+  height: 90rpx;
   font-size: 28rpx;
   border-radius: 55rpx;
   text-align: center;
-  line-height:70rpx;
+  line-height: 90rpx;
   background-color: rgba(165, 166, 167, 0.678);
 }
 
@@ -145,16 +145,17 @@
   display: flex;
   flex-direction: row;
   justify-content:space-between;
-  margin: 40rpx 11% 10rpx 11%;
+  margin: 40rpx 15% 60rpx 14%;
 }
 
 
 .note-column-function-circle{
   color: rgb(2, 2, 2);
-  width: 90rpx;
-  height: 90rpx;
+  width: 110rpx;
+  height: 110rpx;
   border-radius: 55rpx;
   background-color: rgba(165, 166, 167, 0.596);
+  text-align: center;
 }
 
 /* 日志 */
