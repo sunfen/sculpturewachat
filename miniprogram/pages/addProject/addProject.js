@@ -9,7 +9,10 @@ var time = util.formatTime(new Date());
 Page({
   data: {
     hours:["上午", "下午"],
+    endHours: ["中午", "晚上"],
     hourIndex: 0,
+    endHourIndex: 1,
+    endTime: '',
     startTime: time,
     project:{
       id:"",
@@ -17,7 +20,9 @@ Page({
       name:'',
       address:'',
       startTime: time,
+      endTime: "",
       startHour: '上午',
+      endHour: '晚上',
       dailyWages:'0'
     }
   },
@@ -44,7 +49,8 @@ Page({
                 name: res.data.name,
                 address: res.data.address,
                 dailyWages: res.data.dailyWages,
-                startTime: res.data.startTime
+                startTime: res.data.startTime,
+                endTime: res.data.endTime
               })
             }
           }
@@ -57,7 +63,8 @@ Page({
           name: project.name,
           address: project.address,
           dailyWages: project.dailyWages,
-          startTime: project.startTime
+          startTime: project.startTime,
+          endTime: project.endTime
         });
       }
   },
@@ -150,7 +157,9 @@ Page({
         name: this.data.name,
         address: this.data.address,
         startTime: this.data.startTime,
+        endTime: this.data.endTime,
         startHour: this.data.hours[this.data.hourIndex],
+        endHour: this.data.endHours[this.data.endHourIndex],
         dailyWages: this.data.dailyWages,
       }
     })

@@ -92,7 +92,7 @@
         <text>项目时间</text>
         <text>{{project.startHour}}</text>
         <view class="row-right-icon" >
-         <picker range="{{hours}}" value="{{hourIndex}}"  id="hour" bindchange="inputValue">
+         <picker range="{{hours}}" value="{{hourIndex}}"  id="hourIndex" bindchange="inputValue">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button> 
@@ -103,7 +103,7 @@
 
 
 
-    <!-- 添加总工资 -->
+    <!-- 添加日工资 -->
     <view class="row">
       <view>
         <button class="defalut_btn top-button">
@@ -117,6 +117,47 @@
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
           </button>       
+        </view>
+      </view>
+    </view>
+
+
+        <!-- 添加项目日期 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>项目结束日期</text>
+        <text>{{project.endTime}}</text>
+        <view class="row-right-icon">
+         <picker mode="date" value="{{endTime}}" start="2010-01-01" end="2099-12-31" id="endTime" bindchange="inputValue">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
+        </view>
+      </view>
+    </view>
+
+    <!-- 添加项目时间 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>项目结束时间</text>
+        <text>{{project.endHour}}</text>
+        <view class="row-right-icon" >
+         <picker range="{{endHours}}" value="{{endHourIndex}}"  id="endHourIndex" bindchange="inputValue">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
         </view>
       </view>
     </view>

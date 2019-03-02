@@ -566,6 +566,8 @@ const conf = {
       if (target) target.showTodoLabel = !target.choosed;
       if (target.showTodoLabel && item.todoText)
         target.todoText = item.todoText;
+      if (target.showTodoLabel && item.todoLabelColor)
+        target.todoLabelColor = item.todoLabelColor;
     });
     const o = {
       'calendar.days': days,

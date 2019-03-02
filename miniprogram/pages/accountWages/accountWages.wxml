@@ -1,0 +1,50 @@
+<!--addProject.wxml-->
+<component-topnav inner-title="记录工资" is-show-back="true"></component-topnav>
+
+<view class="container">
+  <view class="content">
+    <view class="detail">
+      <view><text class="detail-label">作业负责人：</text>{{project.principal.name}}</view>
+      <view><text class="detail-label">项目名称：</text>{{project.name}}</view>
+      <view><text class="detail-label">地点：</text>{{project.address}}</view>
+      <view><text class="detail-label">项目工期：</text>{{project.startTime}}<text wx:if="{{project.endTime}}"> -  {{project.endTime}}</text></view>
+      <view><text class="detail-label">项目日工资：</text>{{project.dailyWages}}</view>
+      <view><text class="detail-label">项目：</text>{{project.name}}</view>
+    </view> 
+
+    <view class="detail">
+      <view><text class="detail-label">预计总工资：</text>{{project.expectTotalWages}}元</view>
+      <view><text class="detail-label">已结工资：</text>{{project.actualTotalWages}}元</view>
+    </view> 
+    
+    
+    <view class="blank-space"></view>
+    
+    <button class="defalut_btn img-plus-style"  bindtap="add">
+      <icon class="iconfont icon-add"></icon>
+    </button>
+
+    <!-- table header -->
+    <view class="touch-item">
+      <text>时间</text>
+      <text></text>
+      <text>金额</text>
+      <text>方式</text>
+      <text></text>
+    </view>
+
+
+    <view class="table-body-row touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtouchstart="touchstart" bindtouchmove="touchmove" >
+        <view>{{item.time}}</view>
+        <view>{{item.wages}}元</view>
+        <view>{{item.method}}</view>
+        <view class="button-del">
+          <view class="button-del account" catchtap="edit" data-index="{{id}}">编辑</view>
+          <view  class="button-del edit" catchtap="delete" data-index="{{id}}">删除</view>
+        </view>
+    </view>
+
+  </view>
+</view>
+
+

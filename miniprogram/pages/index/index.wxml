@@ -5,7 +5,7 @@
   <view class='top'>
   <!-- 身份切换 -->
     <view>
-      <button class="defalut_btn top-button" bindtap='bindViewMy'>
+      <button class="defalut_btn top-button">
         <!-- <icon class="iconfont icon-identity"></icon> -->
       </button>
     </view>
@@ -68,7 +68,7 @@
 <!-- 三种操作功能开始 -->
   <view class="functions">
     <view class="note-column-function-circle" bindtap="viewStatistics">
-      <button class="defalut_btn" bindtap='bindViewMy'>
+      <button class="defalut_btn">
         <icon class="iconfont icon-statistics"></icon>
       </button>
       <text>统计</text>
@@ -115,14 +115,18 @@
       </view>
 
       <!-- 详情 -->
-      <view class="log-detail-detail">
-        <text class="log-detail-detail-status" style="background:{{item.type =='上班' ? '#00EE00' : '#EE7600'}};">{{item.type}}</text>
-        <view>
-          <text class="ellipsis">{{item.remark}}</text>
+      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}">
+       
+        <view class="log-detail-detail" data-index="{{id}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+          <text class="log-detail-detail-status" style="background:{{item.type =='上班' ? '#00EE00' : '#EE7600'}};">{{item.type ? item.type : '?'}}</text>
+          <text class="ellipsis">{{item.remark ? item.remark : ''}}</text>
+          <text class="note-column-project-wage">{{item.hour ? item.hour : '0'}}小时</text>
         </view>
-        <text class="note-column-project-wage">{{item.hour}}小时</text>
-      </view>
+        <view class="del" catchtap="editLog" data-index="{{id}}">修改</view>
 
+      </view>
+    <view>
+  </view>
     </view>
     <!-- 一条记录结束 -->
   </view>

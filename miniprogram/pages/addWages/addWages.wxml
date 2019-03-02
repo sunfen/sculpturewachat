@@ -1,0 +1,122 @@
+<!--addProject.wxml-->
+<component-topnav inner-title="记录工资" is-show-back="true"></component-topnav>
+
+<view class="container">
+  <view class="content">
+    <!-- 添加日工资 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+      </view>
+      <view class="row-right"  bindtap="addWages">
+        <text>结算工资</text>
+        <text>{{record.wages}}元</text>
+        <view class="row-right-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+
+        <!-- 添加项目日期 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>收款时间</text>
+        <text>{{record.time}}</text>
+        <view class="row-right-icon">
+         <picker mode="date" value="{{time}}" start="2010-01-01" end="2099-12-31" id="record.time" bindchange="inputValue">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
+        </view>
+      </view>
+    </view>
+
+    <!-- 方式 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>收款方式</text>
+        <text>{{record.method}}</text>
+        <view class="row-right-icon">
+         <picker range="{{methods}}" value="{{methodIndex}}"  id="methodIndex" bindchange="inputValue">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
+        </view>
+      </view>
+    </view>
+
+        <!-- 添加备注 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+      </view>
+      <view class="row-right"  bindtap="addRemark">
+        <text>备注</text>
+        <text>{{record.remark}}</text>
+        <view class="row-right-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+
+    <view class="btn">
+      <button class='btn-sure'  bindtap="sure">保存</button>
+    </view>
+     
+
+    <!--弹窗 添加总工资 -->
+    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalWages}}">
+      <view class="modal-title">工资</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入工资" id="record.wages"   bindinput="inputValue" value="{{record.wages}}"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
+
+        <!--弹窗 添加备注 -->
+    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalRemark}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalRemark}}">
+      <view class="modal-title">备注</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="text" maxlength='32' class="input" placeholder="请输入备注" id="record.remark"   bindinput="inputValue" value="{{record.remark}}"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
+
+  </view>
+</view>
+
+

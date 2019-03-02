@@ -14,7 +14,9 @@ Page({
     project:{},
     pageInfo:{size: 7, page:0},
     showModal: false,
-    today: util.formatTime(new Date())
+    today: util.formatTime(new Date()),
+    startX: 0, //开始坐标
+    startY: 0
   },
 
   onPullDownRefresh() {
@@ -169,6 +171,10 @@ Page({
       url: getApp().globalData.urlPath + '/index',
       success(res) {
         if (res.data.pageInfo){
+          res.data.pageInfo.content.sort(function (a, b) {
+            return a.time < b.time ? 1 : -1; // 这里改为大于号
+          });
+
           that.setData({
             results: res.data.pageInfo.content,
             project: res.data.project,
@@ -176,7 +182,7 @@ Page({
             workDays: res.data.workDays,
             pageInfo: {
               size: res.data.pageInfo.size,
-              page: res.data.pageInfo.number + 1,
+              page: res.data.pageInfo.number + 2,
               content: res.data.pageInfo.content,
             }
           });
@@ -196,7 +202,7 @@ Page({
       url: getApp().globalData.urlPath + 'logrecord/search',
       data: {
         size: that.data.pageInfo.size,
-        page: number ? number : that.data.pageInfo.page,
+        page: that.data.pageInfo.page ,
       },
       success(res) {
         // 数据成功后，停止下拉刷新
@@ -209,6 +215,9 @@ Page({
         for (var i in res.data.content){
           that.data.results.push(res.data.content[i]);
         }
+        that.data.results.sort(function (a, b) {
+          return a.time < b.time ? 1 : -1; // 这里改为大于号
+        });
         that.setData({
           results: that.data.results,
           pageInfo: {
@@ -222,10 +231,33 @@ Page({
   },
 
 
+  touchstart(e) {
+    common.touchstart(e, this);
+  },
 
- 
 
-  //登录
+  touchmove(e) {
+    common.touchmove(e, this);
+  },
+
+
+  /**
+   * 编辑日志
+   */
+  editLog: function (e) {
+    var that = this;
+    console.log("index" + e.currentTarget.dataset.index);
+    var log = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
+    wx.navigateTo({
+      url: '/pages/addLog/addLog?log=' + log,
+    })
+  },
+
+
+
+  /**
+   * 登录
+   */
   login: function (e) {
     var that = this;
     wx.request({
@@ -242,15 +274,14 @@ Page({
           that.setData({ isLogin: true });
           that.init();
         } else {
-          that.loginFail();
+          common.loginFail();
         }
       },
       fail: function (res) {
-        that.loginFail();
+        common.loginFail();
       }
     });
-  },
-
+  }
 
 })
 

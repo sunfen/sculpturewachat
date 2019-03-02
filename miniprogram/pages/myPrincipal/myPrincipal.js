@@ -13,7 +13,7 @@ Page({
   /**
    * 选择一个
    */
-  selectOne: function(e){
+  selectOne: function (e) {
     var that = this;
     var principal = e.detail.target.dataset.id;
     var name = "project.principal";
@@ -26,9 +26,4 @@ Page({
       url: '/pages/addProject/addProject?project=' + project,
     })
   },
-
-  onLoad(options){
-    var project = JSON.parse(options.project);
-    this.setData({ project: project});
-  }
 }) 

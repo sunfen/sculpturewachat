@@ -17,13 +17,15 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_h10cjcbfajn.eot');
-  src: url('//at.alicdn.com/t/font_1041080_h10cjcbfajn.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_h10cjcbfajn.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_h10cjcbfajn.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_h10cjcbfajn.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_h10cjcbfajn.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.eot');
+  src: url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.svg#iconfont') format('svg');
 }
+
+
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;
@@ -70,6 +72,10 @@
 .icon-keyboard:before { content: "\e617";}
 /* 关闭 */
 .icon-close:before {content: "\e602";}
+/* 新增 */
+.icon-add:before {content: "\eaf7";}
+
+
 
 /* 清楚按钮的默认样式  */
 .defalut_btn{

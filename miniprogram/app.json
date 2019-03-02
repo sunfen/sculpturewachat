@@ -1,18 +1,25 @@
 {
   "cloud": true,
   "pages": [
+
     "pages/index/index",
+    "pages/myPrincipal/myPrincipal",
+    "pages/accountWages/accountWages",
+    "pages/addWages/addWages",
     "pages/addLog/addLog",
     "pages/statistics/statistics",
     "pages/addProject/addProject",
     "pages/detail/detail",
+    "pages/about/about",
+    "pages/principal/principal",
+    "pages/book/book",
     "pages/user/user"
     ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#34A3DE",
-    "navigationBarTitleText": "雕塑记工本",
+    "navigationBarTitleText": "雕塑记",
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   }

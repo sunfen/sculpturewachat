@@ -141,6 +141,37 @@ Page({
     that.getpage();
   },
 
-  
+  touchstart(e){
+    common.touchstart(e, this);
+  },
 
+
+  touchmove(e) {
+    common.touchmove(e, this);
+  },
+
+  /**
+   * 结算项目
+   */
+  accountProject: function (e) {
+    var that = this;
+    var project = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
+    wx.navigateTo({
+      url: "/pages/accountWages/accountWages?project=" + project,
+    })
+  },
+
+  /**
+   * 编辑项目
+   */
+  editProject: function(e){
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/addProject/addProject?id=' + that.data.results[e.currentTarget.dataset.index].id
+    })
+  }
+
+
+
+  
 })

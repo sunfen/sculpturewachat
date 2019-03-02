@@ -42,7 +42,7 @@ Page({
   },
 
   
-  onLoad() {
+  onLoad(options) {
     var that = this;
     initCalendar({
       /**
@@ -62,7 +62,10 @@ Page({
        * @param { object } current 当前年月
        * @param { object } next 切换后的年月
        */
-      whenChangeMonth: (current, next) => { },
+      whenChangeMonth: (current, next) => {
+        clearTodoLabels();
+        that.getLogRecord(next.year, next.month);
+       },
       /**
        * 日期点击事件（此事件会完全接管点击事件）
        * @param { object } currentSelect 当前点击的日期
@@ -70,8 +73,9 @@ Page({
        */
       onTapDay(currentSelect, event) {
         var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
+        var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
         that.setData({ 
-          currentSelectDate: currentSelect.year + "-" + month + "-" +  currentSelect.day, 
+          currentSelectDate: currentSelect.year + "-" + month + "-" +  day, 
           currentRemark: ''
         });
         jump(currentSelect.year, currentSelect.month, currentSelect.day);
@@ -86,23 +90,17 @@ Page({
       afterCalendarRender(ctx) { },
 
     });
-  },
-  onShow(){
-    jump();
-    var that = this;
-    wx.request({
-      header: header,
-      url: getApp().globalData.urlPath + '/project/search/list',
-      success(res) {
-        if(res.data.length > 0 ){
+    if (options.log){
+      var log = JSON.parse(options.log);
+      jump(log.year, log.month, log.day);
+    }else{
 
-          that.setData({
-            projects: res.data,
-            currentProject: res.data[0]
-          });
-        }
-      }
-    })
+      jump();
+    }
+   
+    that.getProjects();
+    var selectDate = getSelectedDay();
+    that.getLogRecord(selectDate[0].year, selectDate[0].month);
   },
 
 
@@ -174,15 +172,15 @@ Page({
   save(event){
     var that = this;
     if (that.data.currentSelectDate == "" || that.data.currentSelectDate == undefined) {
-      that.showAlertToast("请选择日期！");
+      common.showAlertToast("请选择日期！");
       return;
     }
     if (that.data.currentSelectType == "" || that.data.currentSelectType == undefined) {
-      that.showAlertToast("请选择类型！");
+      common.showAlertToast("请选择类型！");
       return;
     }
     if (that.data.currentRemark != undefined && that.data.currentRemark.length >= 256) {
-      that.showAlertToast("备注不可超过256个字符");
+      common.showAlertToast("备注不可超过256个字符");
       return;
     }
     if (that.data.currentHour == "" || that.data.currentHour == undefined) {
@@ -190,7 +188,7 @@ Page({
       return;
     }
     if (that.data.currentProject.id == "" || that.data.currentProject.id == undefined) {
-      that.showAlertToast("请选择项目！");
+      common.showAlertToast("请选择项目！");
       return;
     }
 
@@ -238,17 +236,23 @@ Page({
    */
   setLog(){
     var that = this;
+    var todoLabelColor = "green";
+    if (that.data.currentSelectType == "leave"){
+      todoLabelColor = "red";
+    }
+    if (that.data.currentSelectType == "extra") {
+      todoLabelColor = COLOR_RED;
+    }
+
     setTodoLabels({
-      
-      pos: 'top', // 待办点标记位置 ['top', 'bottom']
-      dotColor: 'red', // 待办点标记颜色
       // 待办圆圈标记设置（如圆圈标记已签到日期），该设置与点标记设置互斥
       circle: true, // 待办
       days: [{
-        year: that.data.currentSelectDate.year,
-        month: that.data.currentSelectDate.month,
-        day: that.data.currentSelectDate.day,
-        todoText: that.data.currentRemark
+        year: that.data.calendar.selectedDay[0].year,
+        month: that.data.calendar.selectedDay[0].month,
+        day: that.data.calendar.selectedDay[0].day,
+        todoText: that.data.currentSelectType == "work" ? "" : that.data.currentHour + "h",
+        todoLabelColor: todoLabelColor
       }],
     });
   },
@@ -260,9 +264,84 @@ Page({
    */
   bindProjectChange(event){
     var that = this;
-    console.log(event);
     that.setData({ currentProjectIndex: event.detail.value});
   },
+
+
+
+  /**
+   * 获取日志
+   */
+  getLogRecord(year, month){
+
+    wx.request({
+      url: getApp().globalData.urlPath + "logrecord/search/" + year + "/" + month,
+      header: header,
+      success: function (res) {
+        if (res.statusCode == "200") {
+          
+          for(var i in res.data){
+            var data = res.data[i];
+            var todoLabelColor = "green";
+            if (data.type == "请假") {
+              todoLabelColor = "red";
+            }
+            if (data.type == "加班") {
+              todoLabelColor = COLOR_RED;
+            }
+            setTodoLabels({
+              circle: true,
+              days: [{
+                year: data.year,
+                month: data.month,
+                day: data.day,
+                todoText: data.type == "上班" ? "" : data.hour + "h",
+                todoLabelColor: todoLabelColor
+              }],
+            });
+          }
+        } else if (res.statusCode == "404") {
+          common.loginFail();
+        } else if (res.statusCode == "500") {
+          common.showAlertToast("数据错误，请重试！");
+        } else {
+          common.showAlertToast("数据错误，请重试！");
+        }
+
+      },
+      fail: function (res) {
+        common.loginFail();
+      }
+    })
+
+  },
+
+
+
+
+  /**
+   * 获取项目
+   */
+  getProjects(){
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + '/project/search/list',
+      success(res) {
+        if (res.data.length > 0) {
+
+          that.setData({
+            projects: res.data,
+            currentProject: res.data[0]
+          });
+        }
+      }
+    })
+  },
+
+
+
+
 
 
 

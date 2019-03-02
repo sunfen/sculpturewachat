@@ -158,6 +158,13 @@
   text-align: center;
 }
 
+.note-column-function-circle text{
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+
 /* 日志 */
 
 .log {
@@ -188,7 +195,7 @@
 
 
 .log-detail-circle {
-  margin: 25rpx 15rpx 0 15rpx;
+  margin: 55rpx 15rpx 0 15rpx;
   font-size: 25rpx;
   color: rgb(2, 2, 2);
   width: 30rpx;
@@ -202,10 +209,10 @@
 .log-detail-detail {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content:start;
   background: rgb(235, 233, 233);
   height: 90rpx;
-  width: 400rpx;
+  width: 70%;
   border-radius: 15rpx;
   text-align: center;
   line-height:90rpx;
@@ -224,11 +231,10 @@
 }
 
 .ellipsis{
-  min-width: 50rpx;
-  max-width: 200rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  width: 50%;
+  white-space:normal;
+  text-overflow:ellipsis;
+  overflow:hidden;
 }
 
 /* 弹出框 */
@@ -297,4 +303,44 @@
 .modalDlg-content-row-text{
   align-items:center;
   margin-left: 40rpx;
+}
+
+
+/* 滑动删除 */
+.touch-item {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid #ccc;
+  width: 100%;
+  padding: 10px;
+  overflow: hidden;
+  line-height: 22px;
+  margin-right:0;
+  margin-left: -90px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+}
+
+
+.del {
+  background-color: orangered;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.touch-move-active, .touch-move-active .del {
+
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }

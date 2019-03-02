@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
 
-<scroll-view class="container">
+<scroll-view class="container"  scroll-y="true">
 
   <view class="top" wx:if="{{userInfo.nickName}}">
     <view class="top-image">
-      <image class="top-image" src='{{userInfo.avatarUrl}}'></image>
+      <image class="top-image" src='{{userInfo.avatarUrl}}'  data-src='{{userInfo.avatarUrl}}' bindtap='previewImage'></image>
     </view>
     <view class="top-text">
       <text>{{userInfo.nickName}}</text>
@@ -14,6 +14,9 @@
 
 
   <view wx:else>
+    <view class="top-image">
+      <image class="top-image" src='/images/user-unlogin.png'></image>
+    </view>
     <view>
       <button class="button-login"  type='primary' size='mini'  open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" lang="zh_CN" >
           登录
@@ -27,7 +30,7 @@
   <!-- 分类 -->
   <view class="category">
   <!-- 我的负责人 -->
-    <view class="category-detail">
+    <view class="category-detail" bindtap='myPrincipal'>
       <text class="category-top">我的负责人</text>
       <text class="category-buttom">1个</text>
     </view>
@@ -49,7 +52,7 @@
    <!-- 功能 -->
   <view class="function">
   <!-- 记账提醒 -->
-    <view class="function-remind">
+    <!-- <view class="function-remind">
       <view>
         <view class="function-remind-icon">
           <button class="defalut_btn top-button">
@@ -60,13 +63,13 @@
       <view class="function-remind-right">
         <text>记账提醒</text>
         <view class="function-remind-switch">
-            <switch checked bindchange="switch1Change" />
+            <switch checked="{{switchChecked}}" bindchange="switchChange" />
         </view>
       </view>
-    </view>
+    </view> -->
 
     <!-- 记账设置 -->
-    <view class="function-remind">
+    <!-- <view class="function-remind">
       <view>
         <view class="function-remind-icon">
           <button class="defalut_btn top-button">
@@ -82,11 +85,11 @@
           </button>       
         </view>
       </view>
-    </view>
+    </view> -->
 
 
     <!-- 关于我们 -->
-    <view class="function-remind">
+    <view class="function-remind" bindtap='about'>
       <view>
         <view class="function-remind-icon">
           <button class="defalut_btn top-button">
@@ -136,8 +139,8 @@
       <text>.</text>
     </view> 
     <view class="contact-text">
-      <text>微信</text>
-      <text class="contact-text-buttom">shuyuwode1993</text>
+      <!-- <text>微信</text> -->
+      <image class="top-image-wx" src='/images/QRcord.jpg' data-src='/images/QRcord.jpg' bindtap='previewImage'></image>
     </view> 
     <view class="contact-text">
       <text>QQ</text>

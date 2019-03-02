@@ -1,0 +1,24 @@
+/**index.wxss**/
+
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight:400;
+  color:#313131;
+  margin-top: 50rpx;
+}
+
+.image-logo{
+  height: 130rpx;
+  width: 130rpx;
+}
+
+.content{
+  margin: 50rpx 40rpx 0 40rpx;
+  font-size: 32rpx;
+  text-align: left;
+}

@@ -4,7 +4,7 @@ App({
     var that = this;
     that.globalData = {
       //urlPath: "http://39.106.157.46:8080/",
-      //urlPath:"http://www.art-sculpture.cn:8080/",
+     // urlPath:"http://www.art-sculpture.cn:8080/",
       urlPath: "http://localhost:8081/",
       //urlPath: "http://192.168.1.105:8081/",
       openid:'',
@@ -30,5 +30,7 @@ App({
         that.globalData.titleBarHeight = 0
       }
     })
-  }
+   
+  },
+
 })
