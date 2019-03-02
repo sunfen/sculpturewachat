@@ -32,17 +32,17 @@
   <!-- 我的负责人 -->
     <view class="category-detail" bindtap='myPrincipal'>
       <text class="category-top">我的负责人</text>
-      <text class="category-buttom">1个</text>
+      <text class="category-buttom">{{count.countPrincipal}}个</text>
     </view>
     <!-- 我的项目 -->
     <view class="category-detail">
       <text class="category-top">我的项目</text>
-      <text class="category-buttom">1个</text>
+      <text class="category-buttom">{{count.countProject}}个</text>
     </view>
     <!-- 我的工资 -->
     <view class="category-detail">
       <text class="category-top">我的工资</text>
-      <text class="category-buttom">1个</text>
+      <text class="category-buttom">{{count.countWages}}元</text>
     </view>
 
   </view>

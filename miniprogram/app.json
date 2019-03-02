@@ -1,9 +1,9 @@
 {
   "cloud": true,
   "pages": [
-
     "pages/index/index",
     "pages/myPrincipal/myPrincipal",
+    "pages/myPrincipalProject/myPrincipalProject",
     "pages/accountWages/accountWages",
     "pages/addWages/addWages",
     "pages/addLog/addLog",

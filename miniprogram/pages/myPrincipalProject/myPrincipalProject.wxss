@@ -1,0 +1,49 @@
+/* pages/index/addProject.wxss */
+
+.content {
+  height: 100%; 
+  width: 100%;
+  padding: 40rpx;
+  background: #fff;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  margin: 0rpx 40rpx 40rpx 40rpx;
+  padding: 20rpx;
+  border: 2rpx solid #ccc;
+  box-shadow: 10rpx 10rpx 5rpx #888;
+  border-radius: 5%;
+}
+
+.detail-label {
+  font-size: 35rpx;
+  font-weight: 600;
+  color: rgb(250, 125, 9);
+}
+
+
+.table-body-row {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #ccc;
+  padding: 10px;
+  overflow: hidden;
+  line-height: 22px;
+}
+
+.ellipsis{
+    /* width: 50%; */
+  white-space:normal;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+
+
+
+
+

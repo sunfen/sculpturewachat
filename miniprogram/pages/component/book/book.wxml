@@ -5,8 +5,8 @@
     <view wx:for="{{listMain}}" wx:for-item="group" wx:key="{{group.id}}"  id="{{ 'inToView'+group.id}}" data-id='{{group.id}}'> 
     
       <view class="address_top" >{{group.region}}</view> 
-        <view wx:for="{{group.principals}}" wx:for-item="item" wx:key="{{item.id}}"> 
-          <view class="address_bottom" data-id='{{item}}' bindtap='selectOne' >{{item.name}}</view> 
+        <view wx:for="{{group.principals}}" wx:for-item="item" wx:key="{{item.id}}" data-id='{{item}}' bindtap='selectOne'       bindtouchstart="handleTouchStart"   bindtouchend="handleTouchEnd" bindlongpress="handleLongPress"> 
+          <view class="address_bottom" data-id='{{item}}'  >{{item.name}}</view> 
         </view> 
     
     </view> 
@@ -28,6 +28,9 @@
         {{item.region}}
         </view> 
     </block> 
-
   </view>  
+
+
+
+
 </view>

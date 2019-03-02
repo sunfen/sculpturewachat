@@ -8,6 +8,12 @@ Page({
    */
   data: {},
 
-
+  previewImage(e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
+  },
 })
 

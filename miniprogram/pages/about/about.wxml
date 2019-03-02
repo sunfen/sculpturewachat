@@ -2,7 +2,7 @@
 <component-topnav inner-title="关于我们" is-show-back="true"></component-topnav>  
 
 <scroll-view class="container">
-  <view><image class="image-logo" src="/images/QRcord.jpg"></image>  </view>
+  <view><image class="image-logo" src="/images/logo1.jpg"  data-src='/images/logo1.jpg' bindtap='previewImage'></image>  </view>
   <view><text>雕塑记</text>  </view>
   <view><text>版本1.0.0</text>  </view>
   <view class="content">

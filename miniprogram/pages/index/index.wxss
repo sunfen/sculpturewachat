@@ -230,12 +230,6 @@
   line-height:70rpx;
 }
 
-.ellipsis{
-  width: 50%;
-  white-space:normal;
-  text-overflow:ellipsis;
-  overflow:hidden;
-}
 
 /* 弹出框 */
 

@@ -17,15 +17,20 @@ Page({
     userInfo: {
       avatarUrl: "",//用户头像
       nickName: "",//用户昵称
-    }
+    },
+    count:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+
+  onShow(){
     var that = this;
-  
+    that.init();
   },
 
   about:function(){
@@ -51,6 +56,25 @@ Page({
   switchChange(e){
     var that = this;
     that.setData({ switchChange: e.detail.value})
+  },
+
+
+  /**
+   * 获取init数据
+   */
+  init() {
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + '/my',
+      success(res) {
+        if (res.data) {
+          that.setData({
+            count: res.data
+          });
+        }
+      }
+    })
   },
 
 
