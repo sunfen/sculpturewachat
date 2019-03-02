@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -10,7 +10,7 @@
 	},
 	"appid": "wx39dc7970f2861ede",
 	"projectname": "%E8%AE%B0%E5%B7%A5",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.1",
 	"condition": {
 		"search": {
 			"current": -1,

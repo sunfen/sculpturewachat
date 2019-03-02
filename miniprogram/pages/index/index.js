@@ -36,24 +36,23 @@ Page({
       success: function (res) {
         if (res.code) {
           wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session',
-            data: {
-              appid: 'wx39dc7970f2861ede',
-              secret: 'b105e5b8e1cf7d321119ace33f89ebd2',
-              grant_type: 'authorization_code',
-              js_code: res.code
-            },
+            header: header,
+            url: getApp().globalData.urlPath + 'login/session/' + res.code,
             method: 'GET',
             header: header,
-            success: function (openIdRes) {
-              // 获取到 openId
-              getApp().globalData.openid = openIdRes.data.openid;
-              // 判断openId是否为空
-              if (openIdRes.data.openid != null & openIdRes.data.openid != undefined) {
-                  //从数据库获取用户信息
-                  that.setData({isLogin: true});
-                  that.login();
+            success: function (res) {
+              //从数据库获取用户信息
+              that.setData({isLogin: true});
+              if (res.data.code == "200") {
+                //从数据库获取用户信息
+                getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
+                that.init();
+              } else {
+                common.loginFail();
               }
+            },
+            fail: function (res) {
+                common.loginFail();
             }
           })
         }
@@ -253,35 +252,6 @@ Page({
     })
   },
 
-
-
-  /**
-   * 登录
-   */
-  login: function (e) {
-    var that = this;
-    wx.request({
-      url: getApp().globalData.urlPath + 'login',
-      data: {
-        openid: getApp().globalData.openid,
-        password: getApp().globalData.openid
-      },
-      method: 'POST',
-      success: function (res) {
-        if (res.data.code == "200") {
-          //从数据库获取用户信息
-          getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
-          that.setData({ isLogin: true });
-          that.init();
-        } else {
-          common.loginFail();
-        }
-      },
-      fail: function (res) {
-        common.loginFail();
-      }
-    });
-  }
 
 })
 
