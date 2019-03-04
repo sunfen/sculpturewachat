@@ -86,7 +86,7 @@
 }
 
 .iconfont {
-  font-size:46px;
-  color:  rgb(255, 68, 0);
+  font-size:36px;
+  color:  #F6ACAC;
 }
 

@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #c7c8ca;
+  background-color: rgb(245, 194, 27);
   z-index: 99999;
 }
 
@@ -10,7 +10,7 @@
 .hh-title{
   font-size: 30rpx;
   text-align: center;
-  color: #000;
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -31,30 +31,32 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_wqh50wcchib.eot');
-  src: url('//at.alicdn.com/t/font_1041080_wqh50wcchib.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_wqh50wcchib.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_wqh50wcchib.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_wqh50wcchib.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_wqh50wcchib.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_a0lngpgd9hc.eot');
+  src: url('//at.alicdn.com/t/font_1041080_a0lngpgd9hc.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_a0lngpgd9hc.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_a0lngpgd9hc.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_a0lngpgd9hc.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_a0lngpgd9hc.svg#iconfont') format('svg');
 }
+
 
 .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;
-  font-style:normal;
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* 左返回 */
-.icon-back-left:before { content: "\e658";}
+.icon-back-left:before { content: "\e625";}
 
 
 /* 清楚按钮的默认样式  */
 .defalut_btn{
   background: transparent;
   border:none;
+  color: #fff;
 }
 
 

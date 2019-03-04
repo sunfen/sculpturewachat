@@ -1,69 +1,68 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
 <scroll-view  class="container">
-  <!-- top开始 -->
-  <view class='top'>
-  <!-- 身份切换 -->
-    <view>
-      <button class="defalut_btn top-button">
-        <!-- <icon class="iconfont icon-identity"></icon> -->
-      </button>
-    </view>
 
-    <view class="top-center">
-    
-      <view class="top-one">
-        <text class="top-one-top">{{monthWages}}元</text>
-        <text>本月收入</text>
-      </view>
-    
-      <view class="top-one">
-        <text class="top-one-top">{{workDays}}天</text>
-        <text>出勤</text>
-      </view>
-    
-    </view>
-    
-    <view>
-     <view class="horizontal"></view>
-    </view>
-
-  </view>
-<!-- top结束 -->
-
-<!-- 便利贴开始 -->
+  <!-- 便利贴开始 -->
   <view class="note">
-    
-    <!-- 添加项目人 -->
-    <view class="note-column-add">
-      <button class="defalut_btn top-button"  bindtap="addProject">
-        <icon class="iconfont icon-add-identity"></icon>
-      </button>
-    </view>
-
-    <view wx:if="{{project.id}}">
-  
-      <!-- 项目时间 -->
-      <view class="note-column-date">
-        <text>{{project.startTime}} <text wx:if="{{project.endTime}}">- {{project.endTime}}</text></text>
-        <text>每天均入{{project.dailyWages}}元</text>
+    <view class="note-content">
+      <!-- 添加项目人 -->
+      <view class="note-column-add">
+        <button class="defalut_btn top-button"  bindtap="addProject">
+          <icon class="iconfont icon-add-identity"></icon>
+        </button>
       </view>
-      
-      <!-- 项目名称 -->
-      <view class="note-column-project" bindtap='viewdetail'>
-        <text class="note-column-project-circle">{{project.principal.name}}</text>
-        <view class="note-column-project-position">
-          <text>{{project.name}}</text>
-          <text>{{project.address}}</text>
+
+      <view wx:if="{{project.id}}" class="note-content-detail"  bindtap='viewdetail'>
+
+        <view class="note-column-name">
+          <view class="note-column-name-name">{{project.name}}</view>
+          <view>{{project.address}}</view>
         </view>
-    
-        <text class="note-column-project-wage">总工资{{project.actualTotalWages}}元</text>
-      </view>
-    </view>
 
-     <view wx:else="{{project.id}}"  class="note-column-date">暂无</view>
+        <!-- 项目时间 -->
+        <view class="note-column-date">
+          <text>{{project.startTime}} <text wx:if="{{project.endTime}}">- {{project.endTime}}</text></text>
+          <text>每天均收入{{project.dailyWages}}元</text>
+        </view>
+        
+
+        <view class="note-column-wages">
+          <progress percent="60" color="#D84339" backgroundColor="#B5AEAD" border-radius="3"/> 
+          <text>已结{{project.actualTotalWages}}元</text>
+          <text>共{{project.expectTotalWages}}元</text>
+        </view>
+        
+      </view>
+    
+      <view wx:else="{{project.id}}"  class="note-content-detail">暂无</view>
+    </view>
   </view>
 <!-- 便利贴结束 -->
+
+
+  <!-- 身份切换 -->
+  <view class="top-center">
+  
+    <view class="top-one">
+      <text class="top-one-top">{{monthWages}}元</text>
+      <text>本月收入</text>
+    </view>
+  
+    <view class="top-one">
+      <text class="top-one-top">{{workDays}}天</text>
+      <text>出勤天数</text>
+    </view>
+
+    <view class="top-one">
+      <text class="top-one-top">{{leaveDays}}天</text>
+      <text>缺勤天数</text>
+    </view>
+  
+  </view>
+
+<!-- top结束 -->
+
+
 
 <!-- 三种操作功能开始 -->
   <view class="functions">
@@ -97,14 +96,20 @@
 <!-- 空白条 -->
 
 <view class="log">
-  <text class="log-title">每日一记</text>
+  
+  <view class="log-title">
+    <view class="log-title-circle"><text decode='true'>&nbsp;&nbsp;</text></view>
+    <text decode='true'>&nbsp;每日一记</text>
+  </view>
+
+
   <!-- 记录开始 -->
   <view wx:if="{{results.length > 0 }}">
     <!-- 一条记录开始 -->
     <view class="log-detail" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id">
       <!-- 日期 -->
       <view class="log-date">
-        <text>{{item.time}}</text>
+        <text class="log-date-time">{{item.time}}</text>
         <text>{{item.onMonday}}</text>
       </view>
 
