@@ -97,7 +97,7 @@
           </button>
         </view>
       </view>
-      <view class="function-remind-right">
+      <view class="function-remind-right-noline">
         <text>关于我们</text>
         <view  class="function-remind-switch">
           <button class="defalut_btn top-button">
@@ -107,7 +107,7 @@
       </view>
     </view>
 
-    <!-- 帮助 -->
+    <!-- 帮助
     <view class="function-remind">
       <view>
         <view class="function-remind-icon">
@@ -124,7 +124,7 @@
           </button>       
         </view>
       </view>
-    </view>  
+    </view>   -->
 
   </view>
   <view class="blank-space"></view>

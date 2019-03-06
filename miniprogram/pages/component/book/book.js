@@ -16,6 +16,7 @@ Component({
     toView: 'inToView0',
     oHeight: [],
     scroolHeight: 0,
+    showModal: false
   },
 
   lifetimes: {
@@ -45,13 +46,12 @@ Component({
     handleLongPress(e){
       var that = this;
       that.setData({ startTime: 0, endTime: 0 });
-      that.setData({ showModel: true});
       wx.showActionSheet({
         itemList:['编辑', '删除'],
         success(res) {
           if (res.tapIndex == 0){
             that.edit(e.target.dataset.id);
-          }
+          }else
           if (res.tapIndex == 1) {
             that.delete(e.target.dataset.id);
           }
@@ -67,10 +67,84 @@ Component({
      */
     edit(item) {
       var that = this;
-      var project = JSON.stringify(that.data.project);
-      var record = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
-      wx.navigateTo({
-        url: '/pages/addWages/addWages?record=' + record + "&project=" + project,
+      that.setData({ showModal: true, principal: item});
+    },
+  
+    /**
+     * 新增
+     */
+    add(){
+      var that = this;
+      that.setData({ showModal: true, principal: {} });
+    },
+
+  /**
+    * 弹出框蒙层截断touchmove事件
+    */
+    preventTouchMove: function () {
+    },
+
+
+    // 关闭详情页
+    closeModal: function () {
+      this.setData({
+        showModal: false
+      })
+    },
+
+    /**
+     * 输入框输入事件
+     */
+    inputValue: function (e) {
+      var name = e.target.id;
+      this.setData({
+        [name]: e.detail.value
+      })
+    },
+
+
+    //新增完
+    /**
+     * 对话框确认
+     */
+    onConfirm: function (e) {
+      var that = this;
+   
+      if (that.data.principal.name == "" || that.data.principal.name == undefined) {
+        common.showAlertToast("请填写负责人名称！");
+        return;
+      }
+
+      that.setData({
+        showModal: false
+      })
+
+      wx.request({
+        url: getApp().globalData.urlPath + 'principal',
+        method: "POST",
+        data: this.data.principal,
+        header: header,
+        success: function (res) {
+          if (res.data.code == "200") {
+            wx.showToast({
+              title: '编辑成功！',
+              icon: 'success',
+              success(res) {
+                that.getBrands();
+              }
+            })
+          } else if (res.data.code == "404") {
+            common.loginFail();
+          } else if (res.data.code == "500") {
+            common.showAlertToast("数据错误，请重试！");
+          } else {
+            common.showAlertToast("数据错误，请重试！");
+          }
+
+        },
+        fail: function (res) {
+          common.loginFail();
+        }
       })
     },
 
@@ -126,12 +200,19 @@ Component({
             that.setData({
               listMain: res.data,
               isActive: res.data[0].id,
-              fixedTitle: res.data[0].region
+              fixedTitle: ""
             });
 
             //计算分组高度,wx.createSelectotQuery()获取节点信息
             var number = 0;
             for (var i in that.data.listMain) {
+              if (that.data.fixedTitle == ""){
+                if (that.data.listMain[i].principals.length > 0){
+                  that.setData({
+                    fixedTitle: that.data.listMain[i].region
+                  });
+                }
+              }
               var selector = wx.createSelectorQuery().select('#inToView' + that.data.listMain[i].id);
             
               selector.boundingClientRect(function (rect) {

@@ -1,8 +1,30 @@
 <view >
+  
+  <button class="defalut_btn img-plus-style"  bindtap="add">
+    <icon class="iconfont icon-add"></icon>
+  </button>
+  
+  
+  <!--弹窗 添加地点 -->
+  <view class="modal-mask" bindtap="hideModal"  catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal}}">
+      <view class="modal-title">姓名</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入姓名" id="principal.name"  value="{{principal.name}}" bindinput="inputValue"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>
+  </view>
+
+
 <!-- 左侧列表内容部分 -->
   <scroll-view class="content" enable-back-to-top scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" bindscroll="onPageScroll"> 
     
-    <view wx:for="{{listMain}}" wx:for-item="group" wx:key="{{group.id}}"  id="{{ 'inToView'+group.id}}" data-id='{{group.id}}'> 
+    <view wx:for="{{listMain}}" wx:if="{{group.principals.length > 0}}" wx:for-item="group" wx:key="{{group.id}}"  id="{{ 'inToView'+group.id}}" data-id='{{group.id}}'> 
     
       <view class="address_top" >{{group.region}}</view> 
         <view wx:for="{{group.principals}}" wx:for-item="item" wx:key="{{item.id}}" data-id='{{item}}' bindtap='selectOne'       bindtouchstart="handleTouchStart"   bindtouchend="handleTouchEnd" bindlongpress="handleLongPress"> 
