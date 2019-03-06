@@ -147,6 +147,13 @@
       <text class="contact-text-buttom">1121788582</text>
     </view>
   </view>
+
+
+  <view>
+    <button class="button-share"  type='primary' size='mini' lang="zh_CN" >
+      分享至朋友圈
+    </button>
+  </view>
 </scroll-view>
 
 <component-footernav current="1"></component-footernav>  

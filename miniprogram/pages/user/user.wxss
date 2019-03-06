@@ -167,3 +167,9 @@
   font-weight: 400;
   color: #b9b7b7c5;
 }
+
+.button-share{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

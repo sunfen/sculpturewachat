@@ -29,8 +29,10 @@ App({
         that.globalData.statusBarHeight = 0
         that.globalData.titleBarHeight = 0
       }
+    }),
+    wx.showShareMenu({
+      withShareTicket: true
     })
-   
   },
 
 })
