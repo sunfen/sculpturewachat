@@ -17,12 +17,12 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.eot');
-  src: url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_ooo2w79ht6.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.eot');
+  src: url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.svg#iconfont') format('svg');
 }
 
 
@@ -74,7 +74,8 @@
 .icon-close:before {content: "\e602";}
 /* 新增 */
 .icon-add:before {content: "\eaf7";}
-
+/* 关闭圈 */
+.icon-close-circle:before {content: "\e650";}
 
 
 /* 清楚按钮的默认样式  */

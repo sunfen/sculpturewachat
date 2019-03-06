@@ -170,6 +170,103 @@
 
 .button-share{
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   text-align: center;
+  margin-top: 20rpx;
+}
+
+
+/* 分享 */
+.open-seting-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btn-openset {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30rpx;
+  margin-top: 60rpx;
+}
+
+.set-title {
+  font-size: 30rpx;
+  margin-top: 40rpx;
+}
+
+.open-set-inner {
+  width: 400rpx;
+  height: 220rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background: #ffffff;
+  padding: 30rpx;
+}
+
+.btn-openset > view:nth-child(1) {
+  color: #919191;
+}
+
+.button-style {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 0;
+  font-size: 30rpx;
+  line-height: 0;
+  color: red;
+}
+
+
+.share-modal-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5)
+}
+
+.canvas-wrap {
+  position: absolute;
+  width: 572rpx;
+	height: 940rpx;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 35rpx 0px	rgba(0, 0, 0, 0.36);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.share-img {
+  width: 572rpx;
+	height: 850rpx;
+}
+
+.share-img-tips {
+  color: #bbbbbb;
+  text-align: center;
+  font-size: 28rpx;
+  height: 100rpx;
+  background: #f7f7f7;
+  line-height: 100rpx;
+}
+
+.icon-close-circle{
+  color: #fff;
+  font-size: 30px;
 }

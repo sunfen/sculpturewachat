@@ -30,34 +30,13 @@ Page({
   },
   
   onShow: function () {
-    var that = this;          
-    //获取openId
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          wx.request({
-            header: header,
-            url: getApp().globalData.urlPath + 'login/session/' + res.code,
-            method: 'GET',
-            header: header,
-            success: function (res) {
-              //从数据库获取用户信息
-              that.setData({isLogin: true});
-              if (res.data.code == "200") {
-                //从数据库获取用户信息
-                getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
-                that.init();
-              } else {
-                common.loginFail();
-              }
-            },
-            fail: function (res) {
-                common.loginFail();
-            }
-          })
-        }
-      }
-    })
+    var that = this;   
+    if (getApp().globalData.header.Cookie == "" || getApp().globalData.header.Cookie == undefined){
+        that.login();
+    }else{
+      that.setData({ isLogin: true });
+      that.init();
+    }       
   },
   /**
    *  关闭项目详情页
@@ -253,5 +232,36 @@ Page({
   },
 
 
+
+  login: function () {
+    var that = this;
+    //获取openId
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.request({
+            header: header,
+            url: getApp().globalData.urlPath + 'login/session/' + res.code,
+            method: 'GET',
+            header: header,
+            success: function (res) {
+              //从数据库获取用户信息
+              that.setData({ isLogin: true });
+              if (res.data.code == "200") {
+                //从数据库获取用户信息
+                getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
+                that.init();
+              } else {
+                common.loginFail();
+              }
+            },
+            fail: function (res) {
+              common.loginFail();
+            }
+          })
+        }
+      }
+    })
+  }
 })
 
