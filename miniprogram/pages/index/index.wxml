@@ -152,8 +152,6 @@
   <view class="modalDlg" wx:if="{{showModal}}" catchtouchmove="preventTouchMove" >
 
     <view class='modalDlg-header'>
-      <view>{{project.principal.name}}.{{project.name}}</view>
-      <view>{{project.actualTotalWages}}元</view>
       <view  bindtap='closeModal'>
         <button class="defalut_btn top-button">
           <icon class="iconfont icon-close"></icon>
@@ -162,6 +160,27 @@
     </view>
 <!-- 内容 -->
     <view class='modalDlg-content'>
+      <view class="modalDlg-content-row">
+        <view>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-principal"></icon>
+          </button>
+        </view>
+        <view class="modalDlg-content-row-text">
+          <text>负责人. {{project.principal.name}}</text>
+        </view>
+      </view>
+
+      <view class="modalDlg-content-row">
+        <view>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-type"></icon>
+          </button>
+        </view>
+        <view class="modalDlg-content-row-text">
+          <text>项目. {{project.name}}</text>
+        </view>
+      </view>
 
       <view class="modalDlg-content-row">
         <view>
@@ -198,12 +217,12 @@
     </view>
     <!-- 按钮 -->
     <view class='modalDlg-footer'>
-      <view bindtap="editProject">
+      <view bindtap="editProject" class="editProjectBtn">
         <button class="defalut_btn top-button">
           <icon class="iconfont icon-edit-account">  编辑</icon>
         </button>
       </view>
-      <view bindtap="deletedProject">
+      <view bindtap="deletedProject" class="deletedProjectBtn">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-delete">  删除</icon>
           </button>
