@@ -4,25 +4,15 @@ const app = getApp()
 var header = app.globalData.header;
 
 var common = require('/../../pages/common/common.js');
-var util = require('../../util/util.js'); 
-var time = util.formatTime(new Date());  
+var util = require('../../util/util.js');
+
 Page({
   data: {
-    hours:["上午", "下午"],
-    endHours: ["中午", "晚上"],
-    hourIndex: 0,
-    endHourIndex: 1,
-    endTime: '',
-    startTime: time,
     project:{
       id:"",
       principal:{id:'', name:'',phone:""},
       name:'',
       address:'',
-      startTime: time,
-      endTime: "",
-      startHour: '上午',
-      endHour: '晚上',
       dailyWages:'0'
     }
   },
@@ -49,8 +39,6 @@ Page({
                 name: res.data.name,
                 address: res.data.address,
                 dailyWages: res.data.dailyWages,
-                startTime: res.data.startTime,
-                endTime: res.data.endTime
               })
             }
           }
@@ -63,8 +51,6 @@ Page({
           name: project.name,
           address: project.address,
           dailyWages: project.dailyWages,
-          startTime: project.startTime,
-          endTime: project.endTime
         });
       }
   },
@@ -156,10 +142,6 @@ Page({
         id:this.data.id,
         name: this.data.name,
         address: this.data.address,
-        startTime: this.data.startTime,
-        endTime: this.data.endTime,
-        startHour: this.data.hours[this.data.hourIndex],
-        endHour: this.data.endHours[this.data.endHourIndex],
         dailyWages: this.data.dailyWages,
       }
     })
@@ -180,15 +162,7 @@ Page({
       common.showAlertToast("请填写项目地点！");
       return;
     }
-    if (that.data.project.startTime == "" || that.data.project.startTime == undefined) {
-      common.showAlertToast("请填写项目开始日期！");
-      return;
-    }
-    if (that.data.project.startHour == "" || that.data.project.startHour == undefined) {
-      common.showAlertToast("请填写项目开始时间！");
-      return;
-    }
-    if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined || isNaN(that.data.project.dailyWages)) {
+    if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined || isNaN(that.data.project.dailyWages) || that.data.project.dailyWages <= 0) {
       common.showAlertToast("请填写项目日工资！");
       return;
     }

@@ -7,10 +7,7 @@
     <view class="note-content">
       <!-- 添加项目人 -->
       <view class="note-column-add">
-        <button class="add-project" size='mini' bindtap="addProject">
-         新增项目
-          <!-- <icon class="iconfont icon-add-identity"></icon> -->
-        </button>
+        <button bindtap="addProject">新增项目</button>
       </view>
 
       <view wx:if="{{project.id}}" class="note-content-detail"  bindtap='viewdetail'>
@@ -22,7 +19,9 @@
 
         <!-- 项目时间 -->
         <view class="note-column-date">
-          <text>{{project.startTime}} <text wx:if="{{project.endTime}}">- {{project.endTime}}</text></text>
+          <text wx:if="{{project.startTime}}">{{project.startTime}}<text wx:if="{{project.endTime}}">—— {{project.endTime}}</text></text>
+          <text wx:else="{{project.startTime}}">未开始</text>
+          
           <text>每天均收入{{project.dailyWages}}元</text>
         </view>
         
@@ -50,12 +49,17 @@
     </view>
   
     <view class="top-one">
-      <text class="top-one-top">{{workDays}}天</text>
+      <text class="top-one-top">{{workDays}}</text>
       <text>出勤天数</text>
     </view>
 
     <view class="top-one">
-      <text class="top-one-top">{{leaveDays}}天</text>
+      <text class="top-one-top">{{extraDays}}</text>
+      <text>加班天数</text>
+    </view>
+
+    <view class="top-one">
+      <text class="top-one-top">{{leaveDays}}</text>
       <text>缺勤天数</text>
     </view>
   

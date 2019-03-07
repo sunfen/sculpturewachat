@@ -19,6 +19,7 @@
   text-align: center;
   height: 220rpx;
   background: #986A1C;
+  padding-top: 20rpx;
 }
 
 .note-content{
@@ -33,11 +34,10 @@
 
 
 .note-column-add {
-  margin-left: 80%;
-  width: 20%;
+  margin-left: 75%;
+  width: 25%;
   height: 60rpx;
   border-radius: 0 15rpx 0 15rpx;
-  background: rgb(81, 169, 252);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +46,12 @@
 
 .note-column-add button {
   color:#fff;
+  width: 100%;
+  height: 100%;
+  font-size: 22rpx;
+  font-weight: 400;
+  background: rgb(81, 169, 252);
+
 }
 
 .iconfont{

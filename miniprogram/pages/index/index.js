@@ -158,6 +158,8 @@ Page({
             project: res.data.project,
             monthWages: res.data.monthWages,
             workDays: res.data.workDays,
+            extraDays: res.data.extraDays,
+            leaveDays: res.data.leaveDays,
             pageInfo: {
               size: res.data.pageInfo.size,
               page: res.data.pageInfo.number + 2,

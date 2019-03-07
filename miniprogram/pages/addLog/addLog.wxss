@@ -35,16 +35,17 @@
 }
 
 .commodity-button{
-  height: 80rpx;
+  font-size: 35rpx;
+  font-weight: 600;
   background:  #d8d8d86c; 
 }
 
 .commodity-button-content{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content:space-around;
+  text-align: left;
   padding-top: 10rpx;
-  height: 60rpx;
 }
 
 .commodity-button-content icon{
@@ -59,7 +60,6 @@
   background: rgb(224, 223, 223);
   border: none;
   width: 15%;
-  height: 70rpx;
 }
 
  .commodity-hours button::after {
@@ -95,6 +95,11 @@
 .picker{
   margin: 10rpx 10rpx 10rpx 10rpx;
   height: 50rpx;
+}
+
+.picker text {
+  font-weight: 600;
+  font-size: 35rpx;
 }
 
 input{

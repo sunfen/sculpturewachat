@@ -1,8 +1,11 @@
 //index.js
 const app = getApp()
 import initCalendar, { jump, setTodoLabels, deleteTodoLabels, getTodoLabels, clearTodoLabels, getSelectedDay } from '../../pages/calendar/index';
+
 const COLOR_GRAY = "rgb(224, 223, 223)";
 const COLOR_RED = "rgb(252, 127, 25)";
+const TODO_LABEL_COLOR = "green";
+
 var common = require('/../../pages/common/common.js');
 
 var header = app.globalData.header;
@@ -10,35 +13,46 @@ var header = app.globalData.header;
 Page({
   data: {
     currentTab: 0,
-    currentSelectDate: '',
-    currentSelectType:'work',
-    currentRemark: '',
-    currentHour: 8,
-    currentProject: {},
-    currentProjectIndex: 0,
+    record:{
+      id:'',
+      morningHour: 4,
+      afternoonHour: 4,
+      eveningHour: 0,
+      totalHour:'8',
+      remark: '',
+      project: {},
+      projectId: '',
+      projectIndex: 0,
+    },
     projects:[],
     selectTypes:[
-      { data: 'work', name: '上班', type: 'primary' },
-      { data: 'leave', name: '请假', type:'default'},
-      { data: 'extra', name: '加班', type: 'default' }
+      {
+        data: 'morning', name: '上午', property:'record.morningHour',
+         hours: [
+          { data: "无", color: COLOR_GRAY }, { data: 1, color: COLOR_GRAY },
+          { data: 2, color: COLOR_GRAY }, { data: 3, color: COLOR_GRAY },
+          { data: 4, color: COLOR_RED }]
+      },
+      {
+        data: 'afternoon', name: '下午', property: 'record.afternoonHour',
+        hours: [
+          { data: "无", color: COLOR_GRAY },{ data: 1, color: COLOR_GRAY },
+          { data: 2, color: COLOR_GRAY },{ data: 3, color: COLOR_GRAY },
+          { data: 4, color: COLOR_RED }]
+      },
+      {
+        data: 'evening', name: '晚上', property: 'record.eveningHour',
+        hours: [
+          { data: "无", color: COLOR_RED },{ data: 1, color: COLOR_GRAY },
+          { data: 1.5, color: COLOR_GRAY },{ data: 2, color: COLOR_GRAY },
+          { data: 2.5, color: COLOR_GRAY },{ data: 3, color: COLOR_GRAY },
+          { data: 3.5, color: COLOR_GRAY },{ data: 4, color: COLOR_GRAY },
+          { data: 4.5, color: COLOR_GRAY },{ data: 5, color: COLOR_GRAY },
+          { data: 5.5, color: COLOR_GRAY },{ data: 6, color: COLOR_GRAY },
+          { data: 6.5, color: COLOR_GRAY },{ data: 7, color: COLOR_GRAY },
+          { data: 7.5, color: COLOR_GRAY },{ data: 8, color: COLOR_GRAY }]
+       },
     ],
-    hours: [
-      { data: 0.5, color: COLOR_GRAY},
-      { data: 1, color: COLOR_GRAY },
-      { data: 1.5, color: COLOR_GRAY },
-      { data: 2, color: COLOR_GRAY},
-      { data: 2.5, color: COLOR_GRAY },
-      { data: 3, color: COLOR_GRAY },
-      { data: 3.5, color: COLOR_GRAY },
-      { data: 4.5, color: COLOR_GRAY},
-      { data: 5, color: COLOR_GRAY },
-      { data: 5.5, color: COLOR_GRAY},
-      { data: 6, color: COLOR_GRAY },
-      { data: 6.5, color: COLOR_GRAY},
-      { data: 7, color: COLOR_GRAY },
-      { data: 7.5, color: COLOR_GRAY },
-      { data: 8, color: COLOR_RED },
-      ]
   },
 
   
@@ -72,13 +86,21 @@ Page({
        * @param { object } event 日期点击事件对象
        */
       onTapDay(currentSelect, event) {
+        
+        jump(currentSelect.year, currentSelect.month, currentSelect.day);
+        
         var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
         var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
-        that.setData({ 
-          currentSelectDate: currentSelect.year + "-" + month + "-" +  day, 
-          currentRemark: ''
-        });
-        jump(currentSelect.year, currentSelect.month, currentSelect.day);
+        var date = currentSelect.year + "-" + month + "-" + day;
+        var datePro = "record.time";
+        that.setData({[datePro]: date});
+        
+        for(var i in that.data.records){
+          if (that.data.records[i].time == date){
+            that.setData({ record: that.data.records[i] });
+          }
+        }
+        
         that.showModal();
       },
 
@@ -105,65 +127,72 @@ Page({
 
 
   /**
-   * 选择加班时间
-   */
-  onSelectHours(event){
-    var that = this;
-    that.changeHours(event.target.dataset.hour);
-  },
-
-  changeHours(hourData){
-    var that = this;
-    for (var i in that.data.hours) {
-      if (that.data.hours[i].data == hourData) {
-        that.data.hours[i].color = COLOR_RED;
-        that.setData({ currentHour: that.data.hours[i].data });
-      } else {
-        that.data.hours[i].color = COLOR_GRAY;
-      }
-    }
-
-    this.setData({ hours: that.data.hours });
-  },
-
-  /**
-   * 选择类型
-   */
-  onSelectType(event) {
-    var that = this;
-    for (var i in that.data.selectTypes) {
-      if (that.data.selectTypes[i].data == event.target.dataset.selectType) {
-        that.data.selectTypes[i].type = "primary";
-        if (that.data.selectTypes[i].data == "leave"){
-          that.setData({ currentHour: 8 });
-        }else if (that.data.selectTypes[i].data == "work") {
-          that.setData({ currentHour: 8 });
-        }else{
-          that.setData({ currentHour: 1 });
-        }
-        that.setData({ currentSelectType: that.data.selectTypes[i].data });
-        this.changeHours(that.data.currentHour);
-      } else {
-        that.data.selectTypes[i].type = "default";
-      }
-    }
-
-    this.setData({ selectTypes: that.data.selectTypes });
-  },
-
-
-  /**
-   * 备注
-   */
-  /**
-   * 输入框输入事件
+   * 输入框输入事件  备注
    */
   inputValue: function (e) {
-    var name = e.target.id;
+    var name = e.target.dataset.id;
     this.setData({
-      currentRemark: e.detail.value
+      [name]: e.detail.value
     })
   },
+
+  /**
+   * 绑定项目
+   */
+  bindProjectChange(event) {
+    var that = this;
+    if (that.data.projects.length == 0){
+      return;
+    }
+    
+    var project = "record.project";
+    var projectId = "record.projectId";
+    var projectIndex = "record.projectIndex";
+    that.setData({
+      [project]: that.data.projects[event.detail.value],
+      [projectIndex]: event.detail.value,
+      [projectId]: that.data.projects[event.detail.value].id});
+  },
+
+
+  /**
+   * 选择时间
+   */
+  onSelectHours(event) {
+    var that = this;
+    var property = event.target.dataset.property;
+    var type = event.target.dataset.type;
+    var hour = event.target.dataset.hour;
+    var totalHour = "record.totalHour";
+
+    that.setData({ [property]: hour == '无' ? 0 : hour});
+    var morningHour = that.data.record.morningHour == '无' ? 0 : that.data.record.morningHour;
+    var afternoonHour = that.data.record.afternoonHour == '无' ? 0 : that.data.record.afternoonHour;
+    var eveningHour =  that.data.record.eveningHour == '无' ? 0 : that.data.record.eveningHour;
+
+    var totalHours = morningHour + afternoonHour + eveningHour;
+    
+    that.setData({ [totalHour]: totalHours});
+
+
+    for (var j in that.data.selectTypes){
+      if (that.data.selectTypes[j].data == type){
+
+        for (var i in that.data.selectTypes[j].hours) {
+          if (that.data.selectTypes[j].hours[i].data == hour) {
+            that.data.selectTypes[j].hours[i].color = COLOR_RED;
+          } else {
+            that.data.selectTypes[j].hours[i].color = COLOR_GRAY;
+          }
+        }
+        this.setData({ selectTypes: that.data.selectTypes });
+      }
+    }
+
+  },
+
+
+
 
 
   /**
@@ -171,23 +200,16 @@ Page({
    */
   save(event){
     var that = this;
-    if (that.data.currentSelectDate == "" || that.data.currentSelectDate == undefined) {
+    if (that.data.record.time == "" || that.data.record.time == undefined) {
       common.showAlertToast("请选择日期！");
       return;
     }
-    if (that.data.currentSelectType == "" || that.data.currentSelectType == undefined) {
-      common.showAlertToast("请选择类型！");
+
+    if (that.data.record.remark != undefined && that.data.record.remark.length >= 126) {
+      common.showAlertToast("备注不可超过126个字符");
       return;
     }
-    if (that.data.currentRemark != undefined && that.data.currentRemark.length >= 256) {
-      common.showAlertToast("备注不可超过256个字符");
-      return;
-    }
-    if (that.data.currentHour == "" || that.data.currentHour == undefined) {
-      that.showAlertToast("请选择时间！");
-      return;
-    }
-    if (that.data.currentProject.id == "" || that.data.currentProject.id == undefined) {
+    if (that.data.record.projectId == "" || that.data.record.projectId == undefined) {
       common.showAlertToast("请选择项目！");
       return;
     }
@@ -196,14 +218,7 @@ Page({
     wx.request({
       url: getApp().globalData.urlPath + 'logrecord',
       method: "POST",
-      data: {
-        id: that.data.currentId,
-        projectId: that.data.currentProject.id,
-        hour: that.data.currentHour,
-        time: that.data.currentSelectDate,
-        type: that.data.currentSelectType,
-        remark: that.data.currentRemark,
-      },
+      data: that.data.record,
       header: header,
       success: function (res) {
         if (res.data.code == "200") {
@@ -236,14 +251,6 @@ Page({
    */
   setLog(){
     var that = this;
-    var todoLabelColor = "green";
-    if (that.data.currentSelectType == "leave"){
-      todoLabelColor = "red";
-    }
-    if (that.data.currentSelectType == "extra") {
-      todoLabelColor = COLOR_RED;
-    }
-
     setTodoLabels({
       // 待办圆圈标记设置（如圆圈标记已签到日期），该设置与点标记设置互斥
       circle: true, // 待办
@@ -251,21 +258,15 @@ Page({
         year: that.data.calendar.selectedDay[0].year,
         month: that.data.calendar.selectedDay[0].month,
         day: that.data.calendar.selectedDay[0].day,
-        todoText: that.data.currentSelectType == "work" ? "" : that.data.currentHour + "h",
-        todoLabelColor: todoLabelColor
+        todoText: that.data.record.totalHour + "h",
+        todoLabelColor: TODO_LABEL_COLOR
       }],
     });
   },
 
 
 
-  /**
-   * 绑定项目
-   */
-  bindProjectChange(event){
-    var that = this;
-    that.setData({ currentProjectIndex: event.detail.value});
-  },
+
 
 
 
@@ -273,30 +274,23 @@ Page({
    * 获取日志
    */
   getLogRecord(year, month){
-
+    var that = this;
     wx.request({
       url: getApp().globalData.urlPath + "logrecord/search/" + year + "/" + month,
       header: header,
       success: function (res) {
         if (res.statusCode == "200") {
-          
+          that.setData({records: res.data});
           for(var i in res.data){
             var data = res.data[i];
-            var todoLabelColor = "green";
-            if (data.type == "请假") {
-              todoLabelColor = "red";
-            }
-            if (data.type == "加班") {
-              todoLabelColor = COLOR_RED;
-            }
             setTodoLabels({
               circle: true,
               days: [{
                 year: data.year,
                 month: data.month,
                 day: data.day,
-                todoText: data.type == "上班" ? "" : data.hour + "h",
-                todoLabelColor: todoLabelColor
+                todoText: data.totalHour + "h",
+                todoLabelColor: TODO_LABEL_COLOR
               }],
             });
           }
@@ -307,13 +301,11 @@ Page({
         } else {
           common.showAlertToast("数据错误，请重试！");
         }
-
       },
       fail: function (res) {
         common.loginFail();
       }
     })
-
   },
 
 
@@ -324,15 +316,19 @@ Page({
    */
   getProjects(){
     var that = this;
+    var project = "record.project";
+    var projectIndex = "record.projectIndex";
+    var projectId = "record.projectId";
     wx.request({
       header: header,
       url: getApp().globalData.urlPath + '/project/search/list',
       success(res) {
         if (res.data.length > 0) {
-
           that.setData({
             projects: res.data,
-            currentProject: res.data[0]
+            [project]: res.data[0],
+            [projectIndex]: 0,
+            [projectId]: res.data[0].id
           });
         }
       }
