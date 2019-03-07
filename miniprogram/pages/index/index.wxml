@@ -7,8 +7,9 @@
     <view class="note-content">
       <!-- 添加项目人 -->
       <view class="note-column-add">
-        <button class="defalut_btn top-button"  bindtap="addProject">
-          <icon class="iconfont icon-add-identity"></icon>
+        <button class="add-project" size='mini' bindtap="addProject">
+         新增项目
+          <!-- <icon class="iconfont icon-add-identity"></icon> -->
         </button>
       </view>
 

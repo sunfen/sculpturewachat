@@ -270,3 +270,9 @@
   color: #fff;
   font-size: 30px;
 }
+
+
+.icon-customer{
+  color: rgb(7, 5, 5);
+  font-size: 20px;
+}

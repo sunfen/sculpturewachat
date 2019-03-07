@@ -17,12 +17,12 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.eot');
-  src: url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_7s3iuakb9cv.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_ofub4fq7qbr.eot');
+  src: url('//at.alicdn.com/t/font_1041080_ofub4fq7qbr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_ofub4fq7qbr.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_ofub4fq7qbr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_ofub4fq7qbr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_ofub4fq7qbr.svg#iconfont') format('svg');
 }
 
 
@@ -76,6 +76,8 @@
 .icon-add:before {content: "\eaf7";}
 /* 关闭圈 */
 .icon-close-circle:before {content: "\e650";}
+/* 客服 */
+.icon-customer:before {content: "\e604";}
 
 
 /* 清楚按钮的默认样式  */

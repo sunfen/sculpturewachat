@@ -107,24 +107,24 @@
       </view>
     </view>
 
-    <!-- 帮助
-    <view class="function-remind">
+    <!-- 帮助 -->
+    <view class="function-remind" >
       <view>
         <view class="function-remind-icon">
           <button class="defalut_btn top-button">
-            <icon class="iconfont icon-help"></icon>
+            <icon class="iconfont icon-customer"></icon>
           </button>
         </view>
       </view>
       <view class="function-remind-right-noline">
-        <text>帮助</text>
+        <text>客服</text>
         <view  class="function-help-right ">
-          <button class="defalut_btn top-button">
+          <button class="defalut_btn top-button" open-type='contact'>
             <icon class="iconfont icon-back-right"></icon>
           </button>       
         </view>
       </view>
-    </view>   -->
+    </view>  
 
   </view>
   <view class="blank-space"></view>
