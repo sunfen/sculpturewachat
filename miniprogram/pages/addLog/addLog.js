@@ -13,6 +13,8 @@ var header = app.globalData.header;
 Page({
   data: {
     currentTab: 0,
+    COLOR_GRAY :"rgb(224, 223, 223)",
+    COLOR_RED : "rgb(252, 127, 25)",
     record:{
       id:'',
       morningHour: 4,
@@ -20,37 +22,38 @@ Page({
       eveningHour: 0,
       totalHour:'8',
       remark: '',
-      project: {},
-      projectId: '',
-      projectIndex: 0,
+      morningProject: {},
+      morningProjectId: '',
+      morningProjectIndex: 0,
+      afternoonProject: {},
+      afternoonProjectId: '',
+      afternoonProjectIndex: 0,
+      eveningProject: {},
+      eveningProjectId: '',
+      eveningProjectIndex: 0,
     },
     projects:[],
+    records: [],
     selectTypes:[
       {
         data: 'morning', name: '上午', property:'record.morningHour',
          hours: [
-          { data: "无", color: COLOR_GRAY }, { data: 1, color: COLOR_GRAY },
-          { data: 2, color: COLOR_GRAY }, { data: 3, color: COLOR_GRAY },
-          { data: 4, color: COLOR_RED }]
+           { data: 0, name: "无" }, { data: 1, name: 1 },
+           { data: 2, name: 2 }, { data: 3, name: 3 },{ data: 4, name: 4 }]
       },
       {
         data: 'afternoon', name: '下午', property: 'record.afternoonHour',
         hours: [
-          { data: "无", color: COLOR_GRAY },{ data: 1, color: COLOR_GRAY },
-          { data: 2, color: COLOR_GRAY },{ data: 3, color: COLOR_GRAY },
-          { data: 4, color: COLOR_RED }]
+          { data: 0, name: "无" }, { data: 1, name: 1 },
+          { data: 2, name: 2 }, { data: 3, name: 3 },{ data: 4, name: 4 }]
       },
       {
         data: 'evening', name: '晚上', property: 'record.eveningHour',
         hours: [
-          { data: "无", color: COLOR_RED },{ data: 1, color: COLOR_GRAY },
-          { data: 1.5, color: COLOR_GRAY },{ data: 2, color: COLOR_GRAY },
-          { data: 2.5, color: COLOR_GRAY },{ data: 3, color: COLOR_GRAY },
-          { data: 3.5, color: COLOR_GRAY },{ data: 4, color: COLOR_GRAY },
-          { data: 4.5, color: COLOR_GRAY },{ data: 5, color: COLOR_GRAY },
-          { data: 5.5, color: COLOR_GRAY },{ data: 6, color: COLOR_GRAY },
-          { data: 6.5, color: COLOR_GRAY },{ data: 7, color: COLOR_GRAY },
-          { data: 7.5, color: COLOR_GRAY },{ data: 8, color: COLOR_GRAY }]
+          { data: 0, name: "无" }, { data: 1, name: 1 },{ data: 1.5, name: 1.5 }, { data: 2, name: 2 },
+          { data: 2.5, name: 2.5 }, { data: 3, name: 3 },{ data: 3.5, name: 3.5 }, { data: 4, name: 4 },
+          { data: 4.5, name: 4.5 }, { data: 5, name: 5 },{ data: 5.5, name: 5.5 }, { data: 6, name: 6 },
+          { data: 6.5, name: 6.5 }, { data: 7, name: 7 },{ data: 7.5, name: 7.5 }, { data: 8, name: 8 }]
        },
     ],
   },
@@ -92,15 +95,42 @@ Page({
         var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
         var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
         var date = currentSelect.year + "-" + month + "-" + day;
-        var datePro = "record.time";
-        that.setData({[datePro]: date});
         
+        var isExit = false;
+
         for(var i in that.data.records){
-          if (that.data.records[i].time == date){
+          if (that.data.records[i].time == date && that.data.records[i].id != ""){
+            isExit = true;
+            var record = that.data.records[i];
             that.setData({ record: that.data.records[i] });
+            that.setData({
+              ["record.morningProjectIndex"]: that.findProjectIndex(record.morningProjectId),
+              ["record.afternoonProjectIndex"]: that.findProjectIndex(record.afternoonProjectId),
+              ["record.eveningProjectIndex"]: that.findProjectIndex(record.eveningProjectId),
+            });
           }
         }
-        
+        if(!isExit){
+
+          that.setData({
+            ["record.id"]: '', ["record.morningHour"]: 4,
+            ["record.afternoonHour"]: 4,  ["record.eveningHour"]: 0,
+            ["record.totalHour"]: '8', ["record.remark"]: '', ["record.time"]: date})
+          
+          if (that.data.projects.length > 0){
+            that.setData({
+              ["record.morningProjectIndex"]: 0,
+              ["record.morningProject"]: that.data.projects[0],
+              ["record.morningProjectId"]: that.data.projects[0].id,
+              ["record.afternoonProjectIndex"]: 0,
+              ["record.afternoonProject"]: that.data.projects[0],
+              ["record.afternoonProjectId"]: that.data.projects[0].id,
+              ["record.eveningProjectIndex"]: 0,
+              ["record.eveningProject"]: that.data.projects[0],
+              ["record.eveningProjectId"]: that.data.projects[0].id
+            });
+          }
+        }
         that.showModal();
       },
 
@@ -125,6 +155,18 @@ Page({
     that.getLogRecord(selectDate[0].year, selectDate[0].month);
   },
 
+  findProjectIndex(id){
+    var that = this;
+    if(that.data.projects.length == 0){
+      return null;
+    }
+    for(var i in that.data.projects){
+      if (that.data.projects[i].id == id){
+        return i;
+      }
+    }
+  },
+
 
   /**
    * 输入框输入事件  备注
@@ -144,14 +186,11 @@ Page({
     if (that.data.projects.length == 0){
       return;
     }
-    
-    var project = "record.project";
-    var projectId = "record.projectId";
-    var projectIndex = "record.projectIndex";
+
     that.setData({
-      [project]: that.data.projects[event.detail.value],
-      [projectIndex]: event.detail.value,
-      [projectId]: that.data.projects[event.detail.value].id});
+      [event.target.dataset.projectIndex]: event.detail.value,
+      [event.target.dataset.project]: that.data.projects[event.detail.value],
+      [event.target.dataset.projectId]: that.data.projects[event.detail.value].id});
   },
 
 
@@ -160,35 +199,12 @@ Page({
    */
   onSelectHours(event) {
     var that = this;
-    var property = event.target.dataset.property;
-    var type = event.target.dataset.type;
-    var hour = event.target.dataset.hour;
-    var totalHour = "record.totalHour";
 
-    that.setData({ [property]: hour == '无' ? 0 : hour});
-    var morningHour = that.data.record.morningHour == '无' ? 0 : that.data.record.morningHour;
-    var afternoonHour = that.data.record.afternoonHour == '无' ? 0 : that.data.record.afternoonHour;
-    var eveningHour =  that.data.record.eveningHour == '无' ? 0 : that.data.record.eveningHour;
+    that.setData({ [event.target.dataset.property]: event.target.dataset.hour});
 
-    var totalHours = morningHour + afternoonHour + eveningHour;
+    var totalHours = that.data.record.morningHour + that.data.record.afternoonHour + that.data.record.eveningHour;
     
-    that.setData({ [totalHour]: totalHours});
-
-
-    for (var j in that.data.selectTypes){
-      if (that.data.selectTypes[j].data == type){
-
-        for (var i in that.data.selectTypes[j].hours) {
-          if (that.data.selectTypes[j].hours[i].data == hour) {
-            that.data.selectTypes[j].hours[i].color = COLOR_RED;
-          } else {
-            that.data.selectTypes[j].hours[i].color = COLOR_GRAY;
-          }
-        }
-        this.setData({ selectTypes: that.data.selectTypes });
-      }
-    }
-
+    that.setData({ ["record.totalHour"]: totalHours});
   },
 
 
@@ -209,8 +225,16 @@ Page({
       common.showAlertToast("备注不可超过126个字符");
       return;
     }
-    if (that.data.record.projectId == "" || that.data.record.projectId == undefined) {
-      common.showAlertToast("请选择项目！");
+    if (that.data.record.morningProjectId == "" || that.data.record.morningProjectId == undefined) {
+      common.showAlertToast("请选择上午的项目！");
+      return;
+    }
+    if (that.data.record.afternoonProjectId == "" || that.data.record.afternoonProjectId == undefined) {
+      common.showAlertToast("请选择下午的项目！");
+      return;
+    }
+    if (that.data.record.eveningProjectId == "" || that.data.record.eveningProjectId == undefined) {
+      common.showAlertToast("请选择晚间的项目！");
       return;
     }
 
@@ -226,7 +250,7 @@ Page({
             title: '成功添加！',
             icon: 'success',
             success(res) {
-              that.setLog();
+              that.getLogRecord(that.data.calendar.selectedDay[0].year, that.data.calendar.selectedDay[0].month);
             }
           })
         } else if (res.data.code == "404") {
@@ -246,23 +270,7 @@ Page({
     that.hideModal();
   },
   
-  /**
-   *  待办点标记设置
-   */
-  setLog(){
-    var that = this;
-    setTodoLabels({
-      // 待办圆圈标记设置（如圆圈标记已签到日期），该设置与点标记设置互斥
-      circle: true, // 待办
-      days: [{
-        year: that.data.calendar.selectedDay[0].year,
-        month: that.data.calendar.selectedDay[0].month,
-        day: that.data.calendar.selectedDay[0].day,
-        todoText: that.data.record.totalHour + "h",
-        todoLabelColor: TODO_LABEL_COLOR
-      }],
-    });
-  },
+
 
 
 
@@ -316,9 +324,6 @@ Page({
    */
   getProjects(){
     var that = this;
-    var project = "record.project";
-    var projectIndex = "record.projectIndex";
-    var projectId = "record.projectId";
     wx.request({
       header: header,
       url: getApp().globalData.urlPath + '/project/search/list',
@@ -326,9 +331,15 @@ Page({
         if (res.data.length > 0) {
           that.setData({
             projects: res.data,
-            [project]: res.data[0],
-            [projectIndex]: 0,
-            [projectId]: res.data[0].id
+            ["record.morningProjectIndex"]: 0,
+            ["record.morningProject"]: res.data[0],
+            ["record.morningProjectId"]: res.data[0].id,
+            ["record.afternoonProjectIndex"]: 0,
+            ["record.afternoonProject"]: res.data[0],
+            ["record.afternoonProjectId"]: res.data[0].id,
+            ["record.eveningProjectIndex"]: 0,
+            ["record.eveningProject"]: res.data[0],
+            ["record.eveningProjectId"]: res.data[0].id
           });
         }
       }
@@ -336,8 +347,14 @@ Page({
   },
 
 
-
-
+   /**
+    * 新增项目
+    */
+  addProject(){
+    wx.navigateTo({
+      url: '/pages/addProject/addProject',
+    })
+  },
 
 
 

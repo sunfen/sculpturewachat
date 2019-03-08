@@ -7,9 +7,8 @@
       <view><text class="detail-label">作业负责人：</text>{{project.principal.name}}</view>
       <view><text class="detail-label">项目名称：</text>{{project.name}}</view>
       <view><text class="detail-label">地点：</text>{{project.address}}</view>
-      <view><text class="detail-label">项目工期：</text>{{project.startTime}}<text wx:if="{{project.endTime}}"> -  {{project.endTime}}</text></view>
+      <view><text class="detail-label">项目工期：</text><text wx:if="{{project.endTime}}">{{project.startTime}} -  {{project.endTime}}</text><text wx:else style='color:red;'>未开始</text></view>
       <view><text class="detail-label">项目日工资：</text>{{project.dailyWages}}</view>
-      <view><text class="detail-label">项目：</text>{{project.name}}</view>
     </view> 
 
     <view class="detail">
@@ -27,21 +26,18 @@
     <!-- table header -->
     <view class="touch-item">
       <text>时间</text>
-      <text></text>
       <text>金额</text>
       <text>方式</text>
+      <text>备注</text>
       <text></text>
     </view>
 
 
-    <view class="table-body-row touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtouchstart="touchstart" bindtouchmove="touchmove" >
-        <view>{{item.time}}</view>
-        <view>{{item.wages}}元</view>
-        <view>{{item.method}}</view>
-        <view class="button-del">
-          <view class="button-del account" catchtap="edit" data-index="{{id}}">编辑</view>
-          <view  class="button-del edit" catchtap="delete" data-index="{{id}}">删除</view>
-        </view>
+    <view class="touch-item" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress'  bindtouchstart="handleTouchStart" bindtouchmove="handleTouchEnd" >
+        <text>{{item.time}}</text>
+        <text>{{item.wages}}元</text>
+        <text>{{item.method}}</text>
+        <text class="ellipsis">{{item.remark}}</text>
     </view>
 
   </view>

@@ -45,6 +45,21 @@ Page({
     })
   },
 
+
+  myProject() {
+    wx.navigateTo({
+      url: '/pages/myProject/myProject',
+    })
+  },
+
+
+
+  myWages() {
+    wx.navigateTo({
+      url: '/pages/myWages/myWages',
+    })
+  },
+
   previewImage(e){
     var current = e.target.dataset.src;
     wx.previewImage({

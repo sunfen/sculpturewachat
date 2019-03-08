@@ -187,6 +187,10 @@ Page({
       success(res) {
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
+        if(res.data == undefined){
+          common.loginFail();
+          return;
+        }
         if (res.data.content.length == 0) {
           common.errorWarn("没有更多数据了！");
           return;

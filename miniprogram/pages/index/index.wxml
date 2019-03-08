@@ -19,7 +19,7 @@
 
         <!-- 项目时间 -->
         <view class="note-column-date">
-          <text wx:if="{{project.startTime}}">{{project.startTime}}<text wx:if="{{project.endTime}}">—— {{project.endTime}}</text></text>
+          <text wx:if="{{project.startTime}}">{{project.startTime}}<text wx:if="{{project.endTime}}"> —— {{project.endTime}}</text></text>
           <text wx:else="{{project.startTime}}">未开始</text>
           
           <text>每天均收入{{project.dailyWages}}元</text>
@@ -128,9 +128,9 @@
       <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}">
        
         <view class="log-detail-detail" data-index="{{id}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
-          <text class="log-detail-detail-status" style="background:{{item.type =='上班' ? '#00EE00' : '#EE7600'}};">{{item.type ? item.type : '?'}}</text>
+          <text class="log-detail-detail-status" style="background:{{item.id ? '#00EE00' : '#EE7600'}};">{{item.id ? '已打卡' : '未打卡'}}</text>
           <text class="ellipsis">{{item.remark ? item.remark : ''}}</text>
-          <text class="note-column-project-wage">{{item.hour ? item.hour : '0'}}小时</text>
+          <text class="note-column-project-wage">{{item.totalHour ? item.totalHour : '0'}}小时</text>
         </view>
         <view class="del" catchtap="editLog" data-index="{{id}}">修改</view>
 

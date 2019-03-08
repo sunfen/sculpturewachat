@@ -1,0 +1,53 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  background: #fff;
+  width: 100%;
+}
+
+.table-header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    background: #c7c8ca; 
+    width: 100%;
+    text-align: center;
+    
+}
+
+.table-body {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+
+/* 滑动删除 */
+.touch-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid #ccc;
+  padding: 5px;
+  line-height: 22px;
+  font-size: 28rpx;
+}
+
+.table-body-center {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+
+.table-body-right {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    font-weight: 600;
+}
+
+.table-body-left {
+    display: flex;
+    flex-flow: column;
+    width: 28%;
+}

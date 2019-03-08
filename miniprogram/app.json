@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+
     "pages/index/index",
     "pages/user/user",
     "pages/myPrincipal/myPrincipal",

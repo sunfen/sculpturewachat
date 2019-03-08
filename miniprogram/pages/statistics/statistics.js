@@ -142,12 +142,31 @@ Page({
   },
 
   touchstart(e){
-    common.touchstart(e, this);
+    this.setData({ startTime: e.timeStamp });
   },
 
 
   touchmove(e) {
-    common.touchmove(e, this);
+    this.setData({ endTime: e.timeStamp });
+  },
+
+  handleLongPress(e) {
+    var that = this;
+    that.setData({ startTime: 0, endTime: 0 });
+    wx.showActionSheet({
+      itemList: ['结算', '编辑'],
+      success(res) {
+        if (res.tapIndex == 0) {
+          that.accountProject(e);
+        } else
+          if (res.tapIndex == 1) {
+            that.editProject(e);
+          }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
   },
 
   /**

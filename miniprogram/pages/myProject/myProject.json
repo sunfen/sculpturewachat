@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "component-book": "/pages/component/book/book",
     "component-topnav": "/pages/component/topnav/topnav"
   }
 }

@@ -35,12 +35,12 @@
       <text class="category-buttom">{{count.countPrincipal}}个</text>
     </view>
     <!-- 我的项目 -->
-    <view class="category-detail">
+    <view class="category-detail"  bindtap='myProject'>
       <text class="category-top">我的项目</text>
       <text class="category-buttom">{{count.countProject}}个</text>
     </view>
     <!-- 我的工资 -->
-    <view class="category-detail">
+    <view class="category-detail"  bindtap='myWages'>
       <text class="category-top">我的工资</text>
       <text class="category-buttom">{{count.countWages}}元</text>
     </view>

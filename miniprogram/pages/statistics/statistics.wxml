@@ -29,28 +29,22 @@
         <!-- table body -->
         <scroll-view class="table-body">
          
-          <view class="table-body-row touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtouchstart="touchstart" bindtouchmove="touchmove" >
+          <view class="touch-item" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove" >
               <view class="table-body-left">
-                {{item.name}}
-                <text>始：{{item.startTime}}</text>
+                <text style='font-weight:600'>{{item.name}}</text>
+                <text wx:if="{{item.startTime}}">始：{{item.startTime}}</text>
+                <text style="color:red;" wx:else="{{item.startTime}}">未开始</text>
                 <text wx:if="{{item.endTime}}">完：{{item.endTime}}</text>
               </view>
               
               <view class="table-body-center">
                 <text>上班: {{item.works}}</text>
                 <text>加班: {{item.extraWorks}}</text>
-                <text>加班: {{item.leaveWorks}}</text>
-                <text>结算: 0笔工资</text>
               </view>
               
               <view class="table-body-right">
                 <text>工资：{{item.expectTotalWages}}元</text>
                 <text>已结算：{{item.actualTotalWages}}元</text>
-              </view>
-
-              <view class="button-del">
-                <view class="button-del account" catchtap="accountProject" data-index="{{id}}">结算</view>
-                <view  class="button-del edit" catchtap="editProject" data-index="{{id}}">修改</view>
               </view>
           </view>
 
@@ -64,7 +58,7 @@
         <view class="table-header">
           <text>负责人</text>
           <text>项目数</text>
-          <text class="table-body-center-principal">项目名</text>
+          <text>项目名</text>
         </view>
         <!-- table body -->
         <scroll-view class="table-body">
@@ -72,11 +66,14 @@
           <view class="table-body-row-principal"  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id">
             
             <view class="table-body-left-principal">{{item.principal}}</view>
-            <view>{{item.total}}</view>
+            <view class="table-body-left-principal">{{item.total}}</view>
             
             <view class="table-body-center-principal" wx:if="{{item.projects.length > 0 }}" >
               <view  wx:for="{{item.projects}}" wx:key="property" wx:for-item="project" wx:for-index="id">
-                <text>{{project.name}}({{project.startTime}})</text>
+                <text>{{project.name}}(</text>
+                <text wx:if="{{project.startTime}}">{{project.startTime}}</text>
+                <text  style="color:red;" wx:else="{{project.startTime}}">未开始</text>
+                <text>)</text>
               </view>
             </view>
             <view class="table-body-center-principal" wx:else="{{item.projects.length > 0 }}" >

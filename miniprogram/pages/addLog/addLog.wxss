@@ -36,7 +36,7 @@
 
 .commodity-button{
   font-size: 35rpx;
-  font-weight: 600;
+  font-weight: 400;
   background:  #d8d8d86c; 
 }
 
@@ -104,4 +104,38 @@
 
 input{
   height: 50rpx;
+}
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  margin-left: 80rpx;
+  background: #fff;
+}
+
+.row-right {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:center;
+  border-top: 1rpx solid #b9b7b7c5;
+}
+
+.row-right-type{
+  color: red;
+  font-weight: 800;
+  margin-left: 30rpx;
+}
+
+.icon-back-right  {
+  color: rgb(122, 121, 121);
+}
+
+.addProject{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content:space-between;
+  align-items:right;
 }

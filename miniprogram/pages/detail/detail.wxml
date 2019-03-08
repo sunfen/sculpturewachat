@@ -21,34 +21,24 @@
     </view>
     
     <view class="first-info-time">
-        <view>
-          <text decode='true'>&lt;2018年2月7日<text class='point'>.</text>星期日&gt;</text></view>
-        <view>上班</view>
-    </view>
-
-    <view class="first-info">
-      <text class="first-info-text">九个小时我是备注</text>
-      <text class="first-info-text">1小时/50天</text>
-    </view>
-
-    <view class="calendar-statistics">
-      <text class="first-info-text calendar-text">日历</text>
-      <view class="image-right" bindtap='calendar'><image src='/images/arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
+      <import src="../../pages/calendar/index.wxml"/>
+      <view class="calendar-wrap">
+        <template is="calendar" data="{{...calendar}}" />
       </view>
     </view>
+    <!--屏幕背景变暗的背景  -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+      
+      
+    <!--弹出框  -->
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <view><text>上午：{{record.morningHour}}小时</text></view>
+      <view><text>下午：{{record.afternoonHour}}小时</text></view>
+      <view><text>晚上：{{record.eveningHour}}小时</text></view>
+      <view><text>共{{record.totalHour}}小时</text></view>
+      <view><text>备注：{{record.remark}}</text></view>
+      
+    </view>
 
-    <view class="calendar-statistics">
-      <text class="first-info-text">统计</text>
-      <view class="image-right" bindtap='statistics'><image src='/images/arrow-right.png' class="arrow-right"  bindtap='arrow-right'></image>
-      </view>
-    </view>
-  <view class="calendar-statistics-image">
-  <component-semicircle id='circle' bg='circle_bg' draw='circle_draw' bind:runEvent="_runEvent" >
-    <!-- 这部分内容将被放置在组件 <slot> 的位置上 -->
-    <view class="circle_info">
-       <view class="circle_dot"></view>  
-      <text class='circle_txt'> {{txt}}</text>
-    </view>
-  </component-semicircle>
-  </view>
+
 </page>

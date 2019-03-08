@@ -32,49 +32,16 @@
   justify-content:space-between;
   align-items:center;
   margin-left: 20rpx;
-  width: 100%;
   border-bottom:1px solid #ccc;
   padding: 10px;
-  overflow: hidden;
   line-height: 22px;
-  margin-right:0;
-  margin-left: -60px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -webkit-transform: translateX(90px);
-  transform: translateX(90px);
 }
 
 
-.button-del {
-  width: 80px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  -webkit-transform: translateX(90px);
-  transform: translateX(90px);
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
+.ellipsis{
+  width:35%;
 }
 
-.touch-move-active, .touch-move-active .button-del {
-
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-}
-
-
-.edit {
-  height: 100%;
-  background-color: rgba(21, 214, 248, 0.438);
-}
-
-.account {
-  height: 100%;
-  background-color: rgba(255, 68, 0, 0.829);
-}
 
 
 /* 悬浮新增 */

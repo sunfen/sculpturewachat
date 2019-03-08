@@ -25,6 +25,7 @@ Page({
         url: getApp().globalData.urlPath + 'project/' + project.id,
         success(res) {
           if (res.data) {
+            console.log(res.data);
             that.setData({
               project: res.data
             })
@@ -61,15 +62,34 @@ Page({
 
 
 
-  touchstart(e) {
-    common.touchstart(e, this);
+  handleTouchStart: function (e) {
+    this.setData({ startTime: e.timeStamp });
+  },
+
+  //手指离开
+  handleTouchEnd: function (e) {
+    this.setData({ endTime: e.timeStamp });
   },
 
 
-  touchmove(e) {
-    common.touchmove(e, this);
+  handleLongPress(e) {
+    var that = this;
+    that.setData({ startTime: 0, endTime: 0 });
+    wx.showActionSheet({
+      itemList: ['编辑', '删除'],
+      success(res) {
+        if (res.tapIndex == 0) {
+          that.edit(e);
+        } else
+          if (res.tapIndex == 1) {
+            that.delete(e);
+          }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
   },
-
 
   /**
    * 新增
@@ -99,6 +119,8 @@ Page({
    */
   delete(e){
     var that = this;
+    var record = that.data.results[e.currentTarget.dataset.index];
+    var wages = that.data.project.actualTotalWages - record.wages;
     wx.showModal({
       content: '是否删除?',
       success(res) {
@@ -106,7 +128,7 @@ Page({
           wx.request({
             method: 'delete',
             header: header,
-            url: getApp().globalData.urlPath + 'wagesrecord/' + that.data.results[e.currentTarget.dataset.index].id,
+            url: getApp().globalData.urlPath + 'wagesrecord/' + record.id,
             success(res) {
               if (res.data.code == "200") {
                 wx.showToast({
@@ -114,7 +136,10 @@ Page({
                   icon: 'success',
                   success(res) {
                     that.data.results.splice(e.currentTarget.dataset.index, 1);
-                    that.setData({results : that.data.results})
+                    that.setData({
+                      results : that.data.results,
+                      ["project.actualTotalWages"]: wages
+                    })
                   }
                 })
               } else if (res.data.code == "404") {
