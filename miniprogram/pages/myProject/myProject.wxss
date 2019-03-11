@@ -9,11 +9,11 @@
 .table-header {
     display: flex;
     flex-flow: row;
-    justify-content: space-around;
+    justify-content: start;
     background: #c7c8ca; 
     width: 100%;
-    text-align: center;
-    
+    font-size: 30rpx;
+    color: #fff;
 }
 
 .table-body {

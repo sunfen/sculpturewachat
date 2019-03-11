@@ -162,11 +162,14 @@ Page({
       common.showAlertToast("请填写项目地点！");
       return;
     }
-    if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined || isNaN(that.data.project.dailyWages) || that.data.project.dailyWages <= 0) {
+    if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined 
+        || isNaN(that.data.project.dailyWages) || that.data.project.dailyWages <= 0) {
       common.showAlertToast("请填写项目日工资！");
       return;
+    } else if ( that.data.project.dailyWages >= 10000) {
+      common.showAlertToast("项目日工资须小于一万元！");
+      return;
     }
-
 
     wx.request({
       url: getApp().globalData.urlPath + 'project',
