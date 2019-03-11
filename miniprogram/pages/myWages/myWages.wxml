@@ -1,69 +1,32 @@
 <!--index.wxml-->
-<component-topnav inner-title="{{title}}" is-show-back="true"></component-topnav>  
+<component-topnav inner-title="我的工资" is-show-back="true"></component-topnav>  
+
 <page>
-    <view class="title">
 
-      <view class="title-column">
-        <text class="title-currentEarning">{{project.expectTotalWages}}元</text>
-        <view class="title-description">本次收入</view>
-      </view>
-
-      <view class="title-column">
-        <text class="title-outOfWork">{{project.works}}</text>
-        <view class="title-description">出勤</view>
-      </view>
-
-
-      <view class="title-column">
-        <text class="title-absenteeism">{{project.leaveWorks}}</text>
-        <view class="title-description">缺勤</view>
-      </view>
-      
-      <view class="title-column">
-        <text class="title-absenteeism">{{project.extraWorks}}</text>
-        <view class="title-description">加班</view>
-      </view>
+  <view class="query">
+    <picker value="{{date}}" bindchange="getWages" mode="date" start="2010-01-01" end="2022-01-01" fields="year">
+        <text>{{date}} </text>
+        <icon class="iconfont icon-pull-down"></icon>
+    </picker>
+    <view class="query-total">
+      已结 ￥{{totalWages}}
     </view>
-    
-    <view class="center">
-      <view  class="center-address">
-          <text wx:if="{{project.startTime}}">{{project.startTime}} - {{project.endTime}}</text>
-          <text wx:else style='color:red;'>(未开始)</text>
-          <text>{{project.address}}</text>
-      </view>
-      <view class="center-wages">
-          <button class="defalut_btn" bindtap='wagesDetail'>
-            <text>工资结算详情 </text>
-            <icon class="iconfont icon-back-right"></icon>
-          </button>
-      </view>
-    </view>
+  </view>
 
-    <!-- 日历 -->
-    <view class="first-info-time">
-      <import src="../../pages/calendar/index.wxml"/>
-      <view class="calendar-wrap">
-        <template is="calendar" data="{{...calendar}}" />
-      </view>
-    </view>
-    <!--屏幕背景变暗的背景  -->
-    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
-      
-      
-    <!--弹出框  -->
-    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-      <view wx:if="{{record.id}}">
-        <view class="border">上午：<text wx:if="{{record.morningProjectId == project.id}}">{{record.morningHour}}小时</text></view>
-        <view class="border">下午：<text wx:if="{{record.afternoonProjectId == project.id}}">{{record.afternoonHour}}小时</text></view>
-        <view class="border">晚上：<text wx:if="{{record.eveningProjectId == project.id}}">{{record.eveningHour}}小时</text></view>
-        <view class="border">共<text>{{record.totalHour}}小时</text></view>
-        <view class="border">备注：<text>{{record.remark ? record.remark : '无'}}</text></view>
-      </view>
-      <view wx:else>
-        未打卡
-      </view>
-      
-    </view>
+  <view class="table-header">
+    <text>名称</text>
+    <text>时间</text>
+    <text>工资</text>
+    <text>已结</text>
+  </view>
 
+  <scroll-view  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='detail'>
+    <view class="table-row">
+      <view><icon class="iconfont icon-point"></icon> {{item.name}}</view>
+      <view class="table-row-time"><text>{{item.startTime}}</text><text>{{item.endTime}}</text></view>
+      <view>{{item.expectTotalWages}}元</view>
+      <view>{{item.actualTotalWages}}元</view>        
+    </view>
+  </scroll-view>
 
 </page>

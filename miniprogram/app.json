@@ -4,6 +4,7 @@
 
     "pages/index/index",
     "pages/user/user",
+    "pages/myWages/myWages",
     "pages/myPrincipal/myPrincipal",
     "pages/myPrincipalProject/myPrincipalProject",
     "pages/accountWages/accountWages",

@@ -147,7 +147,7 @@ Page({
       header: header,
       url: getApp().globalData.urlPath + '/index',
       success(res) {
-        if (res.data.code == "200") {
+        if (res.statusCode == "200") {
           if (res.data.pageInfo) {
             res.data.pageInfo.content.sort(function (a, b) {
               return a.time < b.time ? 1 : -1; // 这里改为大于号
@@ -167,9 +167,9 @@ Page({
               }
             });
           }
-        } else if (res.data.code == "404") {
+        } else if (res.statusCode == "404") {
           that.login();
-        } else if (res.data.code == "500") {
+        } else if (res.statusCode == "500") {
           common.showAlertToast("数据错误，请重试！");
         } else {
           common.showAlertToast("数据错误，请重试！");
