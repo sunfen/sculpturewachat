@@ -15,7 +15,6 @@
     "pages/about/about",
     "pages/principal/principal",
     "pages/book/book"
-
     ],
   "window": {
     "backgroundColor": "#ffffff",

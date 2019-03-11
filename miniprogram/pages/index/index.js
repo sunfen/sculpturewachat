@@ -117,11 +117,10 @@ Page({
                   title: '成功删除！',
                   icon: 'success',
                   success(res) {
-                    setTimeout(function () {
-                      wx.redirectTo({
-                        url: '/pages/index/index',
-                      })
-                    }, 1000)
+                    that.setData({
+                      showModal: false
+                    })
+                    that.init();
                   }
                 })
               } else if (res.data.code == "404") {
@@ -148,26 +147,33 @@ Page({
       header: header,
       url: getApp().globalData.urlPath + '/index',
       success(res) {
-        if (res.data.pageInfo){
-          res.data.pageInfo.content.sort(function (a, b) {
-            return a.time < b.time ? 1 : -1; // 这里改为大于号
-          });
+        if (res.data.code == "200") {
+          if (res.data.pageInfo) {
+            res.data.pageInfo.content.sort(function (a, b) {
+              return a.time < b.time ? 1 : -1; // 这里改为大于号
+            });
 
-          that.setData({
-            results: res.data.pageInfo.content,
-            project: res.data.project,
-            monthWages: res.data.monthWages,
-            workDays: res.data.workDays,
-            extraDays: res.data.extraDays,
-            leaveDays: res.data.leaveDays,
-            pageInfo: {
-              size: res.data.pageInfo.size,
-              page: res.data.pageInfo.number + 2,
-              content: res.data.pageInfo.content,
-            }
-          });
+            that.setData({
+              results: res.data.pageInfo.content,
+              project: res.data.project,
+              monthWages: res.data.monthWages,
+              workDays: res.data.workDays,
+              extraDays: res.data.extraDays,
+              leaveDays: res.data.leaveDays,
+              pageInfo: {
+                size: res.data.pageInfo.size,
+                page: res.data.pageInfo.number + 2,
+                content: res.data.pageInfo.content,
+              }
+            });
+          }
+        } else if (res.data.code == "404") {
+          that.login();
+        } else if (res.data.code == "500") {
+          common.showAlertToast("数据错误，请重试！");
+        } else {
+          common.showAlertToast("数据错误，请重试！");
         }
-
       }
     })
   },
@@ -215,14 +221,7 @@ Page({
   },
 
 
-  touchstart(e) {
-    common.touchstart(e, this);
-  },
 
-
-  touchmove(e) {
-    common.touchmove(e, this);
-  },
 
 
   /**
@@ -230,7 +229,6 @@ Page({
    */
   editLog: function (e) {
     var that = this;
-    console.log("index" + e.currentTarget.dataset.index);
     var log = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
     wx.navigateTo({
       url: '/pages/addLog/addLog?log=' + log,

@@ -13,12 +13,12 @@ Component({
   },
   methods: {
     gotoHome: function () {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/index/index',
       })
     },
     bindViewMy: function () {
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/user/user',
       })
     },

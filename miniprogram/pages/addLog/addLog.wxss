@@ -125,7 +125,7 @@ input{
 
 .row-right-type{
   color: red;
-  font-weight: 800;
+  font-weight: 600;
   margin-left: 30rpx;
 }
 

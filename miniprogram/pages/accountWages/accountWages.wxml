@@ -4,7 +4,7 @@
 <view class="container">
   <view class="content">
     <view class="detail">
-      <view><text class="detail-label">作业负责人：</text>{{project.principal.name}}</view>
+      <view><text class="detail-label">作业负责人：</text>{{project.principal.name ? project.principal.name : project.name}}</view>
       <view><text class="detail-label">项目名称：</text>{{project.name}}</view>
       <view><text class="detail-label">地点：</text>{{project.address}}</view>
       <view><text class="detail-label">项目工期：</text><text wx:if="{{project.endTime}}">{{project.startTime}} -  {{project.endTime}}</text><text wx:else style='color:red;'>未开始</text></view>

@@ -97,7 +97,7 @@
           </button>
         </view>
       </view>
-      <view class="function-remind-right-noline">
+      <view class="function-remind-right">
         <text>关于我们</text>
         <view  class="function-remind-switch">
           <button class="defalut_btn top-button">

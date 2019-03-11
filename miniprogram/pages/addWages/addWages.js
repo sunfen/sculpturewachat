@@ -108,7 +108,8 @@ Page({
       common.showAlertToast("请选择项目！");
       return;
     }
-    if (that.data.record.wages == "" || that.data.record.wages == undefined) {
+    if (that.data.record.wages == "" || that.data.record.wages == undefined
+      || isNaN(that.data.record.wages) || that.data.record.wages <= 0) {
       common.showAlertToast("请填写工资！");
       return;
     }

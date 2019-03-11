@@ -17,15 +17,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options);
     if (options.project != undefined && options.project != null) {
       let project = JSON.parse(options.project);
+      console.log(project);
       that.setData({ project: project });
       wx.request({
         header: header,
         url: getApp().globalData.urlPath + 'project/' + project.id,
         success(res) {
           if (res.data) {
-            console.log(res.data);
             that.setData({
               project: res.data
             })
@@ -97,7 +98,7 @@ Page({
   add(){
     var that = this;
     var project = JSON.stringify(that.data.project);
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/addWages/addWages?project=' + project,
     })
   },
@@ -109,7 +110,7 @@ Page({
     var that = this;
     var project = JSON.stringify(that.data.project);
     var record = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/addWages/addWages?record=' + record + "&project=" + project,
     })
   },
@@ -155,5 +156,5 @@ Page({
       }
     })
 
-  }
+  },
 })

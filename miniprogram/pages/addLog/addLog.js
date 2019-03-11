@@ -351,7 +351,7 @@ Page({
     * 新增项目
     */
   addProject(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/addProject/addProject',
     })
   },

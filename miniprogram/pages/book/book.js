@@ -22,7 +22,7 @@ Page({
     })
 
     let project = JSON.stringify(this.data.project);
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/addProject/addProject?project=' + project,
     })
   },

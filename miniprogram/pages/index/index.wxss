@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content:center;
   text-align: center;
-  height: 220rpx;
+  height: 320rpx;
   background: #986A1C;
   padding-top: 20rpx;
 }
@@ -129,7 +129,7 @@ progress{
   justify-content:space-around;
   height: 200rpx;
   margin-top: 20rpx;
-  color: rgb(82, 204, 252);
+  font-size: 25rpx;
 }
 
 .note-column-function-circle button {
@@ -137,15 +137,15 @@ progress{
 }
 
 .note-column-function-circle{
-  width: 110rpx;
-  height: 110rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 55rpx;
   background: rgb(188, 220, 250);
   text-align: center;
 }
 
 .note-column-function-circle text{
-  margin-top: 20rpx;
+  margin-top: 30%;
   display: flex;
   justify-content: center;
 }
@@ -191,7 +191,7 @@ progress{
   flex-direction: column;
   justify-content:center;
   text-align: center;
-  width: 170rpx;
+  width: 50%;
 }
 
 .log-date-time{
@@ -216,7 +216,7 @@ progress{
   justify-content:start;
   background: rgb(235, 233, 233);
   height: 90rpx;
-  width: 70%;
+  width: 100%;
   border-radius: 15rpx;
   text-align: center;
   line-height:90rpx;
@@ -248,34 +248,10 @@ progress{
   overflow: hidden;
   line-height: 22px;
   margin-right:0;
-  margin-left: -90px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -webkit-transform: translateX(90px);
-  transform: translateX(90px);
 }
 
 
-.del {
-  background-color: orangered;
-  width: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  -webkit-transform: translateX(90px);
-  transform: translateX(90px);
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  border-radius: 10rpx 10rpx 10rpx 10rpx;
-}
 
-.touch-move-active, .touch-move-active .del {
-
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-}
 
 
 /* 弹出框 */
@@ -360,10 +336,29 @@ progress{
   text-align: center;
 }
 
-.icon-edit-account, .icon-delete{
+.icon-edit-project, .icon-delete{
     color: #fff;
 }
 .modalDlg-content-row-text{
   align-items:center;
   margin-left: 40rpx;
+}
+
+.icon-principal{
+    color: rgba(182, 80, 80, 0.938);
+}
+
+.icon-type{
+    color: rgb(145, 219, 253);
+}
+
+.icon-address{
+    color: rgb(59, 121, 121);
+}
+
+.icon-time{
+    color: rgb(215, 148, 253);
+}
+.icon-wages{
+    color: rgb(154, 159, 204);
 }
