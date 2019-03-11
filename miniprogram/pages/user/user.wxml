@@ -86,7 +86,24 @@
         </view>
       </view>
     </view> -->
-
+    <!-- 导入已完结项目 -->
+    <view class="function-remind" bindtap='importor'>
+      <view>
+        <view class="function-remind-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-import"></icon>
+          </button>
+        </view>
+      </view>
+      <view class="function-remind-right">
+        <text>导入已完结项目</text>
+        <view  class="function-remind-import">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
 
     <!-- 关于我们 -->
     <view class="function-remind" bindtap='about'>

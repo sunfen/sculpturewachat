@@ -60,6 +60,13 @@ Page({
     })
   },
 
+  importor() {
+    wx.navigateTo({
+      url: '/pages/importor/importor',
+    })
+  },
+
+
   previewImage(e){
     var current = e.target.dataset.src;
     wx.previewImage({

@@ -105,6 +105,10 @@
   margin-left: 70%;
 }
 
+.function-remind-import {
+  margin-left: 45%;
+}
+
 .function-remind-switch {
   margin-left: 60%;
 }
@@ -282,4 +286,8 @@
 
 .icon-about{
   color: rgba(33, 95, 124, 0.89);
+}
+
+.icon-import{
+  color: rgba(145, 15, 160, 0.89);
 }
