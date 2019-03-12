@@ -17,4 +17,9 @@ Page({
       url: '/pages/myPrincipalProject/myPrincipalProject?principal=' + principal,
     })
   },
+  goback() {
+    wx.reLaunch({
+      url: '/pages/user/user',
+    })
+  },
 }) 

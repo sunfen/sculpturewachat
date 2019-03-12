@@ -54,6 +54,24 @@ Page({
         });
       }
   },
+  
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
+
+  onShow(){
+    var that = this;
+
+    wx.getStorage({
+      key: 'map_location',
+      success: function (res) {
+        wx.removeStorage({
+          key: 'map_location'
+        })
+        that.setData({ address: res.data.address, ["project.address"]: res.data.address, location : res.data})
+      }
+    })
+  },
 
   /**
    * 弹出框蒙层截断touchmove事件
@@ -62,12 +80,7 @@ Page({
   },
 
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  },
 
   
   // 关闭详情页
@@ -83,7 +96,7 @@ Page({
   //添加负责人
   addPrincipal() {
     let project = JSON.stringify(this.data.project);
-    wx.redirectTo({
+    wx.navigateTo({
       url: "/pages/book/book?project=" + project + "&url=" + '/pages/addProject/addProject',
     })
   },
@@ -106,8 +119,9 @@ Page({
 
   //添加地点
   addAddress() {
-    this.setData({
-      showModalAddress: true
+    let location = JSON.stringify(this.data.location);
+    wx.navigateTo({
+      url: '/pages/address/address?location=' + location,
     })
   },
 

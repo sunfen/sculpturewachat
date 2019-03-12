@@ -1,0 +1,34 @@
+<!--addProject.wxml-->
+<component-topnav inner-title="位置" is-show-back="true" bind:goback="goback"></component-topnav>
+
+<!--mapLocation.wxml-->
+
+<!--搜索-->
+<view class="mapSearch">
+  <view class="inputSearch" bindtap="bindSearchTap">
+    <view><icon class='iconfont icon-search'></icon><text wx:if="{{keyword}}">{{keyword}}</text><text wx:else>街道/大厦/小区</text></view>
+  </view>
+</view>
+
+<!-- 地图 -->
+<view class="mapView">
+  <map id="myMap" longitude="{{currentLon}}" latitude="{{currentLat}}" scale="16" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 600rpx" />
+</view>
+
+<!-- 列表 -->
+<view class="addressListView">
+  <block wx:for="{{addressList}}" wx:key="perporty">
+    <view class="addressCell" bindtap="didSelectCell" data-id="{{index}}">
+
+      <view class="address">
+        <text hidden="{{index != 0}}">[ 当前 ]</text>
+        <text>{{item.ad_info.province + item.ad_info.city + item.ad_info.district}}</text>
+      </view>
+
+      <view class="detail">
+        <text>{{item.title}}</text>
+      </view>
+    </view>
+  </block>
+
+</view>

@@ -154,6 +154,10 @@ Page({
     var selectDate = getSelectedDay();
     that.getLogRecord(selectDate[0].year, selectDate[0].month);
   },
+  
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
 
   findProjectIndex(id){
     var that = this;

@@ -25,6 +25,11 @@ Page({
     var that = this;
     that.getpageByProject(0);
   },
+  goback() {
+    wx.reLaunch({
+      url: '/pages/user/user',
+    })
+  },
 
   /**
    * 

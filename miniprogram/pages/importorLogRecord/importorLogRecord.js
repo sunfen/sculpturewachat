@@ -142,7 +142,9 @@ Page({
     jump();
   },
 
-
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
   /**
    * 
    */
@@ -150,7 +152,7 @@ Page({
     var that = this;
     that.setData({ ['project.logRecords']: that.data.records});
     var project = JSON.stringify(that.data.project);
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/importor/importor?project=' + project,
     })
   },

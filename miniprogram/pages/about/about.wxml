@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="关于我们" is-show-back="true"></component-topnav>  
+<component-topnav inner-title="关于我们" is-show-back="true" bind:goback="goback"></component-topnav>  
 
 <scroll-view class="container">
   <view><image class="image-logo" src="/images/logo1.jpg"  data-src='/images/logo1.jpg' bindtap='previewImage'></image>  </view>

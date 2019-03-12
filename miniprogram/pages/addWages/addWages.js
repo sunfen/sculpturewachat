@@ -41,7 +41,9 @@ Page({
       }
     }
   },
-
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
   /**
    * 弹出框蒙层截断touchmove事件
    */

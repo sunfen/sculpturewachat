@@ -21,7 +21,7 @@ Component({
   methods: {
     // 这里是一个自定义方法
     goback: function () {
-      wx.navigateBack({delta: 1});
+      this.triggerEvent('goback')
     },
     // 这里是一个自定义方法
     topTitleEvent: function () {

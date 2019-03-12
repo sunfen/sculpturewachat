@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="打卡" is-show-back="true"></component-topnav>  
+<component-topnav inner-title="打卡" is-show-back="true" bind:goback="goback"></component-topnav>  
 
 <page>
   <view class="container">

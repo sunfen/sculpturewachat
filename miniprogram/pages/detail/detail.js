@@ -13,7 +13,9 @@ Page({
     title:"于心",
     project:{}
   },
-
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
 
   onLoad(options){
     var that = this;

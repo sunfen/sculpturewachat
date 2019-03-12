@@ -15,5 +15,9 @@ Page({
       urls: [current]
     })
   },
+
+  goback(){
+    wx.navigateBack({ delta: 1 })
+  }
 })
 

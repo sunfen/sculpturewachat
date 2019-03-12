@@ -1,0 +1,27 @@
+<component-topnav inner-title="位置" is-show-back="true" bind:goback="goback"></component-topnav>
+
+<view class="searchTable">
+
+  <view class="searchView">
+    <icon class='iconfont icon-search'></icon>
+    <input class="searchBar" bindinput="bindKeyInput" placeholder="街道/大厦/小区" confirm-type="search" maxlength="40" bindconfirm="clickSearch" bindfocus="clickSearchView" bindblur="loseInputBlur" focus="true"/>
+    <button bindtap="clickSearch" class="btnClick">搜索</button>
+  </view>
+
+  <!-- 列表 -->
+  <view class="addressListView">
+    <block wx:for="{{tips}}" wx:key="property">
+      <view class="addressCell" bindtap="didSelectCell" data-index="{{index}}">
+
+        <view class="address">
+          <text>{{item.city + (item.district == undefined?'':item.district)}}</text>
+        </view>
+
+        <view class="detail">
+          <text>{{item.title}}</text>
+        </view>
+      </view>
+    </block>
+
+  </view>
+</view>

@@ -16,6 +16,9 @@ Page({
     results: [],
     pageInfo: { size: 7, page: 0 },
   },
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
   onPullDownRefresh() {
     this.getpageByPrincipal();
   },

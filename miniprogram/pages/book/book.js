@@ -9,7 +9,9 @@ Page({
    */
   data: {
   },
-
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
   /**
    * 选择一个
    */
@@ -22,7 +24,7 @@ Page({
     })
 
     let project = JSON.stringify(that.data.project);
-    wx.redirectTo({
+    wx.navigateTo({
       url: that.data.url + '?project=' + project,
     })
   },

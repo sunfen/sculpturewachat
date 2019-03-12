@@ -11,7 +11,9 @@ Page({
     results: [],
     pageInfo: {}
   },
-
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
 
   //滑动切换
   swiperTab: function (e) {

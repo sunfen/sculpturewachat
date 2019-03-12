@@ -18,7 +18,11 @@ Page({
     var that = this;
     that.getWages();
   },
-
+  goback() {
+    wx.reLaunch({
+      url: '/pages/user/user',
+    })
+  },
 
 
   /**

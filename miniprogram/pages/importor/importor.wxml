@@ -1,5 +1,5 @@
 <!--addProject.wxml-->
-<component-topnav inner-title="添加" is-show-back="true"></component-topnav>
+<component-topnav inner-title="添加" is-show-back="true" bind:goback="goback"></component-topnav>
 
 <view class="container">
 
@@ -107,15 +107,15 @@
       </view>
       <view class="row-right">
         <text>收款方式</text>
-        <text>{{project.method}}</text>
-        <view class="row-right-icon">
-         <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button> 
-      </picker>      
+          <text>{{project.method}}</text>
+          <view class="row-right-icon">
+          <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">
+            <button class="defalut_btn top-button">
+              <icon class="iconfont icon-back-right"></icon>
+            </button> 
+          </picker>      
+          </view>
         </view>
-      </view>
     </view>
 
     <!-- 打卡 -->

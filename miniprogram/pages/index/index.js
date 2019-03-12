@@ -37,6 +37,7 @@ Page({
       that.setData({ isLogin: true });
       that.init();
     }       
+
   },
   /**
    *  关闭项目详情页
