@@ -14,7 +14,6 @@
     "pages/addProject/addProject",
     "pages/detail/detail",
     "pages/about/about",
-    "pages/principal/principal",
     "pages/book/book"
     ],
   "window": {

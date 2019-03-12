@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<component-topnav inner-title="记工" is-show-back="true"></component-topnav>  
+<component-topnav inner-title="打卡" is-show-back="true"></component-topnav>  
 
 <page>
   <view class="container">
@@ -10,15 +10,16 @@
       </view>
     </view>
 
+    <view class="sure-btn">
+      <button size='default' type="primary"  bindtap='sure'>确定</button>
+    </view>
+
     <!--屏幕背景变暗的背景  -->
     <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
     
     
     <!--弹出框  -->
     <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-      <view  class="addProject" >
-          <view><button bindtap="addProject" type="primary" size='mini'>新增项目</button></view>
-      </view>
 
       <view class="commodity-button">
         <text>选择工作时间：</text>
@@ -29,18 +30,10 @@
             <view  wx:if="{{item.property == 'record.morningHour'}}">
               
               <view class="row-right">
-                <text><text class="row-right-type">{{item.name}}</text> -> 选择项目：</text>
-                <text><text wx:if="{{projects[record.morningProjectIndex].principal}}">{{projects[record.morningProjectIndex].principal}} - </text>{{projects[record.morningProjectIndex].name}}</text>
-                <picker style='z-index:1000000' bindchange="bindProjectChange" range="{{projects}}" range-key="name" value="{{record.morningProjectIndex}}"  data-project="record.morningProject"  data-project-id="record.morningProjectId"   data-project-index="record.morningProjectIndex">
-                  <view class="row-right-icon"> 
-                    <button class="defalut_btn">
-                      <icon class="iconfont icon-back-right"></icon>
-                    </button>
-                  </view>
-                </picker>   
+                <text class="row-right-type">{{item.name}}</text>
               </view>
             
-              <view class='commodity-hours' wx:if="{{projects[record.morningProjectIndex].principal}}">
+              <view class='commodity-hours'>
 
                 <button wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" bindtap='onSelectHours' style="background:{{record.morningHour == hour.data ? COLOR_RED : COLOR_GRAY}};" data-hour='{{hour.data}}' data-property="{{item.property}}" size='mini' >{{hour.name}}</button>
 
@@ -51,15 +44,7 @@
             <view  wx:if="{{item.property == 'record.afternoonHour'}}">
               
               <view class="row-right">
-                <text><text class="row-right-type">{{item.name}}</text> -> 选择项目：</text>
-                <text><text wx:if="{{projects[record.afternoonProjectIndex].principal}}">{{projects[record.afternoonProjectIndex].principal}} - </text>{{projects[record.afternoonProjectIndex].name}}  </text>
-                <picker style='z-index:1000000' bindchange="bindProjectChange" range="{{projects}}" value="{{record.afternoonProjectIndex}}" range-key="name" data-project="record.afternoonProject"  data-project-id="record.afternoonProjectId"   data-project-index="record.afternoonProjectIndex">
-                  <view class="row-right-icon"> 
-                    <button class="defalut_btn">
-                      <icon class="iconfont icon-back-right"></icon>
-                    </button>
-                  </view>
-                </picker>   
+                <text class="row-right-type">{{item.name}}</text>
               </view>
             
               <view class='commodity-hours'>
@@ -74,15 +59,7 @@
             <view  wx:if="{{item.property == 'record.eveningHour'}}">
               
               <view class="row-right">
-                <text><text class="row-right-type">{{item.name}}</text> -> 选择项目：</text>
-                <text><text wx:if="{{projects[record.eveningProjectIndex].principal}}">{{projects[record.eveningProjectIndex].principal}} - </text>{{projects[record.eveningProjectIndex].name}}</text>
-                <picker style='z-index:1000000' bindchange="bindProjectChange" range="{{projects}}" value="{{record.eveningProjectIndex}}" range-key="name"  data-project="record.eveningProject"  data-project-id="record.eveningProjectId"   data-project-index="record.eveningProjectIndex">
-                  <view class="row-right-icon"> 
-                    <button class="defalut_btn">
-                      <icon class="iconfont icon-back-right"></icon>
-                    </button>
-                  </view>
-                </picker>   
+                <text class="row-right-type">{{item.name}}</text>
               </view>
             
               <view class='commodity-hours'>

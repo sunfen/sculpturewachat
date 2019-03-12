@@ -2,6 +2,7 @@
 <component-topnav inner-title="添加" is-show-back="true"></component-topnav>
 
 <view class="container">
+
   <view class="content">
     <!-- 添加负责人 -->
     <view class="row">
@@ -59,50 +60,6 @@
     </view>
 
 
-
-
-    <!-- 添加项目日期
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-time"></icon>
-        </button>
-      </view>
-      <view class="row-right">
-        <text>项目开始日期</text>
-        <text>{{project.startTime}}</text>
-        <view class="row-right-icon">
-         <picker mode="date" value="{{startTime}}" start="2010-01-01" end="2099-12-31" id="startTime" bindchange="inputValue">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button> 
-      </picker>      
-        </view>
-      </view>
-    </view>
-
-    <!-- 添加项目时间 
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-time"></icon>
-        </button>
-      </view>
-      <view class="row-right">
-        <text>项目开始时间</text>
-        <text>{{project.startHour}}</text>
-        <view class="row-right-icon" >
-         <picker range="{{hours}}" value="{{hourIndex}}"  id="hourIndex" bindchange="inputValue">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button> 
-      </picker>      
-        </view>
-      </view>
-    </view>
- -->
-
-
     <!-- 添加日工资 -->
     <view class="row">
       <view>
@@ -123,23 +80,104 @@
 
 
 
+    <!-- 添加已结工资 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+      </view>
+      <view class="row-right"  bindtap="addActualTotalWages">
+        <text>已结工资</text>
+        <text>{{project.actualTotalWages}}元</text>
+        <view class="row-right-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+        <!-- 方式 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-time"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>收款方式</text>
+        <text>{{project.method}}</text>
+        <view class="row-right-icon">
+         <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
+      </picker>      
+        </view>
+      </view>
+    </view>
+
+    <!-- 打卡 -->
+    <view class="row">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+      </view>
+      <view class="row-right"  bindtap="addLogRecords">
+        <text>时间</text>
+        <view class="row-right-icon">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>       
+        </view>
+      </view>
+    </view>
+
+
     <view class="btn">
       <button class='btn-sure'  bindtap="sure">保存</button>
     </view>
      
+    <view class="table-title">
+      <view class="table-title-circle"><text decode='true'>&nbsp;&nbsp;</text></view>
+      <text decode='true'>&nbsp;上班记录</text>
+    </view>
+    <!-- table header -->
+    <view class="table-header">
+      <text>时间</text>
+      <text>上午</text>
+      <text>下午</text>
+      <text>晚上</text>
+      <text>统计</text>
+      <text>备注</text>
+    </view>
 
-
+    <view wx:if="{{project.logRecords.length > 0}}" >
+      <view class="table-row" wx:for="{{project.logRecords}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
+        <text>{{item.time}}</text>
+        <text>{{item.morningHour}}(小时)</text>
+        <text>{{item.morningHour}}(小时)</text>
+        <text>{{item.eveningHour}}(小时)</text>
+        <text>{{item.totalHour}}(小时)</text>
+        <text class="ellipsis">{{item.remark}}</text>
+      </view>
+    
+    </view>
+    <view wx:else="{{project.logRecords.length == 0}}" >未选</view>
+    
+    
     <!--弹窗 添加项目名称 -->
-    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalName}}"></view>
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalName}}"></view>
     <view class="modal-dialog" wx:if="{{showModalName}}">
       <view class="modal-title">添加项目名称</view>
       <view class="modal-content">
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入名称" id="name"   bindinput="inputValue"></input>
+          <input placeholder-class="input-holder" type="text" maxlength="10" class="input" placeholder="请输入名称" id="project.name"   bindinput="inputValue"></input>
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
         <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
       </view>
     </view>
@@ -147,35 +185,49 @@
 
 
         <!--弹窗 添加总工资 -->
-    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
     <view class="modal-dialog" wx:if="{{showModalWages}}">
       <view class="modal-title">添加日工资</view>
       <view class="modal-content">
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入日工资" id="dailyWages"   bindinput="inputValue"></input>
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入日工资" id="project.dailyWages"   bindinput="inputValue"></input>
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
         <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
       </view>
     </view>
 
 
     <!--弹窗 添加地点 -->
-    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalAddress}}"></view>
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalAddress}}"></view>
     <view class="modal-dialog" wx:if="{{showModalAddress}}">
       <view class="modal-title">添加地点</view>
       <view class="modal-content">
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入地点" id="address"   bindinput="inputValue"></input>
+          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入地点" id="project.address"   bindinput="inputValue"></input>
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-cancel" bindtap="closeModal" data-status="cancel">取消</view>
         <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
       </view>
     </view>
+
+
+    <!--弹窗 添加总工资 -->
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalActualTotalWages}}"></view>
+    <view class="modal-dialog" wx:if="{{showModalActualTotalWages}}">
+      <view class="modal-title">添加已结工资</view>
+      <view class="modal-content">
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入已结工资" id="project.actualTotalWages"   bindinput="inputValue"></input>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view>
+    </view>
+
 
   </view>
 </view>

@@ -8,12 +8,17 @@ var util = require('../../util/util.js');
 
 Page({
   data: {
+    methods: ["银行卡", "微信", "支付宝"],
+    methodIndex: 0,
     project:{
       id:"",
       principal:{id:'', name:'',phone:""},
       name:'',
       address:'',
-      dailyWages:'0'
+      method: '银行卡',
+      dailyWages:0,
+      actualTotalWages:0,
+      logRecords:[],
     }
   },
   
@@ -21,38 +26,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      var that = this;
-      if(options.id != undefined && options.id != null){
-        wx.request({
-          header: header,
-          url: getApp().globalData.urlPath + 'project/' + options.id,
-          success(res) {
-            if (!res.data.id) {
-              common.showAlertToast("该项目不存在！");
-              wx.redirectTo({
-                url: '/pages/index/index',
-              })
-            }else{
-              that.setData({
-                project: res.data,
-                id: res.data.id,
-                name: res.data.name,
-                address: res.data.address,
-                dailyWages: res.data.dailyWages,
-              })
-            }
-          }
-        })
-      } else if (options.project != undefined && options.project != null) {
-        let project = JSON.parse(options.project);
-        that.setData({ 
-          project: project,
-          id: project.id,
-          name: project.name,
-          address: project.address,
-          dailyWages: project.dailyWages,
-        });
-      }
+    var that = this;
+    if (options.project != undefined && options.project != null) {
+      let project = JSON.parse(options.project);
+      that.setData({project: project});
+      that.data.project.logRecords.sort(function (a, b) {
+        return a.time < b.time ? 1 : -1; // 这里改为大于号
+      });
+    }
   },
 
   /**
@@ -75,7 +56,8 @@ Page({
     this.setData({
       showModalWages: false,
       showModalName: false,
-      showModalAddress: false
+      showModalAddress: false,
+      showModalActualTotalWages: false
     })
   },
 
@@ -84,10 +66,21 @@ Page({
   addPrincipal() {
     let project = JSON.stringify(this.data.project);
     wx.navigateTo({
-      url: '/pages/principal/principal?project=' + project,
+      url: "/pages/book/book?project=" + project + "&url=" + '/pages/importor/importor',
+    })
+  },
+
+
+
+  //添加打卡
+  addLogRecords() {
+    let project = JSON.stringify(this.data.project);
+    wx.navigateTo({
+      url: '/pages/importorLogRecord/importorLogRecord?project=' + project,
     })
 
   },
+
 
   //添加项目名称
   addName() {
@@ -97,10 +90,17 @@ Page({
   },
 
 
-  //添加总工资
+  //添加日工资
   addWages() {
     this.setData({
       showModalWages: true
+    })
+  },
+
+  //添加已结工资
+  addActualTotalWages() {
+    this.setData({
+      showModalActualTotalWages: true
     })
   },
 
@@ -119,10 +119,16 @@ Page({
     this.setData({
       showModalWages: false,
       showModalName: false,
-      showModalAddress: false
+      showModalAddress: false,
+      showModalActualTotalWages:false
     })
   },
 
+  updateData(e) {
+    this.setData({
+      [e.target.id]: this.data.methods[e.detail.value]
+    })
+  },
 
   /**
    * 输入框输入事件
@@ -131,19 +137,6 @@ Page({
     var name = e.target.id;
     this.setData({
       [name]:e.detail.value
-    })
-    this.updateData();
-  },
-
-  updateData(){
-    this.setData({
-      project: {
-        principal: this.data.project.principal,
-        id:this.data.id,
-        name: this.data.name,
-        address: this.data.address,
-        dailyWages: this.data.dailyWages,
-      }
     })
   },
 
@@ -159,20 +152,33 @@ Page({
       return;
     }
     if (that.data.project.address == "" || that.data.project.address == undefined) {
-      common.showAlertToast("请填写项目地点！");
+      common.showAlertToast("请填写地点！");
       return;
     }
     if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined 
         || isNaN(that.data.project.dailyWages) || that.data.project.dailyWages <= 0) {
-      common.showAlertToast("请填写项目日工资！");
+      common.showAlertToast("请正确填写日工资！");
       return;
     } else if ( that.data.project.dailyWages >= 10000) {
       common.showAlertToast("项目日工资须小于一万元！");
       return;
     }
 
+    if (isNaN(that.data.project.actualTotalWages) || that.data.project.actualTotalWages < 0) {
+      common.showAlertToast("请正确填写项目已结工资！");
+      return;
+    }
+
+    if (that.data.project.logRecords == undefined || that.data.project.logRecords == null 
+      || that.data.project.logRecords.length == 0) {
+      common.showAlertToast("请选择工作时间！");
+      return;
+    }
+
+
+
     wx.request({
-      url: getApp().globalData.urlPath + 'project',
+      url: getApp().globalData.urlPath + 'project/import',
       method: "POST",
       data: this.data.project,
       header: header,
@@ -184,7 +190,7 @@ Page({
             success(res) {
               setTimeout(function () {
                 wx.redirectTo({
-                  url: '/pages/index/index',
+                  url: '/pages/user/user',
                 })
               }, 1000)
             }

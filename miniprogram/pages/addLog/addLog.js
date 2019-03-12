@@ -225,18 +225,6 @@ Page({
       common.showAlertToast("备注不可超过126个字符");
       return;
     }
-    if (that.data.record.morningProjectId == "" || that.data.record.morningProjectId == undefined) {
-      common.showAlertToast("请选择上午的项目！");
-      return;
-    }
-    if (that.data.record.afternoonProjectId == "" || that.data.record.afternoonProjectId == undefined) {
-      common.showAlertToast("请选择下午的项目！");
-      return;
-    }
-    if (that.data.record.eveningProjectId == "" || that.data.record.eveningProjectId == undefined) {
-      common.showAlertToast("请选择晚间的项目！");
-      return;
-    }
 
 
     wx.request({
@@ -270,7 +258,14 @@ Page({
     that.hideModal();
   },
   
-
+  /**
+   * 新增项目
+   */
+  addProject() {
+    wx.redirectTo({
+      url: '/pages/addProject/addProject',
+    })
+  },
 
 
 
@@ -342,19 +337,14 @@ Page({
             ["record.eveningProjectId"]: res.data[0].id
           });
         }
+        that.data.projects.push({id:null, name: "无"})
+        that.setData({projects: that.data.projects});
       }
     })
   },
 
 
-   /**
-    * 新增项目
-    */
-  addProject(){
-    wx.redirectTo({
-      url: '/pages/addProject/addProject',
-    })
-  },
+
 
 
 

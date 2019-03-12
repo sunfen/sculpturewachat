@@ -9,7 +9,7 @@
         <icon class="iconfont icon-pull-down"></icon>
     </picker>
     <view class="query-total">
-      已结 ￥{{totalWages}}
+      已结 ￥{{totalWages ? totalWages : 0}}
     </view>
   </view>
 
@@ -23,7 +23,7 @@
   <scroll-view  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='detail'>
     <view class="table-row">
       <view><icon class="iconfont icon-point"></icon> {{item.name}}</view>
-      <view class="table-row-time"><text>{{item.startTime}}</text><text>{{item.endTime}}</text></view>
+      <view class="table-row-time"><text>{{item.startTime}}</text><text>{{item.endTime ? item.endTime : ''}}</text></view>
       <view>{{item.expectTotalWages}}元</view>
       <view>{{item.actualTotalWages}}元</view>        
     </view>

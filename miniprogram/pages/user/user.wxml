@@ -42,7 +42,7 @@
     <!-- 我的工资 -->
     <view class="category-detail"  bindtap='myWages'>
       <text class="category-top">我的工资</text>
-      <text class="category-buttom">{{count.countWages}}元</text>
+      <text class="category-buttom">{{count.countWages ? count.countWages : 0}}元</text>
     </view>
 
   </view>

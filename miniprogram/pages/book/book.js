@@ -21,14 +21,16 @@ Page({
       [name]: principal
     })
 
-    let project = JSON.stringify(this.data.project);
+    let project = JSON.stringify(that.data.project);
     wx.redirectTo({
-      url: '/pages/addProject/addProject?project=' + project,
+      url: that.data.url + '?project=' + project,
     })
   },
 
   onLoad(options){
-    var project = JSON.parse(options.project);
-    this.setData({ project: project});
+    
+    var that = this;
+
+    that.setData({ project: JSON.parse(options.project), url: options.url});
   }
 }) 

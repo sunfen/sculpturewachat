@@ -83,10 +83,9 @@ Page({
   //添加负责人
   addPrincipal() {
     let project = JSON.stringify(this.data.project);
-    wx.navigateTo({
-      url: '/pages/principal/principal?project=' + project,
+    wx.redirectTo({
+      url: "/pages/book/book?project=" + project + "&url=" + '/pages/addProject/addProject',
     })
-
   },
 
   //添加项目名称
