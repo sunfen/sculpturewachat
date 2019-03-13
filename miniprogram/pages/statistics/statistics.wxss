@@ -10,114 +10,29 @@
 }
 
 
-.query {
-  display: flex;
-  flex-direction: column;
-  justify-content:space-around;
-  background: #c7c8ca; 
-  align-items: center;
-  height: 200rpx;
-}
-
-.query-button {
-  width: 500rpx;
-  height: 60rpx;
-  font-size: 25rpx;  
-  font-weight: 300;
-  background-color:  #fff;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-}
 
 .swiper-tab{
-    width: 100%;
-    border-bottom: 2rpx solid #ccc;
-    text-align: center;
-    height: 88rpx;
-    line-height: 88rpx;
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
+  width: 100%;
+  border-bottom: 2rpx solid #ccc;
+  text-align: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
 }
 
 .swiper-tab-item{
-    width: 30%; 
+  width: 30%; 
     
 }
 
 .active{
-    color:#F65959;
-    border-bottom: 4rpx solid #F65959;
+  color:#F65959;
+  border-bottom: 4rpx solid #F65959;
 }
 
 .table-header {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
-    background: #c7c8ca; 
-    width: 100%;
-    text-align: center;
-    
+  background: #eee; 
 }
 
-.table-body {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
-}
-
-.table-body-center {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-}
-
-.table-body-right {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-    font-weight: 600;
-}
-
-.table-body-left {
-    display: flex;
-    flex-flow: column;
-    width: 28%;
-}
-
-.table-body-left-principal {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-    width: 150rpx;
-}
-
-
-.table-body-row-principal{
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    font-size: 34rpx;
-    margin: 20rpx 20rpx 20rpx 20rpx;
-    min-height: 100rpx;
-    border-bottom: 1rpx solid #c7c8ca;
-}
-.table-body-center-principal{
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-    width: 400rpx;
-}
-
-
-
-/* 滑动删除 */
-.touch-item {
-  display: flex;
-  justify-content: space-between;
-  border-bottom:1px solid #ccc;
-  padding: 5px;
-  line-height: 22px;
-    font-size: 34rpx;
-}

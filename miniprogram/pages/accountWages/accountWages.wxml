@@ -24,7 +24,7 @@
     </button>
 
     <!-- table header -->
-    <view class="touch-item">
+    <view class="table-header">
       <text>时间</text>
       <text>金额</text>
       <text>方式</text>
@@ -33,7 +33,7 @@
     </view>
 
 
-    <view class="touch-item" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress'  bindtouchstart="handleTouchStart" bindtouchmove="handleTouchEnd" >
+    <view class="table-item-row" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress'  bindtouchstart="handleTouchStart" bindtouchmove="handleTouchEnd" >
         <text>{{item.time}}</text>
         <text>{{item.wages}}元</text>
         <text>{{item.method}}</text>

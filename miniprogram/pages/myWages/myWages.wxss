@@ -43,30 +43,6 @@ page {
   color: rgb(141, 137, 137);
 }
 
-.table-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  color:rgb(62, 62, 155);
-  font-size: 25rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
-  padding: 9rpx;
-}
-
-.table-row{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  font-size: 22rpx;
-  padding: 15rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
-}
-
-.table-row-time{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
 
 .icon-point{
   font-size: 10rpx;

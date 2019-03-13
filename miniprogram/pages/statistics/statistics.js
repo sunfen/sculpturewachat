@@ -72,7 +72,6 @@ Page({
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
         if (res.data.content.length == 0) {
-          common.errorWarn("没有更多数据了！");
           return;
         }
 
@@ -108,7 +107,6 @@ Page({
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
         if (res.data.content.length == 0) {
-          common.errorWarn("没有更多数据了！");
           return;
         }
 
@@ -164,9 +162,6 @@ Page({
           if (res.tapIndex == 1) {
             that.editProject(e);
           }
-      },
-      fail(res) {
-        console.log(res.errMsg)
       }
     })
   },

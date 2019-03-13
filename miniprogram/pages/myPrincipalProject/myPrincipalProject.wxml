@@ -1,5 +1,5 @@
 <!--addProject.wxml-->
-<component-topnav inner-title="{{title}}" is-show-back="true"></component-topnav>
+<component-topnav inner-title="{{title}}" is-show-back="true" bind:goback="goback"></component-topnav>
 
 <view class="container">
   <view class="content">
@@ -8,8 +8,6 @@
       <view><text class="detail-label">项目：</text>{{principal.count}}个</view>
     </view> 
     
-    <view class="blank-space"></view>
-  
     <view class="table-header">
       <text>项目名称</text>
       <text>时间</text>

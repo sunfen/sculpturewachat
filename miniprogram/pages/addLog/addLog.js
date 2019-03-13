@@ -73,7 +73,7 @@ Page({
        * @param { object } currentSelect 当前点击的日期
        * @param { array } allSelectedDays 选择的所有日期（当mulit为true时，才有allSelectedDays参数）
        */
-      afterTapDay: (currentSelect, allSelectedDays) => {console.log(2) },
+      afterTapDay: (currentSelect, allSelectedDays) => {},
       /**
        * 当改变月份时触发
        * @param { object } current 当前年月
@@ -149,12 +149,16 @@ Page({
 
       jump();
     }
-   
+  },
+  
+  onShow(){
+    var that = this;
     that.getProjects();
     var selectDate = getSelectedDay();
     that.getLogRecord(selectDate[0].year, selectDate[0].month);
   },
-  
+
+
   goback() {
     wx.navigateBack({ delta: 1 })
   },
@@ -229,7 +233,12 @@ Page({
       common.showAlertToast("备注不可超过126个字符");
       return;
     }
-
+    if(that.data.record.morningProjectId == undefined && that.data.record.morningProjectId == null
+       &&  that.data.record.afternoonProjectId == undefined && that.data.record.afternoonProjectId == null 
+       &&  that.data.record.eveningProjectId == undefined && that.data.record.eveningProjectId == null){
+      common.showAlertToast("须选择工作项目!");
+      return;
+    }
 
     wx.request({
       url: getApp().globalData.urlPath + 'logrecord',
@@ -266,7 +275,7 @@ Page({
    * 新增项目
    */
   addProject() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/addProject/addProject',
     })
   },
@@ -341,7 +350,7 @@ Page({
             ["record.eveningProjectId"]: res.data[0].id
           });
         }
-        that.data.projects.push({id:null, name: "无"})
+        that.data.projects.push({id: null, name:"无"});
         that.setData({projects: that.data.projects});
       }
     })

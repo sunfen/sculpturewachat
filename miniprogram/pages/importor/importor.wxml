@@ -165,7 +165,7 @@
       </view>
     
     </view>
-    <view wx:else="{{project.logRecords.length == 0}}" >未选</view>
+    <view class="table-row" wx:else="{{project.logRecords.length == 0}}" >未选</view>
     
     
     <!--弹窗 添加项目名称 -->
@@ -191,21 +191,6 @@
       <view class="modal-content">
         <view class="modal-input">
           <input placeholder-class="input-holder" type="number" maxlength='11' class="input" placeholder="请输入日工资" id="project.dailyWages"   bindinput="inputValue"></input>
-        </view>
-      </view>
-      <view class="modal-footer">
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-      </view>
-    </view>
-
-
-    <!--弹窗 添加地点 -->
-    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalAddress}}"></view>
-    <view class="modal-dialog" wx:if="{{showModalAddress}}">
-      <view class="modal-title">添加地点</view>
-      <view class="modal-content">
-        <view class="modal-input">
-          <input placeholder-class="input-holder" type="text" maxlength='11' class="input" placeholder="请输入地点" id="project.address"   bindinput="inputValue"></input>
         </view>
       </view>
       <view class="modal-footer">

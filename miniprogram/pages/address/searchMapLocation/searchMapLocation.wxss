@@ -40,11 +40,13 @@ page{
 
 .btnClick{
   width: 150rpx;
-  border: none;
+  font-weight: 400;
   background: #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 0rpx;
+  font-size: 30rpx;
 } 
 
 button::after{border:0;} 

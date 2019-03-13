@@ -199,7 +199,6 @@ Page({
           return;
         }
         if (res.data.content.length == 0) {
-          common.errorWarn("没有更多数据了！");
           return;
         }
         

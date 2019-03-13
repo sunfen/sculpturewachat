@@ -31,15 +31,42 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (options.project != undefined && options.project != null) {
-      let project = JSON.parse(options.project);
-      that.setData({project: project});
-      that.data.project.logRecords.sort(function (a, b) {
-        return a.time < b.time ? 1 : -1; // 这里改为大于号
-      });
-    }
   },
 
+  onShow(){
+    var that = this;
+    wx.getStorage({
+      key: 'map_location',
+      success: function (res) {
+        wx.removeStorage({
+          key: 'map_location'
+        })
+        that.setData({ address: res.data.address, ["project.address"]: res.data.address, location: res.data })
+      }
+    })
+
+    wx.getStorage({
+      key: 'project_principal',
+      success: function (res) {
+        wx.removeStorage({
+          key: 'project_principal'
+        })
+        that.setData({ ['project.principal']: res.data })
+      }
+    })
+    wx.getStorage({
+      key: 'project_log_record',
+      success: function (res) {
+        wx.removeStorage({
+          key: 'project_logRecords'
+        })
+        that.setData({ ['project.logRecords']: res.data })
+        that.data.project.logRecords.sort(function (a, b) {
+          return a.time < b.time ? 1 : -1; // 这里改为大于号
+        });
+      }
+    })
+  },
   /**
    * 弹出框蒙层截断touchmove事件
    */
@@ -60,7 +87,6 @@ Page({
     this.setData({
       showModalWages: false,
       showModalName: false,
-      showModalAddress: false,
       showModalActualTotalWages: false
     })
   },
@@ -68,9 +94,8 @@ Page({
 
   //添加负责人
   addPrincipal() {
-    let project = JSON.stringify(this.data.project);
     wx.navigateTo({
-      url: "/pages/book/book?project=" + project + "&url=" + '/pages/importor/importor',
+      url: "/pages/book/book",
     })
   },
 
@@ -111,8 +136,8 @@ Page({
 
   //添加地点
   addAddress() {
-    this.setData({
-      showModalAddress: true
+    wx.navigateTo({
+      url: '/pages/address/address',
     })
   },
 
@@ -123,7 +148,6 @@ Page({
     this.setData({
       showModalWages: false,
       showModalName: false,
-      showModalAddress: false,
       showModalActualTotalWages:false
     })
   },

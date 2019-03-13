@@ -136,10 +136,7 @@ Page({
             title: '成功添加！',
             icon: 'success',
             success(res) {
-              var project = JSON.stringify(that.data.project);
-              wx.redirectTo({
-                url: '/pages/accountWages/accountWages?project=' + project,
-              })
+              that.goback();
             }
           })
         } else if (res.data.code == "404") {

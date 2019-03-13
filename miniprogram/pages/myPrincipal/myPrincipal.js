@@ -18,7 +18,7 @@ Page({
     })
   },
   goback() {
-    wx.reLaunch({
+    wx.redirectTo({
       url: '/pages/user/user',
     })
   },

@@ -19,34 +19,38 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options);
+
     if (options.project != undefined && options.project != null) {
       let project = JSON.parse(options.project);
-      console.log(project);
       that.setData({ project: project });
-      wx.request({
-        header: header,
-        url: getApp().globalData.urlPath + 'project/' + project.id,
-        success(res) {
-          if (res.data) {
-            that.setData({
-              project: res.data
-            })
-          }
+    }
+  },
+  
+  onShow(){
+    var that = this;
+    var project = that.data.project;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + 'project/' + project.id,
+      success(res) {
+        if (res.data) {
+          that.setData({
+            project: res.data
+          })
         }
-      })
-      wx.request({
-        header: header,
-        url: getApp().globalData.urlPath + 'wagesrecord/search/' + project.id,
-        success(res) {
-          if (res.data) {
-            that.setData({
-              results: res.data
-            })
-          }
+      }
+    })
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + 'wagesrecord/search/' + project.id,
+      success(res) {
+        if (res.data) {
+          that.setData({
+            results: res.data
+          })
         }
-      })
-  }
+      }
+    })
   },
 
   /**
@@ -87,9 +91,6 @@ Page({
           if (res.tapIndex == 1) {
             that.delete(e);
           }
-      },
-      fail(res) {
-        console.log(res.errMsg)
       }
     })
   },
@@ -100,7 +101,7 @@ Page({
   add(){
     var that = this;
     var project = JSON.stringify(that.data.project);
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/addWages/addWages?project=' + project,
     })
   },
@@ -112,7 +113,7 @@ Page({
     var that = this;
     var project = JSON.stringify(that.data.project);
     var record = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/addWages/addWages?record=' + record + "&project=" + project,
     })
   },

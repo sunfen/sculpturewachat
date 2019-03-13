@@ -55,9 +55,6 @@ Component({
           if (res.tapIndex == 1) {
             that.delete(e.target.dataset.id);
           }
-        },
-        fail(res) {
-          console.log(res.errMsg)
         }
       })
     },

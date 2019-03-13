@@ -10,14 +10,11 @@
         <!-- table body -->
         <scroll-view class="table-body">
          
-          <view class="touch-item" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='detail'>
+          <view class="table-item" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='detail'>
+            <view class="table-item-top">
               <view class="table-body-left">
-                <text style='font-weight:600'>{{item.name}}</text>
-                <text wx:if="{{item.startTime}}">始：{{item.startTime}}</text>
-                <text style="color:red;" wx:else="{{item.startTime}}">未开始</text>
-                <text wx:if="{{item.endTime}}">完：{{item.endTime}}</text>
+                <text>{{item.name}}</text>
               </view>
-              
               <view class="table-body-center">
                 <text>上班: {{item.works}}</text>
                 <text>加班: {{item.extraWorks}}</text>
@@ -26,11 +23,18 @@
               <view class="table-body-right">
                 <text>已结算：{{item.actualTotalWages}}元</text>
               </view>
-              <view class="row-right-icon" >
-                <button class="defalut_btn top-button">
-                  <icon class="iconfont icon-back-right"></icon>
-                </button>       
+              <view class="table-body-right" >
+                 <icon class="iconfont icon-back-right"></icon>
               </view>
+            </view>
+            
+            <view class="table-item-bottom">
+              <text wx:if="{{item.startTime}}">开始：{{item.startTime}} </text>
+              <text style="color:red;" wx:else="{{item.startTime}}">未开始</text>
+              <text wx:if="{{item.endTime}}"> 结束：{{item.endTime}}</text>
+            </view>
+              
+
           </view>
 
         </scroll-view>

@@ -19,7 +19,7 @@ Page({
     that.getWages();
   },
   goback() {
-    wx.reLaunch({
+    wx.redirectTo({
       url: '/pages/user/user',
     })
   },

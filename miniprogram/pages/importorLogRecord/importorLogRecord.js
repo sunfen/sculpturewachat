@@ -143,18 +143,19 @@ Page({
   },
 
   goback() {
+    var that = this;
+
+    wx.setStorage({ key: "project_log_record", data: that.data.records})
     wx.navigateBack({ delta: 1 })
   },
+
+
   /**
    * 
    */
   sure:function(e){
     var that = this;
-    that.setData({ ['project.logRecords']: that.data.records});
-    var project = JSON.stringify(that.data.project);
-    wx.navigateTo({
-      url: '/pages/importor/importor?project=' + project,
-    })
+    that.goback();
   },
 
   /**

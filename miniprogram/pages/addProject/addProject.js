@@ -71,6 +71,16 @@ Page({
         that.setData({ address: res.data.address, ["project.address"]: res.data.address, location : res.data})
       }
     })
+
+    wx.getStorage({
+      key: 'project_principal',
+      success: function (res) {
+        wx.removeStorage({
+          key: 'project_principal'
+        })
+        that.setData({['project.principal']: res.data})
+      }
+    })
   },
 
   /**
@@ -95,9 +105,8 @@ Page({
 
   //添加负责人
   addPrincipal() {
-    let project = JSON.stringify(this.data.project);
     wx.navigateTo({
-      url: "/pages/book/book?project=" + project + "&url=" + '/pages/addProject/addProject',
+      url: "/pages/book/book",
     })
   },
 
