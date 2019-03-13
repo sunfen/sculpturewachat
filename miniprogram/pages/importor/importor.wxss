@@ -13,20 +13,22 @@
   background: #fff;
 }
 
+
 .row-right {
   display: flex;
   flex-direction: row;
   justify-content:space-between;
   align-items:center;
   margin-left: 20rpx;
-  width: 100%;
+  width: 80%;
+  padding: 20rpx;
   border-bottom: 1rpx solid #b9b7b7c5;
 }
 
-.row-right-icon {
-  margin-right: 10%;
-}
 
+.row-right-icon {
+  margin-right: 5%;
+}
 
 
 
@@ -48,63 +50,6 @@
 
 
 /* 容器样式 */
-.modalDlg{
-  width: 620rpx;
-  height: 450rpx;
-  position: fixed;
-  top: 25%;
-  z-index: 9999;
-  margin: 10rpx 50rpx 10rpx 50rpx;
-  background-color: #fff;
-  border-radius: 36rpx;
-  display: flex;
-  flex-direction: column;
-  font-size: 30rpx;
-}
-
-.modalDlg-header{
-  display: flex;
-  flex-direction: row;
-  justify-content:space-around;
-  border-bottom: 1rpx solid #b9b7b7c5;
-  margin: 10rpx 20rpx 20rpx 20rpx;
-  align-items: center;
-}
-
-.modalDlg-content{
-  display: flex;
-  flex-direction: column;
-  justify-content:space-around;
-
-}
-
-.modalDlg-content-row{
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-start;
-  align-items:center;
-  margin-left: 40rpx;
-}
-
-.modalDlg-footer{
-  display: flex;
-  flex-direction: row;
-  justify-content:space-around;
-  margin-right: 65rpx;
-  border-top: 1rpx solid #b9b7b7c5;
-}
-
-.modalDlg-content-row-text{
-  align-items:center;
-  margin-left: 40rpx;
-}
-
-
-.show-btn {
-  margin-top: 100rpx;
-  color: #22cc22;
-}
-
 .modal-mask {
   width: 100%;
   height: 100%;
@@ -182,26 +127,6 @@ input-holder {
   text-align: center;
 }
 
-
-
-.table-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  color:rgb(62, 62, 155);
-  font-size: 25rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
-  padding: 9rpx;
-}
-
-.table-row{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  font-size: 22rpx;
-  padding: 15rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
-}
 
 
 .ellipsis{

@@ -88,7 +88,7 @@ Page({
     var that = this;
     wx.request({
       header: header,
-      url: getApp().globalData.urlPath + '/my',
+      url: getApp().globalData.urlPath + 'my',
       success(res) {
         if (res.data) {
           that.setData({

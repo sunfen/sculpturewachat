@@ -58,7 +58,7 @@ Page({
       key: 'project_log_record',
       success: function (res) {
         wx.removeStorage({
-          key: 'project_logRecords'
+          key: 'project_log_record'
         })
         that.setData({ ['project.logRecords']: res.data })
         that.data.project.logRecords.sort(function (a, b) {

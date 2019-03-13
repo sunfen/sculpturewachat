@@ -133,14 +133,12 @@
           </button>
         </view>
       </view>
-      <view class="function-remind-right-noline">
+      <button class="defalut_btn function-remind-right-noline" open-type='contact'>
         <text>客服</text>
         <view  class="function-help-right ">
-          <button class="defalut_btn top-button" open-type='contact'>
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <icon class="iconfont icon-back-right"></icon>
         </view>
-      </view>
+      </button>       
     </view>  
 
   </view>

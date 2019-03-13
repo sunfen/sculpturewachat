@@ -7,17 +7,13 @@
     <!-- 添加负责人 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-principal"></icon>
-        </button>
+        <icon class="iconfont icon-principal"></icon>
       </view>
       <view class="row-right" bindtap="addPrincipal">
         <text>添加负责人</text>
         <text>{{project.principal.name}}</text>
         <view class="row-right-icon" >
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <icon class="iconfont icon-back-right"></icon>
         </view>
       </view>
     </view>
@@ -25,17 +21,13 @@
     <!-- 添加项目名称 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-type"></icon>
-        </button>
+        <icon class="iconfont icon-type"></icon>
       </view>
       <view class="row-right"  bindtap="addName">
         <text>项目名称</text>
         <text>{{project.name}}</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <icon class="iconfont icon-back-right"></icon>
         </view>
       </view>
     </view>
@@ -44,17 +36,13 @@
     <!-- 添加地点 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-address"></icon>
-        </button>
+        <icon class="iconfont icon-address"></icon>
       </view>
       <view class="row-right" bindtap="addAddress">
         <text>地点</text>
         <text>{{project.address}}</text>
-        <view class="row-right-icon" >
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+        <view class="row-right-icon">
+          <icon class="iconfont icon-back-right"></icon>
         </view>
       </view>
     </view>
@@ -63,17 +51,13 @@
     <!-- 添加日工资 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-wages"></icon>
-        </button>
+        <icon class="iconfont icon-wages"></icon>
       </view>
       <view class="row-right"  bindtap="addWages">
         <text>日工资</text>
         <text>{{project.dailyWages}}元</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <icon class="iconfont icon-back-right"></icon>
         </view>
       </view>
     </view>
@@ -83,17 +67,13 @@
     <!-- 添加已结工资 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-wages"></icon>
-        </button>
+        <icon class="iconfont icon-wages"></icon>
       </view>
       <view class="row-right"  bindtap="addActualTotalWages">
         <text>已结工资</text>
         <text>{{project.actualTotalWages}}元</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <icon class="iconfont icon-back-right"></icon>
         </view>
       </view>
     </view>
@@ -101,36 +81,26 @@
         <!-- 方式 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-time"></icon>
-        </button>
+        <icon class="iconfont icon-time"></icon>
       </view>
-      <view class="row-right">
-        <text>收款方式</text>
-          <text>{{project.method}}</text>
-          <view class="row-right-icon">
-          <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">
-            <button class="defalut_btn top-button">
-              <icon class="iconfont icon-back-right"></icon>
-            </button> 
-          </picker>      
-          </view>
+      <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">        
+        <view class="row-right">
+          <view>收款方式</view>
+          <view>{{project.method}}</view>
+          <icon class="iconfont icon-back-right"></icon>
         </view>
+      </picker>
     </view>
 
     <!-- 打卡 -->
     <view class="row">
       <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-wages"></icon>
-        </button>
+        <icon class="iconfont icon-wages"></icon>
       </view>
       <view class="row-right"  bindtap="addLogRecords">
         <text>时间</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <icon class="iconfont icon-back-right"></icon>
         </view>
       </view>
     </view>
@@ -155,7 +125,7 @@
     </view>
 
     <view wx:if="{{project.logRecords.length > 0}}" >
-      <view class="table-row" wx:for="{{project.logRecords}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
+      <view class="table-item-row" wx:for="{{project.logRecords}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
         <text>{{item.time}}</text>
         <text>{{item.morningHour}}(小时)</text>
         <text>{{item.morningHour}}(小时)</text>
@@ -165,7 +135,7 @@
       </view>
     
     </view>
-    <view class="table-row" wx:else="{{project.logRecords.length == 0}}" >未选</view>
+    <view class="table-item-row" wx:else="{{project.logRecords.length == 0}}" >未选</view>
     
     
     <!--弹窗 添加项目名称 -->

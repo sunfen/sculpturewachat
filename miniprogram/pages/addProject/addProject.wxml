@@ -14,9 +14,7 @@
         <text>添加负责人</text>
         <text>{{project.principal.name}}</text>
         <view class="row-right-icon" >
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+            <icon class="iconfont icon-back-right"></icon>       
         </view>
       </view>
     </view>
@@ -32,9 +30,7 @@
         <text>项目名称</text>
         <text>{{project.name}}</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
-          </button>       
         </view>
       </view>
     </view>
@@ -51,9 +47,7 @@
         <text>地点</text>
         <text>{{project.address}}</text>
         <view class="row-right-icon" >
-          <button class="defalut_btn top-button">
             <icon class="iconfont icon-back-right"></icon>
-          </button>       
         </view>
       </view>
     </view>
@@ -71,9 +65,7 @@
         <text>日工资</text>
         <text>{{project.dailyWages}}元</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+            <icon class="iconfont icon-back-right"></icon> 
         </view>
       </view>
     </view>

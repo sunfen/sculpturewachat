@@ -155,6 +155,15 @@
   text-align: center;
 }
 
+
+
+.column {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  text-align: center;
+}
+
 .table-item-left {
   display: flex;
   flex-flow: column;
@@ -174,4 +183,11 @@
   justify-content: space-around;
   padding:5rpx;
   color: green;
+}
+
+picker{
+  display:block;
+  flex-direction: row;
+  justify-content:space-between;
+  width: 100%;
 }
