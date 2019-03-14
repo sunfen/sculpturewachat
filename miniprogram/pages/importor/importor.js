@@ -136,9 +136,20 @@ Page({
 
   //添加地点
   addAddress() {
-    wx.navigateTo({
-      url: '/pages/address/address',
-    })
+    this.moveToLocation();
+  },
+
+  //移动选点
+  moveToLocation: function () {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        wx.setStorage({
+          key: 'map_location',
+          data: res,
+        })
+      }
+    });
   },
 
   /**

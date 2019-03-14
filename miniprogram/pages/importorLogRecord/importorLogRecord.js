@@ -145,7 +145,7 @@ Page({
   goback() {
     var that = this;
 
-    wx.setStorage({ key: "project_log_record", data: that.data.records})
+
     wx.navigateBack({ delta: 1 })
   },
 
@@ -155,6 +155,7 @@ Page({
    */
   sure:function(e){
     var that = this;
+    wx.setStorage({ key: "project_log_record", data: that.data.records })
     that.goback();
   },
 

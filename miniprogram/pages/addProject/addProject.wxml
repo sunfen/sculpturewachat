@@ -28,7 +28,7 @@
       </view>
       <view class="row-right"  bindtap="addName">
         <text>项目名称</text>
-        <text>{{project.name}}</text>
+        <text class="ellipsis">{{project.name}}</text>
         <view class="row-right-icon">
             <icon class="iconfont icon-back-right"></icon>
         </view>
@@ -45,7 +45,7 @@
       </view>
       <view class="row-right" bindtap="addAddress">
         <text>地点</text>
-        <text>{{project.address}}</text>
+        <text class="ellipsis">{{project.address}}</text>
         <view class="row-right-icon" >
             <icon class="iconfont icon-back-right"></icon>
         </view>
@@ -113,5 +113,3 @@
 
   </view>
 </view>
-
-

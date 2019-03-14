@@ -128,11 +128,22 @@ Page({
 
   //添加地点
   addAddress() {
-    let location = JSON.stringify(this.data.location);
-    wx.navigateTo({
-      url: '/pages/address/address?location=' + location,
-    })
+    this.moveToLocation();
   },
+
+  //移动选点
+  moveToLocation: function () {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        wx.setStorage({
+          key: 'map_location',
+          data: res,
+        })
+      }
+    });
+  },
+
 
   /**
    * 对话框确认

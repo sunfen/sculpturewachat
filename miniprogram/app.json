@@ -13,8 +13,6 @@
     "pages/importor/importor",
     "pages/detail/detail",
     "pages/book/book",
-    "pages/address/searchMapLocation/searchMapLocation",
-    "pages/address/address",
     "pages/addWages/addWages",
     "pages/addProject/addProject",
     "pages/addLog/addLog",
