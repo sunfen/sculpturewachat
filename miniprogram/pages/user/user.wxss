@@ -13,23 +13,32 @@
 .top {
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
+  justify-content:start;
   height: 200rpx;
 }
 
 .top-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-left: 50rpx;
+}
+
+.top-image image{
   width: 100rpx;
   height: 100rpx;
-  margin: 20rpx 0 20rpx 20rpx;
 }
+
+
 
 .top-text {
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
-  margin: 40rpx 50% 50rpx 0rpx;
+  justify-content:center;
+  text-align: center;
   font-size: 32rpx;
-  font-weight: 400;
+  padding-left: 50rpx;
 }
 
 

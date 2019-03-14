@@ -5,7 +5,7 @@
 
   <view class="top" wx:if="{{userInfo.nickName}}">
     <view class="top-image">
-      <image class="top-image" src='{{userInfo.avatarUrl}}'  data-src='{{userInfo.avatarUrl}}' bindtap='previewImage'></image>
+      <image src='{{userInfo.avatarUrl}}'  data-src='{{userInfo.avatarUrl}}' bindtap='previewImage'></image>
     </view>
     <view class="top-text">
       <text>{{userInfo.nickName}}</text>
@@ -15,7 +15,7 @@
 
   <view wx:else>
     <view class="top-image">
-      <image class="top-image" src='/images/user-unlogin.png'></image>
+      <image src='/images/user-unlogin.png'></image>
     </view>
     <view>
       <button class="button-login"  type='primary' size='mini'  open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" lang="zh_CN" >

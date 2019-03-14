@@ -334,7 +334,7 @@ Page({
     var that = this;
     wx.request({
       header: header,
-      url: getApp().globalData.urlPath + '/project/search/list',
+      url: getApp().globalData.urlPath + '/project/search/simple',
       success(res) {
         if (res.data.length > 0) {
           that.setData({

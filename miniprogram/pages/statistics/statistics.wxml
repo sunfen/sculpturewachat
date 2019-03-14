@@ -42,9 +42,9 @@
               </view>
               
               <view  class="table-item-bottom">
-                <text wx:if="{{item.startTime}}">始：{{item.startTime}}</text>
+                <text wx:if="{{item.startTime}}" decode='true'>始：{{item.startTime}}&nbsp;&nbsp;</text>
                 <text style="color:red;" wx:else="{{item.startTime}}">未开始</text>
-                <text wx:if="{{item.endTime}}">完：{{item.endTime}}</text>
+                <text wx:if="{{item.endTime}}" decode='true'>&nbsp;&nbsp;完：{{item.endTime}}</text>
               </view>
              
           </view>

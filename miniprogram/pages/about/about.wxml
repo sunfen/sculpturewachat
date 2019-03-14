@@ -7,13 +7,13 @@
   <view><text>版本1.0.0</text>  </view>
   <view class="content">
     <text decode='true'>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;雕塑记是一款灵活实用型的记录小程序。
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;雕塑记是一款灵活实用型的记项目、工资相关的小程序。
     </text>
     <text decode='true'>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;雕塑记可以记录每日的工作考勤以及项目的工资计算和结算情况。项目负责人和项目为单独显示，可自主选择。
     </text>
     <text decode='true'>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商务合作、问题咨询、意见反馈等问题，请及时联系我们
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商务合作、问题咨询、意见反馈等问题，欢迎及时联系我们
     </text>
   </view>
 

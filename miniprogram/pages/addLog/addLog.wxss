@@ -45,7 +45,7 @@
   flex-direction: column;
   justify-content:space-around;
   text-align: left;
-  padding-top: 10rpx;
+  padding: 10rpx;
 }
 
 .commodity-button-content icon{
@@ -92,14 +92,16 @@
   border-top: 1rpx solid rgb(224, 223, 223);
 }
 
-.picker{
-  margin: 10rpx 10rpx 10rpx 10rpx;
-  height: 50rpx;
+picker{
+  width: 50%;
 }
 
-.picker text {
-  font-weight: 600;
-  font-size: 35rpx;
+
+.table-item-top text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25rpx;
 }
 
 input{
@@ -121,10 +123,15 @@ input{
   justify-content:space-between;
   align-items:center;
   border-top: 1rpx solid #b9b7b7c5;
+  padding: 10rpx;
 }
 
 .row-right-type{
-  color: red;
+  font-size: 30rpx;
+}
+
+.row-right-type text{
+  color: rgb(184, 3, 3);
   font-weight: 600;
   margin-left: 30rpx;
 }
@@ -138,4 +145,5 @@ input{
   flex-direction: row-reverse;
   justify-content:space-between;
   align-items:right;
+  padding: 5rpx;
 }

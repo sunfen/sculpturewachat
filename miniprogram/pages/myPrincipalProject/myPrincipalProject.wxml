@@ -16,7 +16,11 @@
 
      <view class="table-body-row" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
         <view class="ellipsis">{{id+1}}.{{item.name}}</view>
-        <view class="ellipsis"><text wx:if="{{item.startTime}}">{{item.startTime}} - {{item.endTime}}</text><text wx:else style='color:red'>未开始</text></view>
+        <view class="table-item-center">
+          <text wx:if="{{item.startTime}}"> {{item.startTime}}</text>
+          <text wx:if="{{item.endTime}}"> {{item.endTime}}</text>
+          <text wx:else style='color:red'>未开始</text>
+        </view>
         <view class="ellipsis">{{item.address}}</view>
     </view>
 

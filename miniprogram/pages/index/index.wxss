@@ -85,18 +85,12 @@
 
 .note-column-wages{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   margin-top: 30rpx;
   color: #D84339;
   font-weight: 600;
 }
-
-
-progress{
-  width: 60%;
-}
-
 
 
 .top-center {
@@ -181,6 +175,8 @@ progress{
   border-radius: 10rpx;
 }
 
+
+
 .log-detail {
   display:flex;
   margin: 10rpx 0 30rpx 0;
@@ -199,8 +195,19 @@ progress{
   font-weight: 600;
 }
 
+.log-detail-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-right: 15rpx;
+}
+
 .log-detail-circle {
-  margin: 55rpx 15rpx 0 15rpx;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   font-size: 25rpx;
   color: #fff;
   width: 30rpx;
@@ -211,48 +218,66 @@ progress{
 
 
 
+.touch-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+
+
 .log-detail-detail {
   display: flex;
   flex-direction: row;
-  justify-content:start;
+  justify-content:space-between;
   background: rgb(235, 233, 233);
-  height: 90rpx;
   width: 100%;
   border-radius: 15rpx;
   text-align: center;
-  line-height:90rpx;
+  padding: 10rpx;
 }
 
 .log-detail-detail-status {
-  font-size: 25rpx;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 15rpx;
   color:#fff;
-  font-weight: 400;
+  font-weight: 600;
   width: 60rpx;
   height: 60rpx;
   border-radius: 55rpx;
-  background-color: rgba(165, 166, 167, 0.596);
-  margin: 10rpx 0 0 10rpx; 
   line-height:70rpx;
 }
 
 
-
-
-
-/* 滑动删除 */
-.touch-item {
-  font-size: 14px;
+.log-detail-detail-remark{
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 20rpx;
+  width: 50%;
+  white-space: normal;
+  text-overflow: ellipsis;
   overflow: hidden;
-  line-height: 22px;
-  margin-right:0;
 }
 
 
-
+.log-detail-detail-hour{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 20rpx;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
 
 /* 弹出框 */
@@ -330,7 +355,6 @@ progress{
 }
 
 .deletedProjectBtn{
-  /* width: 40%; */
   display: flex;
   flex-direction:column;
   justify-content: center;
