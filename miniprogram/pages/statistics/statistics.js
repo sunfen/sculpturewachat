@@ -138,6 +138,9 @@ Page({
   },
   onLoad: function () {
     var that = this;
+  },
+  onShow: function () {
+    var that = this;
     that.getpage();
   },
 

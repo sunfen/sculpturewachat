@@ -253,7 +253,10 @@ Page({
               that.setData({ isLogin: true });
               if (res.data.code == "200") {
                 //从数据库获取用户信息
-                getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
+                getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t.session;
+                getApp().globalData.openid = res.data.t.openid;
+                getApp().globalData.userInfo.avatarUrl = res.data.t.avatarUrl;
+                getApp().globalData.userInfo.nickName = res.data.t.name;
                 that.init();
               } else {
                 common.loginFail();

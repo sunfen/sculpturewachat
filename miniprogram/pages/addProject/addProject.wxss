@@ -41,10 +41,11 @@
 .btn-sure {
   width: 400rpx;
   font-size: 30rpx;  
-  background-color:  rgba(113, 114, 114, 0.89);
+  background-color:  rgba(10, 190, 55, 0.89);
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+  color: #fff;
 }
 
 

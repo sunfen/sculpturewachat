@@ -15,8 +15,8 @@ Page({
   data: {
     //用户个人信息
     userInfo: {
-      avatarUrl: "",//用户头像
-      nickName: "",//用户昵称
+      avatarUrl: getApp().globalData.userInfo.avatarUrl,//用户头像
+      nickName: getApp().globalData.userInfo.nickName,//用户昵称
     },
     count:{}
   },
@@ -109,15 +109,21 @@ Page({
           if (res.code) {
             wx.request({
               header: header,
-              url: getApp().globalData.urlPath + 'login/session/' + res.code,
-              method: 'GET',
+              url: getApp().globalData.urlPath + 'login',
+              method: 'POST',
               header: header,
+              data:{
+                username: e.detail.userInfo.nickName,
+                avatarUrl: e.detail.userInfo.avatarUrl,
+                openid: getApp().globalData.openid,
+                password: getApp().globalData.openid
+              },
               success: function (res) {
                 //从数据库获取用户信息
                 that.setData({ isLogin: true });
                 if (res.data.code == "200") {
                   //从数据库获取用户信息
-                  getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t;
+                  getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.t.session;
                   getApp().globalData.userInfo = e.detail.userInfo;
                   var avatarUrl = 'userInfo.avatarUrl';
                   var nickName = 'userInfo.nickName';

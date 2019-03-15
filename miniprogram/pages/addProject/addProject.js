@@ -216,9 +216,7 @@ Page({
             icon: 'success',
             success(res) {
               setTimeout(function () {
-                wx.redirectTo({
-                  url: '/pages/index/index',
-                })
+                that.goback();
               }, 1000)
             }
           })
