@@ -1,7 +1,6 @@
 {
   "cloud": true,
   "pages": [
-
     "pages/index/index",
     "pages/user/user",
     "pages/statistics/statistics",
@@ -18,7 +17,7 @@
     "pages/addLog/addLog",
     "pages/accountWages/accountWages",
     "pages/about/about"
-    ],
+  ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
@@ -31,5 +30,6 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于项目位置"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

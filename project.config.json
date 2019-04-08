@@ -12,6 +12,8 @@
 	"appid": "wx39dc7970f2861ede",
 	"projectname": "%E8%AE%B0%E5%B7%A5%E8%AE%B0%E5%B7%A5%E8%B5%84",
 	"libVersion": "2.6.1",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
