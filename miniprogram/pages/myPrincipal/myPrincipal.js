@@ -1,12 +1,17 @@
 // pages/index/addProject.js
 const app = getApp()
-
+var common = require('/../../pages/common/common.js');
 Page({
   /** 
    * 页面的初始据 
    */
   data: {
   },
+
+  onShow:function(){
+    common.checkLogin();
+  },
+
 
   /**
    * 选择一个

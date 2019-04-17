@@ -21,45 +21,42 @@ Page({
     var that = this;
     var project = JSON.parse(options.project);
     that.setData({ project: project, title: project.name });
+    initCalendar();
+    common.checkLogin();
+    setTimeout(function () {
 
-    initCalendar({
-      defaultDay: '', // 初始化后是否默认选中指定日期
-      noDefault: false, // 初始化后是否自动选中当天日期，优先级高于defaultDay配置，两者请勿一起配置
-      afterTapDay: (currentSelect, allSelectedDays) => { },
- 
-      whenChangeMonth: (current, next) => {
-        clearTodoLabels();
-        that.getLogRecord(next.year, next.month);
-      },
-     
-      onTapDay(currentSelect, event) {
+      initCalendar({
+        defaultDay: '', // 初始化后是否默认选中指定日期
+        noDefault: false, // 初始化后是否自动选中当天日期，优先级高于defaultDay配置，两者请勿一起配置
+        afterTapDay: (currentSelect, allSelectedDays) => { },
+  
+        whenChangeMonth: (current, next) => {
+          clearTodoLabels();
+          that.getLogRecord(next.year, next.month);
+        },
+      
+        onTapDay(currentSelect, event) {
 
-        jump(currentSelect.year, currentSelect.month, currentSelect.day);
+          jump(currentSelect.year, currentSelect.month, currentSelect.day);
 
-        var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
-        var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
-        var date = currentSelect.year + "-" + month + "-" + day;
+          var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
+          var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
+          var date = currentSelect.year + "-" + month + "-" + day;
 
-        for (var i in that.data.records) {
-          if (that.data.records[i].time == date) {
-            var record = that.data.records[i];
-            that.setData({ record: that.data.records[i] });
+          for (var i in that.data.records) {
+            if (that.data.records[i].time == date) {
+              var record = that.data.records[i];
+              that.setData({ record: that.data.records[i] });
+            }
           }
-        }
-        that.showModal();
-      },
-
-
-      /**
-       * 日历初次渲染完成后触发事件，如设置事件标记
-       * @param { object } ctx 当前页面
-       */
-      afterCalendarRender(ctx) { },
-
-    });
-    jump();
-    var selectDate = getSelectedDay();
-    that.getLogRecord(selectDate[0].year, selectDate[0].month);
+          that.showModal();
+        },
+      });
+      
+      jump();
+      var selectDate = getSelectedDay();
+      that.getLogRecord(selectDate[0].year, selectDate[0].month);
+    }, 1500)
   },
 
 

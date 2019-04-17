@@ -10,6 +10,7 @@ Page({
   data: {
     methods:["银行卡", "微信", "支付宝"],
     methodIndex: 0,
+    projectIndex: 0,
     record:{
       id:"",
       projectId:'',
@@ -26,37 +27,53 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    if (options.project != undefined && options.project != null) {
-      let project = JSON.parse(options.project);
-      var name = "record.projectId";
-      that.setData({
-        project: project,
-        [name]: project.id
-      })
-      if (options.record != undefined && options.record != null){
-        let record = JSON.parse(options.record);
+    common.checkLogin();
+    setTimeout(function(){
+
+      if (options.project != undefined && options.project != null) {
+        let project = JSON.parse(options.project);
+        var name = "record.projectId";
         that.setData({
-          record: record
+          project: project,
+          [name]: project.id
         })
+        if (options.record != undefined && options.record != null){
+            let record = JSON.parse(options.record);
+            that.setData({ record: record })
+        }
       }
-    }
+      if (!that.data.record.projectId || that.data.record.projectId == ""){
+        that.getProjects();
+      }
+
+    }, 1000)
   },
+
+
+
+  /**
+   * 获取项目
+   */
+  getProjects() {
+    var that = this;
+    wx.request({
+      header: header,
+      url: getApp().globalData.urlPath + '/project/search/simple',
+      success(res) {
+        if (res.data.length > 0) {
+          that.setData({
+            projects: res.data
+          });
+        }
+      }
+    })
+  },
+
   goback() {
     wx.navigateBack({ delta: 1 })
   },
-  /**
-   * 弹出框蒙层截断touchmove事件
-   */
-  preventTouchMove: function () {
-  },
 
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
 
   //添加工资
   addWages() {
@@ -84,6 +101,16 @@ Page({
     })
   },
 
+
+  changeProject: function(e){
+    var index = e.detail.value;
+    var name = "record.projectId"
+    if(index){
+      this.setData({
+        [name]: index
+      })
+    }
+  },
 
   /**
    * 输入框输入事件

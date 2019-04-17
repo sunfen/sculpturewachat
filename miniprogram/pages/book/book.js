@@ -10,7 +10,11 @@ Page({
   data: {
   },
 
+  onShow: function(){
+    common.checkLogin();
+  },
 
+  
   goback() {
     wx.navigateBack({ delta: 1 })
   },

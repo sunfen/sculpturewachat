@@ -4,14 +4,14 @@
 
   <!-- 便利贴开始 -->
   <view class="note">
-    <view class="note-content">
+    <view class="note-content" wx:if="{{project.id}}" >
       <!-- 添加项目人 -->
-      <view class="note-column-add">
-        <button bindtap="addProject">新增项目</button>
+      <view class="note-title">
+        <text>最新项目</text>
       </view>
 
-      <view wx:if="{{project.id}}" class="note-content-detail"  bindtap='viewdetail'>
-
+      <view class="note-content-detail"  bindtap='viewdetail'>
+        
         <view class="note-column-name">
           <view class="note-column-name-name">{{project.name}}</view>
           <view>{{project.name}}</view>
@@ -22,7 +22,7 @@
           <text wx:if="{{project.startTime}}">{{project.startTime}}<text wx:if="{{project.endTime}}"> —— {{project.endTime}}</text></text>
           <text wx:else="{{project.startTime}}">未开始</text>
           
-          <text>每天均收入{{project.dailyWages}}元</text>
+          <text>每天均收入<text style="color:rgb(235, 96, 42);font-weight:600">{{project.dailyWages}}</text>元</text>
         </view>
         
 
@@ -33,8 +33,8 @@
         
       </view>
     
-      <view wx:else="{{project.id}}"  class="note-content-detail">暂无</view>
     </view>
+    <view wx:else="{{project.id}}"  class="note-content-detail">暂无</view>
   </view>
 <!-- 便利贴结束 -->
 
@@ -49,100 +49,87 @@
   
     <view class="top-one">
       <text class="top-one-top">{{workDays}}</text>
-      <text>出勤天数</text>
+      <text>本月出勤天数</text>
     </view>
 
     <view class="top-one">
       <text class="top-one-top">{{extraDays}}</text>
-      <text>加班天数</text>
+      <text>本月加班天数</text>
     </view>
 
     <view class="top-one">
       <text class="top-one-top">{{leaveDays}}</text>
-      <text>缺勤天数</text>
+      <text>本月缺勤天数</text>
     </view>
   
   </view>
 
 <!-- top结束 -->
 
-
-
-<!-- 三种操作功能开始 -->
-  <view class="functions">
-    <view class="note-column-function-circle" bindtap="viewStatistics">
-      <button class="defalut_btn">
-        <icon class="iconfont icon-statistics"></icon>
+<view class="blank-space"></view>
+   <!-- 功能 -->
+<view class="function">
+    <view class="function-sign">
+      <button class="img-plus-style"  bindtap="addOrUpdateLog">
+        <icon class="iconfont icon-sign"></icon>
       </button>
-      <text>统计</text>
     </view>
 
-    <view class="note-column-function-circle" bindtap='addOrUpdateLog'>
-      <button class="defalut_btn" >
-        <icon class="iconfont icon-edit-account"></icon>
-      </button>
-      <text>每日一记</text>
-    </view>
-
-    <!-- <view class="note-column-function-circle">
-      <button class="defalut_btn" bindtap='bindViewMy'>
-        <icon class="iconfont icon-record"></icon>
-      </button>
-    </view> -->
-
-  </view>
-<!-- 三种操作功能结束 -->
-
-
-<!-- 空白条 -->
-  <view class="blank-space">
-  </view>
-<!-- 空白条 -->
-
-<view class="log">
-  
-  <view class="log-title">
-    <view class="log-title-circle"><text decode='true'>&nbsp;&nbsp;</text></view>
-    <text decode='true'>&nbsp;每日一记</text>
-  </view>
-
-
-  <!-- 记录开始 -->
-  <view wx:if="{{results.length > 0 }}">
-    <!-- 一条记录开始 -->
-    <view class="log-detail" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id">
-      <!-- 日期 -->
-      <view class="log-date">
-        <text class="log-date-time">{{item.time}}</text>
-        <text>{{item.onMonday}}</text>
-      </view>
-
-      <!-- 圆圈 -->
-      <view class="log-detail-center">
-        <view class="log-detail-circle"><text wx:if="{{today == item.time}}">今</text></view>
-      </view>
-
-      <!-- 详情 -->
-      <view class="touch-item" data-index="{{id}}" bindtap='editLog'>
-       <!-- -->
-        <view class="log-detail-detail" >
-          <view class="log-detail-center">
-            <text class="log-detail-detail-status" style="background:{{item.id ? 'rgb(75, 194, 75)' : '#EE7600'}};" >{{item.id ? '已打卡' : '未打卡'}}</text>
-          </view>
-          <text class="log-detail-detail-remark">{{item.remark ? item.remark : ''}}</text>
-          <text class="log-detail-detail-hour">{{item.totalHour ? item.totalHour : '0'}}小时</text>
+    <!-- 打卡记录 -->
+    <view class="function-remind"  bindtap='addOrUpdateLog'>
+      <view>
+        <view class="function-remind-icon">
+            <icon class="iconfont icon-edit-account"></icon>
         </view>
+      </view>
+      <view class="function-remind-right">
+        <text>打卡记录</text>
+        <view  class="function-help-right ">
+          <icon class="iconfont icon-back-right"></icon>
+        </view>
+      </view>       
+    </view>  
 
+    
+    <!-- 结工资 -->
+    <view class="function-remind" bindtap='addWage'>
+      <view>
+        <view class="function-remind-icon">
+            <icon class="iconfont icon-wages"></icon>
+        </view>
+      </view>
+      <view class="function-remind-right">
+        <text>结工资</text>
+        <view  class="function-help-right">
+            <icon class="iconfont icon-back-right"></icon>   
+        </view>
       </view>
     </view>
-    <!-- 一条记录结束 -->
-  </view>
-   <!-- 记录结束 -->
- 
+
+    <!-- 统计 -->
+    <view class="function-remind" bindtap='viewStatistics'>
+      <view>
+        <view class="function-remind-icon">
+            <icon class="iconfont icon-statistics"></icon>
+        </view>
+      </view>
+      <view class="function-remind-right">
+        <text>统计</text>
+        <view  class="function-help-right">
+            <icon class="iconfont icon-back-right"></icon>
+        </view>
+      </view>
+    </view>
+
+    <button bindtap="addProject" type="primary">新增项目</button>
   </view>
 
-  <view class="button-space"></view>
+
+
 </scroll-view>
+
+
+
 
 
 <!-- 弹出框开始 -->
@@ -232,4 +219,4 @@
 
   </view>
 <!-- 弹出框结束 -->
-<component-footernav current="0" wx:if="{{isLogin}}"></component-footernav>  
+<component-footernav current="0"></component-footernav>  

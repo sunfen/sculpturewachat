@@ -1,10 +1,6 @@
 //index.js
 const app = getApp()
-
-
 var common = require('/../../pages/common/common.js');
-
-
 var header = app.globalData.header;
 
 
@@ -30,7 +26,10 @@ Page({
 
   onShow(){
     var that = this;
-    that.init();
+    common.checkLogin();
+    setTimeout(function () {
+      that.init();
+    }, 1500)
   },
 
   about:function(){

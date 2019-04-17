@@ -17,12 +17,36 @@ Page({
     }
   },
   
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-      var that = this;
-      if(options.id != undefined && options.id != null){
+ 
+  goback() {
+    wx.navigateBack({ delta: 1 })
+  },
+
+  onShow(options){
+    var that = this;
+    common.checkLogin();
+    setTimeout(function () {
+      wx.getStorage({
+        key: 'map_location',
+        success: function (res) {
+          wx.removeStorage({
+            key: 'map_location'
+          })
+          that.setData({ address: res.data.address, ["project.address"]: res.data.address, location : res.data})
+        }
+      })
+
+      wx.getStorage({
+        key: 'project_principal',
+        success: function (res) {
+          wx.removeStorage({
+            key: 'project_principal'
+          })
+          that.setData({['project.principal']: res.data})
+        }
+      })
+
+      if (options.id != undefined && options.id != null) {
         wx.request({
           header: header,
           url: getApp().globalData.urlPath + 'project/' + options.id,
@@ -32,7 +56,7 @@ Page({
               wx.redirectTo({
                 url: '/pages/index/index',
               })
-            }else{
+            } else {
               that.setData({
                 project: res.data,
                 id: res.data.id,
@@ -45,7 +69,7 @@ Page({
         })
       } else if (options.project != undefined && options.project != null) {
         let project = JSON.parse(options.project);
-        that.setData({ 
+        that.setData({
           project: project,
           id: project.id,
           name: project.name,
@@ -53,34 +77,8 @@ Page({
           dailyWages: project.dailyWages,
         });
       }
-  },
-  
-  goback() {
-    wx.navigateBack({ delta: 1 })
-  },
 
-  onShow(){
-    var that = this;
-
-    wx.getStorage({
-      key: 'map_location',
-      success: function (res) {
-        wx.removeStorage({
-          key: 'map_location'
-        })
-        that.setData({ address: res.data.address, ["project.address"]: res.data.address, location : res.data})
-      }
-    })
-
-    wx.getStorage({
-      key: 'project_principal',
-      success: function (res) {
-        wx.removeStorage({
-          key: 'project_principal'
-        })
-        that.setData({['project.principal']: res.data})
-      }
-    })
+    }, 1500)
   },
 
   /**

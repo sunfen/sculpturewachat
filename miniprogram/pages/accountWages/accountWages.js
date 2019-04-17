@@ -29,28 +29,32 @@ Page({
   onShow(){
     var that = this;
     var project = that.data.project;
-    wx.request({
-      header: header,
-      url: getApp().globalData.urlPath + 'project/' + project.id,
-      success(res) {
-        if (res.data) {
-          that.setData({
-            project: res.data
-          })
+    common.checkLogin();
+    setTimeout(function () {
+
+      wx.request({
+        header: header,
+        url: getApp().globalData.urlPath + 'project/' + project.id,
+        success(res) {
+          if (res.data) {
+            that.setData({
+              project: res.data
+            })
+          }
         }
-      }
-    })
-    wx.request({
-      header: header,
-      url: getApp().globalData.urlPath + 'wagesrecord/search/' + project.id,
-      success(res) {
-        if (res.data) {
-          that.setData({
-            results: res.data
-          })
+      })
+      wx.request({
+        header: header,
+        url: getApp().globalData.urlPath + 'wagesrecord/search/' + project.id,
+        success(res) {
+          if (res.data) {
+            that.setData({
+              results: res.data
+            })
+          }
         }
-      }
-    })
+      })
+    }, 1500)
   },
 
   /**

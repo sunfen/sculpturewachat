@@ -23,8 +23,13 @@ Page({
   },
   onLoad(options) {
     var that = this;
-    that.getpageByProject(0);
+    common.checkLogin();
+    setTimeout(function () {
+      that.getpageByProject(0);
+    }, 1500)
   },
+
+
   goback() {
     wx.redirectTo({
       url: '/pages/user/user',

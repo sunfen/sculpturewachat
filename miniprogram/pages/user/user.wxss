@@ -76,50 +76,6 @@
 
 
 
-.function {
-  display: flex;
-  flex-direction: column;
-  justify-content:space-around;
-  background: #fffefe;
-  width: 100%;
-  font-weight: 400;
-  font-size: 32rpx;
-}
-
-.function-remind {
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-start;
-  margin-left: 60rpx;
-}
-
-.function-remind-right{
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-start;
-  align-items:center;
-  margin-left: 40rpx;
-  width: 100%;
-  border-bottom: 1rpx solid #b9b7b7c5;
-}
-
-.function-remind-right-noline{
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-start;
-  align-items:center;
-  margin-left: 40rpx;
-  width: 100%;
-}
-
-.function-help-right {
-  margin-left: 70%;
-}
-
-.function-remind-import {
-  margin-left: 45%;
-}
-
 .function-remind-switch {
   margin-left: 60%;
 }

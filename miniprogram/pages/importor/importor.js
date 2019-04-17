@@ -26,24 +26,24 @@ Page({
       url: '/pages/user/user',
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that = this;
-  },
+
 
   onShow(){
     var that = this;
-    wx.getStorage({
-      key: 'map_location',
-      success: function (res) {
-        wx.removeStorage({
-          key: 'map_location'
-        })
-        that.setData({ address: res.data.address, ["project.address"]: res.data.address, location: res.data })
-      }
-    })
+    common.checkLogin();
+    setTimeout(function () {
+ 
+      wx.getStorage({
+        key: 'map_location',
+        success: function (res) {
+          wx.removeStorage({
+            key: 'map_location'
+          })
+          that.setData({ address: res.data.address, ["project.address"]: res.data.address, location: res.data })
+        }
+        }) 
+      
+    }, 1500)
 
     wx.getStorage({
       key: 'project_principal',

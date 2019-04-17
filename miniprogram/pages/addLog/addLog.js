@@ -61,94 +61,82 @@ Page({
   
   onLoad(options) {
     var that = this;
-    initCalendar({
-      /**
-       * 初始化日历时指定默认选中日期，如：'2018-3-6' 或 '2018-03-06'
-       * 注意：若想初始化时不默认选中当天，则将该值配置为除 undefined 以外的其他非值即可，如：空字符串, 0 ,false等。
-      */
-      defaultDay: '', // 初始化后是否默认选中指定日期
-      noDefault: false, // 初始化后是否自动选中当天日期，优先级高于defaultDay配置，两者请勿一起配置
-      /**
-       * 选择日期后执行的事件
-       * @param { object } currentSelect 当前点击的日期
-       * @param { array } allSelectedDays 选择的所有日期（当mulit为true时，才有allSelectedDays参数）
-       */
-      afterTapDay: (currentSelect, allSelectedDays) => {},
-      /**
-       * 当改变月份时触发
-       * @param { object } current 当前年月
-       * @param { object } next 切换后的年月
-       */
-      whenChangeMonth: (current, next) => {
-        clearTodoLabels();
-        that.getLogRecord(next.year, next.month);
-       },
-      /**
-       * 日期点击事件（此事件会完全接管点击事件）
-       * @param { object } currentSelect 当前点击的日期
-       * @param { object } event 日期点击事件对象
-       */
-      onTapDay(currentSelect, event) {
-        
-        jump(currentSelect.year, currentSelect.month, currentSelect.day);
-        
-        var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
-        var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
-        var date = currentSelect.year + "-" + month + "-" + day;
-        
-        var isExit = false;
+    common.checkLogin();
+    initCalendar()
+    setTimeout(function () {
+        initCalendar({
 
-        for(var i in that.data.records){
-          if (that.data.records[i].time == date && that.data.records[i].id != ""){
-            isExit = true;
-            var record = that.data.records[i];
-            that.setData({ record: that.data.records[i] });
-            that.setData({
-              ["record.morningProjectIndex"]: that.findProjectIndex(record.morningProjectId),
-              ["record.afternoonProjectIndex"]: that.findProjectIndex(record.afternoonProjectId),
-              ["record.eveningProjectIndex"]: that.findProjectIndex(record.eveningProjectId),
-            });
-          }
+          defaultDay: '', // 初始化后是否默认选中指定日期
+          noDefault: false, // 初始化后是否自动选中当天日期，优先级高于defaultDay配置，两者请勿一起配置
+
+          /**
+           * 当改变月份时触发
+           * @param { object } current 当前年月
+           * @param { object } next 切换后的年月
+           */
+          whenChangeMonth: (current, next) => {
+            clearTodoLabels();
+            that.getLogRecord(next.year, next.month);
+          },
+          /**
+           * 日期点击事件（此事件会完全接管点击事件）
+           * @param { object } currentSelect 当前点击的日期
+           * @param { object } event 日期点击事件对象
+           */
+          onTapDay(currentSelect, event) {
+            
+            jump(currentSelect.year, currentSelect.month, currentSelect.day);
+            
+            var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
+            var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
+            var date = currentSelect.year + "-" + month + "-" + day;
+            
+            var isExit = false;
+
+            for(var i in that.data.records){
+              if (that.data.records[i].time == date && that.data.records[i].id != ""){
+                isExit = true;
+                var record = that.data.records[i];
+                that.setData({ record: that.data.records[i] });
+                that.setData({
+                  ["record.morningProjectIndex"]: that.findProjectIndex(record.morningProjectId),
+                  ["record.afternoonProjectIndex"]: that.findProjectIndex(record.afternoonProjectId),
+                  ["record.eveningProjectIndex"]: that.findProjectIndex(record.eveningProjectId),
+                });
+              }
+            }
+            if(!isExit){
+
+              that.setData({
+                ["record.id"]: '', ["record.morningHour"]: 4,
+                ["record.afternoonHour"]: 4,  ["record.eveningHour"]: 0,
+                ["record.totalHour"]: '8', ["record.remark"]: '', ["record.time"]: date})
+              
+              if (that.data.projects.length > 0){
+                that.setData({
+                  ["record.morningProjectIndex"]: 0,
+                  ["record.morningProject"]: that.data.projects[0],
+                  ["record.morningProjectId"]: that.data.projects[0].id,
+                  ["record.afternoonProjectIndex"]: 0,
+                  ["record.afternoonProject"]: that.data.projects[0],
+                  ["record.afternoonProjectId"]: that.data.projects[0].id,
+                  ["record.eveningProjectIndex"]: 0,
+                  ["record.eveningProject"]: that.data.projects[0],
+                  ["record.eveningProjectId"]: that.data.projects[0].id
+                });
+              }
+            }
+            that.showModal();
+          },
+        });
+        if (options.log){
+          var log = JSON.parse(options.log);
+          jump(log.year, log.month, log.day);
+        }else{
+
+          jump();
         }
-        if(!isExit){
-
-          that.setData({
-            ["record.id"]: '', ["record.morningHour"]: 4,
-            ["record.afternoonHour"]: 4,  ["record.eveningHour"]: 0,
-            ["record.totalHour"]: '8', ["record.remark"]: '', ["record.time"]: date})
-          
-          if (that.data.projects.length > 0){
-            that.setData({
-              ["record.morningProjectIndex"]: 0,
-              ["record.morningProject"]: that.data.projects[0],
-              ["record.morningProjectId"]: that.data.projects[0].id,
-              ["record.afternoonProjectIndex"]: 0,
-              ["record.afternoonProject"]: that.data.projects[0],
-              ["record.afternoonProjectId"]: that.data.projects[0].id,
-              ["record.eveningProjectIndex"]: 0,
-              ["record.eveningProject"]: that.data.projects[0],
-              ["record.eveningProjectId"]: that.data.projects[0].id
-            });
-          }
-        }
-        that.showModal();
-      },
-
-
-      /**
-       * 日历初次渲染完成后触发事件，如设置事件标记
-       * @param { object } ctx 当前页面
-       */
-      afterCalendarRender(ctx) { },
-
-    });
-    if (options.log){
-      var log = JSON.parse(options.log);
-      jump(log.year, log.month, log.day);
-    }else{
-
-      jump();
-    }
+    }, 1500)
   },
   
   onShow(){

@@ -3,6 +3,29 @@
 
 <view class="container">
   <view class="content">
+    
+    <!-- 项目 -->
+    <view class="row" wx:if="{{projects}}">
+      <view>
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-record"></icon>
+        </button>
+      </view>
+      <view class="row-right">
+        <text>结算项目</text>
+        <text>{{projects[projectIndex].name}}</text>
+        <view class="row-right-icon">
+          <picker range="{{projects}}" range-key="name" value="{{projectIndex}}"  bindchange="changeProject">
+            <button class="defalut_btn top-button">
+              <icon class="iconfont icon-back-right"></icon>
+            </button>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+
+
     <!-- 添加日工资 -->
     <view class="row">
       <view>
@@ -46,7 +69,7 @@
     <view class="row">
       <view>
         <button class="defalut_btn top-button">
-          <icon class="iconfont icon-time"></icon>
+          <icon class="iconfont icon-type"></icon>
         </button>
       </view>
       <view class="row-right">
@@ -66,7 +89,7 @@
     <view class="row">
       <view>
         <button class="defalut_btn top-button">
-          <icon class="iconfont icon-wages"></icon>
+          <icon class="iconfont icon-keyboard"></icon>
         </button>
       </view>
       <view class="row-right"  bindtap="addRemark">

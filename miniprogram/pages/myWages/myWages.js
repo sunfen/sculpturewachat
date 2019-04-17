@@ -14,9 +14,13 @@ Page({
     results:[]
   },
 
-  onLoad(){
+  onShow(){
     var that = this;
-    that.getWages();
+    common.checkLogin();
+    setTimeout(function () {
+      
+      that.getWages();
+    }, 1500)
   },
   goback() {
     wx.redirectTo({

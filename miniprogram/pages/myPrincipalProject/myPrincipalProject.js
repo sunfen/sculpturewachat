@@ -30,9 +30,15 @@ Page({
   },
   onLoad(options){
     var that = this;
+    common.checkLogin();
+    
     var principal = JSON.parse(options.principal);
     that.setData({ principal: principal, title : principal.name});
-    that.getpageByPrincipal(0);
+    
+    setTimeout(function () {
+      
+      that.getpageByPrincipal(0);
+    }, 1500)
   },
 
   /**

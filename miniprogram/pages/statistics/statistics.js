@@ -136,12 +136,12 @@ Page({
   searchScrollLower() {
     this.getpage();
   },
-  onLoad: function () {
-    var that = this;
-  },
   onShow: function () {
     var that = this;
-    that.getpage();
+    common.checkLogin();
+    setTimeout(function () {
+      that.getpage();
+    }, 1500)
   },
 
   touchstart(e){

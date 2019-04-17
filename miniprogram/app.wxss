@@ -16,14 +16,13 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.eot');
-  src: url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.eot');
+  src: url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.svg#iconfont') format('svg');
 }
-
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;
@@ -45,7 +44,7 @@
 .icon-help:before {  content: "\e627";}/* 帮助 */
 .icon-back-right:before { content: "\e628";}/* 右返回 */
 .icon-delete:before {  content: "\e623";}/* 删除 */
-.icon-wages:before { content: "\e60d";}/* 工资 */
+.icon-wages:before { content: "\e723";}/* 工资 */
 .icon-time:before { content: "\e76d";}/* 时间 */
 .icon-address:before { content: "\e621";}/* 地点 */
 .icon-principal:before { content: "\e633";}/* 负责人 */
@@ -60,7 +59,7 @@
 .icon-point:before { content: "\e6a4";}/* 圆点 */
 .icon-import:before {  content: "\e60f";}/* 导入 */
 .icon-search:before {  content: "\e606";}/* 查询 */
-
+.icon-sign:before{ content: "\e607";}/*签到*/
 /* 清楚按钮的默认样式  */
 
 .defalut_btn {
@@ -191,4 +190,116 @@ picker{
   flex-direction: row;
   justify-content:space-between;
   width: 100%;
+}
+
+
+
+
+/* 弹出框 */
+/* 遮盖层样式 */
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgb(0, 0, 0);
+  z-index: 9000;
+  opacity: 0.7;
+}
+
+/* 容器样式 */
+.modalDlg{
+  width: 620rpx;
+  height: 600rpx;
+  position: fixed;
+  top: 25%;
+  z-index: 9999;
+  margin: 10rpx 50rpx 10rpx 50rpx;
+  background-color: #fff;
+  border-radius: 36rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+}
+
+.modalDlg-header{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+  border-bottom: 1rpx solid #b9b7b7c5;
+  margin: 10rpx 30rpx 20rpx 20rpx;
+  align-items: center;
+}
+
+.modalDlg-content{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+
+}
+
+.modalDlg-content-row{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:center;
+  margin-left: 40rpx;
+}
+
+.modalDlg-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  border-top: 1rpx solid #b9b7b7c5;
+  background: rgb(248, 172, 32);
+  border-bottom-left-radius:  36rpx;
+  border-bottom-right-radius:  36rpx;
+}
+
+
+
+
+.function {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  background: #fffefe;
+  width: 100%;
+  font-weight: 400;
+  font-size: 32rpx;
+}
+
+.function-remind {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  margin-left: 60rpx;
+}
+
+.function-remind-right{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:center;
+  margin-left: 40rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #b9b7b7c5;
+}
+
+.function-remind-right-noline{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:center;
+  margin-left: 40rpx;
+  width: 100%;
+}
+
+.function-help-right {
+  margin-left: 70%;
+}
+
+.function-remind-import {
+  margin-left: 45%;
 }
