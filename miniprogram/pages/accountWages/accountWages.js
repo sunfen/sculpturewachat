@@ -54,7 +54,7 @@ Page({
           }
         }
       })
-    }, 1500)
+    }, app.globalData.timeout)
   },
 
   /**

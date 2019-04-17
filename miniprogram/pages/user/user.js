@@ -29,7 +29,7 @@ Page({
     common.checkLogin();
     setTimeout(function () {
       that.init();
-    }, 1500)
+    }, app.globalData.timeout)
   },
 
   about:function(){

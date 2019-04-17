@@ -11,7 +11,8 @@ App({
       openid:'',
       userInfo: {},
       isLogin: false,
-      header: { 'Cookie': '' } 
+      header: { 'Cookie': '' },
+      timeout: 800
     }
     
     wx.getSystemInfo({

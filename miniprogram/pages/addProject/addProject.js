@@ -22,29 +22,24 @@ Page({
     wx.navigateBack({ delta: 1 })
   },
 
-  onShow(options){
+  onLoad(options){
     var that = this;
     common.checkLogin();
     setTimeout(function () {
-      wx.getStorage({
-        key: 'map_location',
-        success: function (res) {
-          wx.removeStorage({
-            key: 'map_location'
-          })
-          that.setData({ address: res.data.address, ["project.address"]: res.data.address, location : res.data})
-        }
-      })
-
-      wx.getStorage({
-        key: 'project_principal',
-        success: function (res) {
-          wx.removeStorage({
-            key: 'project_principal'
-          })
-          that.setData({['project.principal']: res.data})
-        }
-      })
+      
+      var mapLocation = wx.getStorageSync( 'map_location');
+      var projectPrincipal = wx.getStorageSync('project_principal');
+      
+      if (mapLocation){
+        that.setData({ address: mapLocation.address, ["project.address"]: mapLocation.address, location: mapLocation})
+        wx.removeStorageSync('map_location');
+      }
+      
+      if (projectPrincipal){
+        that.setData({ ['project.principal']: projectPrincipal})
+        wx.removeStorageSync('project_principal');
+      }
+      
 
       if (options.id != undefined && options.id != null) {
         wx.request({
@@ -78,7 +73,7 @@ Page({
         });
       }
 
-    }, 1500)
+    }, app.globalData.timeout)
   },
 
   /**

@@ -38,7 +38,7 @@ Page({
     setTimeout(function () {
       
       that.getpageByPrincipal(0);
-    }, 1500)
+    }, app.globalData.timeout)
   },
 
   /**

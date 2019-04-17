@@ -130,67 +130,26 @@ Page({
   onPullDownRefresh() {
     this.getpage();
   },
+
+
+  
   onReachBottom() {
     this.getpage();
   },
+
+
   searchScrollLower() {
     this.getpage();
   },
+
+
   onShow: function () {
     var that = this;
     common.checkLogin();
     setTimeout(function () {
       that.getpage();
-    }, 1500)
+    }, app.globalData.timeout)
   },
 
-  touchstart(e){
-    this.setData({ startTime: e.timeStamp });
-  },
-
-
-  touchmove(e) {
-    this.setData({ endTime: e.timeStamp });
-  },
-
-  handleLongPress(e) {
-    var that = this;
-    that.setData({ startTime: 0, endTime: 0 });
-    wx.showActionSheet({
-      itemList: ['结算', '编辑'],
-      success(res) {
-        if (res.tapIndex == 0) {
-          that.accountProject(e);
-        } else
-          if (res.tapIndex == 1) {
-            that.editProject(e);
-          }
-      }
-    })
-  },
-
-  /**
-   * 结算项目
-   */
-  accountProject: function (e) {
-    var that = this;
-    var project = JSON.stringify(that.data.results[e.currentTarget.dataset.index]);
-    wx.navigateTo({
-      url: "/pages/accountWages/accountWages?project=" + project,
-    })
-  },
-
-  /**
-   * 编辑项目
-   */
-  editProject: function(e){
-    var that = this;
-    wx.navigateTo({
-      url: '/pages/addProject/addProject?id=' + that.data.results[e.currentTarget.dataset.index].id
-    })
-  }
-
-
-
-  
+    
 })

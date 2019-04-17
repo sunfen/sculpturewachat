@@ -56,7 +56,7 @@ Page({
       jump();
       var selectDate = getSelectedDay();
       that.getLogRecord(selectDate[0].year, selectDate[0].month);
-    }, 1500)
+    }, app.globalData.timeout)
   },
 
 

@@ -7,8 +7,8 @@
  
       <!-- tab -->
       <view class="swiper-tab">
-          <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">按项目查看</view>
-    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">按人名查看</view>
+        <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">按项目查看</view>
+        <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">按人名查看</view>
       </view>
       
       <!-- 按项目查看 -->
@@ -22,7 +22,7 @@
         <!-- table body -->
         <scroll-view class="table-body">
          
-          <view class="table-item-column" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove" >
+          <view class="table-item-column" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" >
               
               <view class="table-item-top">
 

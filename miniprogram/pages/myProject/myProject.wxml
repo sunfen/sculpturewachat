@@ -10,7 +10,7 @@
         <!-- table body --> 
         <scroll-view class="table-body">
          
-          <view class="table-item-column" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='detail'>
+          <view class="table-item-column" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove">
             <view class="table-item-top">
               <view class="table-body-left">
                 <text>{{item.name}}</text>
@@ -22,9 +22,6 @@
               
               <view class="table-item-right">
                 <text>已结算：{{item.actualTotalWages}}元</text>
-              </view>
-              <view class="table-item-right" >
-                 <icon class="iconfont icon-back-right"></icon>
               </view>
             </view>
             

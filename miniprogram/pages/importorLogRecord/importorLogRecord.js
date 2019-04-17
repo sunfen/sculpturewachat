@@ -53,6 +53,7 @@ Page({
   onLoad(options) {
     var that = this;
     common.checkLogin();
+    initCalendar();
     setTimeout(function () {
 
       initCalendar({
@@ -99,7 +100,7 @@ Page({
         },
       });
 
-    }, 1500);
+    }, app.globalData.timeout);
 
     if (options.project) {
       var project = JSON.parse(options.project);

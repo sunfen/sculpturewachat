@@ -20,7 +20,7 @@ Page({
     setTimeout(function () {
       
       that.getWages();
-    }, 1500)
+    }, app.globalData.timeout)
   },
   goback() {
     wx.redirectTo({

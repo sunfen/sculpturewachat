@@ -46,7 +46,7 @@ Page({
         that.getProjects();
       }
 
-    }, 1000)
+    }, app.globalData.timeout)
   },
 
 

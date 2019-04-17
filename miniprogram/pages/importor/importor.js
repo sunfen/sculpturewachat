@@ -43,7 +43,7 @@ Page({
         }
         }) 
       
-    }, 1500)
+    }, app.globalData.timeout)
 
     wx.getStorage({
       key: 'project_principal',
