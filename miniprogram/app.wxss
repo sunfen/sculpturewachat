@@ -16,12 +16,12 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.eot');
-  src: url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_bh1yvq6sz1r.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_akeompd6ojm.eot');
+  src: url('//at.alicdn.com/t/font_1041080_akeompd6ojm.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -59,6 +59,8 @@
 .icon-point:before { content: "\e6a4";}/* 圆点 */
 .icon-import:before {  content: "\e60f";}/* 导入 */
 .icon-search:before {  content: "\e606";}/* 查询 */
+.icon-new:before{ content: "\e60c";}/*最新*/
+.icon-new1:before{ content: "\e614";}/*最新*/
 .icon-sign:before{ content: "\e607";}/*签到*/
 /* 清楚按钮的默认样式  */
 
@@ -104,7 +106,7 @@
   justify-content: space-around;
   color:rgb(62, 62, 155);
   font-size: 25rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
+  border-bottom: 2rpx solid rgb(175, 175, 175);
   padding: 9rpx;
 }
 
@@ -114,7 +116,7 @@
   justify-content: space-around;
   font-size: 22rpx;
   padding: 15rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
+  border-bottom: 2rpx solid rgb(175, 175, 175);
 }
 
 .table-item-column{
@@ -123,7 +125,7 @@
   justify-content: space-around;
   font-size: 22rpx;
   padding: 15rpx;
-  border-bottom: 1rpx solid rgb(175, 175, 175);
+  border-bottom: 2rpx solid rgb(175, 175, 175);
 }
 
 .table-item-column-noborder{
@@ -227,7 +229,7 @@ picker{
   display: flex;
   flex-direction: row;
   justify-content:flex-end;
-  border-bottom: 1rpx solid #b9b7b7c5;
+  border-bottom: 2rpx solid #b9b7b7c5;
   margin: 10rpx 30rpx 20rpx 20rpx;
   align-items: center;
 }
@@ -251,7 +253,7 @@ picker{
   display: flex;
   flex-direction: row;
   justify-content:space-around;
-  border-top: 1rpx solid #b9b7b7c5;
+  border-top: 2rpx solid #b9b7b7c5;
   background: rgb(248, 172, 32);
   border-bottom-left-radius:  36rpx;
   border-bottom-right-radius:  36rpx;
@@ -284,7 +286,7 @@ picker{
   align-items:center;
   margin-left: 40rpx;
   width: 100%;
-  border-bottom: 1rpx solid #b9b7b7c5;
+  border-bottom: 2rpx solid #b9b7b7c5;
 }
 
 .function-remind-right-noline{

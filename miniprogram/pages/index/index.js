@@ -88,6 +88,12 @@ Page({
     })
   },
 
+  detailProject(){
+    var that = this;
+    wx.navigateTo({
+      url: "/pages/detail/detail?projectId=" + that.data.project.id,
+    })
+  },
 
   /**
    * 新增项目详情页

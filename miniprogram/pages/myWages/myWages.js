@@ -11,6 +11,7 @@ Page({
   data: {
     date: new Date().getFullYear(),
     totalWages: 0,
+    totalExpectTotalWages: 0,
     results:[]
   },
 
@@ -43,7 +44,13 @@ Page({
       header: header,
       success: function (res) {
         if (res.statusCode == "200") {
-          that.setData({ results: res.data.results, totalWages: res.data.totalWages });
+          var totalExpectTotalWages = 0;
+          for (var i in res.data.results) {
+            var record = res.data.results[i];
+            totalExpectTotalWages += record.expectTotalWages ? record.expectTotalWages : 0;
+              
+          }
+          that.setData({ results: res.data.results, totalWages: res.data.totalWages, totalExpectTotalWages: totalExpectTotalWages });
 
         } else if (res.statusCode == "404") {
           common.loginFail();

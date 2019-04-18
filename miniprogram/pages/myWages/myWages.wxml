@@ -9,6 +9,7 @@
         <icon class="iconfont icon-pull-down"></icon>
     </picker>
     <view class="query-total">
+      应结 ￥{{totalExpectTotalWages ? totalExpectTotalWages : 0}}
       已结 ￥{{totalWages ? totalWages : 0}}
     </view>
   </view>

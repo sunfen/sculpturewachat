@@ -109,7 +109,7 @@
   flex-direction: row;
   justify-content:space-around;
   background: #fffefe;
-  border: 1rpx solid #b9b7b7c5;
+  border: 2rpx solid #b9b7b7c5;
   margin: 50rpx 60rpx 0 60rpx;
   height: 180rpx;
 }
