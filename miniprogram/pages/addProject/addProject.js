@@ -8,6 +8,7 @@ var util = require('../../util/util.js');
 
 Page({
   data: {
+    images:[],
     project:{
       id:"",
       principal:{id:'', name:'',phone:""},
@@ -83,7 +84,12 @@ Page({
   },
 
 
-
+  addImages(e){
+    common.submitFormId(e.detail.formId);
+    wx.navigateTo({
+      url: "/pages/addImage/addImage",
+    })
+  },
 
   
   // 关闭详情页

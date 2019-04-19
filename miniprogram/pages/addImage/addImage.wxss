@@ -1,0 +1,12 @@
+.icon-addimage{
+  font-size: 80rpx;
+}
+
+.image{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  word-wrap: break-word;
+  word-break: normal;
+  width: 100%;
+}

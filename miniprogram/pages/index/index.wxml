@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
-<scroll-view  class="container">
+<scroll-view>
 
   <!-- 便利贴开始 -->
   <view class="note">
@@ -131,6 +131,9 @@
     <button form-type='submit' type="primary" style='width:50%'>新增项目</button>
   </form>
 
+  <!-- 弹出框结束 -->
+<component-footernav current="0"></component-footernav>  
+
 </scroll-view>
 
  
@@ -236,5 +239,3 @@
     </view>
 
   </view>
-<!-- 弹出框结束 -->
-<component-footernav current="0"></component-footernav>  

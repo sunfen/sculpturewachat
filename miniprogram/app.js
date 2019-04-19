@@ -12,7 +12,8 @@ App({
       userInfo: {},
       isLogin: false,
       header: { 'Cookie': '' },
-      timeout: 800
+      timeout: 800,
+      sysWidth: wx.getSystemInfoSync().windowWidth,
     }
     
     wx.getSystemInfo({

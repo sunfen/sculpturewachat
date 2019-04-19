@@ -1,0 +1,14 @@
+<!--addProject.wxml-->
+<component-topnav inner-title="添加图片" is-show-back="true" bind:goback="goback"></component-topnav>
+
+<view class="container">
+    <view class="image">    
+      <image style="width:{{sysWidth / 3}}rpx;height:{{sysWidth / 3}}rpx" mode="scaleToFill" wx:for="{{images}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}"
+      src='{{item.path}}'  data-src='{{item.path}}' bindtap='previewImage'></image>
+    </view>
+    <form wx:if="{{images == 0}}" bindsubmit='addimage' report-submit='true'>
+        <button form-type='submit' class="defalut_btn">
+          <icon class="iconfont icon-addimage"></icon>
+        </button>
+    </form>
+</view>

@@ -16,12 +16,12 @@
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_akeompd6ojm.eot');
-  src: url('//at.alicdn.com/t/font_1041080_akeompd6ojm.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_akeompd6ojm.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_14rpha6smhn.eot');
+  src: url('//at.alicdn.com/t/font_1041080_14rpha6smhn.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -60,8 +60,9 @@
 .icon-import:before {  content: "\e60f";}/* 导入 */
 .icon-search:before {  content: "\e606";}/* 查询 */
 .icon-new:before{ content: "\e60c";}/*最新*/
-.icon-new1:before{ content: "\e614";}/*最新*/
 .icon-sign:before{ content: "\e607";}/*签到*/
+.icon-image:before{ content: "\e686";}/*图片*/
+.icon-addimage:before{ content: "\e608";}/*添加图片*/
 /* 清楚按钮的默认样式  */
 
 .defalut_btn {

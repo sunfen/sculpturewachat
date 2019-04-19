@@ -71,6 +71,22 @@
     </form>
 
 
+    <!-- 添加图片 -->
+    <form bindsubmit='addImages' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-image"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <text>图片</text>
+          <text>{{images.length}}张</text>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>
+          </view>
+        </button>
+      </view>
+    </form>
+
 
     <view class="btn">
       <form bindsubmit='sure' report-submit='true'>
