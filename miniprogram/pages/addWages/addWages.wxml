@@ -96,7 +96,7 @@
 
     <view class="btn">
       <form bindsubmit='sure' report-submit='true'>
-        <button class='btn-sure'form-type='submit'  bindtap="sure">保存</button>
+        <button class='btn-sure' form-type='submit' type="primary"  bindtap="sure">保存</button>
       </form> 
     </view>
      

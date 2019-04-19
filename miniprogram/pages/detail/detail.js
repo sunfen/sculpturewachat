@@ -17,6 +17,7 @@ Page({
     wx.navigateBack({ delta: 1 })
   },
 
+
   onLoad(options){
     var that = this;
     common.checkLogin();
@@ -26,6 +27,37 @@ Page({
 
         var project = JSON.parse(options.project);
         that.setData({ project: project, title: project.name });
+        initCalendar({
+          defaultDay: '', // 初始化后是否默认选中指定日期
+          noDefault: false, // 初始化后是否自动选中当天日期，优先级高于defaultDay配置，两者请勿一起配置
+          afterTapDay: (currentSelect, allSelectedDays) => { },
+
+          whenChangeMonth: (current, next) => {
+            clearTodoLabels();
+            that.getLogRecord(next.year, next.month);
+          },
+
+          onTapDay(currentSelect, event) {
+
+            jump(currentSelect.year, currentSelect.month, currentSelect.day);
+
+            var month = currentSelect.month < 10 ? "0" + currentSelect.month : currentSelect.month;
+            var day = currentSelect.day < 10 ? "0" + currentSelect.day : currentSelect.day;
+            var date = currentSelect.year + "-" + month + "-" + day;
+
+            for (var i in that.data.records) {
+              if (that.data.records[i].time == date) {
+                var record = that.data.records[i];
+                that.setData({ record: that.data.records[i] });
+              }
+            }
+            that.showModal();
+          },
+        });
+
+        jump();
+        var selectDate = getSelectedDay();
+        that.getLogRecord(selectDate[0].year, selectDate[0].month);
       } else if (options.projectId){
         wx.request({
           url: getApp().globalData.urlPath + "project/summary/" + options.projectId,
@@ -33,17 +65,16 @@ Page({
           success: function (res) {
             if (res.statusCode == "200") {
               that.setData({ project: res.data, title: res.data.name });
-              
               initCalendar({
                 defaultDay: '', // 初始化后是否默认选中指定日期
                 noDefault: false, // 初始化后是否自动选中当天日期，优先级高于defaultDay配置，两者请勿一起配置
                 afterTapDay: (currentSelect, allSelectedDays) => { },
-          
+
                 whenChangeMonth: (current, next) => {
                   clearTodoLabels();
                   that.getLogRecord(next.year, next.month);
                 },
-              
+
                 onTapDay(currentSelect, event) {
 
                   jump(currentSelect.year, currentSelect.month, currentSelect.day);
@@ -61,10 +92,10 @@ Page({
                   that.showModal();
                 },
               });
-      
-                jump();
-                var selectDate = getSelectedDay();
-                that.getLogRecord(selectDate[0].year, selectDate[0].month);
+
+              jump();
+              var selectDate = getSelectedDay();
+              that.getLogRecord(selectDate[0].year, selectDate[0].month);
             } else if (res.statusCode == "404") {
                 common.loginFail();
             } else if (res.statusCode == "500") {
@@ -80,6 +111,7 @@ Page({
       }
     }, app.globalData.timeout)
   },
+
 
 
   /**

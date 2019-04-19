@@ -21,7 +21,7 @@
     <text>已结</text>
   </view>
 
-  <scroll-view  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='detail'>
+  <scroll-view  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
     <view class="table-item-row">
       <view><icon class="iconfont icon-point"></icon> {{item.name}}</view>
       <view class="table-item-time" wx:if="{{item.startTime}}"><text>{{item.startTime}}</text><text>{{item.endTime ? item.endTime : ''}}</text></view>

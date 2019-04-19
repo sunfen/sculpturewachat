@@ -26,9 +26,13 @@ Page({
 
   onShow(){
     var that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
     common.checkLogin();
     setTimeout(function () {
       that.init();
+      wx.hideLoading()
     }, app.globalData.timeout)
   },
 

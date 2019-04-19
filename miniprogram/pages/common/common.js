@@ -48,6 +48,7 @@ function login() {
               getApp().globalData.userInfo.avatarUrl = res.data.t.avatarUrl;
               getApp().globalData.userInfo.nickName = res.data.t.name;
             }
+            
           }
         })
       }
