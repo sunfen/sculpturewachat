@@ -102,7 +102,8 @@ Page({
   /**
    * 新增
    */
-  add(){
+  add(e){
+    common.submitFormId(e.detail.formId);
     var that = this;
     var project = JSON.stringify(that.data.project);
     wx.navigateTo({

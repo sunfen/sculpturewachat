@@ -1,7 +1,7 @@
 // pages/index/addProject.js
 const app = getApp()
-
 var header = app.globalData.header;
+var common = require('/../../pages/common/common.js');
 
 Page({
   /** 

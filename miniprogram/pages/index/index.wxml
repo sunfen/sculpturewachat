@@ -9,30 +9,31 @@
       <view class="note-title">
         <icon  class="iconfont icon-new"></icon>
       </view>
-
-      <view class="note-content-detail"  bindtap='viewdetail'>
-        
-        <view class="note-column-name">
-          <view><text>名称：</text><text class="note-column-name-name">{{project.name}}</text></view>
-          <view>地点：{{project.address}}</view>
-        </view>
-
-        <!-- 项目时间 -->
-        <view class="note-column-date">
-          <text wx:if="{{project.startTime}}">工期：{{project.startTime}}<text wx:if="{{project.endTime}}"> — {{project.endTime}}</text></text>
-          <text wx:else="{{project.startTime}}">未开始</text>
+      
+        <view class="note-content-detail"  bindtap='viewdetail'>
           
-          <text>每天均收入<text style="color:rgb(235, 96, 42);font-weight:600">{{project.dailyWages}}</text>元</text>
-        </view>
-        
+          <view class="note-column-name">
+            <view><text>名称：</text><text class="note-column-name-name">{{project.name}}</text></view>
+            <view>地点：{{project.address}}</view>
+          </view>
+  
+          <!-- 项目时间 -->
+          <view class="note-column-date">
+            <text wx:if="{{project.startTime}}">工期：{{project.startTime}}<text wx:if="{{project.endTime}}"> — {{project.endTime}}</text></text>
+            <text wx:else="{{project.startTime}}">未开始</text>
+            
+            <text>每天均收入<text style="color:rgb(235, 96, 42);font-weight:600">{{project.dailyWages}}</text>元</text>
+          </view>
+          
 
-        <view class="note-column-wages">
-          <progress percent="{{project.actualTotalWages/project.expectTotalWages}}" color="#D84339" backgroundColor="#B5AEAD" border-radius="3"/> 
-          <text decode='true'>已结{{project.actualTotalWages}}元 共{{project.expectTotalWages}}元</text>
+          <view class="note-column-wages">
+            <progress percent="{{project.actualTotalWages/project.expectTotalWages}}" color="#D84339" backgroundColor="#B5AEAD" border-radius="3"/> 
+            <text decode='true'>已结{{project.actualTotalWages}}元 共{{project.expectTotalWages}}元</text>
+          </view>
+      
         </view>
         
-      </view>
-    
+          
     </view>
     <view wx:else="{{project.id}}"  class="note-content-detail">暂无</view>
   </view>
@@ -70,13 +71,16 @@
    <!-- 功能 -->
 <view class="function">
     <view class="function-sign">
-      <button class="img-plus-style"  bindtap="addOrUpdateLog">
+     <form bindsubmit='addOrUpdateLog' class="img-plus-style "  report-submit='true'>
+      <button form-type='submit'  class="defalut_btn">
         <icon class="iconfont icon-sign"></icon>
       </button>
+     </form>
     </view>
 
     <!-- 打卡记录 -->
-    <view class="function-remind"  bindtap='addOrUpdateLog'>
+    <form bindsubmit='addOrUpdateLog' report-submit='true'>
+    <view class="function-remind">
       <view>
         <view class="function-remind-icon">
             <icon class="iconfont icon-edit-account"></icon>
@@ -85,14 +89,17 @@
       <view class="function-remind-right">
         <text>打卡记录</text>
         <view  class="function-help-right ">
-          <icon class="iconfont icon-back-right"></icon>
+          <button form-type='submit'  class="defalut_btn">
+            <icon class="iconfont icon-back-right"></icon>
+          </button>  
         </view>
       </view>       
     </view>  
-
+    </form>
     
     <!-- 结工资 -->
-    <view class="function-remind" bindtap='addWage'>
+    <form bindsubmit='addWage' report-submit='true'>
+    <view class="function-remind">
       <view>
         <view class="function-remind-icon">
             <icon class="iconfont icon-wages"></icon>
@@ -101,13 +108,19 @@
       <view class="function-remind-right">
         <text>结工资</text>
         <view  class="function-help-right">
-            <icon class="iconfont icon-back-right"></icon>   
+          <button form-type='submit'   class="defalut_btn">
+            <icon class="iconfont icon-back-right"></icon> 
+          </button>  
         </view>
       </view>
     </view>
-
+    </form>
+    
+    
+    
     <!-- 统计 -->
-    <view class="function-remind" bindtap='viewStatistics'>
+    <form bindsubmit='viewStatistics' report-submit='true'>
+    <view class="function-remind">
       <view>
         <view class="function-remind-icon">
             <icon class="iconfont icon-statistics"></icon>
@@ -116,19 +129,23 @@
       <view class="function-remind-right">
         <text>统计</text>
         <view  class="function-help-right">
+          <button form-type='submit'   class="defalut_btn">
             <icon class="iconfont icon-back-right"></icon>
+          </button>
         </view>
       </view>
     </view>
+    </form>
 
   </view>
-
-  <button bindtap="addProject" type="primary" style='width:50%'>新增项目</button>
-
+  
+  <form bindsubmit='addProject' report-submit='true'>
+    <button form-type='submit' type="primary" style='width:50%'>新增项目</button>
+  </form>
 
 </scroll-view>
 
-
+ 
 
 
 
@@ -139,11 +156,11 @@
   <view class="modalDlg" wx:if="{{showModal}}" catchtouchmove="preventTouchMove" >
 
     <view class='modalDlg-header'>
-      <view  bindtap='closeModal'>
-        <button class="defalut_btn top-button">
+      <form bindsubmit='closeModal' report-submit='true'>
+        <button form-type='submit' class="defalut_btn top-button">
           <icon class="iconfont icon-close"></icon>
         </button>
-      </view>
+      </form>
     </view>
 <!-- 内容 -->
     <view class='modalDlg-content'>
@@ -205,21 +222,29 @@
     </view>
     <!-- 按钮 -->
     <view class='modalDlg-footer'>
-      <view bindtap="detailProject" class="editProjectBtn">
-        <button class="defalut_btn">
-          <icon class="iconfont icon-edit-project"> 打卡记录</icon>
-        </button>
-      </view>
-      <view bindtap="editProject" class="editProjectBtn">
-        <button class="defalut_btn">
-          <icon class="iconfont icon-edit-project"> 编辑</icon>
-        </button>
-      </view>
-      <view bindtap="deletedProject" class="deletedProjectBtn">
-          <button class="defalut_btn">
-            <icon class="iconfont icon-delete"> 删除</icon>
+      <form bindsubmit='detailProject' class="editProjectBtn" report-submit='true'>
+        <view >
+          <button form-type='submit' class="defalut_btn">
+            <icon class="iconfont icon-edit-project"> 打卡记录</icon>
           </button>
-      </view>
+        </view>
+      </form>
+
+      <form bindsubmit='editProject' report-submit='true' class="editProjectBtn">
+        <view>
+          <button form-type='submit' class="defalut_btn">
+            <icon class="iconfont icon-edit-project"> 编辑</icon>
+          </button>
+        </view>
+      </form>
+      
+      <form bindsubmit='deletedProject' report-submit='true' class="deletedProjectBtn">
+        <view>
+            <button form-type='submit' class="defalut_btn">
+              <icon class="iconfont icon-delete"> 删除</icon>
+            </button>
+        </view>
+      </form>
     </view>
 
   </view>

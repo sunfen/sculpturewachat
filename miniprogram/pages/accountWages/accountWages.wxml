@@ -18,11 +18,12 @@
     
     
     <view class="blank-space"></view>
+    <form bindsubmit='add' report-submit='true'>
+      <button class="defalut_btn img-plus-style" form-type='submit'>
+        <icon class="iconfont icon-add"></icon>
+      </button>
+    </form>
     
-    <button class="defalut_btn img-plus-style"  bindtap="add">
-      <icon class="iconfont icon-add"></icon>
-    </button>
-
     <!-- table header -->
     <view class="table-header">
       <text>时间</text>

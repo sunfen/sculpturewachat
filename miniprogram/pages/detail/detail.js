@@ -25,6 +25,7 @@ Page({
       if (options.project){
 
         var project = JSON.parse(options.project);
+        that.setData({ project: project, title: project.name });
       } else if (options.projectId){
         wx.request({
           url: getApp().globalData.urlPath + "project/summary/" + options.projectId,

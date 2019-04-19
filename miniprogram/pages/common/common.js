@@ -1,4 +1,18 @@
 const app = getApp();
+var header = app.globalData.header;
+
+function submitFormId(formId) {
+  var data = JSON.stringify({ 'openId': app.globalData.openid, 'formId': formId });
+   // 发送到服务器
+  wx.request({
+    url: getApp().globalData.urlPath + '/form',
+    method: 'POST',
+    header: header,
+    data: data
+  });
+}
+
+module.exports.submitFormId = submitFormId;
 
 function checkLogin() {
   var that = this;
@@ -23,7 +37,6 @@ function login() {
     success: function (res) {
       if (res.code) {
         wx.request({
-          header: header,
           url: getApp().globalData.urlPath + 'login/session/' + res.code,
           method: 'GET',
           header: header,

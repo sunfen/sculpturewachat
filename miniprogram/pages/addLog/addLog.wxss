@@ -81,12 +81,13 @@
   margin-top: 30rpx;
 }
 
-.commodity-bottom view {
+.commodity-bottom form {
   border: 1rpx solid rgb(224, 223, 223);
   width: 50%;
 }
 
 .commodity-bottom-sure{
+  
   background-color: rgb(67, 206, 12);
   color: #fff;
   border-top: 1rpx solid rgb(224, 223, 223);

@@ -16,9 +16,9 @@
         <text>{{projects[projectIndex].name}}</text>
         <view class="row-right-icon">
           <picker range="{{projects}}" range-key="name" value="{{projectIndex}}"  bindchange="changeProject">
-            <button class="defalut_btn top-button">
-              <icon class="iconfont icon-back-right"></icon>
-            </button>
+              <button class="defalut_btn">
+                <icon class="iconfont icon-back-right"></icon>
+              </button>
           </picker>
         </view>
       </view>
@@ -33,13 +33,15 @@
           <icon class="iconfont icon-wages"></icon>
         </button>
       </view>
-      <view class="row-right"  bindtap="addWages">
+      <view class="row-right">
         <text>结算工资</text>
         <text>{{record.wages}}元</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <form bindsubmit='addWages' report-submit='true'>
+            <button  form-type='submit' class="defalut_btn">
+              <icon class="iconfont icon-back-right"></icon>
+            </button>       
+          </form>
         </view>
       </view>
     </view>
@@ -92,20 +94,24 @@
           <icon class="iconfont icon-keyboard"></icon>
         </button>
       </view>
-      <view class="row-right"  bindtap="addRemark">
+      <view class="row-right">
         <text>备注</text>
         <text>{{record.remark}}</text>
         <view class="row-right-icon">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
+          <form bindsubmit='addRemark' report-submit='true'>
+            <button  form-type='submit' class="defalut_btn">
+              <icon class="iconfont icon-back-right"></icon>
+            </button>       
+          </form>    
         </view>
       </view>
     </view>
 
 
     <view class="btn">
-      <button class='btn-sure'  bindtap="sure">保存</button>
+      <form bindsubmit='sure' report-submit='true'>
+        <button class='btn-sure'form-type='submit'  bindtap="sure">保存</button>
+      </form> 
     </view>
      
 
@@ -119,7 +125,9 @@
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        <form bindsubmit='onConfirm' report-submit='true'>
+          <button class='btn-confirm'form-type='submit'  bindtap="sure">确定</button>
+        </form>
       </view>
     </view>
 
@@ -134,7 +142,9 @@
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        <form bindsubmit='onConfirm' report-submit='true'>
+          <button class='btn-confirm'form-type='submit'  bindtap="sure">确定</button>
+        </form>
       </view>
     </view>
 

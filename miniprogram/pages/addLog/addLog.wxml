@@ -17,7 +17,9 @@
     <!--弹出框  -->
     <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
       <view  class="addProject" >
-          <view><button bindtap="addProject" type="primary" size='mini'>新增项目</button></view>
+          <form bindsubmit='addProject' report-submit='true'>
+            <button form-type='submit'  type="primary" size='mini'>新增项目</button>
+          </form>
       </view>
 
       <view class="commodity-button">
@@ -44,8 +46,9 @@
               </view>
             
               <view class='commodity-hours' wx:if="{{projects[record.morningProjectIndex].name != '无'}}">
-
-                <button wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" bindtap='onSelectHours' style="background:{{record.morningHour == hour.data ? COLOR_RED : COLOR_GRAY}};" data-hour='{{hour.data}}' data-property="{{item.property}}" size='mini' >{{hour.name}}</button>
+                 <form bindsubmit='onSelectHours' report-submit='true' wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" data-hour='{{hour.data}}' data-property="{{item.property}}">
+                  <button  form-type='submit' style="background:{{record.morningHour == hour.data ? COLOR_RED : COLOR_GRAY}};"  size='mini' >{{hour.name}}</button>
+                  </form>
 
               </view>
 
@@ -68,9 +71,9 @@
               </view>
             
               <view class='commodity-hours'  wx:if="{{projects[record.afternoonProjectIndex].name != '无'}}">
-
-                <button wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" bindtap='onSelectHours' style="background:{{record.afternoonHour == hour.data ? COLOR_RED : COLOR_GRAY}};" data-hour='{{hour.data}}' data-property="{{item.property}}" size='mini' >{{hour.name}}</button>
-
+                <form bindsubmit='onSelectHours' report-submit='true'  wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" data-hour='{{hour.data}}' data-property="{{item.property}}">
+                <button form-type='submit' style="background:{{record.afternoonHour == hour.data ? COLOR_RED : COLOR_GRAY}};"  size='mini' >{{hour.name}}</button>
+                </form>
               </view>
 
             </view>
@@ -94,9 +97,9 @@
               </view>
             
               <view class='commodity-hours'   wx:if="{{projects[record.eveningProjectIndex].name != '无'}}">
-
-                <button wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" bindtap='onSelectHours' style="background:{{record.eveningHour == hour.data ? COLOR_RED : COLOR_GRAY}};" data-hour='{{hour.data}}' data-property="{{item.property}}" size='mini' >{{hour.name}}</button>
-
+                <form bindsubmit='onSelectHours' report-submit='true'   wx:for="{{item.hours}}" wx:key="property" wx:for-item="hour" wx:for-index="indexhour" data-hour='{{hour.data}}' data-property="{{item.property}}">
+                  <button form-type='submit' style="background:{{record.eveningHour == hour.data ? COLOR_RED : COLOR_GRAY}};"  size='mini' >{{hour.name}}</button>
+                </form>
               </view>
 
             </view>
@@ -114,12 +117,12 @@
 
       <!-- 按钮开始 -->
       <view class="commodity-bottom">
-          <view>
-            <text bindtap='hideModal'>取消</text>
-          </view>
-          <view bindtap='save' class="commodity-bottom-sure">
-            <text>确定</text>
-          </view>
+          <form bindsubmit='hideModal' report-submit='true' >
+            <button form-type='submit'  class="defalut_btn">取消</button>
+          </form>
+          <form bindsubmit='save' report-submit='true'  class="commodity-bottom-sure">
+            <button form-type='submit'  class="defalut_btn">确定</button>
+          </form>
       </view>
       <!-- 按钮结束 -->
 

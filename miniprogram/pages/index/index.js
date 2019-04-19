@@ -40,7 +40,8 @@ Page({
   /**
    *  关闭项目详情页
    **/
-  closeModal: function(){
+  closeModal: function(e){
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModal: false
     })
@@ -51,7 +52,7 @@ Page({
   /**
    * 弹出项目详情页
    */
-  viewdetail(){
+  viewdetail(e){
     this.setData({
       showModal: true
     })
@@ -62,7 +63,8 @@ Page({
   /**
   * 新增一条日志
   */
-  addOrUpdateLog() {
+  addOrUpdateLog(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/addLog/addLog',
     })
@@ -73,7 +75,8 @@ Page({
   /**
    * 记工统计
    */
-  viewStatistics: function () {
+  viewStatistics: function (e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/statistics/statistics',
     })
@@ -82,13 +85,15 @@ Page({
   /**
    * 编辑项目详情页
    */
-  editProject() {
+  editProject(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/addProject/addProject?id=' + this.data.project.id,
     })
   },
 
-  detailProject(){
+  detailProject(e){
+    common.submitFormId(e.detail.formId);
     var that = this;
     wx.navigateTo({
       url: "/pages/detail/detail?projectId=" + that.data.project.id,
@@ -98,7 +103,8 @@ Page({
   /**
    * 新增项目详情页
    */
-  addProject() {
+  addProject(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/addProject/addProject',
     })
@@ -107,7 +113,8 @@ Page({
   /**
    * 新增结算工资
    */
-  addWage() {
+  addWage(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/addWages/addWages',
     })
@@ -119,7 +126,8 @@ Page({
   /**
    * 删除项目详情页
    */
-  deletedProject() {
+  deletedProject(e) {
+    common.submitFormId(e.detail.formId);
     var that = this;
     wx.showModal({
       content: '是否删除?',

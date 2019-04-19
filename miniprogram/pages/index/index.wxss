@@ -192,10 +192,15 @@ Page {
   margin-left: 40rpx;
 }
 
-
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
 
 .function-remind{
-  padding: 30rpx;
+  padding: 20rpx;
   margin-left: 0;
 }
 

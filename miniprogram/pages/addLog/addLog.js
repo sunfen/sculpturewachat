@@ -195,7 +195,7 @@ Page({
    */
   onSelectHours(event) {
     var that = this;
-
+    common.submitFormId(event.detail.formId);
     that.setData({ [event.target.dataset.property]: event.target.dataset.hour});
 
     var totalHours = that.data.record.morningHour + that.data.record.afternoonHour + that.data.record.eveningHour;
@@ -211,7 +211,9 @@ Page({
    * 保存
    */
   save(event){
+
     var that = this;
+    common.submitFormId(event.detail.formId);
     if (that.data.record.time == "" || that.data.record.time == undefined) {
       common.showAlertToast("请选择日期！");
       return;
@@ -350,7 +352,8 @@ Page({
 
 
   //隐藏对话框
-  hideModal: function () {
+  hideModal: function (e) {
+    common.submitFormId(e.detail.formId);
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,
