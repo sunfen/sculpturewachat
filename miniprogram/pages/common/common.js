@@ -5,7 +5,7 @@ function submitFormId(formId) {
   var data = JSON.stringify({ 'openId': app.globalData.openid, 'formId': formId });
    // 发送到服务器
   wx.request({
-    url: getApp().globalData.urlPath + '/form',
+    url: getApp().globalData.urlPath + 'form',
     method: 'POST',
     header: header,
     data: data
