@@ -32,20 +32,23 @@ Page({
     }, app.globalData.timeout)
   },
 
-  about:function(){
+  about:function(e){
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/about/about',
     })
   },
 
-  myPrincipal(){
+  myPrincipal(e){
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/myPrincipal/myPrincipal',
     })
   },
 
 
-  myProject() {
+  myProject(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/myProject/myProject',
     })
@@ -53,13 +56,15 @@ Page({
 
 
 
-  myWages() {
+  myWages(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/myWages/myWages',
     })
   },
 
-  importor() {
+  importor(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: '/pages/importor/importor',
     })

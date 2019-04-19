@@ -5,84 +5,93 @@
 
   <view class="content">
     <!-- 添加负责人 -->
-    <view class="row">
-      <view>
-        <icon class="iconfont icon-principal"></icon>
+    <form bindsubmit='addPrincipal' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn">
+          <icon class="iconfont icon-principal"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <view>添加负责人</view>
+          <view>{{project.principal.name}}</view>
+          <view class="row-right-icon" >
+                <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
       </view>
-      <view class="row-right" bindtap="addPrincipal">
-        <text>添加负责人</text>
-        <text>{{project.principal.name}}</text>
-        <view class="row-right-icon" >
-          <icon class="iconfont icon-back-right"></icon>
-        </view>
-      </view>
-    </view>
+    </form>
 
     <!-- 添加项目名称 -->
-    <view class="row">
-      <view>
-        <icon class="iconfont icon-type"></icon>
+    <form bindsubmit='addName' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn">
+          <icon class="iconfont icon-type"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <view>项目名称</view>
+          <view style='width:50%'>{{project.name}}</view>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
       </view>
-      <view class="row-right"  bindtap="addName">
-        <text>项目名称</text>
-        <text style='width:50%'>{{project.name}}</text>
-        <view class="row-right-icon">
-          <icon class="iconfont icon-back-right"></icon>
-        </view>
-      </view>
-    </view>
+    </form>
 
 
     <!-- 添加地点 -->
-    <view class="row">
-      <view>
-        <icon class="iconfont icon-address"></icon>
+    <form bindsubmit='addAddress' report-submit='true'>
+      <view class="row">
+         <button class="defalut_btn">
+          <icon class="iconfont icon-address"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <view>地点</view>
+          <view style="width:50%">{{project.address}}</view>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
       </view>
-      <view class="row-right" bindtap="addAddress">
-        <text>地点</text>
-        <text style="width:50%">{{project.address}}</text>
-        <view class="row-right-icon">
-          <icon class="iconfont icon-back-right"></icon>
-        </view>
-      </view>
-    </view>
+    </form>
 
 
     <!-- 添加日工资 -->
-    <view class="row">
-      <view>
-        <icon class="iconfont icon-wages"></icon>
+    <form bindsubmit='addWages' report-submit='true'>
+      <view class="row">
+         <button class="defalut_btn">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <view>日工资</view>
+          <view>{{project.dailyWages}}元</view>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
       </view>
-      <view class="row-right"  bindtap="addWages">
-        <text>日工资</text>
-        <text>{{project.dailyWages}}元</text>
-        <view class="row-right-icon">
-          <icon class="iconfont icon-back-right"></icon>
-        </view>
-      </view>
-    </view>
-
+    </form>
 
 
     <!-- 添加已结工资 -->
-    <view class="row">
-      <view>
-        <icon class="iconfont icon-wages"></icon>
+    <form bindsubmit='addActualTotalWages' report-submit='true'>
+      <view class="row">
+         <button class="defalut_btn">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <view>已结工资</view>
+          <view>{{project.actualTotalWages}}元</view>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
       </view>
-      <view class="row-right"  bindtap="addActualTotalWages">
-        <text>已结工资</text>
-        <text>{{project.actualTotalWages}}元</text>
-        <view class="row-right-icon">
-          <icon class="iconfont icon-back-right"></icon>
-        </view>
-      </view>
-    </view>
+    </form>
 
         <!-- 方式 -->
     <view class="row">
-      <view>
-        <icon class="iconfont icon-time"></icon>
-      </view>
+         <button class="defalut_btn">
+          <icon class="iconfont icon-time"></icon>
+        </button>
       <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">        
         <view class="row-right">
           <view>收款方式</view>
@@ -93,21 +102,25 @@
     </view>
 
     <!-- 打卡 -->
-    <view class="row">
-      <view>
-        <icon class="iconfont icon-wages"></icon>
+    <form bindsubmit='addLogRecords' report-submit='true'>
+      <view class="row">
+         <button class="defalut_btn">
+          <icon class="iconfont icon-wages"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <view>时间</view>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
       </view>
-      <view class="row-right"  bindtap="addLogRecords">
-        <text>时间</text>
-        <view class="row-right-icon">
-          <icon class="iconfont icon-back-right"></icon>
-        </view>
-      </view>
-    </view>
+    </form>
 
 
     <view class="btn">
-      <button class='btn-sure'  bindtap="sure">保存</button>
+      <form bindsubmit='sure' report-submit='true'>
+        <button class='btn-sure' form-type='submit'>保存</button>
+      </form>
     </view>
      
     <view class="table-title">
@@ -148,7 +161,9 @@
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        <form bindsubmit='onConfirm' report-submit='true' class='btn-confirm' >
+          <button class='defalut_btn' form-type='submit'>确定</button>
+        </form>
       </view>
     </view>
 
@@ -164,7 +179,9 @@
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        <form bindsubmit='onConfirm' report-submit='true' class='btn-confirm' >
+          <button class='defalut_btn' form-type='submit'>确定</button>
+        </form>
       </view>
     </view>
 
@@ -179,7 +196,9 @@
         </view>
       </view>
       <view class="modal-footer">
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+        <form bindsubmit='onConfirm' report-submit='true'  class='btn-confirm' >
+          <button class='defalut_btn' form-type='submit'>确定</button>
+        </form>
       </view>
     </view>
 

@@ -32,10 +32,13 @@
           <text>{{project.address}}</text>
       </view>
       <view class="center-wages">
-          <button class="defalut_btn" bindtap='wagesDetail'>
+        
+        <form bindsubmit='wagesDetail' report-submit='true'>
+          <button class="defalut_btn" form-type='submit'>
             <text>工资结算详情 </text>
             <icon class="iconfont icon-back-right"></icon>
           </button>
+        </form>
       </view>
     </view>
 

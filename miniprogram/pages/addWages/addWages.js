@@ -76,7 +76,8 @@ Page({
 
 
   //添加工资
-  addWages() {
+  addWages(e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalWages: true
     })
@@ -84,7 +85,8 @@ Page({
 
 
   //添加备注
-  addRemark() {
+  addRemark(e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalRemark: true
     })
@@ -95,6 +97,7 @@ Page({
    * 对话框确认
    */
   onConfirm: function (e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalWages: false,
       showModalRemark: false
@@ -131,8 +134,9 @@ Page({
   },
 
   //新增完
-  sure() {
+  sure(e) {
     var that = this;
+    common.submitFormId(e.detail.formId);
     if (that.data.record.projectId == "" || that.data.record.projectId == undefined){
       common.showAlertToast("请选择项目！");
       return;

@@ -6,11 +6,9 @@
     
     <!-- 项目 -->
     <view class="row" wx:if="{{projects}}">
-      <view>
-        <button class="defalut_btn top-button">
+        <button class="defalut_btn">
           <icon class="iconfont icon-record"></icon>
         </button>
-      </view>
       <view class="row-right">
         <text>结算项目</text>
         <text>{{projects[projectIndex].name}}</text>
@@ -27,33 +25,27 @@
 
 
     <!-- 添加日工资 -->
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
+    <form bindsubmit='addWages' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn">
           <icon class="iconfont icon-wages"></icon>
         </button>
+        <button  form-type='submit' class="defalut_btn row-right">
+          <text>结算工资</text>
+          <text>{{record.wages}}元</text>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>
+          </view>
+        </button>       
       </view>
-      <view class="row-right">
-        <text>结算工资</text>
-        <text>{{record.wages}}元</text>
-        <view class="row-right-icon">
-          <form bindsubmit='addWages' report-submit='true'>
-            <button  form-type='submit' class="defalut_btn">
-              <icon class="iconfont icon-back-right"></icon>
-            </button>       
-          </form>
-        </view>
-      </view>
-    </view>
+    </form>
 
 
         <!-- 添加项目日期 -->
     <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
+        <button class="defalut_btn">
           <icon class="iconfont icon-time"></icon>
         </button>
-      </view>
       <view class="row-right">
         <text>收款时间</text>
         <text>{{record.time}}</text>
@@ -69,11 +61,9 @@
 
     <!-- 方式 -->
     <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
+        <button class="defalut_btn">
           <icon class="iconfont icon-type"></icon>
         </button>
-      </view>
       <view class="row-right">
         <text>收款方式</text>
         <text>{{record.method}}</text>
@@ -88,24 +78,20 @@
     </view>
 
         <!-- 添加备注 -->
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
+    <form bindsubmit='addRemark' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn">
           <icon class="iconfont icon-keyboard"></icon>
         </button>
+        <button  form-type='submit' class="defalut_btn row-right">
+          <text>备注</text>
+          <text>{{record.remark}}</text>
+          <view class="row-right-icon">
+                <icon class="iconfont icon-back-right"></icon>
+          </view>
+        </button>       
       </view>
-      <view class="row-right">
-        <text>备注</text>
-        <text>{{record.remark}}</text>
-        <view class="row-right-icon">
-          <form bindsubmit='addRemark' report-submit='true'>
-            <button  form-type='submit' class="defalut_btn">
-              <icon class="iconfont icon-back-right"></icon>
-            </button>       
-          </form>    
-        </view>
-      </view>
-    </view>
+    </form>    
 
 
     <view class="btn">
@@ -125,8 +111,8 @@
         </view>
       </view>
       <view class="modal-footer">
-        <form bindsubmit='onConfirm' report-submit='true'>
-          <button class='btn-confirm'form-type='submit'  bindtap="sure">确定</button>
+        <form bindsubmit='onConfirm' class='btn-confirm'report-submit='true'>
+          <button  class="defalut_btn" form-type='submit'  bindtap="sure">确定</button>
         </form>
       </view>
     </view>
@@ -142,8 +128,8 @@
         </view>
       </view>
       <view class="modal-footer">
-        <form bindsubmit='onConfirm' report-submit='true'>
-          <button class='btn-confirm'form-type='submit'  bindtap="sure">确定</button>
+        <form bindsubmit='onConfirm' class='btn-confirm' report-submit='true'>
+          <button form-type='submit' class="defalut_btn"  bindtap="sure">确定</button>
         </form>
       </view>
     </view>

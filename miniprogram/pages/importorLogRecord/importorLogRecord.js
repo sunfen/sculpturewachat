@@ -135,6 +135,7 @@ Page({
    */
   sure:function(e){
     var that = this;
+    common.submitFormId(e.detail.formId);
     wx.setStorage({ key: "project_log_record", data: that.data.records })
     that.goback();
   },
@@ -155,7 +156,7 @@ Page({
    */
   onSelectHours(event) {
     var that = this;
-
+    common.submitFormId(event.detail.formId);
     that.setData({ [event.target.dataset.property]: event.target.dataset.hour});
 
     var totalHours = that.data.record.morningHour + that.data.record.afternoonHour + that.data.record.eveningHour;
@@ -170,6 +171,7 @@ Page({
    */
   save(event){
     var that = this;
+    common.submitFormId(event.detail.formId);
     if (that.data.record.time == "" || that.data.record.time == undefined) {
       common.showAlertToast("请选择日期！");
       return;
@@ -202,7 +204,8 @@ Page({
 
 
   //隐藏对话框
-  hideModal: function () {
+  hideModal: function (event) {
+    common.submitFormId(event.detail.formId);
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,

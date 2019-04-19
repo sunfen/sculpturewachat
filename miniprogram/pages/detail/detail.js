@@ -85,7 +85,8 @@ Page({
   /**
    * 工资
    */
-  wagesDetail(){
+  wagesDetail(e){
+    common.submitFormId(e.detail.formId);
     var that = this;
     var project = JSON.stringify(that.data.project);
 

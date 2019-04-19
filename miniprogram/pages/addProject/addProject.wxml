@@ -3,88 +3,72 @@
 
 <view class="container">
   <view class="content">
-    <!-- 添加负责人 -->
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
+    <form bindsubmit='addPrincipal' report-submit='true'>
+      <!-- 添加负责人 -->
+      <view class="row">
+        <button class="defalut_btn">
           <icon class="iconfont icon-principal"></icon>
         </button>
-      </view>
-      <view class="row-right">
-        <text>添加负责人</text>
-        <text>{{project.principal.name}}</text>
-        <view class="row-right-icon" >
-          <form bindsubmit='addPrincipal' report-submit='true'>
-            <button form-type='submit' class="defalut_btn">
-              <icon class="iconfont icon-back-right"></icon>       
-            </button>
-          </form>
-        </view>
-      </view>
-    </view>
-
-    <!-- 添加项目名称 -->
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-type"></icon>
+        <button form-type='submit' class="defalut_btn row-right">
+          <text>添加负责人</text>
+          <text>{{project.principal.name}}</text>
+          <view class="row-right-icon" >
+            <icon class="iconfont icon-back-right"></icon>       
+          </view>
         </button>
       </view>
-      <view class="row-right">
-        <text>项目名称</text>
-        <text class="ellipsis">{{project.name}}</text>
-        <view class="row-right-icon">
-          <form bindsubmit='addName' report-submit='true'>
-            <button form-type='submit' class="defalut_btn">
-              <icon class="iconfont icon-back-right"></icon>
-            </button>
-          </form>
-        </view>
+    </form>
+
+    <!-- 添加项目名称 -->
+    <form bindsubmit='addName' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn">
+          <icon class="iconfont icon-type"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <text>项目名称</text>
+          <text class="ellipsis">{{project.name}}</text>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>
+          </view>
+        </button>
       </view>
-    </view>
+    </form>
 
 
     <!-- 添加地点 -->
-    <view class="row">
-      <view>
-        <button class="defalut_btn top-button">
-          <icon class="iconfont icon-address"></icon>
-        </button>
-      </view>
-      <view class="row-right">
-        <text>地点</text>
-        <text class="ellipsis">{{project.address}}</text>
-        <view class="row-right-icon" >
-          <form bindsubmit='addAddress' report-submit='true'>
-            <button form-type='submit' class="defalut_btn">
+    <form bindsubmit='addAddress' report-submit='true'>
+      <view class="row">
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-address"></icon>
+          </button>
+          <button form-type='submit' class="defalut_btn row-right">
+            <text>地点</text>
+            <text class="ellipsis">{{project.address}}</text>
+            <view class="row-right-icon" >
               <icon class="iconfont icon-back-right"></icon>
-            </button>
-          </form>
-        </view>
+            </view>
+          </button>
       </view>
-    </view>
+    </form>
 
 
 
     <!-- 添加日工资 -->
-    <view class="row">
-      <view>
+    <form bindsubmit='addWages' report-submit='true'>
+      <view class="row">
         <button class="defalut_btn top-button">
           <icon class="iconfont icon-wages"></icon>
         </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <text>日工资</text>
+          <text>{{project.dailyWages}}元</text>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>
+          </view>
+        </button>
       </view>
-      <view class="row-right">
-        <text>日工资</text>
-        <text>{{project.dailyWages}}元</text>
-        <view class="row-right-icon">
-          <form bindsubmit='addWages' report-submit='true'>
-            <button form-type='submit' class="defalut_btn">
-              <icon class="iconfont icon-back-right"></icon>
-            </button>
-          </form>
-        </view>
-      </view>
-    </view>
+    </form>
 
 
 

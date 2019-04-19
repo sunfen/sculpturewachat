@@ -84,7 +84,7 @@
   margin-top: 30rpx;
 }
 
-.commodity-bottom view {
+.commodity-bottom form {
   border: 1rpx solid rgb(224, 223, 223);
   width: 50%;
 }

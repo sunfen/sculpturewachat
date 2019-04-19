@@ -83,7 +83,7 @@ Page({
 
   
   // 关闭详情页
-  closeModal: function () {
+  hideModal: function () {
     this.setData({
       showModalWages: false,
       showModalName: false,
@@ -93,7 +93,8 @@ Page({
 
 
   //添加负责人
-  addPrincipal() {
+  addPrincipal(e) {
+    common.submitFormId(e.detail.formId);
     wx.navigateTo({
       url: "/pages/book/book",
     })
@@ -102,7 +103,8 @@ Page({
 
 
   //添加打卡
-  addLogRecords() {
+  addLogRecords(e) {
+    common.submitFormId(e.detail.formId);
     let project = JSON.stringify(this.data.project);
     wx.navigateTo({
       url: '/pages/importorLogRecord/importorLogRecord?project=' + project,
@@ -112,7 +114,8 @@ Page({
 
 
   //添加项目名称
-  addName() {
+  addName(e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalName: true
     })
@@ -120,14 +123,16 @@ Page({
 
 
   //添加日工资
-  addWages() {
+  addWages(e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalWages: true
     })
   },
 
   //添加已结工资
-  addActualTotalWages() {
+  addActualTotalWages(e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalActualTotalWages: true
     })
@@ -135,7 +140,8 @@ Page({
 
 
   //添加地点
-  addAddress() {
+  addAddress(e) {
+    common.submitFormId(e.detail.formId);
     this.moveToLocation();
   },
 
@@ -156,6 +162,7 @@ Page({
    * 对话框确认
    */
   onConfirm: function (e) {
+    common.submitFormId(e.detail.formId);
     this.setData({
       showModalWages: false,
       showModalName: false,
@@ -180,8 +187,9 @@ Page({
   },
 
   //新增完
-  sure() {
+  sure(e) {
     var that = this;
+    common.submitFormId(e.detail.formId);
     if (that.data.project.principal.name == "" || that.data.project.principal.name == undefined){
       common.showAlertToast("请填写项目负责人名称！");
       return;

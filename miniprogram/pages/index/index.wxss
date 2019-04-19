@@ -206,15 +206,9 @@ form{
 
 .function-remind-right{
   justify-content: space-between;
+  width: 100%;
 }
 
-.function-help-right{
-  width: 10%;
-}
-
-.function-remind-right text{
-  width: 90%;  
-}
 
 .blank-space{
   height: 30rpx;

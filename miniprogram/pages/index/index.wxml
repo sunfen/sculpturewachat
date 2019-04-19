@@ -80,61 +80,49 @@
 
     <!-- 打卡记录 -->
     <form bindsubmit='addOrUpdateLog' report-submit='true'>
-    <view class="function-remind">
-      <view>
+      <view class="function-remind">
         <view class="function-remind-icon">
-            <icon class="iconfont icon-edit-account"></icon>
+          <icon class="iconfont icon-edit-account"></icon>
         </view>
-      </view>
-      <view class="function-remind-right">
-        <text>打卡记录</text>
-        <view  class="function-help-right ">
-          <button form-type='submit'  class="defalut_btn">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>  
-        </view>
-      </view>       
-    </view>  
+        <button form-type='submit'  class="defalut_btn function-remind-right">
+          <text>打卡记录</text>
+          <view  class="function-help-right ">
+              <icon class="iconfont icon-back-right"></icon>
+          </view>     
+        </button>  
+      </view>  
     </form>
     
     <!-- 结工资 -->
     <form bindsubmit='addWage' report-submit='true'>
-    <view class="function-remind">
-      <view>
+      <view class="function-remind">
         <view class="function-remind-icon">
-            <icon class="iconfont icon-wages"></icon>
+          <icon class="iconfont icon-wages"></icon>
         </view>
-      </view>
-      <view class="function-remind-right">
-        <text>结工资</text>
-        <view  class="function-help-right">
-          <button form-type='submit'   class="defalut_btn">
+        <button form-type='submit' class="defalut_btn function-remind-right">
+          <text>结工资</text>
+          <view class="function-help-right">
             <icon class="iconfont icon-back-right"></icon> 
-          </button>  
-        </view>
+          </view>
+        </button>
       </view>
-    </view>
     </form>
     
     
     
     <!-- 统计 -->
     <form bindsubmit='viewStatistics' report-submit='true'>
-    <view class="function-remind">
-      <view>
+      <view class="function-remind">
         <view class="function-remind-icon">
             <icon class="iconfont icon-statistics"></icon>
         </view>
+        <button form-type='submit'  class="defalut_btn function-remind-right">
+          <text>统计</text>
+          <view  class="function-help-right">
+              <icon class="iconfont icon-back-right"></icon>
+          </view>
+        </button>
       </view>
-      <view class="function-remind-right">
-        <text>统计</text>
-        <view  class="function-help-right">
-          <button form-type='submit'   class="defalut_btn">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>
-        </view>
-      </view>
-    </view>
     </form>
 
   </view>

@@ -30,21 +30,29 @@
   <!-- 分类 -->
   <view class="category">
   <!-- 我的负责人 -->
-    <view class="category-detail" bindtap='myPrincipal'>
-      <text class="category-top">我的负责人</text>
-      <text class="category-buttom">{{count.countPrincipal}}个</text>
-    </view>
-    <!-- 我的项目 -->
-    <view class="category-detail"  bindtap='myProject'>
-      <text class="category-top">我的项目</text>
-      <text class="category-buttom">{{count.countProject}}个</text>
-    </view>
-    <!-- 我的工资 -->
-    <view class="category-detail"  bindtap='myWages'>
-      <text class="category-top">我的收入</text>
-      <text class="category-buttom">{{count.countWages ? count.countWages : 0}}元</text>
-    </view>
+    <form bindsubmit='myPrincipal' report-submit='true'>
+      <button form-type='submit' class="defalut_btn category-detail">
+        <text class="category-top">我的负责人</text>
+        <text class="category-buttom">{{count.countPrincipal}}个</text>
+      </button>
+    </form>
 
+
+    <!-- 我的项目 -->
+    <form bindsubmit='myProject' report-submit='true'>
+      <button form-type='submit' class="defalut_btn category-detail">
+        <text class="category-top">我的项目</text>
+        <text class="category-buttom">{{count.countProject}}个</text>
+      </button>
+    </form>
+
+    <!-- 我的工资 -->
+    <form bindsubmit='myWages' report-submit='true'>
+      <button form-type='submit' class="defalut_btn category-detail">
+        <text class="category-top">我的收入</text>
+        <text class="category-buttom">{{count.countWages ? count.countWages : 0}}元</text>
+      </button>
+    </form>
   </view>
 
   <view class="blank-space"></view>
@@ -53,42 +61,38 @@
   <view class="function">
 
     <!-- 导入已完结项目 -->
-    <view class="function-remind" bindtap='importor'>
-      <view>
+    <form bindsubmit='importor' report-submit='true'>
+      <view class="function-remind">
         <view class="function-remind-icon">
-          <button class="defalut_btn top-button">
+          <button class="defalut_btn">
             <icon class="iconfont icon-import"></icon>
           </button>
         </view>
-      </view>
-      <view class="function-remind-right">
-        <text>导入已完结项目</text>
-        <view  class="function-remind-import">
-          <button class="defalut_btn top-button">
+        <button form-type='submit' class="defalut_btn function-remind-right">
+          <text>导入已完结项目</text>
+          <view class="function-remind-import">
             <icon class="iconfont icon-back-right"></icon>
-          </button>       
-        </view>
+          </view>
+        </button>
       </view>
-    </view>
+    </form>       
 
     <!-- 关于我们 -->
-    <view class="function-remind" bindtap='about'>
-      <view>
+    <form bindsubmit='about' report-submit='true'>
+      <view class="function-remind">
         <view class="function-remind-icon">
           <button class="defalut_btn top-button">
             <icon class="iconfont icon-about"></icon>
           </button>
         </view>
+        <button form-type='submit' class="defalut_btn function-remind-right">
+          <text>关于我们</text>
+          <view class="function-remind-switch">
+            <icon class="iconfont icon-back-right"></icon>      
+          </view>
+        </button>
       </view>
-      <view class="function-remind-right">
-        <text>关于我们</text>
-        <view  class="function-remind-switch">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button>       
-        </view>
-      </view>
-    </view>
+    </form>
 
     <!-- 帮助 -->
     <view class="function-remind" >
