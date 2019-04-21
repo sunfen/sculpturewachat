@@ -33,6 +33,10 @@ Page({
         // tempFilePath可以作为img标签的src属性显示图片
         console.log(res);
         that.setData({ images: res.tempFiles})
+      }, fail(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        console.log(res);
+        that.setData({ images: res.tempFiles })
       }
     })
   },

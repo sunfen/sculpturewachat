@@ -86,7 +86,7 @@
         </view>
         <button form-type='submit'  class="defalut_btn function-remind-right">
           <text>打卡记录</text>
-          <view  class="function-help-right ">
+          <view  class="function-help-right-record ">
               <icon class="iconfont icon-back-right"></icon>
           </view>     
         </button>  
@@ -214,11 +214,9 @@
     <!-- 按钮 -->
     <view class='modalDlg-footer'>
       <form bindsubmit='detailProject' class="editProjectBtn" report-submit='true'>
-        <view >
           <button form-type='submit' class="defalut_btn">
             <icon class="iconfont icon-edit-project"> 打卡记录</icon>
           </button>
-        </view>
       </form>
 
       <form bindsubmit='editProject' report-submit='true' class="editProjectBtn">
