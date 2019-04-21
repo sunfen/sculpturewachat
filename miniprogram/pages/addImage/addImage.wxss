@@ -1,12 +1,64 @@
-.icon-addimage{
-  font-size: 80rpx;
+Page{
+  height: 100%;
+  overflow: auto;
 }
 
-.image{
+
+scroll-view  {
+  background: #faf8f8;
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+  font-weight:300;
+  color:#313131;
+  height: 100%;
+  overflow: auto;
+}
+
+
+.icon-addimage{
+  font-size: 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.form-add{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 40rpx;
+  padding: 2px;
+}
+
+.form-save{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding-top: 20rpx;
+}
+
+.image-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  padding: 10px;
+}
+
+
+.image-row{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  word-wrap: break-word;
-  word-break: normal;
+  text-align: center;
   width: 100%;
+}
+
+.image{
+  padding: 2px;
 }

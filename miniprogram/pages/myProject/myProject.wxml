@@ -10,7 +10,7 @@
         <!-- table body --> 
         <scroll-view class="table-body">
          
-          <view class="table-item-column" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove">
+          <view class="table-item-column" wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}" bindtap='handleLongPress'>
             <view class="table-item-top">
               <view class="table-body-left">
                 <text>{{item.name}}</text>

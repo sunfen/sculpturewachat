@@ -18,6 +18,7 @@ App({
     
     wx.getSystemInfo({
       success: function (res) {
+        console.log(res);
         that.globalData.platform = res.platform
         let totalTopHeight = 68
         if (res.model.indexOf('iPhone X') !== -1) {
@@ -36,7 +37,9 @@ App({
     wx.showShareMenu({
       withShareTicket: true
     })
-
+    wx.cloud.init({
+      env: 'scuplture-71456f'
+    })
 
     const updateManager = wx.getUpdateManager();
 

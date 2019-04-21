@@ -1,14 +1,50 @@
 <!--addProject.wxml-->
 <component-topnav inner-title="添加图片" is-show-back="true" bind:goback="goback"></component-topnav>
 
-<view class="container">
-    <view class="image">    
-      <image style="width:{{sysWidth / 3}}rpx;height:{{sysWidth / 3}}rpx" mode="scaleToFill" wx:for="{{images}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}"
-      src='{{item.path}}'  data-src='{{item.path}}' bindtap='previewImage'></image>
+<scroll-view>
+  <view class="image-column">
+   <view class="image-row">
+      <view style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx" class="image" wx:for="{{images}}" wx:key="property" wx:for-item="item" wx:for-index="id" wx:if="{{id == 0 || id ==1 || id ==2 }}" data-index="{{id}}" bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove"  bindtap='clickHandle'>
+        <image  style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='{{item.path}}'  data-src='{{item.path}}' ></image>
+      </view>
+
+      <form class="form-add" wx:if="{{images.length >= 0  && images.length <= 2}}" bindsubmit='addimage' report-submit='true'>
+          <button form-type='submit' class="defalut_btn">
+            <icon class="iconfont icon-addimage"></icon>
+          </button>
+      </form>
+
     </view>
-    <form wx:if="{{images == 0}}" bindsubmit='addimage' report-submit='true'>
-        <button form-type='submit' class="defalut_btn">
-          <icon class="iconfont icon-addimage"></icon>
-        </button>
+
+    <view class="image-row">
+      <view style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx" class="image" wx:for="{{images}}" wx:key="property" wx:for-item="item" wx:for-index="id" wx:if="{{id == 3 || id ==4 || id ==5 }}" data-index="{{id}}" bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove"  bindtap='clickHandle'>
+        <image style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx" mode="scaleToFill" src='{{item.path}}'  data-src='{{item.path}}'></image>
+      </view> 
+
+      <form class="form-add" wx:if="{{images.length >= 3  && images.length <= 5}}" bindsubmit='addimage' report-submit='true'>
+          <button  form-type='submit' class="defalut_btn">
+            <icon class="iconfont icon-addimage"></icon>
+          </button>
+      </form>
+
+    </view>
+
+    <view class="image-row">
+      <view style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx" class="image" wx:for="{{images}}" wx:key="property" wx:for-item="item" wx:for-index="id" data-index="{{id}}" wx:if="{{id == 6 || id ==7 || id ==8 }}" src='{{item.path}}' bindlongtap='handleLongPress' bindtouchstart="touchstart" bindtouchmove="touchmove"  bindtap='clickHandle'>   
+          <image style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  mode="scaleToFill"  data-src='{{item.path}}' src='{{item.path}}' ></image>
+      </view>
+
+      <form class="form-add" wx:if="{{images.length >= 6  && images.length <= 8}}" bindsubmit='addimage' report-submit='true'>
+          <button  form-type='submit' class="defalut_btn">
+            <icon class="iconfont icon-addimage"></icon>
+          </button>
+      </form>
+    </view>
+
+    <form class="form-save" wx:if="{{images.length > 0 }}" bindsubmit='save' report-submit='true'>
+        <button size='mini' form-type='submit' class="defalut_btn" type='primary'>确定</button>
     </form>
-</view>
+  </view>
+
+
+</scroll-view >

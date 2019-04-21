@@ -30,10 +30,15 @@ Page({
       
       var mapLocation = wx.getStorageSync( 'map_location');
       var projectPrincipal = wx.getStorageSync('project_principal');
-      
+      var images = wx.getStorageSync('images');
       if (mapLocation){
         that.setData({ address: mapLocation.address, ["project.address"]: mapLocation.address, location: mapLocation})
         wx.removeStorageSync('map_location');
+      }
+
+      if (images) {
+        that.setData({ images: images })
+        wx.removeStorageSync('images');
       }
       
       if (projectPrincipal){
@@ -86,6 +91,7 @@ Page({
 
   addImages(e){
     common.submitFormId(e.detail.formId);
+    wx.setStorageSync("images", this.data.images);
     wx.navigateTo({
       url: "/pages/addImage/addImage",
     })
@@ -221,6 +227,20 @@ Page({
             title: '成功添加！',
             icon: 'success',
             success(res) {
+              for (var i = 0; i < that.data.images.length; i++){
+                var filepath = this.data.images[i].path;
+                var sub = filepath.subString(filepath.length -4 , filepath.length);
+                var timestamp = Date.parse(new Date());
+                var cloudPath = "/images/" + res.data.id +"/"+ timestamp + sub;
+                wx.cloud.uploadFile({
+                  cloudPath: cloudPath, filePath: filepath,
+                  success: res => {
+                    console.log(res);
+                  }, fail: res => {
+                    console.log(res);
+                  },
+                })
+              }
               setTimeout(function () {
                 that.goback();
               }, 1000)

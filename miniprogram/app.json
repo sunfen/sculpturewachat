@@ -16,7 +16,8 @@
     "pages/addProject/addProject",
     "pages/addLog/addLog",
     "pages/accountWages/accountWages",
-    "pages/about/about"
+    "pages/about/about",
+        "pages/addImage/addImage"
   ],
   "window": {
     "backgroundColor": "#ffffff",
