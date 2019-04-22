@@ -8,6 +8,9 @@ var util = require('../../util/util.js');
 
 Page({
   data: {
+    i: 0,
+    fail : 0,
+    success: 0,
     images:[],
     project:{
       id:"",
@@ -23,35 +26,39 @@ Page({
     wx.navigateBack({ delta: 1 })
   },
 
+  onShow(){
+    var that = this;
+    var mapLocation = wx.getStorageSync('map_location');
+    var projectPrincipal = wx.getStorageSync('project_principal');
+    var images = wx.getStorageSync('images');
+    if (mapLocation) {
+      that.setData({ address: mapLocation.address, ["project.address"]: mapLocation.address, location: mapLocation })
+      wx.removeStorageSync('map_location');
+    }
+
+    if (images) {
+      that.setData({ images: images })
+      wx.removeStorageSync('images');
+    }
+
+    if (projectPrincipal) {
+      that.setData({ ['project.principal']: projectPrincipal })
+      wx.removeStorageSync('project_principal');
+    }
+  },
+
   onLoad(options){
     var that = this;
     common.checkLogin();
     setTimeout(function () {
-      
-      var mapLocation = wx.getStorageSync( 'map_location');
-      var projectPrincipal = wx.getStorageSync('project_principal');
-      var images = wx.getStorageSync('images');
-      if (mapLocation){
-        that.setData({ address: mapLocation.address, ["project.address"]: mapLocation.address, location: mapLocation})
-        wx.removeStorageSync('map_location');
-      }
-
-      if (images) {
-        that.setData({ images: images })
-        wx.removeStorageSync('images');
-      }
-      
-      if (projectPrincipal){
-        that.setData({ ['project.principal']: projectPrincipal})
-        wx.removeStorageSync('project_principal');
-      }
-      
 
       if (options.id != undefined && options.id != null) {
+
         wx.request({
           header: header,
           url: getApp().globalData.urlPath + 'project/' + options.id,
           success(res) {
+
             if (!res.data.id) {
               common.showAlertToast("该项目不存在！");
               wx.redirectTo({
@@ -81,6 +88,8 @@ Page({
 
     }, app.globalData.timeout)
   },
+
+
 
   /**
    * 弹出框蒙层截断touchmove事件
@@ -215,37 +224,31 @@ Page({
       common.showAlertToast("项目日工资须小于一万元！");
       return;
     }
-
+    wx.showLoading({
+      title: '保存中',
+    })
     wx.request({
       url: getApp().globalData.urlPath + 'project',
       method: "POST",
-      data: this.data.project,
+      data: that.data.project,
       header: header,
       success: function (res) {
         if (res.data.code == "200") {
-          wx.showToast({
-            title: '成功添加！',
-            icon: 'success',
-            success(res) {
-              for (var i = 0; i < that.data.images.length; i++){
-                var filepath = this.data.images[i].path;
-                var sub = filepath.subString(filepath.length -4 , filepath.length);
-                var timestamp = Date.parse(new Date());
-                var cloudPath = "/images/" + res.data.id +"/"+ timestamp + sub;
-                wx.cloud.uploadFile({
-                  cloudPath: cloudPath, filePath: filepath,
-                  success: res => {
-                    console.log(res);
-                  }, fail: res => {
-                    console.log(res);
-                  },
-                })
-              }
-              setTimeout(function () {
+          if(that.data.images.length == 0){
+            wx.hideLoading();
+            wx.showToast({
+              title: '保存成功！',
+              icon: 'success',
+              success(res) {
                 that.goback();
-              }, 1000)
-            }
-          })
+              }
+            })
+          }else{
+
+            that.setData({i : 0, fail : 0 , success: 0})
+            that.uploadimg(res.data.t);
+          }
+
         } else if (res.data.code == "404") {
           common.loginFail();
         } else if (res.data.code == "500") {
@@ -253,11 +256,48 @@ Page({
         }else {
           common.showAlertToast("数据错误，请重试！");
         }
-
       },
       fail: function (res){
         common.loginFail();
       }
     })
   },
+
+  uploadimg(objectId){
+    var that = this;
+    var i = that.data.i;//当前上传的哪张图片
+    var success = that.data.success;//上传成功的个数
+    var fail = that.data.fail;//上传失败的个数
+    wx.uploadFile({
+      header: header,
+      url: getApp().globalData.urlPath + 'document',
+      filePath: that.data.images[i].path,
+      name: 'file',
+      formData: { objectId : objectId},
+      success: (resp) => {
+        success++;//图片上传成功，图片上传成功的变量+1
+      },
+      fail: (res) => {
+        fail++;//图片上传失败，图片上传失败的变量+1
+        console.log('fail:' + i + "fail:" + fail);
+      },
+      complete: () => {
+        
+        i++;//这个图片执行完上传后，开始上传下一张
+        if (i == that.data.images.length) {  
+          wx.hideLoading(); //当图片传完时，停止调用          
+          wx.showToast({
+            title: '成功上传：' + success + " 张，失败：" + fail + " 张",
+            icon: 'success',
+            success(res) {
+              that.goback();
+            }
+          })
+        } else {//若图片还没有传完，则继续调用函数
+          that.setData({i: i, fail : fail, success : success});
+          that.uploadimg(that.data);
+        }
+      }
+    });
+  }
 })

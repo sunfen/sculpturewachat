@@ -70,6 +70,7 @@ Page({
   },
 
   //添加项目名称
+  // tempFilePath可以作为img标签的src属性显示图片
   addimage(e) {
     var that = this;
     common.submitFormId(e.detail.formId);
@@ -78,10 +79,8 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
         that.setData({ images: res.tempFiles})
       }, fail(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
         console.log(res);
       }
     })
@@ -89,19 +88,7 @@ Page({
 
   save:function(e){
     wx.setStorageSync("images", this.data.images);
-    const filepath = this.data.images[0].path;
-    console.log(filepath) ;
-    let timestamp = Date.parse(new Date());
-    const  cloudPath = timestamp + "sff.JPG";
-    console.log(cloudPath);
-    wx.cloud.uploadFile({
-      cloudPath: cloudPath, filePath :filepath,
-      success:res => {
-        console.log(res);
-      }, fail: res => {
-        console.log(res);
-      },
-    })
+    this.goback();
   }
 
 })
