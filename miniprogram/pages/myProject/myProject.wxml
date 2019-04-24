@@ -13,7 +13,7 @@
           
             <view class="image">
         
-              <image wx:if="{{item.images.length > 0}}" style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='{{item.images[0].path}}'  data-src='{{item.images[0].path}}' ></image>
+              <image wx:if="{{item.images.length > 0}}" style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='{{item.images[0].minPath}}'  data-src='{{item.images[0].path}}'></image>
               <image wx:else style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='/images/logo1.png'  data-src='/images/logo1.png' ></image>
             </view>
            

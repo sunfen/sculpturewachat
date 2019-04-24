@@ -50,7 +50,6 @@ Page({
 
 
 
-
   /**
   * 获取所有的项目
   */
@@ -66,7 +65,7 @@ Page({
       success(res) {
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
-        if (res.data.content.length == 0) {
+        if (!res.data.content || res.data.content.length == 0) {
           return;
         }
         for (var i in res.data.content) {
@@ -81,7 +80,6 @@ Page({
             totalElements: res.data.totalElements
           }
         });
-        console.log(that.data.results);
       }
     })
   },

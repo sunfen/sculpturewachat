@@ -71,7 +71,7 @@ Page({
       success(res) {
         // 数据成功后，停止下拉刷新
         wx.stopPullDownRefresh();
-        if (res.data.content.length == 0) {
+        if (!res.data.content || res.data.content.length == 0) {
           return;
         }
 

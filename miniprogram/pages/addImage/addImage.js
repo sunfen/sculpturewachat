@@ -23,7 +23,7 @@ Page({
     var that = this;
     common.checkLogin();
     if(options.images){
-      that.setData({images: JSON.parse(options.images)});
+      that.setData({ images: JSON.parse(options.images) }); 
     }
     if (options.isView) {
       that.setData({ isView: JSON.parse(options.isView) });
@@ -35,6 +35,7 @@ Page({
     var images = wx.getStorageSync("images");
     if(images){
       that.setData({images : images});
+
       wx.removeStorageSync("images");
     }
     var removeImages = wx.getStorageSync("removeImages");
