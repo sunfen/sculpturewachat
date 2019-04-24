@@ -10,6 +10,7 @@ Page({
   data: {
     sysWidth: app.globalData.sysWidth,
     images:[],
+    removeImages:[],
     isView : false
   },
   
@@ -38,7 +39,7 @@ Page({
     }
     var removeImages = wx.getStorageSync("removeImages");
     if (removeImages) {
-      that.setData({ images: removeImages });
+      that.setData({ removeImages: removeImages });
       wx.removeStorageSync("removeImages");
     }
   },

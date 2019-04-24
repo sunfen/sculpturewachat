@@ -153,14 +153,6 @@ scroll-view  {
 }
 
 
-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-
 
 .function-help-right-record{
   margin-left: 50%;
@@ -196,3 +188,143 @@ form{
   font-size: 90rpx;
 }
 
+/**index.wxss**/
+/*对话框 */
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  background: #fff;
+  width: 100%;
+}
+
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+.commodity_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+}
+
+.commodity-button{
+  font-size: 35rpx;
+  font-weight: 400;
+  background:  #d8d8d86c; 
+}
+
+.commodity-button-content{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  text-align: left;
+  padding: 10rpx;
+}
+
+.commodity-button-content icon{
+  margin-right:10rpx;
+}
+
+
+
+.commodity-hours button{
+  margin-left:10rpx;
+  color: #fff;
+  background: rgb(224, 223, 223);
+  border: none;
+  width: 15%;
+}
+
+ .commodity-hours button::after {
+  border: 0;
+}
+
+
+.commodity_attr_box input {
+  margin: 10rpx 10rpx 10rpx 10rpx;
+}
+
+.commodity-bottom{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 40rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.commodity-bottom form {
+  border: 1rpx solid rgb(224, 223, 223);
+  width: 50%;
+}
+
+.commodity-bottom-sure{
+  
+  background-color: rgb(67, 206, 12);
+  color: #fff;
+  border-top: 1rpx solid rgb(224, 223, 223);
+}
+
+picker{
+  width: 50%;
+}
+
+
+.table-item-top text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25rpx;
+}
+
+input{
+  height: 50rpx;
+}
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  margin-left: 80rpx;
+  background: #fff;
+}
+
+.row-right {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:center;
+  border-top: 1rpx solid #b9b7b7c5;
+  padding: 10rpx;
+}
+
+.row-right-type{
+  font-size: 30rpx;
+}
+
+.row-right-type text{
+  color: rgb(184, 3, 3);
+  font-weight: 600;
+  margin-left: 30rpx;
+}
+
+.icon-back-right  {
+  color: rgb(122, 121, 121);
+}

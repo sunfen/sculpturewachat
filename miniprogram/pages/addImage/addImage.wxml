@@ -41,7 +41,7 @@
       </form>
     </view>
 
-    <form class="form-save" wx:if="{{images.length > 0 && !isView }}" bindsubmit='save' report-submit='true'>
+    <form class="form-save" wx:if="{{!isView }}" bindsubmit='save' report-submit='true'>
         <button size='mini' form-type='submit' class="defalut_btn" type='primary'>确定</button>
     </form>
   </view>

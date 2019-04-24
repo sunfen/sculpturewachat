@@ -76,7 +76,6 @@
   flex-direction: row;
   justify-content: space-between;
   font-size: 40rpx;
-  height: 70rpx;
   text-align: center;
   margin-top: 30rpx;
 }

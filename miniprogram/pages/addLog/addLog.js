@@ -353,7 +353,9 @@ Page({
 
   //隐藏对话框
   hideModal: function (e) {
-    common.submitFormId(e.detail.formId);
+    if (e) {
+      common.submitFormId(e.detail.formId);
+    }
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,

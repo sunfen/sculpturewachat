@@ -18,7 +18,8 @@ Page({
       name:'',
       address:'',
       dailyWages:'0',
-      images:[]
+      images:[],
+      removeImages:[]
     }
   },
   
@@ -32,7 +33,7 @@ Page({
     var mapLocation = wx.getStorageSync('map_location');
     var projectPrincipal = wx.getStorageSync('project_principal');
     var images = wx.getStorageSync('images');
-    var removeImages = wx.removeStorageSync("removeImages");
+    var removeImages = wx.getStorageSync("removeImages");
 
     if (mapLocation) {
       that.setData({ address: mapLocation.address, ["project.address"]: mapLocation.address, location: mapLocation })
