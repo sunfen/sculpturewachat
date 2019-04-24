@@ -11,9 +11,12 @@ Page({
     project:{},
     results:[]
   },
+  
   goback() {
     wx.navigateBack({ delta: 1 })
   },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -62,15 +65,6 @@ Page({
    */
   preventTouchMove: function () {
   },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
 
 
   handleTouchStart: function (e) {

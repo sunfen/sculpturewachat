@@ -1,9 +1,12 @@
+
+
 .content {
   display: flex;
   flex-direction: column;
   justify-content:flex-start;
   background: #fff;
   width: 100%;
+  height: 100%;
 }
 
 .table-header {
@@ -16,11 +19,27 @@
     color: #fff;
 }
 
-.table-body {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
+
+
+scroll-view {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  height: 100%;
+  overflow: scroll;
 }
 
+.image{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.table-item-row{
+  justify-content: flex-start;
+}
 
+.table-item-column-noborder{
+  width: 100%;
+  margin:20rpx;
+}

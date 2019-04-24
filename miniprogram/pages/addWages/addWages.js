@@ -62,7 +62,7 @@ Page({
       success(res) {
         if (res.data.length > 0) {
           that.setData({
-            projects: res.data
+            projects: res.data, ["record.projectId"]: res.data[0].id
           });
         }
       }
@@ -110,7 +110,7 @@ Page({
     var name = "record.projectId"
     if(index){
       this.setData({
-        [name]: index
+        [name]: this.data.projects[index].id
       })
     }
   },

@@ -1,8 +1,7 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
 
-<scroll-view class="container"  scroll-y="true">
-
+<scroll-view>
   <view class="top" wx:if="{{userInfo.nickName}}">
     <view class="top-image">
       <image src='{{userInfo.avatarUrl}}'  data-src='{{userInfo.avatarUrl}}' bindtap='previewImage'></image>
@@ -32,7 +31,7 @@
   <!-- 我的负责人 -->
     <form bindsubmit='myPrincipal' report-submit='true'>
       <button form-type='submit' class="defalut_btn category-detail">
-        <text class="category-top">我的负责人</text>
+        <text>我的负责人</text>
         <text class="category-buttom">{{count.countPrincipal}}个</text>
       </button>
     </form>
@@ -41,7 +40,7 @@
     <!-- 我的项目 -->
     <form bindsubmit='myProject' report-submit='true'>
       <button form-type='submit' class="defalut_btn category-detail">
-        <text class="category-top">我的项目</text>
+        <text>我的项目</text>
         <text class="category-buttom">{{count.countProject}}个</text>
       </button>
     </form>
@@ -49,7 +48,7 @@
     <!-- 我的工资 -->
     <form bindsubmit='myWages' report-submit='true'>
       <button form-type='submit' class="defalut_btn category-detail">
-        <text class="category-top">我的收入</text>
+        <text>我的收入</text>
         <text class="category-buttom">{{count.countWages ? count.countWages : 0}}元</text>
       </button>
     </form>
@@ -70,7 +69,7 @@
         </view>
         <button form-type='submit' class="defalut_btn function-remind-right">
           <text>导入已完结项目</text>
-          <view class="function-remind-import">
+          <view class="function-help-right">
             <icon class="iconfont icon-back-right"></icon>
           </view>
         </button>
@@ -87,7 +86,7 @@
         </view>
         <button form-type='submit' class="defalut_btn function-remind-right">
           <text>关于我们</text>
-          <view class="function-remind-switch">
+          <view class="function-help-right">
             <icon class="iconfont icon-back-right"></icon>      
           </view>
         </button>
@@ -188,8 +187,7 @@
   </view>
 </view>
 
-
+  <component-footernav current="1"  wx:if='{{!showModal}}'></component-footernav>  
 </scroll-view>
 
-<component-footernav current="1"  wx:if='{{!showModal}}'></component-footernav>  
 

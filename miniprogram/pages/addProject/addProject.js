@@ -17,7 +17,8 @@ Page({
       principal:{id:'', name:'',phone:""},
       name:'',
       address:'',
-      dailyWages:'0'
+      dailyWages:'0',
+      images:[]
     }
   },
   
@@ -31,6 +32,8 @@ Page({
     var mapLocation = wx.getStorageSync('map_location');
     var projectPrincipal = wx.getStorageSync('project_principal');
     var images = wx.getStorageSync('images');
+    var removeImages = wx.removeStorageSync("removeImages");
+
     if (mapLocation) {
       that.setData({ address: mapLocation.address, ["project.address"]: mapLocation.address, location: mapLocation })
       wx.removeStorageSync('map_location');
@@ -39,6 +42,11 @@ Page({
     if (images) {
       that.setData({ images: images })
       wx.removeStorageSync('images');
+    }
+
+    if (removeImages) {
+      that.setData({ ['project.removeImages']: removeImages })
+      wx.removeStorageSync('removeImages');
     }
 
     if (projectPrincipal) {
@@ -71,6 +79,7 @@ Page({
                 name: res.data.name,
                 address: res.data.address,
                 dailyWages: res.data.dailyWages,
+                images: res.data.images
               })
             }
           }
@@ -83,6 +92,7 @@ Page({
           name: project.name,
           address: project.address,
           dailyWages: project.dailyWages,
+          images: project.images,
         });
       }
 
@@ -268,36 +278,54 @@ Page({
     var i = that.data.i;//当前上传的哪张图片
     var success = that.data.success;//上传成功的个数
     var fail = that.data.fail;//上传失败的个数
-    wx.uploadFile({
-      header: header,
-      url: getApp().globalData.urlPath + 'document',
-      filePath: that.data.images[i].path,
-      name: 'file',
-      formData: { objectId : objectId},
-      success: (resp) => {
-        success++;//图片上传成功，图片上传成功的变量+1
-      },
-      fail: (res) => {
-        fail++;//图片上传失败，图片上传失败的变量+1
-        console.log('fail:' + i + "fail:" + fail);
-      },
-      complete: () => {
-        
-        i++;//这个图片执行完上传后，开始上传下一张
-        if (i == that.data.images.length) {  
-          wx.hideLoading(); //当图片传完时，停止调用          
-          wx.showToast({
-            title: '成功上传：' + success + " 张，失败：" + fail + " 张",
-            icon: 'success',
-            success(res) {
-              that.goback();
-            }
-          })
-        } else {//若图片还没有传完，则继续调用函数
-          that.setData({i: i, fail : fail, success : success});
-          that.uploadimg(that.data);
-        }
+    var image = that.data.images[i];
+    if (image.id){
+      i++;//这个图片执行完上传后，开始上传下一张
+      if (i == that.data.images.length) {
+        wx.hideLoading(); //当图片传完时，停止调用          
+        wx.showToast({
+          title: '成功上传：' + success + " 张，失败：" + fail + " 张",
+          icon: 'success',
+          success(res) {
+            that.goback();
+          }
+        })
+      } else {//若图片还没有传完，则继续调用函数
+        that.setData({ i: i, fail: fail, success: success });
+        that.uploadimg(that.data);
       }
-    });
+    }else{
+        wx.uploadFile({
+          header: header,
+          url: getApp().globalData.urlPath + 'document',
+          filePath: image.path,
+          name: 'file',
+          formData: { objectId : objectId},
+          success: (resp) => {
+            success++;//图片上传成功，图片上传成功的变量+1
+          },
+          fail: (res) => {
+            fail++;//图片上传失败，图片上传失败的变量+1
+            console.log('fail:' + i + "fail:" + fail);
+          },
+          complete: () => {
+            
+            i++;//这个图片执行完上传后，开始上传下一张
+            if (i == that.data.images.length) {  
+              wx.hideLoading(); //当图片传完时，停止调用          
+              wx.showToast({
+                title: '成功上传：' + success + " 张，失败：" + fail + " 张",
+                icon: 'success',
+                success(res) {
+                  that.goback();
+                }
+              })
+            } else {//若图片还没有传完，则继续调用函数
+              that.setData({i: i, fail : fail, success : success});
+              that.uploadimg(that.data);
+            }
+          }
+        });
+    }
   }
 })

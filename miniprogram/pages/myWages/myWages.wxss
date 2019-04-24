@@ -48,3 +48,13 @@ page {
   font-size: 10rpx;
   color: rgb(150, 149, 149);
 }
+
+.name{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.table-item-row{
+  justify-content: space-between；
+}

@@ -41,27 +41,6 @@ Page({
 
 
 
-  /**
-   *  关闭项目详情页
-   **/
-  closeModal: function(e){
-    common.submitFormId(e.detail.formId);
-    this.setData({
-      showModal: false
-    })
-  },
-
-
-
-  /**
-   * 弹出项目详情页
-   */
-  viewdetail(e){
-    this.setData({
-      showModal: true
-    })
-  },
-
 
 
   /**
@@ -86,17 +65,9 @@ Page({
     })
   },
 
-  /**
-   * 编辑项目详情页
-   */
-  editProject(e) {
-    common.submitFormId(e.detail.formId);
-    wx.navigateTo({
-      url: '/pages/addProject/addProject?id=' + this.data.project.id,
-    })
-  },
 
-  detailProject(e){
+
+  viewdetail(e){
     common.submitFormId(e.detail.formId);
     var that = this;
     wx.navigateTo({
@@ -123,48 +94,6 @@ Page({
       url: '/pages/addWages/addWages',
     })
   },
-
-
-
-
-  /**
-   * 删除项目详情页
-   */
-  deletedProject(e) {
-    common.submitFormId(e.detail.formId);
-    var that = this;
-    wx.showModal({
-      content: '是否删除?',
-      success(res) {
-        if (res.confirm) {
-          wx.request({
-            method:'delete',
-            header: header,
-            url: getApp().globalData.urlPath + 'project/' + that.data.project.id,
-            success(res) {
-              if (res.data.code == "200") {
-                wx.showToast({
-                  title: '成功删除！',
-                  icon: 'success',
-                  success(res) {
-                    that.setData({
-                      showModal: false
-                    })
-                    that.init();
-                  }
-                })
-              } else if (res.data.code == "500") {
-                common.showAlertToast("数据错误，请重试！");
-              } else {
-                common.showAlertToast("数据错误，请重试！");
-              }
-            }
-          })
-        }
-      }
-    })
-  },
-
 
   /**
    * 获取init数据

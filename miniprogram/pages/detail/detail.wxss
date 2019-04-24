@@ -73,7 +73,11 @@ page {
   flex-direction: column;
   justify-content:flex-start;
 }
-
+.center-image{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+}
 
 @import '../../pages/calendar/index.wxss';
 

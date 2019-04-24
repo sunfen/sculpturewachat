@@ -127,6 +127,19 @@ Page({
     })
   },
 
+  /**
+   * 图片
+   */
+  imageDetail(e) {
+    common.submitFormId(e.detail.formId);
+    var that = this;
+    var images = JSON.stringify(that.data.project.images);
+
+    wx.navigateTo({
+      url: '/pages/addImage/addImage?images=' + images + "&isView=true",
+    })
+  },
+
 
 
   /**

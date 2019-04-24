@@ -4,11 +4,15 @@ const app = getApp()
 var common = require('/../../pages/common/common.js');
 var header = app.globalData.header;
 var util = require('../../util/util.js'); 
+
+
+
 Page({
   /** 
    * 页面的初始据 
    */
   data: {
+    sysWidth: app.globalData.sysWidth,
     results: [],
     pageInfo: { size: 7, page: 0 },
   },
@@ -25,6 +29,10 @@ Page({
     this.getpageByProject();
   },
 
+  bindscrolltolower(){
+    this.getpageByProject();
+  },
+  
   onLoad(options) {
     var that = this;
     common.checkLogin();
@@ -73,6 +81,7 @@ Page({
             totalElements: res.data.totalElements
           }
         });
+        console.log(that.data.results);
       }
     })
   },

@@ -8,7 +8,7 @@
         <image  style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='{{item.path}}'  data-src='{{item.path}}' ></image>
       </view>
 
-      <form class="form-add" wx:if="{{images.length >= 0  && images.length <= 2}}" bindsubmit='addimage' report-submit='true'>
+      <form class="form-add" wx:if="{{images.length >= 0  && images.length <= 2 && !isView}}" bindsubmit='addimage' report-submit='true'>
           <button form-type='submit' class="defalut_btn">
             <icon class="iconfont icon-addimage"></icon>
           </button>
@@ -21,7 +21,7 @@
         <image style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx" mode="scaleToFill" src='{{item.path}}'  data-src='{{item.path}}'></image>
       </view> 
 
-      <form class="form-add" wx:if="{{images.length >= 3  && images.length <= 5}}" bindsubmit='addimage' report-submit='true'>
+      <form class="form-add" wx:if="{{images.length >= 3  && images.length <= 5 && !isView}}" bindsubmit='addimage' report-submit='true'>
           <button  form-type='submit' class="defalut_btn">
             <icon class="iconfont icon-addimage"></icon>
           </button>
@@ -34,14 +34,14 @@
           <image style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  mode="scaleToFill"  data-src='{{item.path}}' src='{{item.path}}' ></image>
       </view>
 
-      <form class="form-add" wx:if="{{images.length >= 6  && images.length <= 8}}" bindsubmit='addimage' report-submit='true'>
+      <form class="form-add" wx:if="{{images.length >= 6  && images.length <= 8 && !isView}}" bindsubmit='addimage' report-submit='true'>
           <button  form-type='submit' class="defalut_btn">
             <icon class="iconfont icon-addimage"></icon>
           </button>
       </form>
     </view>
 
-    <form class="form-save" wx:if="{{images.length > 0 }}" bindsubmit='save' report-submit='true'>
+    <form class="form-save" wx:if="{{images.length > 0 && !isView }}" bindsubmit='save' report-submit='true'>
         <button size='mini' form-type='submit' class="defalut_btn" type='primary'>确定</button>
     </form>
   </view>

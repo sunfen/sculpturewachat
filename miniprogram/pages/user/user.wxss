@@ -1,13 +1,19 @@
 /**index.wxss**/
 
-.container {
+page{
+  height: 100%;
+  overflow: auto;
+}
+
+scroll-view {
   background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   font-size: 28rpx;
   font-weight:300;
   color:#313131;
+  height: 100%;
+  overflow: scroll;
 }
 
 .top {
@@ -49,52 +55,25 @@
   display: flex;
   flex-direction: row;
   justify-content:space-around;
-  height: 120rpx;
   background: #fffefe;
 }
 
 .category-detail {
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
-}
-
-.category-top {
-  font-weight: 400;
+  text-align: center;
   font-size: 30rpx;
 }
 
+
 .category-buttom {
+  font-weight: 600;
   text-align:  center;
-  margin-top: -20rpx;
+  color: #F48F01;
 }
 
 .button-login{
   margin: 20rpx;
-  
-}
-
-
-
-.function-remind-switch {
-  margin-left: 60%;
-}
-
-.wx-switch-input{
-  width:82rpx !important;
-  height:40rpx !important;
-  margin:0 !important;
-  padding: 0 !important;
-}
-/*白色样式（false的样式）*/
-.wx-switch-input::before{
-  width:80rpx !important;
-  height:36rpx !important;
-}
-/*绿色样式（true的样式）*/
-.wx-switch-input::after{
-  width:38rpx !important;
-  height:36rpx !important;
 }
 
 

@@ -41,6 +41,22 @@
         </form>
       </view>
     </view>
+    
+    
+    <view class="center">
+      <view  class="center-image">
+          <text>图片资料</text>
+      </view>
+      <view class="center-wages">
+        
+        <form bindsubmit='imageDetail' report-submit='true'>
+          <button class="defalut_btn" form-type='submit'>
+            <text>{{project.images.length ? project.images.length : 0 }} 张 </text>
+            <icon class="iconfont icon-back-right"></icon>
+          </button>
+        </form>
+      </view>
+    </view>
 
     <!-- 日历 -->
     <view class="first-info-time">

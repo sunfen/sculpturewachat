@@ -102,7 +102,7 @@
      
 
     <!--弹窗 添加总工资 -->
-    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalWages}}"></view>
     <view class="modal-dialog" wx:if="{{showModalWages}}">
       <view class="modal-title">工资</view>
       <view class="modal-content">
@@ -111,15 +111,15 @@
         </view>
       </view>
       <view class="modal-footer">
-        <form bindsubmit='onConfirm' class='btn-confirm'report-submit='true'>
-          <button  class="defalut_btn" form-type='submit'  bindtap="sure">确定</button>
+        <form bindsubmit='onConfirm' class='btn-confirm' report-submit='true'>
+          <button  class="defalut_btn" form-type='submit'>确定</button>
         </form>
       </view>
     </view>
 
 
         <!--弹窗 添加备注 -->
-    <view class="modal-mask" bindtap="hideModal"        catchtouchmove="preventTouchMove" wx:if="{{showModalRemark}}"></view>
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModalRemark}}"></view>
     <view class="modal-dialog" wx:if="{{showModalRemark}}">
       <view class="modal-title">备注</view>
       <view class="modal-content">
@@ -129,7 +129,7 @@
       </view>
       <view class="modal-footer">
         <form bindsubmit='onConfirm' class='btn-confirm' report-submit='true'>
-          <button form-type='submit' class="defalut_btn"  bindtap="sure">确定</button>
+          <button form-type='submit' class="defalut_btn">确定</button>
         </form>
       </view>
     </view>
