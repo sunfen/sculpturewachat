@@ -22,10 +22,6 @@ Component({
     // 这里是一个自定义方法
     goback: function () {
       this.triggerEvent('goback')
-    },
-    // 这里是一个自定义方法
-    topTitleEvent: function () {
-      this.triggerEvent('topnavEvent')
     }
   }
 

@@ -13,7 +13,7 @@
       </view>
 
       <view wx:if="{{isShowBack=='false'}}" class='hh-nav-back'></view>
-      <view class="hh-title" bindtap='topTitleEvent'>{{innerTitle}}</view>
+      <view class="hh-title">{{innerTitle}}</view>
       <view class="hh-nav-right"></view>
 
     </view>

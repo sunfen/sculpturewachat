@@ -51,7 +51,7 @@ page{
 
 
 .orientation_city{
-  height: 35rpx;
+  height: 21px;
   line-height: 40rpx;
   color: #000;
   text-align: center;
@@ -165,12 +165,12 @@ input-holder {
 /* 小图标 */
 @font-face {
   font-family: 'iconfont';  /* project id 1041080 */
-  src: url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.eot');
-  src: url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1041080_fisw56xdhp7.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1041080_14rpha6smhn.eot');
+  src: url('//at.alicdn.com/t/font_1041080_14rpha6smhn.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1041080_14rpha6smhn.svg#iconfont') format('svg');
 }
 
 
