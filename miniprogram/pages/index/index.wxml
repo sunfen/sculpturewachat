@@ -139,7 +139,7 @@
     <!--弹出框  -->
     <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
       <view class="commodity-button">
-        <text>选择工作时间：</text>
+        <view class="commodity-button-title"><text>选择 <text class="commodity-button-title-middle">今日</text> 工作时长</text></view>
 
         <view class="commodity-button-content">
           <view wx:for="{{selectTypes}}" wx:key="property"  wx:for-item="item" wx:for-index="index">

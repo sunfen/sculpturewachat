@@ -1,38 +1,88 @@
 /**index.wxss**/
-
-
-.content {
+scroll-view{
   display: flex;
   flex-direction: column;
-  justify-content:flex-start;
-  background: #fff;
+  justify-content: flex-start;
   width: 100%;
+  height: 100%;
+  overflow: scroll;
 }
 
-
-
-.swiper-tab{
-  width: 100%;
-  border-bottom: 2rpx solid #ccc;
-  text-align: center;
-  height: 88rpx;
-  line-height: 88rpx;
+.header-title{
   display: flex;
-  flex-flow: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 8px;
 }
 
-.swiper-tab-item{
-  width: 30%; 
-    
+.totalWages{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 8px;
+  font-weight: 600;
+  color: rgb(62, 96, 190);
 }
 
-.active{
-  color:#F65959;
-  border-bottom: 4rpx solid #F65959;
+.noData{
+  font-weight: 600;
+  color: rgb(133, 132, 132);
+  padding-top: 20%;
 }
 
-.table-header {
-  background: #eee; 
+.header-first picker{
+  background:#fff;
+  height: 60rpx;
+  width: 150rpx;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  border-radius: 40rpx;
+  margin: 20rpx;
+  padding: 2rpx;
 }
 
+.header-first{
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.icon-pull-down {
+  font-size: 28rpx;
+  color: rgb(141, 137, 137);
+}
+
+.statistics{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 600rpx;
+}
+
+.statistics1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 800rpx;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+canvas{
+  height: 400rpx;
+}

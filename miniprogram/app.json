@@ -3,9 +3,9 @@
   "pages": [
     "pages/index/index",
     "pages/user/user",
-    "pages/statistics/statistics",
     "pages/myWages/myWages",
     "pages/myProject/myProject",
+    "pages/statistics/statistics",
     "pages/myPrincipalProject/myPrincipalProject",
     "pages/myPrincipal/myPrincipal",
     "pages/importorLogRecord/importorLogRecord",
@@ -17,7 +17,7 @@
     "pages/addLog/addLog",
     "pages/accountWages/accountWages",
     "pages/about/about",
-        "pages/addImage/addImage"
+    "pages/addImage/addImage"
   ],
   "window": {
     "backgroundColor": "#ffffff",

@@ -5,6 +5,7 @@ import initCalendar, { jump, setTodoLabels, deleteTodoLabels, getTodoLabels, cle
 const COLOR_GRAY = "rgb(224, 223, 223)";
 const COLOR_RED = "rgb(252, 127, 25)";
 const TODO_LABEL_COLOR = "green";
+const TODO_LABEL_COLOR_ORIGIN = "orange";
 
 var common = require('/../../pages/common/common.js');
 
@@ -132,9 +133,6 @@ Page({
         if (options.log){
           var log = JSON.parse(options.log);
           jump(log.year, log.month, log.day);
-        }else{
-
-          jump();
         }
     }, app.globalData.timeout)
   },
@@ -296,7 +294,7 @@ Page({
                 month: data.month,
                 day: data.day,
                 todoText: data.totalHour + "h",
-                todoLabelColor: TODO_LABEL_COLOR
+                todoLabelColor: data.totalHour == 0 ? TODO_LABEL_COLOR_ORIGIN : TODO_LABEL_COLOR 
               }],
             });
           }

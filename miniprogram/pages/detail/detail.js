@@ -3,7 +3,7 @@ const app = getApp()
 import initCalendar, { jump, setTodoLabels, deleteTodoLabels, getTodoLabels, clearTodoLabels, getSelectedDay } from '../../pages/calendar/index';
 
 const TODO_LABEL_COLOR = "green";
-
+const TODO_LABEL_COLOR_ORIGIN = "orange";
 var common = require('/../../pages/common/common.js');
 
 var header = app.globalData.header;
@@ -162,7 +162,7 @@ Page({
                 month: data.month,
                 day: data.day,
                 todoText: data.totalHour + "h",
-                todoLabelColor: TODO_LABEL_COLOR
+                todoLabelColor: data.totalHour == 0 ? TODO_LABEL_COLOR_ORIGIN :TODO_LABEL_COLOR
               }],
             });
           }

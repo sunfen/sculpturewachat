@@ -66,7 +66,7 @@ Page({
 
   onLoad: function () {
     var that = this;
-    common.login();
+  
   },
 
 
@@ -75,6 +75,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    common.login();
     common.checkLogin();
     setTimeout(function () { 
       that.init();
@@ -106,7 +107,7 @@ Page({
   viewStatistics: function (e) {
     common.submitFormId(e.detail.formId);
     wx.navigateTo({
-      url: '/pages/statistics/statistics',
+       url: '/pages/statistics/statistics',
     })
   },
 
@@ -186,6 +187,22 @@ Page({
       [name]: e.detail.value
     })
   },
+
+
+
+  /**
+   * 选择时间
+   */
+  onSelectHours(event) {
+    var that = this;
+    common.submitFormId(event.detail.formId);
+    that.setData({ [event.target.dataset.property]: event.target.dataset.hour });
+
+    var totalHours = that.data.record.morningHour + that.data.record.afternoonHour +    that.data.record.eveningHour;
+
+    that.setData({ ["record.totalHour"]: totalHours });
+  },
+
 
   /**
    * 绑定项目

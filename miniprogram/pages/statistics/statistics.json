@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "component-topnav": "/pages/component/topnav/topnav"
+    "component-topnav": "/pages/component/topnav/topnav",
+    "ec-canvas": "../../ec-canvas/ec-canvas"
   }
 }

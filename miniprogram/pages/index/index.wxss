@@ -229,6 +229,20 @@ scroll-view  {
   background:  #d8d8d86c; 
 }
 
+.commodity-button-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-weight: 600;
+  padding:20rpx;
+  color: #fff;
+  background: rgb(47, 42, 109);
+}
+
+.commodity-button-title-middle{
+  font-size: 40rpx;
+}
+
 .commodity-button-content{
   display: flex;
   flex-direction: column;

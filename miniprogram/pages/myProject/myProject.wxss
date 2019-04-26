@@ -43,3 +43,7 @@ scroll-view {
   width: 100%;
   margin:20rpx;
 }
+
+.table-item-top{
+  margin-bottom: 4rpx;
+}

@@ -12,6 +12,7 @@ Page({
     fail : 0,
     success: 0,
     images:[],
+    disable: true,
     project:{
       id:"",
       principal:{id:'', name:'',phone:""},
@@ -215,24 +216,34 @@ Page({
   sure(e) {
     var that = this;
     common.submitFormId(e.detail.formId);
+    if (that.data.disable){
+      that.setData({disable : false});
+    }else{
+      return;
+    }
     if (that.data.project.principal.name == "" || that.data.project.principal.name == undefined){
       common.showAlertToast("请填写项目负责人名称！");
+      that.setData({ disable: true });
       return;
     }
     if (that.data.project.name == "" || that.data.project.name == undefined) {
       common.showAlertToast("请填写项目名称！");
+      that.setData({ disable: true });
       return;
     }
     if (that.data.project.address == "" || that.data.project.address == undefined) {
       common.showAlertToast("请填写项目地点！");
+      that.setData({ disable: true });
       return;
     }
     if (that.data.project.dailyWages == "" || that.data.project.dailyWages == undefined 
         || isNaN(that.data.project.dailyWages) || that.data.project.dailyWages <= 0) {
       common.showAlertToast("请填写项目日工资！");
+      that.setData({ disable: true });
       return;
     } else if ( that.data.project.dailyWages >= 10000) {
       common.showAlertToast("项目日工资须小于一万元！");
+      that.setData({ disable: true });
       return;
     }
     wx.showLoading({
@@ -262,13 +273,17 @@ Page({
 
         } else if (res.data.code == "404") {
           common.loginFail();
+          that.setData({ disable: true });
         } else if (res.data.code == "500") {
+          that.setData({ disable: true });
           common.showAlertToast("数据错误，请重试！");
         }else {
+          that.setData({ disable: true });
           common.showAlertToast("数据错误，请重试！");
         }
       },
       fail: function (res){
+        that.setData({ disable: true });
         common.loginFail();
       }
     })
@@ -276,57 +291,53 @@ Page({
 
   uploadimg(objectId){
     var that = this;
-    var i = that.data.i;//当前上传的哪张图片
-    var success = that.data.success;//上传成功的个数
-    var fail = that.data.fail;//上传失败的个数
-    var image = that.data.images[i];
-    if (image.id){
-      i++;//这个图片执行完上传后，开始上传下一张
-      if (i == that.data.images.length) {
-        wx.hideLoading(); //当图片传完时，停止调用          
-        wx.showToast({
-          title: '成功上传：' + success + " 张，失败：" + fail + " 张",
-          icon: 'success',
-          success(res) {
-            that.goback();
-          }
-        })
-      } else {//若图片还没有传完，则继续调用函数
-        that.setData({ i: i, fail: fail, success: success });
-        that.uploadimg(that.data);
-      }
-    }else{
+    for (var i = 0; i < that.data.images.length; i ++){
+      var image = that.data.images[i];
+      
+      if (image.id) {
+        that.data.i += 1;
+        that.setData({ i: that.data.i});
+
+      } else {
         wx.uploadFile({
           header: header,
           url: getApp().globalData.urlPath + 'document',
           filePath: image.path,
           name: 'file',
-          formData: { objectId : objectId},
+          formData: { objectId: objectId },
           success: (resp) => {
-            success++;//图片上传成功，图片上传成功的变量+1
+            that.data.i += 1;
+            that.data.success += 1;
+            that.setData({ success: that.data.success, i: that.data.i});
+            console.log(that.data);
           },
           fail: (res) => {
-            fail++;//图片上传失败，图片上传失败的变量+1
-            console.log('fail:' + i + "fail:" + fail);
+            that.data.i += 1;
+            that.data.fail += 1;
+            that.setData({ fail: that.data.fail, i: that.data.i});
+            console.log(that.data);
           },
-          complete: () => {
-            
-            i++;//这个图片执行完上传后，开始上传下一张
-            if (i == that.data.images.length) {  
-              wx.hideLoading(); //当图片传完时，停止调用          
-              wx.showToast({
-                title: '成功上传：' + success + " 张，失败：" + fail + " 张",
-                icon: 'success',
-                success(res) {
-                  that.goback();
-                }
-              })
-            } else {//若图片还没有传完，则继续调用函数
-              that.setData({i: i, fail : fail, success : success});
-              that.uploadimg(that.data);
-            }
+          complete: (res) => {
+            setTimeout(function () {
+              that.alert(objectId);
+            }, 400);
           }
         });
+      }
+    }
+  },
+
+  alert(objectId){
+    var that = this;
+    if (that.data.i == that.data.images.length) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '成功上传：' + that.data.success + " 张，失败：" + that.data.fail + " 张",
+        icon: 'success',
+        success(res) {
+          that.goback();
+        }
+      })
     }
   }
 })

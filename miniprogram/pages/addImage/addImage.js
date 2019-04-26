@@ -95,7 +95,7 @@ Page({
   remove(e){
     var that = this;
     var image = that.data.images[e.currentTarget.dataset.index];
-    that.data.images.splice(e.currentTarget.dataset.index);
+    that.data.images.splice(e.currentTarget.dataset.index, 1);
     that.setData({ images: that.data.images});
     if (image.id){
       that.data.removeImages.push(image.id);
@@ -109,11 +109,14 @@ Page({
     var that = this;
     common.submitFormId(e.detail.formId);
     wx.chooseImage({
-      count: 9,
+      count: 9 - that.data.images.length,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
-        that.setData({ images: res.tempFiles})
+        for (var i = 0; i < res.tempFiles.length; i ++){
+          that.data.images.push(res.tempFiles[i]);
+        }
+        that.setData({ images: that.data.images})
       }, fail(res) {
         console.log(res);
       }

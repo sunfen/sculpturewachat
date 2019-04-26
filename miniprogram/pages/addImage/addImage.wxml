@@ -1,5 +1,5 @@
 <!--addProject.wxml-->
-<component-topnav inner-title="添加图片" is-show-back="true" bind:goback="goback"></component-topnav>
+<component-topnav inner-title="{{isView ? '图片': '添加图片'}}" is-show-back="true" bind:goback="goback"></component-topnav>
 
 <scroll-view>
   <view class="image-column">
