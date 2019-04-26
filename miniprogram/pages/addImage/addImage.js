@@ -114,7 +114,11 @@ Page({
       sourceType: ['album', 'camera'],
       success(res) {
         for (var i = 0; i < res.tempFiles.length; i ++){
-          that.data.images.push(res.tempFiles[i]);
+          if (res.tempFiles[i].size > 10485760){
+            common.errorWarn("单张图片大小不能大于10M");
+          }else{
+            that.data.images.push(res.tempFiles[i]);
+          }
         }
         that.setData({ images: that.data.images})
       }, fail(res) {
