@@ -81,7 +81,7 @@ scroll-view  {
 
 .note-column-date {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   color: #797878;
   font-weight: 400;

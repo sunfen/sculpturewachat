@@ -87,10 +87,10 @@
       </view>
     </form>
 
-        <!-- 方式 -->
+    <!-- 方式 -->
     <view class="row">
          <button class="defalut_btn">
-          <icon class="iconfont icon-time"></icon>
+          <icon class="iconfont icon-wages"></icon>
         </button>
       <picker range="{{methods}}" value="{{methodIndex}}"  id="project.method" bindchange="updateData">        
         <view class="row-right">
@@ -101,16 +101,32 @@
       </picker>
     </view>
 
-    <!-- 打卡 -->
+    <!-- 时间 -->
     <form bindsubmit='addLogRecords' report-submit='true'>
       <view class="row">
          <button class="defalut_btn">
-          <icon class="iconfont icon-wages"></icon>
+          <icon class="iconfont icon-time"></icon>
         </button>
         <button form-type='submit' class="defalut_btn row-right">
           <view>时间</view>
           <view class="row-right-icon">
             <icon class="iconfont icon-back-right"></icon>       
+          </view>
+        </button>
+      </view>
+    </form>
+
+    <!-- 添加图片 -->
+    <form bindsubmit='addImages' report-submit='true'>
+      <view class="row">
+        <button class="defalut_btn top-button">
+          <icon class="iconfont icon-image"></icon>
+        </button>
+        <button form-type='submit' class="defalut_btn row-right">
+          <text>图片</text>
+          <text>{{images.length}}张</text>
+          <view class="row-right-icon">
+            <icon class="iconfont icon-back-right"></icon>
           </view>
         </button>
       </view>
@@ -141,7 +157,7 @@
       <view class="table-item-row" wx:for="{{project.logRecords}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
         <text>{{item.time}}</text>
         <text>{{item.morningHour}}(小时)</text>
-        <text>{{item.morningHour}}(小时)</text>
+        <text>{{item.afternoongHour}}(小时)</text>
         <text>{{item.eveningHour}}(小时)</text>
         <text>{{item.totalHour}}(小时)</text>
         <text class="ellipsis">{{item.remark}}</text>

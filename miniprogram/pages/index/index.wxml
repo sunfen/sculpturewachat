@@ -128,7 +128,7 @@
   </view>
   
   <form bindsubmit='addProject' report-submit='true'>
-    <button form-type='submit' type="primary" style='width:50%'>新增项目</button>
+    <button form-type='submit' type="primary" style='width:50%;margin-top:20px'>新增项目</button>
   </form>
 
 

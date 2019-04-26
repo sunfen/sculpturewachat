@@ -10,7 +10,7 @@
     </picker>
     <view class="query-total">
       应结 ￥{{totalExpectTotalWages ? totalExpectTotalWages : 0}}
-      已结 ￥{{totalWages ? totalWages : 0}}
+      <text>已结 ￥{{totalWages ? totalWages : 0}}</text>
     </view>
   </view>
 
@@ -23,7 +23,13 @@
 
   <scroll-view >
     <view class="table-item-row"  wx:for="{{results}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
-      <view class="name">{{item.name}}</view>
+      
+      <view class="name">
+        
+        <image wx:if="{{item.images.length > 0}}" style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='{{item.images[0].minPath}}'  data-src='{{item.images[0].path}}'></image>
+        <image wx:else style="width:{{sysWidth/3}}rpx;height:{{sysWidth/3}}rpx"  src='/images/logo1.png'  data-src='/images/logo1.png' ></image>
+        <view>{{item.name}}</view>
+      </view>
       <view class="table-item-time" wx:if="{{item.startTime}}"><text>{{item.startTime}}</text><text>{{item.endTime ? item.endTime : ''}}</text></view>
       <view class="table-item-time" wx:else style='color:red'>未开始</view>
       <view class="table-item-column-noborder">{{item.expectTotalWages}}元</view>

@@ -270,6 +270,7 @@ picker{
   width: 100%;
   font-weight: 400;
   font-size: 32rpx;
+  padding-bottom: 30px;
 }
 
 .function-remind {

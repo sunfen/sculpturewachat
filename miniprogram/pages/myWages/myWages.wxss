@@ -23,7 +23,14 @@ page {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  font-size: 30rpx;
+  color: rgb(247, 97, 11);
+  font-weight: 600;
 }
+.query-total text{
+  color: rgb(18, 192, 33);
+}
+
 
 .query picker{
   background:#fff;
@@ -51,8 +58,8 @@ page {
 
 .name{
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .table-item-row{

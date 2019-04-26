@@ -11,6 +11,7 @@ Page({
     methods:["银行卡", "微信", "支付宝"],
     methodIndex: 0,
     projectIndex: 0,
+    disable: false,
     record:{
       id:"",
       projectId:'',
@@ -154,7 +155,11 @@ Page({
       common.showAlertToast("请选择工资发放方式！");
       return;
     }
-
+    if (!that.data.disable){
+      that.setData({ disable : true})
+    }else{
+      return;
+    }
 
     wx.request({
       url: getApp().globalData.urlPath + 'wagesrecord',
@@ -171,14 +176,18 @@ Page({
             }
           })
         } else if (res.data.code == "404") {
+          that.setData({ disable: false })
           common.loginFail();
         } else if (res.data.code == "500") {
+          that.setData({ disable: false })
           common.showAlertToast("数据错误，请重试！");
         }else {
+          that.setData({ disable: false })
           common.showAlertToast("数据错误，请重试！");
         }
       },
       fail: function (res){
+        that.setData({ disable: false })
         common.loginFail();
       }
     })

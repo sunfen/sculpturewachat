@@ -9,6 +9,7 @@ var util = require('../../util/util.js');
 
 Page({
   data: {
+    sysWidth: app.globalData.sysWidth,
     date: new Date().getFullYear(),
     totalWages: 0,
     totalExpectTotalWages: 0,

@@ -196,7 +196,8 @@ Page({
       legend: {
         orient: 'vertical',
         x: 'right',
-        data: data ? data.names : []
+        data: data ? data.names : [],
+        textStyle: {fontSize : 16}
       },
       grid: {
         containLabel: true,
@@ -213,19 +214,6 @@ Page({
         hoverAnimation: false,
         legendHoverLink: false,
         silent: true,
-        label: {
-          normal: {
-            show: false,
-            position: 'center'
-          },
-          emphasis: {
-            show: true,
-            textStyle: {
-              fontSize: '30',
-              fontWeight: 'bold'
-            }
-          }
-        },
         labelLine: {
           normal: { show: false }
         },
@@ -248,12 +236,13 @@ Page({
         right: '14%',
         bottom: '8%'
       },
-      xAxis: { name: '天' },
+      xAxis: { name: '天' , nameTextStyle: { fontSize: 16 }},
       yAxis: {
         name: '项目',
         type: 'category',
         data: data ? data.names : [],
-        axisLabel: { interval: 0 },
+        axisLabel: { interval: 0, fontSize:16 },
+        nameTextStyle: {fontSize : 16}
       },
       series: [{
         type: 'bar',
@@ -265,9 +254,10 @@ Page({
           normal: {
             show: true,
             position: 'right'
-          }
+          },
+          fontSize :16
         },
-        barWidth: '50%',
+        barWidth: '20',
       }]
     });
   },
@@ -275,14 +265,14 @@ Page({
 
   setOption3(data){
     chart3.setOption({
-      color: ['#D16BAB', '#F2A385', '#FADB71', '#71F6F9',  '#56A1D5'],
       tooltip: {
         trigger: 'none',
       },
       legend: {
         orient: 'vertical',
         x: 'right',
-        data: data ? data.names : []
+        data: data ? data.names : [],
+        textStyle: { fontSize: 16 }
       },
       grid: {
         containLabel: true,
@@ -300,19 +290,6 @@ Page({
         legendHoverLink: false,
         silent: true,
         stillShowZeroSum : false,
-        label: {
-          normal: {
-            show: false,
-            position: 'center'
-          },
-          emphasis: {
-            show: true,
-            textStyle: {
-              fontSize: '30',
-              fontWeight: 'bold'
-            }
-          }
-        },
         labelLine: {
           normal: { show: false }
         },

@@ -16,6 +16,7 @@ Page({
     currentTab: 0,
     COLOR_GRAY :"rgb(224, 223, 223)",
     COLOR_RED : "rgb(252, 127, 25)",
+    disable:false,
     record:{
       id:'',
       morningHour: 4,
@@ -227,7 +228,11 @@ Page({
       common.showAlertToast("须选择工作项目!");
       return;
     }
-
+    if (!that.data.disable) {
+      that.setData({ disable: true });
+    } else {
+      return;
+    }
     wx.request({
       url: getApp().globalData.urlPath + 'logrecord',
       method: "POST",
@@ -244,14 +249,18 @@ Page({
           })
         } else if (res.data.code == "404") {
           common.loginFail();
+          that.setData({ disable: false });
         } else if (res.data.code == "500") {
+          that.setData({ disable: false });
           common.showAlertToast("数据错误，请重试！");
         } else {
+          that.setData({ disable: false });
           common.showAlertToast("数据错误，请重试！");
         }
 
       },
       fail: function (res) {
+        that.setData({ disable: false });
         common.loginFail();
       }
     })
