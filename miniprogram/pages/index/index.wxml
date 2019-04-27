@@ -44,22 +44,22 @@
   <view class="top-center">
   
     <view class="top-one">
-      <text class="top-one-top">{{monthWages}}元</text>
+      <text class="top-one-top">{{monthWages ? monthWages : 0}}元</text>
       <text>本月收入</text>
     </view>
   
     <view class="top-one">
-      <text class="top-one-top">{{workDays}}</text>
+      <text class="top-one-top">{{workDays ? workDays : 0}}天</text>
       <text>本月出勤天数</text>
     </view>
 
     <view class="top-one">
-      <text class="top-one-top">{{extraDays}}</text>
+      <text class="top-one-top">{{extraDays ? extraDays : 0}}天</text>
       <text>本月加班天数</text>
     </view>
 
     <view class="top-one">
-      <text class="top-one-top">{{leaveDays}}</text>
+      <text class="top-one-top">{{leaveDays ? leaveDays : 0}}天</text>
       <text>本月缺勤天数</text>
     </view>
   

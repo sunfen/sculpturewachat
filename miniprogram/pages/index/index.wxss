@@ -252,7 +252,7 @@ scroll-view  {
 }
 
 .commodity-button-content icon{
-  margin-right:10rpx;
+  margin-right:30rpx;
 }
 
 
