@@ -234,10 +234,10 @@ Page({
       common.showAlertToast("备注不可超过126个字符");
       return;
     }
-    if (that.data.record.morningProjectId == undefined && that.data.record.morningProjectId == null
-      && that.data.record.afternoonProjectId == undefined && that.data.record.afternoonProjectId == null
-      && that.data.record.eveningProjectId == undefined && that.data.record.eveningProjectId == null) {
-      common.showAlertToast("须选择工作项目!");
+    if (that.data.record.morningProjectId == undefined || that.data.record.morningProjectId == null
+      || that.data.record.afternoonProjectId == undefined || that.data.record.afternoonProjectId == null
+      || that.data.record.eveningProjectId == undefined || that.data.record.eveningProjectId == null) {
+      common.showAlertToast("请选择工作项目!");
       return;
     }
     if (!that.data.disable) {
@@ -300,6 +300,8 @@ Page({
             ["record.eveningProject"]: res.data[0],
             ["record.eveningProjectId"]: res.data[0].id
           });
+        }else{
+          common.showAlertToast("还没有项目，赶紧添加项目吧！");
         }
         that.data.projects.push({ id: null, name: "无" });
         that.setData({ projects: that.data.projects });

@@ -11,9 +11,14 @@
 
 @import '../../pages/calendar/index.wxss';
 
-.sure-btn{
-  width: 50%;
-  padding: 30%;
+.sure-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 50rpx;
+}
+.sure-btn form{
+  margin-left: 50rpx;
 }
 
 .commodity_screen {
@@ -108,14 +113,6 @@ input{
   justify-content:flex-start;
   margin-left: 80rpx;
   background: #fff;
-}
-
-.row-right {
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-  align-items:center;
-  border-top: 1rpx solid #b9b7b7c5;
 }
 
 .row-right-type{

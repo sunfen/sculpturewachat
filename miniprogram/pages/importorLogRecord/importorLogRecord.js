@@ -1,7 +1,7 @@
 //index.js
 const app = getApp()
 import initCalendar, { jump, setTodoLabels, deleteTodoLabels, getTodoLabels, clearTodoLabels, getSelectedDay } from '/../../pages/calendar/index';
-
+var util = require('../../util/util.js'); 
 const COLOR_GRAY = "rgb(224, 223, 223)";
 const COLOR_RED = "rgb(252, 127, 25)";
 const TODO_LABEL_COLOR = "green";
@@ -15,6 +15,9 @@ Page({
     currentTab: 0,
     COLOR_GRAY :"rgb(224, 223, 223)",
     COLOR_RED : "rgb(252, 127, 25)",
+    timeBetween: false,
+    startTime: "",
+    endTime: "",
     record:{
       id:'',
       morningHour: 4,
@@ -119,15 +122,22 @@ Page({
           }],
         });
       }
+      that.setData({ startTime: wx.getStorageSync("startTime") });
+      that.setData({ endTime: wx.getStorageSync("endTime") });
+      that.setData({ timeBetween: wx.getStorageSync("timeBetween") });
+      wx.removeStorageSync("startTime");
+      wx.removeStorageSync("endTime");
+      wx.removeStorageSync("timeBetween");
     }
 
     jump();
   },
 
   goback() {
-    var that = this;
     wx.navigateBack({ delta: 1 })
   },
+
+
 
 
   /**
@@ -136,7 +146,10 @@ Page({
   sure:function(e){
     var that = this;
     common.submitFormId(e.detail.formId);
-    wx.setStorage({ key: "project_log_record", data: that.data.records })
+    wx.setStorage({ key: "project_log_record", data: that.data.records });
+    wx.setStorage({ key: "startTime", data: that.data.startTime })
+    wx.setStorage({ key: "endTime", data: that.data.endTime })
+    wx.setStorage({ key: "timeBetween", data: that.data.timeBetween })
     that.goback();
   },
 
@@ -144,11 +157,65 @@ Page({
    * 输入框输入事件  备注
    */
   inputValue: function (e) {
-    var name = e.target.dataset.id;
-    this.setData({
+    var that = this;
+    var name = e.target.dataset.id ? e.target.dataset.id : e.target.id;
+    that.setData({
       [name]: e.detail.value
     })
+
   },
+
+  previousStep:function(e){
+    var that = this;
+    common.submitFormId(e.detail.formId);
+    that.setData({ records: [], timeBetween: false  });
+  },
+
+  nextStep: function(e){
+    var that = this;
+    common.submitFormId(e.detail.formId);
+    if (that.data.startTime == null || that.data.endTime == null
+      || that.data.startTime == "" || that.data.endTime == "") {
+      common.showAlertToast("请选择日期！");
+      that.setData({ timeBetween: false });
+      return;
+    }
+  
+    var startDate = new Date(that.data.startTime);
+    var endDate = new Date(that.data.endTime);
+    if (startDate > endDate){
+      common.showAlertToast("开始时间不能大于结束时间！");
+      return;
+    }
+    var time = startDate;
+    var startTimestamp = Date.parse(startDate);
+    var endTimestamp = Date.parse(endDate);
+    var length = (endTimestamp - startTimestamp) / 86400000;
+    for (var i = 0; i <= length; i ++ ){
+      
+      time = new Date(startTimestamp + 86400000 * i);
+     
+      var record = {
+        id: '', morningHour: 4,  afternoonHour: 4,  eveningHour: 0,
+        totalHour: '8', time: util.formatTime(time),  remark: '',
+        year: time.getFullYear(), month: time.getMonth() +1, day: time.getDate()};
+
+        that.data.records.push(record);
+ 
+        setTodoLabels({
+          circle: true,
+          days: [{
+            year: record.year,
+            month: record.month,
+            day: record.day,
+            todoText: 8 + "h",
+            todoLabelColor: TODO_LABEL_COLOR
+          }],
+        });
+    }
+    that.setData({ records: that.data.records, timeBetween: true  });
+  },
+
 
 
   /**
@@ -180,6 +247,16 @@ Page({
     if (that.data.record.remark != undefined && that.data.record.remark.length >= 126) {
       common.showAlertToast("备注不可超过126个字符");
       return;
+    }
+
+    var startDate = new Date(that.data.startTime);
+    var endDate = new Date(that.data.endTime);
+    var time = new Date(that.data.record.time);
+    if (time > endDate){
+      that.setData({ endTime: that.data.record.time})
+    }
+    if (time < startDate) {
+      that.setData({ startTime: that.data.record.time })
     }
 
     that.data.records.push(that.data.record);

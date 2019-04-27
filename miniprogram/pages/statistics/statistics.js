@@ -289,7 +289,6 @@ Page({
         hoverAnimation: false,
         legendHoverLink: false,
         silent: true,
-        stillShowZeroSum : false,
         labelLine: {
           normal: { show: false }
         },

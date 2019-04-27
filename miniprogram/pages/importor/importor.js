@@ -63,6 +63,13 @@ Page({
       that.setData({ ['project.images']: images });
       that.setData({ images : images });
     }
+
+    that.setData({ startTime : wx.getStorageSync("startTime")});
+    that.setData({ endTime: wx.getStorageSync("endTime") });
+    that.setData({ timeBetween: wx.getStorageSync("timeBetween") });
+    wx.removeStorageSync("startTime");
+    wx.removeStorageSync("endTime");
+    wx.removeStorageSync("timeBetween");
   },
 
   
@@ -88,12 +95,15 @@ Page({
 
   //添加打卡
   addLogRecords(e) {
+    var that = this;
     common.submitFormId(e.detail.formId);
     let project = JSON.stringify(this.data.project);
     wx.navigateTo({
       url: '/pages/importorLogRecord/importorLogRecord?project=' + project,
     })
-
+    wx.setStorage({ key: "startTime", data: that.data.startTime })
+    wx.setStorage({ key: "endTime", data: that.data.endTime })
+    wx.setStorage({ key: "timeBetween", data: that.data.timeBetween })
   },
 
 

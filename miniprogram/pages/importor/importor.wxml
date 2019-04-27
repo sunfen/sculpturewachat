@@ -108,7 +108,7 @@
           <icon class="iconfont icon-time"></icon>
         </button>
         <button form-type='submit' class="defalut_btn row-right">
-          <view>时间</view>
+          <view>工期</view>
           <view class="row-right-icon">
             <icon class="iconfont icon-back-right"></icon>       
           </view>
@@ -157,7 +157,7 @@
       <view class="table-item-row" wx:for="{{project.logRecords}}" wx:key="property" wx:for-item="item" wx:for-index="id"  data-index="{{id}}">
         <text>{{item.time}}</text>
         <text>{{item.morningHour}}(小时)</text>
-        <text>{{item.afternoongHour}}(小时)</text>
+        <text>{{item.afternoonHour}}(小时)</text>
         <text>{{item.eveningHour}}(小时)</text>
         <text>{{item.totalHour}}(小时)</text>
         <text class="ellipsis">{{item.remark}}</text>

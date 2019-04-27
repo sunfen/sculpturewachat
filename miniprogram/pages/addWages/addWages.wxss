@@ -14,21 +14,7 @@
   font-size: 28rpx;
 }
 
-.row-right {
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-  align-items:center;
-  margin-left: 20rpx;
-  font-size: 28rpx;
-  color: #313131e3;
-  width: 100%;
-  border-bottom: 1rpx solid #b9b7b7c5;
-}
 
-.row-right-icon {
-  margin-right: 10%;
-}
 
 .btn{
   display: flex;

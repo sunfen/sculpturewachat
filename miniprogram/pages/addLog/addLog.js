@@ -222,10 +222,10 @@ Page({
       common.showAlertToast("备注不可超过126个字符");
       return;
     }
-    if(that.data.record.morningProjectId == undefined && that.data.record.morningProjectId == null
-       &&  that.data.record.afternoonProjectId == undefined && that.data.record.afternoonProjectId == null 
-       &&  that.data.record.eveningProjectId == undefined && that.data.record.eveningProjectId == null){
-      common.showAlertToast("须选择工作项目!");
+    if(that.data.record.morningProjectId == undefined || that.data.record.morningProjectId == null
+       || that.data.record.afternoonProjectId == undefined || that.data.record.afternoonProjectId == null 
+       ||  that.data.record.eveningProjectId == undefined || that.data.record.eveningProjectId == null){
+      common.showAlertToast("请选择工作项目!");
       return;
     }
     if (!that.data.disable) {
