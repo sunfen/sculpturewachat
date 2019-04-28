@@ -6,20 +6,18 @@
   <view class="content" wx:if="{{!timeBetween}}">
     <!-- 添加开始时间 -->
     <view class="row">
-        <button class="defalut_btn">
-          <icon class="iconfont icon-time"></icon>
-        </button>
-      <view class="row-right">
-        <text>开始时间</text>
-        <text>{{startTime}}</text>
-        <view class="row-right-icon">
-          <picker mode="date" value="{{startTime}}" start="2010-01-01" end="2099-12-31" id="startTime" bindchange="inputValue">
-            <button class="defalut_btn top-button">
-              <icon class="iconfont icon-back-right"></icon>
-            </button> 
-          </picker>      
+      <button class="defalut_btn">
+        <icon class="iconfont icon-time"></icon>
+      </button>
+      <picker class="row-right" mode="date" value="{{startTime}}" start="2010-01-01" end="2099-12-31" id="startTime" bindchange="inputValue">
+        <view class="picker">
+          <text>开始时间</text>
+          <text>{{startTime}}</text>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
         </view>
-      </view>
+      </picker>      
     </view>
 
 
@@ -28,18 +26,17 @@
       <button class="defalut_btn">
         <icon class="iconfont icon-time"></icon>
       </button>
-      <view class="row-right">
-        <text>结束时间</text>
-        <text>{{endTime}}</text>
-        <view class="row-right-icon">
-          <picker mode="date" value="{{endTime}}" start="2010-01-01" end="2099-12-31" id="endTime" bindchange="inputValue">
-            <button class="defalut_btn top-button">
-              <icon class="iconfont icon-back-right"></icon>
-            </button> 
-          </picker>      
+      <picker class="row-right" mode="date" value="{{endTime}}" start="2010-01-01" end="2099-12-31" id="endTime" bindchange="inputValue">
+        <view class="picker">
+          <text>结束时间</text>
+          <text>{{endTime}}</text>
+          <button class="defalut_btn top-button">
+            <icon class="iconfont icon-back-right"></icon>
+          </button> 
         </view>
-      </view>
+      </picker>      
     </view>
+
     <view class="sure-btn">
       <form bindsubmit='nextStep' report-submit='true'>
         <button class='btn-sure'  form-type='submit' size='default' type="primary" >下一步</button>

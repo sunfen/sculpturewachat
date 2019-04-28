@@ -16,7 +16,7 @@ Page({
     COLOR_GRAY :"rgb(224, 223, 223)",
     COLOR_RED : "rgb(252, 127, 25)",
     timeBetween: false,
-    startTime: "",
+    startTime: util.formatTime(new Date()),
     endTime: "",
     record:{
       id:'',
@@ -82,6 +82,7 @@ Page({
               isExit = true;
               var record = that.data.records[i];
               that.setData({ record: that.data.records[i] });
+              break;
             }
           }
           if(!isExit){
@@ -130,7 +131,6 @@ Page({
       wx.removeStorageSync("timeBetween");
     }
 
-    jump();
   },
 
   goback() {
@@ -214,6 +214,7 @@ Page({
         });
     }
     that.setData({ records: that.data.records, timeBetween: true  });
+    jump(startDate.getFullYear(), startDate.getMonth()+1, startDate.getDate());
   },
 
 
@@ -259,7 +260,19 @@ Page({
       that.setData({ startTime: that.data.record.time })
     }
 
-    that.data.records.push(that.data.record);
+    var isExit = false;
+
+    for (var i in that.data.records) {
+      if (that.data.records[i].time == that.data.record.time) {
+        isExit = true;
+        that.data.records[i] = that.data.record;
+        that.setData({ record: that.data.records[i] });
+        break;
+      }
+    }
+    if (!isExit){
+      that.data.records.push(that.data.record);
+    }
     that.setData({records: that.data.records});
 
     var time = that.data.calendar.selectedDay[0];

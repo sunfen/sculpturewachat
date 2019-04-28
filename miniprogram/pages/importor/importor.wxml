@@ -109,6 +109,7 @@
         </button>
         <button form-type='submit' class="defalut_btn row-right">
           <view>工期</view>
+          <view>{{startTime}} - {{endTime}}</view>
           <view class="row-right-icon">
             <icon class="iconfont icon-back-right"></icon>       
           </view>

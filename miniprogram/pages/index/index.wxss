@@ -296,7 +296,7 @@ scroll-view  {
 }
 
 picker{
-  width: 50%;
+  width: 60%;
 }
 
 
@@ -304,7 +304,9 @@ picker{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 25rpx;
+  font-size: 35rpx;
+  color:  rgb(45, 146, 5);
+  font-weight: 600;
 }
 
 input{

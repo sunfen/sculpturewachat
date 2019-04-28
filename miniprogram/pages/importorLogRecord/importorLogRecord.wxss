@@ -121,3 +121,10 @@ input{
   margin-left: 30rpx;
 }
 
+.picker{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 500rpx;
+  line-height: 100rpx;
+}
