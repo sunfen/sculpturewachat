@@ -33,5 +33,10 @@
       "desc": "你的位置信息将用于项目位置"
     }
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+    "navigateToMiniProgramAppIdList": [
+      "wxf61bed124837fca5",
+      "wx39dc7970f2861ede",
+      "wxb7cb00126e90e1db"
+    ]
 }

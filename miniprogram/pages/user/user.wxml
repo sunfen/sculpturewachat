@@ -111,6 +111,16 @@
     </view>  
 
   </view>
+
+  <view class="help">
+    <navigator  target="miniProgram" open-type="navigate" app-id="wxf61bed124837fca5" 
+  path="pages/index/index" >如需要<text>合并收款码</text>，请点击这里！</navigator>
+
+  
+    <navigator   target="miniProgram" open-type="navigate" app-id="wxb7cb00126e90e1db" 
+  path="pages/index/index" >如需要<text>制作二维码</text>，请点击这里！</navigator>
+  </view>
+
   <view class="blank-space"></view>
  
  

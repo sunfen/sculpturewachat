@@ -240,6 +240,7 @@ Page({
       header: header,
       success: function (res) {
         if (res.data.code == "200") {
+          that.setData({ disable: false });
           wx.showToast({
             title: '成功添加！',
             icon: 'success',
