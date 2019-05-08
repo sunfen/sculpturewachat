@@ -2,10 +2,10 @@
 Page({
   data: {
     imgs: [
-      'cloud://scuplture-71456f.7363-scuplture-71456f/images/homePage.jpg',
-      'cloud://scuplture-71456f.7363-scuplture-71456f/images/homePage1.jpg',
-      'cloud://scuplture-71456f.7363-scuplture-71456f/images/homePage2.jpg',
-      'cloud://scuplture-71456f.7363-scuplture-71456f/images/homePage3.jpg',
+      '/images/homePage.jpg',
+      '/images/homePage1.jpg',
+      '/images/homePage2.jpg',
+      '/images/homePage3.jpg',
     ]
   },
   start: function (e) {
