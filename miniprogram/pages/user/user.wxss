@@ -125,6 +125,7 @@ scroll-view {
   justify-content: space-around;
   text-align: center;
   margin-top: 20rpx;
+  margin-bottom: 150px;
 }
 
 
@@ -259,8 +260,17 @@ navigator{
 navigator text{
   font-size: 20px;
   color: rgb(243, 11, 154);
+  font-weight:600;
 }
 
 .function{
   padding-bottom: 0;
+}
+
+.function-remind{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  padding: 0px;
 }

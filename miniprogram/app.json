@@ -1,9 +1,9 @@
 {
   "cloud": true,
   "pages": [
+    "pages/user/user",
     "pages/swiper/swiper",
     "pages/index/index",
-    "pages/user/user",
     "pages/myWages/myWages",
     "pages/myProject/myProject",
     "pages/statistics/statistics",
@@ -37,6 +37,8 @@
     "navigateToMiniProgramAppIdList": [
       "wxf61bed124837fca5",
       "wx39dc7970f2861ede",
-      "wxb7cb00126e90e1db"
+      "wxb7cb00126e90e1db",
+      "wx1bde05ed3c43ce14",
+      "wx6a3dcbd8af7801af" 
     ]
 }

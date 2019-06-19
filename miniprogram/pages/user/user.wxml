@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
 
-<scroll-view>
+<scroll-view  scroll-y="true">
   <view class="top" wx:if="{{userInfo.nickName}}">
     <view class="top-image">
       <image src='{{userInfo.avatarUrl}}'  data-src='{{userInfo.avatarUrl}}' bindtap='previewImage'></image>
@@ -119,6 +119,16 @@
   
     <navigator   target="miniProgram" open-type="navigate" app-id="wxb7cb00126e90e1db" 
   path="pages/index/index" >如需要<text>制作二维码</text>，请点击这里！</navigator>
+
+    <navigator   target="miniProgram" open-type="navigate" app-id="wx6a3dcbd8af7801af" 
+  path="pages/index/index" >如需要<text>塑心雕塑</text>，请点击这里！</navigator>
+
+    <navigator   target="miniProgram" open-type="navigate" app-id="wx1bde05ed3c43ce14" 
+  path="pages/index/index" >如需要<text>智能识别</text>，请点击这里！</navigator>
+
+      <navigator   target="miniProgram" open-type="navigate" app-id="wx1bde05ed3c43ce14" 
+  path="pages/index/index" >如需要<text>贴身管家 | 查询一切 | 2048小游戏</text>，请点击这里！</navigator>
+
   </view>
 
   <view class="blank-space"></view>
@@ -148,7 +158,7 @@
       分享至朋友圈
     </button>
   </view>
-
+</scroll-view>
 
   <view class='share-modal-bg' wx:if='{{showModal}}'>
     <view class='canvas-wrap'>
@@ -198,6 +208,6 @@
 </view>
 
   <component-footernav current="1"  wx:if='{{!showModal}}'></component-footernav>  
-</scroll-view>
+
 
 
