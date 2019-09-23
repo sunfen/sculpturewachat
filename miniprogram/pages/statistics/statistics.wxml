@@ -1,8 +1,11 @@
 <!--index.wxml-->
-<component-topnav  inner-title="统计" is-show-back="true" bind:goback="goback"></component-topnav>  
+<component-topnav  inner-title="统计"></component-topnav>  
 <!--index.wxml-->
-<scroll-view>
- 
+<scroll-view scroll-y="true">
+  <view class="blank-space"></view>
+  <ad unit-id="adunit-eb6f12f6709a7407"></ad>
+  <view class="blank-space"></view>
+
   <view>
     <view class="header-first">
       <picker value="{{date}}" bindchange="change" mode="date" start="2010-01-01" end="2022-01-01" fields="year">
@@ -52,3 +55,6 @@
   </view>
 
 </scroll-view>
+
+  <!-- 弹出框结束 -->
+<component-footernav current="2"></component-footernav>

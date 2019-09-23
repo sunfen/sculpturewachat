@@ -22,6 +22,16 @@ Component({
         url: '/pages/user/user',
       })
     },
+    gotoWages: function () {
+      wx.redirectTo({
+        url: '/pages/addWages/addWages',
+      })
+    },
+    gotoStatistics: function () {
+      wx.redirectTo({
+        url: '/pages/statistics/statistics',
+      })
+    },
   
   }
 

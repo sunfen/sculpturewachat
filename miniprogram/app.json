@@ -1,12 +1,12 @@
 {
   "cloud": true,
   "pages": [
+    "pages/index/index",
+    "pages/statistics/statistics",
     "pages/user/user",
     "pages/swiper/swiper",
-    "pages/index/index",
     "pages/myWages/myWages",
     "pages/myProject/myProject",
-    "pages/statistics/statistics",
     "pages/myPrincipalProject/myPrincipalProject",
     "pages/myPrincipal/myPrincipal",
     "pages/importorLogRecord/importorLogRecord",

@@ -1,20 +1,25 @@
 <view class="flex fix_nav_wp">
   <view class="nav_link" bindtap='gotoHome'>
     <button class="defalut_btn {{current==0?'on_cor':''}}">
-      <icon class="iconfont icon-home del_ico idx_ico"></icon>     
+      <icon class="iconfont icon-home"></icon>     
       <text class="txt">首页</text>
     </button>
   </view>
-  <!-- <view class="nav_link">
-    <button class="defalut_btn" bindtap='gotoMessages'>
-      <icon class="iconfont icon-circle del_ico idx_ico"></icon>
-      <text class="tip_tip"></text>
-      <text class="txt">圈子</text>
-    </button>
-  </view> -->
   <view class="nav_link">
-    <button class="defalut_btn {{current==1?'on_cor':''}}" bindtap='bindViewMy'>
-      <icon class="iconfont icon-my del_ico mine_ico my_ico"></icon>
+    <button class="defalut_btn {{current==1?'on_cor':''}}" bindtap='gotoWages'>
+      <icon class="iconfont icon-wages"></icon>
+      <text class="txt">工资结算</text>
+    </button>
+  </view>
+  <view class="nav_link">
+    <button class="defalut_btn {{current==2?'on_cor':''}}" bindtap='gotoStatistics'>
+      <icon class="iconfont icon-statistics"></icon>
+      <text class="txt">统计</text>
+    </button>
+  </view>
+  <view class="nav_link">
+    <button class="defalut_btn {{current==3?'on_cor':''}}" bindtap='bindViewMy'>
+      <icon class="iconfont icon-my"></icon>
       <text class="txt">我的</text>
     </button>
   </view>

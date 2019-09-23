@@ -32,7 +32,7 @@
     <form bindsubmit='myPrincipal' report-submit='true'>
       <button form-type='submit' class="defalut_btn category-detail">
         <text>我的负责人</text>
-        <text class="category-buttom">{{count.countPrincipal}}个</text>
+        <text class="category-buttom">{{count.countPrincipal? count.countPrincipal : 0}}个</text>
       </button>
     </form>
 
@@ -41,7 +41,7 @@
     <form bindsubmit='myProject' report-submit='true'>
       <button form-type='submit' class="defalut_btn category-detail">
         <text>我的项目</text>
-        <text class="category-buttom">{{count.countProject}}个</text>
+        <text class="category-buttom">{{count.countProject? count.countProject : 0}}个</text>
       </button>
     </form>
 
@@ -112,23 +112,17 @@
 
   </view>
 
+  <ad unit-id="adunit-eb6f12f6709a7407"></ad>
+
   <view class="help">
     <navigator  target="miniProgram" open-type="navigate" app-id="wxf61bed124837fca5" 
   path="pages/index/index" >如需要<text>合并收款码</text>，请点击这里！</navigator>
-
   
     <navigator   target="miniProgram" open-type="navigate" app-id="wxb7cb00126e90e1db" 
   path="pages/index/index" >如需要<text>制作二维码</text>，请点击这里！</navigator>
 
     <navigator   target="miniProgram" open-type="navigate" app-id="wx6a3dcbd8af7801af" 
   path="pages/index/index" >如需要<text>塑心雕塑</text>，请点击这里！</navigator>
-
-    <navigator   target="miniProgram" open-type="navigate" app-id="wx1bde05ed3c43ce14" 
-  path="pages/index/index" >如需要<text>智能识别</text>，请点击这里！</navigator>
-
-      <navigator   target="miniProgram" open-type="navigate" app-id="wx1bde05ed3c43ce14" 
-  path="pages/index/index" >如需要<text>贴身管家 | 查询一切 | 2048小游戏</text>，请点击这里！</navigator>
-
   </view>
 
   <view class="blank-space"></view>
@@ -207,7 +201,7 @@
   </view>
 </view>
 
-  <component-footernav current="1"  wx:if='{{!showModal}}'></component-footernav>  
+  <component-footernav current="3"  wx:if='{{!showModal}}'></component-footernav>  
 
 
 

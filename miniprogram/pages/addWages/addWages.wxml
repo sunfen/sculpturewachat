@@ -1,9 +1,11 @@
 <!--addProject.wxml-->
-<component-topnav inner-title="记录工资" is-show-back="true" bind:goback="goback"></component-topnav>
+<component-topnav inner-title="工资结算"></component-topnav>
 
-<view class="container">
   <view class="content">
-    
+    <view class="blank-space"></view>
+    <ad unit-id="adunit-eb6f12f6709a7407"></ad>
+    <view class="blank-space"></view>
+
     <!-- 项目 -->
     <view class="row" wx:if="{{projects}}">
         <button class="defalut_btn">
@@ -68,11 +70,11 @@
         <text>收款方式</text>
         <text>{{record.method}}</text>
         <view class="row-right-icon">
-         <picker range="{{methods}}" value="{{methodIndex}}"  id="methodIndex" bindchange="inputValue">
-          <button class="defalut_btn top-button">
-            <icon class="iconfont icon-back-right"></icon>
-          </button> 
-      </picker>      
+          <picker range="{{methods}}" value="{{methodIndex}}"  id="methodIndex" bindchange="inputValue">
+            <button class="defalut_btn top-button">
+              <icon class="iconfont icon-back-right"></icon>
+            </button> 
+          </picker>      
         </view>
       </view>
     </view>
@@ -136,6 +138,6 @@
 
 
   </view>
-</view>
 
-
+  <!-- 弹出框结束 -->
+<component-footernav current="1"></component-footernav>

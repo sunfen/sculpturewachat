@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "component-topnav": "/pages/component/topnav/topnav",
+    "component-footernav": "/pages/component/footernav/footernav",
     "ec-canvas": "../../ec-canvas/ec-canvas"
   }
 }

@@ -19,21 +19,25 @@
 
 /*首页*/
 .icon-home:before { content: "\e60b"; }
-/*圈子*/
-.icon-circle:before { content: "\e624"; }
 /*我的*/
 .icon-my:before { content: "\e600"; }
+.icon-statistics:before { content: "\e634";}/* 统计 */
+.icon-wages:before { content: "\e723";}/* 工资 */
+
 
 /* iconfont小图标 */
 /*为了更好展示，iconfont的字体文件代码忽略辣，各位道友可以下载时候看*/
 page{font-size:26rpx;color:#666;}
+
 .flex{display:-webkit-flex;display: flex;width:100%;}
+
+
 /*  底部悬浮导航  */
 .fix_nav_wp{
   height:110rpx;
   position: fixed;
   left:0;bottom:0;
-  background:#F48F01;
+  background:#fff;
   border-top:1rpx solid #e5e5e5;
   z-index: 10
 }
@@ -52,38 +56,28 @@ page{font-size:26rpx;color:#666;}
   position: relative;
 }
 
-.fix_nav_wp .tip_tip{
-  position: absolute;
-  right:25rpx;
-  top:5rpx;
-  min-width:28rpx;
-  line-height:32rpx;
-  height: 32rpx;
-  padding:0 8rpx;
-  color:#fff;
-  background:#f00;
-  border-radius:50em
-  ;border:1rpx solid #fff;
-}
 .fix_nav_wp .nav_link .iconfont{
   height:60rpx;
-  font-size:36rpx;
+  font-size:42rpx;
   line-height: 80rpx;
-  color: #FAD39B;
+  color: rgba(153, 153, 153, 0.541);
 }
-.fix_nav_wp .nav_link .plus_wp{width:120rpx;height:120rpx;margin-top: -45rpx;}
-.fix_nav_wp .nav_link  image{width:120rpx;height:120rpx;}
-.fix_nav_wp .nav_link .txt{height:50rpx;line-height:40rpx;color: #FAD39B;}
-.fix_nav_wp .nav_link.current .txt{color:#fff;}
-.fix_nav_wp .nav_link .del_ico{display: block;}
-.fix_nav_wp .nav_link .cur_ico{display: none;}
-.fix_nav_wp .nav_link.current .del_ico{display: none;}
-.fix_nav_wp .nav_link.current .cur_ico{display: block;color:#fff;}
-.fix_nav_wp .nav_link .txt_fb{line-height: 18rpx}
-.fix_nav_wp .nav_link .mp_ico{font-size: 36rpx;line-height: 80rpx}
-.fix_nav_wp .nav_link .xiaox_ico{font-size: 36rpx;line-height: 70rpx;}
-.fix_nav_wp .nav_link .my_ico{font-size: 36rpx;}
-.fix_nav_wp .on_cor .del_ico, .fix_nav_wp .on_cor .txt{color: #fff}
+
+.fix_nav_wp .nav_link .txt{
+  height:50rpx;
+  line-height:40rpx;
+  color: rgba(153, 153, 153, 0.541);
+}
+
+
+.fix_nav_wp .on_cor .iconfont,
+ .fix_nav_wp .on_cor .txt{
+   color: rgb(245, 147, 1);
+   font-weight:600;
+}
+
+
+
 
 /* 清楚按钮的默认样式  */
 .defalut_btn{

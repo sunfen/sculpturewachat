@@ -1,5 +1,11 @@
 /**app.wxss**/
 
+Page{
+  height: 100%;
+  overflow: auto;
+  background-color: #d1d0d08e;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -90,7 +96,7 @@
 
 .blank-space {
   height: 20rpx;
-  background-color: rgb(211, 211, 211);
+  background-color: rgba(211, 211, 211, 0.836);
 }
 
 .ellipsis {

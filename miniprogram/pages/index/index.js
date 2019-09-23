@@ -8,6 +8,9 @@ const COLOR_GRAY = "rgb(224, 223, 223)";
 const COLOR_RED = "rgb(252, 127, 25)";
 const TODO_LABEL_COLOR = "green";
 
+// 在页面中定义激励视频广告
+let videoAd = null
+
 Page({
   /**
    * 页面的初始数据
@@ -67,9 +70,17 @@ Page({
 
   onLoad: function () {
     var that = this;
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-f05b16d1d8186f87'
+      })
+      videoAd.onLoad(() => { })
+      videoAd.onError((err) => { })
+      videoAd.onClose((res) => { })
+    }
   
   },
-
 
   onShow: function () {
     var that = this;
@@ -85,33 +96,16 @@ Page({
   },
 
 
-  
-
-
-
 
   /**
-  * 新增一条日志
+  * 打卡记录
   */
   addOrUpdateLog(e) {
     common.submitFormId(e.detail.formId);
-    wx.navigateTo({
-      url: '/pages/addLog/addLog',
-    })
+      wx.navigateTo({
+        url: '/pages/addLog/addLog',
+      })
   },
-
-
-
-  /**
-   * 记工统计
-   */
-  viewStatistics: function (e) {
-    common.submitFormId(e.detail.formId);
-    wx.navigateTo({
-       url: '/pages/statistics/statistics',
-    })
-  },
-
 
 
   viewdetail(e){
@@ -127,20 +121,33 @@ Page({
    */
   addProject(e) {
     common.submitFormId(e.detail.formId);
-    wx.navigateTo({
-      url: '/pages/addProject/addProject',
-    })
+    // 用户触发广告后，显示激励视频广告
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show())
+          .catch(err => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          wx.navigateTo({
+            url: '/pages/addProject/addProject',
+          })
+        } else {
+          common.showAlertToast("需要看完视频才可新增项目哦！");
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/addProject/addProject',
+      })
+    }
+
   },
 
-  /**
-   * 新增结算工资
-   */
-  addWage(e) {
-    common.submitFormId(e.detail.formId);
-    wx.navigateTo({
-      url: '/pages/addWages/addWages',
-    })
-  },
 
   /**
    * 获取init数据
@@ -174,7 +181,27 @@ Page({
   addLogToday(e) {
     var that = this;
     common.submitFormId(e.detail.formId);
-    that.showModal();
+
+    // 用户触发广告后，显示激励视频广告
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show())
+          .catch(err => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.showModal();
+        } else {
+          common.showAlertToast("需要看完视频才可新增项目哦！");
+        }
+      })
+    } else {
+      that.showModal();
+    }
   },
 
 

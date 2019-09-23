@@ -63,15 +63,7 @@ Page({
   },
 
 
-  goback() {
-    wx.navigateBack({
-      detal:1
-    })
-  },
-
-
-
-  onReady() {
+  onShow() {
     var that = this;
     wx.showLoading({
       title: '加载中',

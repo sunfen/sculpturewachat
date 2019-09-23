@@ -1,15 +1,10 @@
 /**index.wxss**/
 
-page{
-  height: 100%;
-  overflow: auto;
-}
-
 scroll-view {
   background: #fff;
   display: flex;
   flex-direction: column;
-  font-size: 28rpx;
+  font-size: 20rpx;
   font-weight:300;
   color:#313131;
   height: 120%;
@@ -43,7 +38,7 @@ scroll-view {
   flex-direction: column;
   justify-content:center;
   text-align: center;
-  font-size: 32rpx;
+  font-size: 22rpx;
   padding-left: 50rpx;
   color:#F48F01;
   font-weight: 600;
@@ -125,7 +120,7 @@ scroll-view {
   justify-content: space-around;
   text-align: center;
   margin-top: 20rpx;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 
 
@@ -270,7 +265,10 @@ navigator text{
 .function-remind{
   padding-left: 20rpx;
   padding-right: 20rpx;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
-  padding: 0px;
+  padding-top: 2rpx;
+  padding-bottom: 2rpx;
+}
+
+.function-remind button text {
+  font-size: 30rpx;
 }

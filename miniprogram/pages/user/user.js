@@ -14,7 +14,7 @@ Page({
       avatarUrl: getApp().globalData.userInfo.avatarUrl,//用户头像
       nickName: getApp().globalData.userInfo.nickName,//用户昵称
     },
-    count:{}
+    count: {}
   },
 
   /**

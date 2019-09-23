@@ -1,11 +1,13 @@
 <!--index.wxml-->
 <component-topnav></component-topnav>  
 <scroll-view>
-
+  <view class="blank-space"></view>
+  <ad unit-id="adunit-eb6f12f6709a7407"></ad>
+  <view class="blank-space"></view>
+  
   <!-- 便利贴开始 -->
   <view class="note">
     <view class="note-content" wx:if="{{project.id}}" >
-      <!-- 添加项目人 -->
       <view class="note-title">
         <icon  class="iconfont icon-new"></icon>
       </view>
@@ -32,16 +34,11 @@
           </view>
       
         </view>
-        
-          
+      
     </view>
-    <view wx:else="{{project.id}}"  class="note-content-detail">暂无</view>
   </view>
-<!-- 便利贴结束 -->
 
-
-  <!-- 身份切换 -->
-  <view class="top-center">
+  <view class="top-center" wx:if="{{project.id}}" >
   
     <view class="top-one">
       <text class="top-one-top">{{monthWages ? monthWages : '0元'}}</text>
@@ -64,14 +61,17 @@
     </view>
   
   </view>
+<!-- 便利贴结束 -->
 
 <!-- top结束 -->
 
 <view class="blank-space"></view>
+
    <!-- 功能 -->
 <view class="function">
-    <view class="function-sign">
-     <form bindsubmit='addLogToday' class="img-plus-style "  report-submit='true'>
+
+    <view class="function-sign"  wx:if="{{project.id}}">
+     <form bindsubmit='addLogToday' class="sign "  report-submit='true'>
       <button form-type='submit'  class="defalut_btn">
         <icon class="iconfont icon-sign"></icon>
       </button>
@@ -79,57 +79,26 @@
     </view>
 
     <!-- 打卡记录 -->
-    <form bindsubmit='addOrUpdateLog' report-submit='true'>
-      <view class="function-remind">
-        <view class="function-remind-icon">
-          <icon class="iconfont icon-edit-account"></icon>
-        </view>
-        <button form-type='submit'  class="defalut_btn function-remind-right">
+    <view class="function-sign">
+      <form bindsubmit='addOrUpdateLog' report-submit='true'>
+        <button form-type='submit'  class="defalut_btn add-project">
           <text>打卡记录</text>
-          <view  class="function-help-right-record ">
-              <icon class="iconfont icon-back-right"></icon>
-          </view>     
-        </button>  
-      </view>  
-    </form>
-    
-    <!-- 结工资 -->
-    <form bindsubmit='addWage' report-submit='true'>
-      <view class="function-remind">
-        <view class="function-remind-icon">
-          <icon class="iconfont icon-wages"></icon>
-        </view>
-        <button form-type='submit' class="defalut_btn function-remind-right">
-          <text>结工资</text>
-          <view class="function-help-right">
-            <icon class="iconfont icon-back-right"></icon> 
-          </view>
+          <icon class="iconfont icon-record"></icon>
         </button>
-      </view>
-    </form>
-    
-    
-    
-    <!-- 统计 -->
-    <form bindsubmit='viewStatistics' report-submit='true'>
-      <view class="function-remind">
-        <view class="function-remind-icon">
-            <icon class="iconfont icon-statistics"></icon>
-        </view>
-        <button form-type='submit'  class="defalut_btn function-remind-right">
-          <text>统计</text>
-          <view  class="function-help-right">
-              <icon class="iconfont icon-back-right"></icon>
-          </view>
+      </form>
+      <form bindsubmit='addProject' report-submit='true'>
+        <button form-type='submit' class="defalut_btn add-project">
+          <text>新增项目</text>
+          <icon class="iconfont icon-add"></icon>
         </button>
-      </view>
-    </form>
+      </form>
+    </view>
 
   </view>
-  
-  <form bindsubmit='addProject' report-submit='true'>
-    <button form-type='submit' type="primary" style='width:50%;margin-top:20px'>新增项目</button>
-  </form>
+
+</scroll-view>
+  <!-- 弹出框结束 -->
+<component-footernav current="0"></component-footernav>  
 
 
   <view class="container">
@@ -241,7 +210,5 @@
     </view>
   </view>
 
-  <!-- 弹出框结束 -->
-<component-footernav current="0"></component-footernav>  
 
-</scroll-view>
+
