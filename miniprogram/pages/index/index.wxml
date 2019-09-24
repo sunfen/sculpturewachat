@@ -6,8 +6,8 @@
   <view class="blank-space"></view>
   
   <!-- 便利贴开始 -->
-  <view class="note">
-    <view class="note-content" wx:if="{{project.id}}" >
+  <view class="note"  wx:if="{{project.id}}" >
+    <view class="note-content">
       <view class="note-title">
         <icon  class="iconfont icon-new"></icon>
       </view>

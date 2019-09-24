@@ -196,7 +196,7 @@ Page({
         if (res && res.isEnded) {
           that.showModal();
         } else {
-          common.showAlertToast("需要看完视频才可新增项目哦！");
+          common.showAlertToast("需要看完视频才能打卡哦！");
         }
       })
     } else {
