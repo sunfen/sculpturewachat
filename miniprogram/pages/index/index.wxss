@@ -175,23 +175,26 @@ scroll-view  {
 
 .add-project{
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 110rpx;
+  flex-direction: column;
+  justify-content: center;
   width: 300rpx;
   background: rgb(63, 194, 2);
   color: #fff;
-  border-radius: 10%;
+  border-radius: 4%;
   font-size: 40rpx;
 }
 
 .icon-add{
   color: #fff;
-  font-size: 30rpx;
+  font-size: 40rpx;
 }
 .icon-record{
   color: #fff;
-  font-size: 30rpx;
+  font-size: 40rpx;
+}
+.icon-video{
+  color: #fff;
+  font-size: 40rpx;
 }
 
 /**index.wxss**/

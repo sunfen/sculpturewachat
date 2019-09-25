@@ -87,12 +87,14 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    console.log(1)
     common.login();
+    console.log(2)
     //common.checkLogin();
-    setTimeout(function () { 
+    setTimeout(function () {
       that.init();
       wx.hideLoading()
-    }, app.globalData.timeout * 2)
+    }, app.globalData.timeout * 4)
   },
 
 

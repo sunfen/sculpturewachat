@@ -30,16 +30,14 @@ module.exports.checkLogin = checkLogin;
 
 function login() {
   var that = this;
-  var header = app.globalData.header;
   //获取openId
   wx.login({
-    timeout: 300,
+    timeout: 500,
     success: function (res) {
       if (res.code) {
         wx.request({
           url: getApp().globalData.urlPath + 'login/session/' + res.code,
           method: 'GET',
-          header: header,
           success: function (res) {
             if (res.data.code == "200") {
               //从数据库获取用户信息

@@ -38,7 +38,7 @@
     </view>
   </view>
 
-  <view class="top-center" wx:if="{{project.id}}" >
+  <view class="top-center"   wx:if="{{project.id}}" >
   
     <view class="top-one">
       <text class="top-one-top">{{monthWages ? monthWages : '0元'}}</text>
@@ -74,22 +74,23 @@
      <form bindsubmit='addLogToday' class="sign "  report-submit='true'>
       <button form-type='submit'  class="defalut_btn">
         <icon class="iconfont icon-sign"></icon>
+        <icon class="iconfont icon-video"></icon>
       </button>
      </form>
     </view>
 
     <!-- 打卡记录 -->
     <view class="function-sign">
-      <form bindsubmit='addOrUpdateLog' report-submit='true'>
+      <form bindsubmit='addOrUpdateLog' report-submit='true' wx:if="{{project.id}}" >
         <button form-type='submit'  class="defalut_btn add-project">
+          <icon style="line-height:20rpx" class="iconfont icon-record"></icon>
           <text>打卡记录</text>
-          <icon class="iconfont icon-record"></icon>
         </button>
       </form>
       <form bindsubmit='addProject' report-submit='true'>
         <button form-type='submit' class="defalut_btn add-project">
-          <text>新增项目</text>
-          <icon class="iconfont icon-add"></icon>
+          <icon style="line-height:20rpx" class="iconfont icon-add"></icon>
+          <view>新增项目<icon class="iconfont icon-video"></icon></view>
         </button>
       </form>
     </view>
