@@ -22,8 +22,12 @@
       </button>
     </view>
   </view>
-
+  <view class="blank-space"></view>
+<view class="help"> 
+  <navigator  target="miniProgram" open-type="navigate" app-id="wx4534064443297693" 
+  path="pages/index/index" ><text>影视大全</text>，请点击这里！</navigator>
   
+</view>  
   <view class="blank-space"></view>
 
   <!-- 分类 -->
@@ -115,6 +119,7 @@
   <ad unit-id="adunit-eb6f12f6709a7407"></ad>
 
   <view class="help">
+
     <navigator  target="miniProgram" open-type="navigate" app-id="wxf61bed124837fca5" 
   path="pages/index/index" >如需要<text>合并收款码</text>，请点击这里！</navigator>
   
